@@ -12,12 +12,49 @@ module RuboCop
 
         def validate_config
           return if cop_config['Max'] == false
-          return if cop_config['Max'].is_a?(Integer) && cop_config['Max'].positive?
 
-          raise ValidationError, 'Prose/MaxLength: Max must be a positive integer or false.'
+          %w[Max HeadingMax CodeBlockMax].each do |name|
+            value = cop_config[name]
+            next if name != 'Max' && value.nil?
+            next if value.is_a?(Integer) && value.positive?
+
+            raise ValidationError, "Prose/MaxLength: #{name} must be a positive integer (or Max: false)."
+          end
         end
 
         private
+
+        def investigate_document
+          super
+          return if cop_config['Max'] == false
+
+          table_lines = document.nodes(:table).flat_map do |table|
+            first = table.options.fetch(:location)
+            rows = table.children.sum { |section| section.children.length }
+            (first..(first + rows)).to_a
+          end.to_set
+          heading_lines = document.headings.to_set(&:last)
+          document.lines.each_with_index do |text, index|
+            number = index + 1
+            next if document.front_matter_line?(number)
+
+            limit = structural_limit(number, heading_lines, table_lines)
+            next unless limit && text.length > limit
+
+            prose_offense(document.range(number, limit),
+                          message: format(MSG, length: text.length, max: limit))
+          end
+        end
+
+        def structural_limit(number, headings, tables)
+          if headings.include?(number) && cop_config['Headings']
+            cop_config['HeadingMax'] || cop_config['Max']
+          elsif document.code_line?(number) && cop_config['CodeBlocks']
+            cop_config['CodeBlockMax'] || cop_config['Max']
+          elsif tables.include?(number) && cop_config['Tables']
+            cop_config['Max']
+          end
+        end
 
         def investigate_paragraph(paragraph)
           return unwrap_paragraph(paragraph) if cop_config['Max'] == false
@@ -46,6 +83,8 @@ module RuboCop
           return if text.length <= max
 
           first = document.content_start(paragraph, number)
+          return if cop_config['IgnoreURLs'] && text[first..].strip.match?(%r{\A<?https?://\S+>?\z})
+
           range = document.range(number, [first, max].max, number, text.length)
           prefix = document.continuation_prefix(paragraph)
           breaks = wrap_points(text, number, first, prefix, document.atomic_ranges(paragraph))
