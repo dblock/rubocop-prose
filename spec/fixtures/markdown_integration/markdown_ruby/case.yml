@@ -1,0 +1,4 @@
+offenses:
+  Prose/MaxLength: 1
+  Style/StringLiterals: 1
+remaining_offenses: {}

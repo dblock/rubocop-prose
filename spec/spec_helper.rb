@@ -3,6 +3,7 @@
 require 'rubocop-prose'
 require 'tmpdir'
 require 'open3'
+require_relative 'support/integration_fixtures'
 
 module ProseHelpers
   def investigate(cop_class, source, options = {}, path: 'example.md', settings: {}, **cop_options)
@@ -37,6 +38,7 @@ end
 
 RSpec.configure do |config|
   config.include ProseHelpers
+  config.include IntegrationFixtures
   config.disable_monkey_patching!
   config.expect_with(:rspec) { |expectations| expectations.syntax = :expect }
 end
