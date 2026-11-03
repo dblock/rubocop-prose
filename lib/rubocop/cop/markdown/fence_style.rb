@@ -5,7 +5,7 @@ require_relative '../../prose/code_rules'
 module RuboCop
   module Cop
     module Markdown
-      class FenceStyle < Prose::Base
+      class FenceStyle < Base
         extend AutoCorrector
         include RuboCop::Prose::CodeRules
 

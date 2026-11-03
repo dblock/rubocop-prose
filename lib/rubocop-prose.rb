@@ -12,6 +12,8 @@ require_relative 'rubocop/prose/source'
 require_relative 'rubocop/prose/runner'
 require_relative 'rubocop/prose/plugin'
 require_relative 'rubocop/cop/prose/base'
+require_relative 'rubocop/cop/markdown/base'
+require_relative 'rubocop/cop/text/base'
 
 Dir[File.join(__dir__, 'rubocop/cop/{prose,markdown,text}/*.rb')].each { |path| require path }
 

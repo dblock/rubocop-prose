@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Markdown
-      class ThematicBreakStyle < Prose::Base
+      class ThematicBreakStyle < Base
         extend AutoCorrector
 
         def investigate_document

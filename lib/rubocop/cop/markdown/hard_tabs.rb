@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Markdown
-      class HardTabs < Prose::Base
+      class HardTabs < Base
         private
 
         def investigate_document

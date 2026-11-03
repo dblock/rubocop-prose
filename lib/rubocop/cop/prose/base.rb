@@ -25,25 +25,11 @@ module RuboCop
         private
 
         def applicable_document?
-          format = processed_source.prose_format
-          case self.class.department.to_s
-          when 'Markdown' then format == :markdown
-          when 'Text' then format == :text
-          else !format.nil?
-          end
+          !processed_source.prose_format.nil?
         end
 
         def document
-          @document ||= processed_source.prose_document(ignore_front_matter: ignore_front_matter?)
-        end
-
-        def ignore_front_matter?
-          return true unless processed_source.prose_format == :markdown
-
-          ignore = config.fetch('Markdown', {}).fetch('IgnoreFrontMatter', true)
-          return ignore if [true, false].include?(ignore)
-
-          raise ValidationError, 'Markdown: IgnoreFrontMatter must be true or false.'
+          @document ||= processed_source.prose_document(configuration: config)
         end
 
         def investigate_document

@@ -5,7 +5,7 @@ require_relative '../../prose/heading_rules'
 module RuboCop
   module Cop
     module Markdown
-      class HeadingStructure < Prose::Base
+      class HeadingStructure < Base
         include RuboCop::Prose::HeadingRules
 
         def investigate_document

@@ -48,9 +48,21 @@ RSpec.describe 'Plain-text prose policies' do
   end
 
   it 'does not let Markdown-specific cops inspect text even when selected explicitly' do
-    expect(offenses(RuboCop::Cop::Markdown::HeadingIncrement, "# Title\n### Details\n",
-                    path: 'example.txt')).to be_empty
-    expect(offenses(RuboCop::Cop::Markdown::FenceLanguage, "```\ntext\n```\n",
-                    path: 'example.txt')).to be_empty
+    cops = RuboCop::Cop::Registry.global.select { |cop| cop.department.to_s == 'Markdown' }
+    source = "# Title\n### Details.\n\n```\ntext\n```\n\n[Missing][missing]\n\n![](image.png) \t\n"
+    expect(offenses(cops, source, path: 'example.txt')).to be_empty
+  end
+
+  it 'does not apply Markdown configuration to literal text' do
+    source = "---\ntitle: First\n...\n"
+    expect(corrected(formatter, source, { 'Max' => false }, path: 'example.txt',
+                                                            settings: { 'Markdown' => { 'IgnoreFrontMatter' => 'yes' } })).to eq(
+                                                              "--- title: First ...\n"
+                                                            )
+  end
+
+  it 'does not let shared or format-specific document cops inspect Ruby' do
+    cops = [formatter, whitespace, RuboCop::Cop::Markdown::HeadingPunctuation]
+    expect(offenses(cops, "puts 1 \t\n", path: 'example.rb')).to be_empty
   end
 end

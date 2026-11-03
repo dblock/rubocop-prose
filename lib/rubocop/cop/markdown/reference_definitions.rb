@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class ReferenceDefinitions < Prose::Base
+      class ReferenceDefinitions < Base
         private
 
         def investigate_document

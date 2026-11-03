@@ -5,7 +5,7 @@ require_relative '../../prose/list_rules'
 module RuboCop
   module Cop
     module Markdown
-      class UnorderedListIndentation < Prose::Base
+      class UnorderedListIndentation < Base
         include RuboCop::Prose::ListRules
 
         private

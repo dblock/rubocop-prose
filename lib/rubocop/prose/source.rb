@@ -40,12 +40,12 @@ module RuboCop
         super(source, ruby_version, path, **)
       end
 
-      def prose_document(ignore_front_matter: true)
-        @prose_documents ||= {}
-        @prose_documents[ignore_front_matter] ||= Document.build(
+      def prose_document(configuration: nil)
+        @prose_documents ||= {}.compare_by_identity
+        @prose_documents[configuration] ||= Document.build(
           path,
           prose_markdown_document ? prose_markdown_document.buffer : buffer,
-          ignore_front_matter: ignore_front_matter, format: prose_format
+          configuration: configuration, format: prose_format
         )
       end
 

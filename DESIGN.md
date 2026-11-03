@@ -2,15 +2,15 @@
 
 ## Scope and naming
 
-This plugin implements native Ruby checks for Markdown and plain-text prose. `Prose/*` cop badges identify shared policies, `Markdown/*` identify Markdown-specific policies, and `Text/*` identify plain-text-specific policies. Common-sense cleanup is enabled by default; project-specific structure, editorial choices, paragraph layout, and renderer-dependent policies remain opt-in. User configuration and supported behavior are documented in [the README cops section](README.md#cops) and [the default policy](docs/settings/defaults.md).
+This plugin implements native Ruby checks for Markdown and plain-text prose. `Prose/*` cop badges identify shared policies, `Markdown/*` identify Markdown-specific policies, and `Text/*` identify plain-text-specific policies. Common-sense cleanup is enabled by default; project-specific structure, editorial choices, paragraph layout, and renderer-dependent policies remain opt-in. User configuration and supported behavior are documented in [the README cops section](README.md#cops).
 
-File recognition is centralized in the configuration-local `FileTypes` resolver, exposed through `Document.format`, and `Document.build` dispatches to `MarkdownDocument` or `TextDocument`. `Markdown/Include` and `Text/Include` contain native file patterns; a file matching both formats is a configuration error. Matching delegates to RuboCop's configuration matcher with the original configuration path. `Base` independently gates investigation by department and the source's resolved format, so selecting a Markdown cop cannot make it inspect text. Ruby snippet evaluation and spelling are outside the plugin's scope.
+File recognition is centralized in the configuration-local `FileTypes` resolver, exposed through `Document.format`, and `Document.build` dispatches to `MarkdownDocument` or `TextDocument`. `Markdown/Include` and `Text/Include` contain native file patterns; a file matching both formats is a configuration error. Matching delegates to RuboCop's configuration matcher with the original configuration path. `Markdown::Base` and `Text::Base` override applicability using the source's resolved format; shared `Prose::Base` only requires a recognized prose format. Selecting a Markdown cop cannot make it inspect text. Ruby snippet evaluation and spelling are outside the plugin's scope.
 
 The common document interface provides untouched buffers, Unicode ranges, lines, and paragraph formatting operations. Only `MarkdownDocument` exposes a Markdown AST, code regions, metadata, or container prefixes. `TextDocument` groups nonblank lines into paragraphs without interpreting headings, fences, HTML, links, or metadata. Its indented paragraphs can report formatting offenses but are not automatically reflowed because indentation may represent preformatted content.
 
 ## Plugin and source dispatch
 
-`lib/rubocop-prose.rb` loads document support and all cop implementations. `Prose.default_configuration` merges the shared defaults and per-cop YAML files. The `lint_roller` plugin presents that configuration to RuboCop as a temporary YAML file.
+`lib/rubocop-prose.rb` loads document support, all three abstract cop bases, and then the concrete cop implementations. The bases are excluded from RuboCop's registry. `Prose.default_configuration` merges the shared defaults and per-cop YAML files. The `lint_roller` plugin presents that configuration to RuboCop as a temporary YAML file.
 
 File-pattern defaults live in `config/default.yml`, not in discovery code or adapters. Each effective RuboCop configuration caches its own pattern matchers. Shared settings from individual YAML files are merged without overwriting other department keys, preserving `Markdown/Include` alongside `Markdown/IgnoreFrontMatter`. The target finder consults the configuration store per file, including nested configurations, instead of relying on process-wide file-type state or injecting static `AllCops/Include` patterns.
 
@@ -20,7 +20,7 @@ RuboCop normally assigns configuration after constructing a processed source. A 
 
 The source installs its parsing wrapper on the instance so it runs before optional preprocessor wrappers regardless of loading order. Text never supplies its contents to Markdown preprocessing, even when its configured extension would otherwise be recognized by a preprocessor. Markdown files with no original-source mapping are parsed standalone, discarding provisional Ruby diagnostics and tokens.
 
-Document instances are cached on the processed source by the front-matter setting, allowing enabled cops to share parsing without mixing different configurations. Hidden native RuboCop directives are surfaced as source comments only for Markdown outside parsed code and ignored metadata; all directive-shaped text remains literal in `.txt`.
+Document instances are cached on the processed source by configuration identity, allowing enabled cops to share parsing without hashing mutable configuration values or mixing different configurations. Markdown document construction resolves and validates `Markdown/IgnoreFrontMatter`, including for shared prose cops; text construction never reads Markdown options. Directive scanning uses a separate default document so leading metadata remains excluded from hidden directives. Hidden native RuboCop directives are surfaced as source comments only for Markdown outside parsed code and ignored metadata; all directive-shaped text remains literal in `.txt`.
 
 ## Original-source parsing and ranges
 

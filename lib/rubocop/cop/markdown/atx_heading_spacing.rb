@@ -5,7 +5,7 @@ require_relative '../../prose/heading_rules'
 module RuboCop
   module Cop
     module Markdown
-      class AtxHeadingSpacing < Prose::Base
+      class AtxHeadingSpacing < Base
         extend AutoCorrector
         include RuboCop::Prose::HeadingRules
 

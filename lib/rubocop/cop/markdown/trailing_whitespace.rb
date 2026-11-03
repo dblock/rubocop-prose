@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Markdown
-      class TrailingWhitespace < Prose::Base
+      class TrailingWhitespace < Base
         extend AutoCorrector
 
         MSG = 'Remove unexpected trailing whitespace; preserve Markdown hard breaks.'

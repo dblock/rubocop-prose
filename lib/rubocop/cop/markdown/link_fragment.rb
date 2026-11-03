@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class LinkFragment < Prose::Base
+      class LinkFragment < Base
         MSG = 'Link fragment does not identify a heading or HTML anchor in this document.'
 
         private

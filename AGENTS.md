@@ -8,7 +8,7 @@ Preserve untouched original source buffers, character-based locations, Markdown 
 
 Use `Prose/*` for shared rules, `Markdown/*` for Markdown-only policies, and `Text/*` for text-only policies. New cops need per-cop configuration, tests, a user-facing document with good/bad examples, and a one-line entry in the README catalog. Avoid numeric aliases from other rule catalogs and comparisons with other plugins; retain functional dependency loading and compatibility CI settings.
 
-Do not parse Markdown syntax or interpret hidden HTML directives in plain text. Enforce format applicability before a cop accesses format-specific document APIs. Keep integration specs and fixtures grouped by prose, Markdown, text, and Markdown interoperability.
+Do not parse Markdown syntax or interpret hidden HTML directives in plain text. Inherit from the department's cop base to enforce applicability before accessing format-specific document APIs. Resolve front-matter options in Markdown document construction, not the shared cop base. Keep integration specs and fixtures grouped by prose, Markdown, text, and Markdown interoperability.
 
 Resolve configurable file patterns from each file's effective configuration before source parsing. Reuse the shared resolver for discovery and applicability; do not introduce independent file-type lists or a global format registry.
 

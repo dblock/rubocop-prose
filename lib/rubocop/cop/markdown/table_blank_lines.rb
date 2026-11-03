@@ -5,7 +5,7 @@ require_relative '../../prose/table_rules'
 module RuboCop
   module Cop
     module Markdown
-      class TableBlankLines < Prose::Base
+      class TableBlankLines < Base
         extend AutoCorrector
 
         def investigate_document

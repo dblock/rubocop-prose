@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class BareUrl < Prose::Base
+      class BareUrl < Base
         MSG = 'Use an autolink or a Markdown link instead of a bare URL.'
 
         private
