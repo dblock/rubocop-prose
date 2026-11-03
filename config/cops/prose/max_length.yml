@@ -1,5 +1,5 @@
 Prose/MaxLength:
   Description: 'Wrap or unwrap prose paragraphs in Markdown and plain text.'
-  Enabled: false
-  Max: 80
+  Enabled: true
+  Max: false
   IgnoreURLs: true

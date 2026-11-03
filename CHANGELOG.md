@@ -1,7 +1,10 @@
 # Changelog
 
-## Unreleased
+All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+- [#68](https://github.com/dblock/rubocop-prose/pull/68): Add explicit CI combinations, Danger checks, self-linting, default paragraph unwrapping, and complete cop configuration guides - [@dblock](https://github.com/dblock).
 - [#67](https://github.com/dblock/rubocop-prose/pull/67): Use format-specific cop bases and resolve front-matter settings during Markdown document construction - [@dblock](https://github.com/dblock).
 - [#66](https://github.com/dblock/rubocop-prose/pull/66): Enable common-sense Markdown and text checks by default with conservative heading, tab, and reference policies - [@dblock](https://github.com/dblock).
 - [#65](https://github.com/dblock/rubocop-prose/pull/65): Configure Markdown and text Include patterns with per-file discovery, source dispatch, and a README settings catalog - [@dblock](https://github.com/dblock).

@@ -11,20 +11,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: ['3.2', '4.0']
-        rubocop: ['~> 1.72']
-        include:
-          - ruby: '3.2'
-            rubocop: '1.72.1'
+        entry:
+          - { ruby: '3.2', rubocop: '~> 1.72' }
+          - { ruby: '4.0', rubocop: '~> 1.72' }
+    name: test (Ruby ${{ matrix.entry.ruby }}, RuboCop ${{ matrix.entry.rubocop }})
     env:
-      RUBOCOP_VERSION: ${{ matrix.rubocop }}
+      RUBOCOP_VERSION: ${{ matrix.entry.rubocop }}
     steps:
       - uses: actions/checkout@v7
         with:
           persist-credentials: false
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ matrix.ruby }}
+          ruby-version: ${{ matrix.entry.ruby }}
           bundler-cache: true
       - run: bundle exec rspec
       - run: bundle exec rake build

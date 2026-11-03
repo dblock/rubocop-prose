@@ -12,7 +12,9 @@ bundle exec rake build
 
 The default Rake task runs RuboCop and RSpec. For a focused change, run its affected specs with `bundle exec rspec spec/path_to_spec.rb`; lint with `bundle exec rubocop`. `bundle exec rake build` verifies gem packaging. `RUBOCOP_VERSION=1.72.1 bundle install` selects the minimum supported version for compatibility checks.
 
-CI runs separate lint and test workflows on every pull request and pushes to `main`. Tests cover minimum/current Ruby and RuboCop combinations, gem building, and optional Markdown source-mapping interoperability.
+CI runs separate lint and test workflows on every pull request and pushes to `main`. Each row in the test workflow's `matrix.entry` lists one Ruby/RuboCop combination explicitly. Tests cover Ruby 3.2 and 4.0 with RuboCop `~> 1.72`, gem building, and optional Markdown source-mapping interoperability. Pull requests also run Danger checks for changelog entries.
+
+The lint configuration loads this checkout's rubocop-prose plugin to check project prose alongside Ruby. Intentionally invalid integration fixtures are excluded from project linting.
 
 To include interoperability tests locally, set `RUBOCOP_MD_PATH` to the checkout used by the dedicated CI job, then run `bundle exec rspec spec/integration/markdown_interoperability_spec.rb`. That checkout must expose the original-source API described in [DESIGN.md](DESIGN.md#preprocessor-interoperability). Without it, interoperability examples are skipped; standalone examples still run. Keep the functional dependency loading and checkout settings intact.
 
@@ -43,6 +45,8 @@ Run `bundle exec rspec spec/integration`. Set `RUBOCOP_MD_PATH` as described abo
 Add the implementation under `lib/rubocop/cop/prose`, `lib/rubocop/cop/markdown`, or `lib/rubocop/cop/text`, subclassing that department's `Base`: `RuboCop::Cop::Prose::Base`, `RuboCop::Cop::Markdown::Base`, or `RuboCop::Cop::Text::Base`. Put defaults in `config/cops/<department>/<name>.yml` with an explicit `Enabled` value, supported options, autocorrection safety, and applicable file patterns. Enable broadly applicable cleanup by default; leave project-specific, editorial, and renderer-dependent policies opt-in. The loader loads the abstract bases before discovering cop implementations and merges configuration files automatically.
 
 Add focused specs, a user-facing `docs/cops/<department>/<name>.md` with good/bad examples, and a linked entry with a one-line summary in [the README cops section](README.md#cops). Document behavior and limitations using the native cop name, without external rule IDs or plugin comparisons. Put implementation rationale in [DESIGN.md](DESIGN.md), not in the user guide. Validate default configuration and packaging when adding files.
+
+Put complete default settings under `Configuration`, followed by one `Example` section with bad/good inputs. Show example-specific overrides there when needed. Link mentions of other cops to their documentation. Keep Markdown and text cop guides focused on their own format rather than explaining exclusions for the other format.
 
 ## Pull requests
 

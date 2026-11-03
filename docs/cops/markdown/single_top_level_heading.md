@@ -1,21 +1,20 @@
 # Markdown/SingleTopLevelHeading
 
-Disabled by default.
+Every parsed heading at the configured top level after the first is reported; documents without one are allowed.
 
-`Level` selects the top-level heading level and defaults to `1`. Every parsed heading at that level after the first is reported; documents without one are allowed.
-
-Both ATX and Setext headings count, including parsed container headings. Front-matter titles do not count as headings for this cop; use `Markdown/FirstHeading` for a front-matter title policy. Code and escaped markers do not count.
+Both ATX and Setext headings count, including parsed container headings. Front-matter titles do not count as headings for this cop; use [Markdown/FirstHeading](first_heading.md) for a front-matter title policy. Code and escaped markers do not count.
 
 Report-only: removing or demoting a heading changes document structure.
 
-## Examples
-
-For this configuration:
+## Configuration
 
 ```yaml
 Markdown/SingleTopLevelHeading:
-  Enabled: true
+  Enabled: false
+  Level: 1
 ```
+
+## Example
 
 ### Bad
 

@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
 RSpec.describe RuboCop::Cop::Prose::MaxLength do
+  it 'unwraps paragraphs by default while preserving Markdown hard breaks' do
+    expect(corrected(described_class, "First\nsecond.  \nthird.\n")).to eq("First second.  \nthird.\n")
+  end
+
   it 'wraps at the configured width and stabilizes' do
     result = corrected(described_class, "One two three four five.\n", 'Max' => 13)
     expect(result).to eq("One two three\nfour five.\n")

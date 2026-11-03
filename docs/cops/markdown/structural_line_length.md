@@ -1,10 +1,25 @@
 # Markdown/StructuralLineLength
 
-Disabled by default. Reports long heading, code-block, and table source lines without rewriting structural content. `Max` is a positive character count, default `80`. `Headings` defaults to `true`; `CodeBlocks` and `Tables` default to `false`. `HeadingMax` and `CodeBlockMax` optionally override `Max`; `null` inherits it. Table delimiter rows count as source lines.
+Reports long heading, code-block, and table source lines without rewriting structural content.
 
-This cop does not inspect `.txt` or reflow prose paragraphs. Use `Prose/MaxLength` for paragraph formatting. Both cops have independent configuration, so structural limits can remain enabled while paragraphs use `Max: false`.
+Use [Prose/MaxLength](../prose/max_length.md) for paragraph formatting. Structural limits and paragraph formatting are configured independently.
 
-## Examples
+## Configuration
+
+```yaml
+Markdown/StructuralLineLength:
+  Enabled: false
+  Max: 80 # Positive character count.
+  Headings: true
+  HeadingMax: null # Inherit Max.
+  CodeBlocks: false
+  CodeBlockMax: null # Inherit Max.
+  Tables: false # Includes delimiter rows when enabled.
+```
+
+## Example
+
+For this configuration:
 
 ```yaml
 Markdown/StructuralLineLength:
