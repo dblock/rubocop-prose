@@ -2,7 +2,62 @@
 
 ## Unreleased
 
-- Initial RuboCop plugin foundation, with parser-backed Markdown source ranges and opt-in document cops.
-- Add paragraph wrapping and unwrapping, parser diagnostics, and configurable front-matter exclusion.
-- Cover 53 Markdown rule IDs across headings, lists, code blocks, links, references, whitespace, inline formatting, and tables; see the [cop catalog](docs/cops.md) for documented scope and differences.
-- Verify interoperability with rubocop-md's proposed original-buffer API in both load orders, including Unicode, combined corrections, repeated runs, and stdin.
+- [#59](https://github.com/dblock/rubocop-prose/pull/59): Document the complete cop catalog, verify cross-plugin composition, and update CI and installation documentation for main - [@dblock](https://github.com/dblock).
+- [#58](https://github.com/dblock/rubocop-prose/pull/58): Add `Prose/TableSpacing` (MD060) for table cell spacing - [@dblock](https://github.com/dblock).
+- [#57](https://github.com/dblock/rubocop-prose/pull/57): Add `Prose/TableBlankLines` (MD058) for blank lines around tables - [@dblock](https://github.com/dblock).
+- [#56](https://github.com/dblock/rubocop-prose/pull/56): Add `Prose/TableColumns` (MD056) for consistent table column counts - [@dblock](https://github.com/dblock).
+- [#55](https://github.com/dblock/rubocop-prose/pull/55): Add `Prose/TablePipes` (MD055) for table pipe style - [@dblock](https://github.com/dblock).
+- [#54](https://github.com/dblock/rubocop-prose/pull/54): Add `Prose/StrongStyle` (MD050) for consistent strong-emphasis delimiters - [@dblock](https://github.com/dblock).
+- [#53](https://github.com/dblock/rubocop-prose/pull/53): Add `Prose/EmphasisStyle` (MD049) for consistent emphasis delimiters - [@dblock](https://github.com/dblock).
+- [#52](https://github.com/dblock/rubocop-prose/pull/52): Add `Prose/ProperNames` (MD044) for configured proper-name capitalization - [@dblock](https://github.com/dblock).
+- [#51](https://github.com/dblock/rubocop-prose/pull/51): Add `Prose/CodeSpanSpacing` (MD038) for spacing inside inline code spans - [@dblock](https://github.com/dblock).
+- [#50](https://github.com/dblock/rubocop-prose/pull/50): Add `Prose/EmphasisSpacing` (MD037) for spacing inside emphasis markers - [@dblock](https://github.com/dblock).
+- [#49](https://github.com/dblock/rubocop-prose/pull/49): Add `Prose/ThematicBreakStyle` (MD035) for consistent thematic breaks - [@dblock](https://github.com/dblock).
+- [#48](https://github.com/dblock/rubocop-prose/pull/48): Add `Prose/RawHtml` (MD033) for configurable inline HTML restrictions - [@dblock](https://github.com/dblock).
+- [#47](https://github.com/dblock/rubocop-prose/pull/47): Add `Prose/DescriptiveLinkText` (MD059) for descriptive link labels - [@dblock](https://github.com/dblock).
+- [#46](https://github.com/dblock/rubocop-prose/pull/46): Add `Prose/LinkStyle` (MD054) for allowed link and image styles - [@dblock](https://github.com/dblock).
+- [#45](https://github.com/dblock/rubocop-prose/pull/45): Add `Prose/ReferenceDefinitions` (MD053) for duplicate and unused reference definitions - [@dblock](https://github.com/dblock).
+- [#44](https://github.com/dblock/rubocop-prose/pull/44): Add `Prose/UndefinedReference` (MD052) for undefined link and image references - [@dblock](https://github.com/dblock).
+- [#43](https://github.com/dblock/rubocop-prose/pull/43): Add `Prose/LinkFragment` (MD051) for local heading-fragment targets - [@dblock](https://github.com/dblock).
+- [#42](https://github.com/dblock/rubocop-prose/pull/42): Add `Prose/ImageAltText` (MD045) for missing image alternative text - [@dblock](https://github.com/dblock).
+- [#41](https://github.com/dblock/rubocop-prose/pull/41): Add `Prose/EmptyLink` (MD042) for empty link destinations - [@dblock](https://github.com/dblock).
+- [#40](https://github.com/dblock/rubocop-prose/pull/40): Add `Prose/LinkTextSpacing` (MD039) for spacing inside link text - [@dblock](https://github.com/dblock).
+- [#39](https://github.com/dblock/rubocop-prose/pull/39): Add `Prose/BareUrl` (MD034) for bare URLs outside code and other protected spans - [@dblock](https://github.com/dblock).
+- [#38](https://github.com/dblock/rubocop-prose/pull/38): Add `Prose/ReversedLink` (MD011) for reversed link syntax - [@dblock](https://github.com/dblock).
+- [#37](https://github.com/dblock/rubocop-prose/pull/37): Add `Prose/FenceStyle` (MD048) for consistent code-fence markers - [@dblock](https://github.com/dblock).
+- [#36](https://github.com/dblock/rubocop-prose/pull/36): Add `Prose/CodeBlockStyle` (MD046) for fenced or indented code-block style - [@dblock](https://github.com/dblock).
+- [#35](https://github.com/dblock/rubocop-prose/pull/35): Add `Prose/FenceLanguage` (MD040) for code-fence language identifiers - [@dblock](https://github.com/dblock).
+- [#34](https://github.com/dblock/rubocop-prose/pull/34): Add `Prose/FenceBlankLines` (MD031) for blank lines around fenced code blocks - [@dblock](https://github.com/dblock).
+- [#33](https://github.com/dblock/rubocop-prose/pull/33): Add `Prose/ShellPrompts` (MD014) for unnecessary shell prompts in command examples - [@dblock](https://github.com/dblock).
+- [#32](https://github.com/dblock/rubocop-prose/pull/32): Add `Prose/ListBlankLines` (MD032) for blank lines around lists - [@dblock](https://github.com/dblock).
+- [#31](https://github.com/dblock/rubocop-prose/pull/31): Add `Prose/ListMarkerSpacing` (MD030) for spacing after list markers - [@dblock](https://github.com/dblock).
+- [#30](https://github.com/dblock/rubocop-prose/pull/30): Add `Prose/OrderedListNumbering` (MD029) for ordered-list numbering styles - [@dblock](https://github.com/dblock).
+- [#29](https://github.com/dblock/rubocop-prose/pull/29): Add `Prose/BlockquoteBlankLines` (MD028) for blank lines within blockquotes - [@dblock](https://github.com/dblock).
+- [#28](https://github.com/dblock/rubocop-prose/pull/28): Add `Prose/BlockquoteSpacing` (MD027) for spacing after blockquote markers - [@dblock](https://github.com/dblock).
+- [#27](https://github.com/dblock/rubocop-prose/pull/27): Add `Prose/UnorderedListIndentation` (MD007) for nested unordered-list indentation - [@dblock](https://github.com/dblock).
+- [#26](https://github.com/dblock/rubocop-prose/pull/26): Add `Prose/ListIndentation` (MD005) for consistent list-item indentation - [@dblock](https://github.com/dblock).
+- [#25](https://github.com/dblock/rubocop-prose/pull/25): Add `Prose/UnorderedListMarker` (MD004) for unordered-list marker styles - [@dblock](https://github.com/dblock).
+- [#24](https://github.com/dblock/rubocop-prose/pull/24): Add `Prose/HeadingStructure` (MD043) for a configured heading outline - [@dblock](https://github.com/dblock).
+- [#23](https://github.com/dblock/rubocop-prose/pull/23): Add `Prose/FirstHeading` (MD041) for the initial heading level and optional front-matter title exemption - [@dblock](https://github.com/dblock).
+- [#22](https://github.com/dblock/rubocop-prose/pull/22): Add `Prose/EmphasisHeading` (MD036) for emphasis-only paragraphs used as headings - [@dblock](https://github.com/dblock).
+- [#21](https://github.com/dblock/rubocop-prose/pull/21): Add `Prose/HeadingPunctuation` (MD026) for trailing heading punctuation - [@dblock](https://github.com/dblock).
+- [#20](https://github.com/dblock/rubocop-prose/pull/20): Add `Prose/SingleTopLevelHeading` (MD025) for multiple top-level headings - [@dblock](https://github.com/dblock).
+- [#19](https://github.com/dblock/rubocop-prose/pull/19): Add `Prose/DuplicateHeadings` (MD024) for duplicate headings in document or sibling scope - [@dblock](https://github.com/dblock).
+- [#18](https://github.com/dblock/rubocop-prose/pull/18): Add `Prose/HeadingIndentation` (MD023) for leading heading indentation - [@dblock](https://github.com/dblock).
+- [#17](https://github.com/dblock/rubocop-prose/pull/17): Add `Prose/HeadingBlankLines` (MD022) for blank lines around headings - [@dblock](https://github.com/dblock).
+- [#16](https://github.com/dblock/rubocop-prose/pull/16): Add `Prose/ClosedHeadingSpacing` (MD021) for excess spacing before closing heading hashes - [@dblock](https://github.com/dblock).
+- [#15](https://github.com/dblock/rubocop-prose/pull/15): Add `Prose/ClosedHeadingSpace` (MD020) for missing spacing before closing heading hashes - [@dblock](https://github.com/dblock).
+- [#14](https://github.com/dblock/rubocop-prose/pull/14): Add `Prose/AtxHeadingSpacing` (MD019) for excess spacing after opening heading hashes - [@dblock](https://github.com/dblock).
+- [#13](https://github.com/dblock/rubocop-prose/pull/13): Add `Prose/AtxHeadingSpace` (MD018) for missing spacing after opening heading hashes - [@dblock](https://github.com/dblock).
+- [#12](https://github.com/dblock/rubocop-prose/pull/12): Add `Prose/HeadingStyle` (MD003) for consistent ATX, closed ATX, or Setext headings - [@dblock](https://github.com/dblock).
+- [#11](https://github.com/dblock/rubocop-prose/pull/11): Add `Prose/HeadingIncrement` (MD001) for skipped heading levels - [@dblock](https://github.com/dblock).
+- [#10](https://github.com/dblock/rubocop-prose/pull/10): Add `Prose/TrailingNewline` (MD047) to normalize the final document newline - [@dblock](https://github.com/dblock).
+- [#9](https://github.com/dblock/rubocop-prose/pull/9): Add `Prose/MultipleBlankLines` (MD012) to limit consecutive blank lines without merging paragraphs - [@dblock](https://github.com/dblock).
+- [#8](https://github.com/dblock/rubocop-prose/pull/8): Add `Prose/HardTabs` (MD010) with code-language exceptions - [@dblock](https://github.com/dblock).
+- [#7](https://github.com/dblock/rubocop-prose/pull/7): Add `Prose/TrailingWhitespace` (MD009), preserving Markdown hard breaks - [@dblock](https://github.com/dblock).
+- [#6](https://github.com/dblock/rubocop-prose/pull/6): Extend line-length policies to headings, code blocks, and tables - [@dblock](https://github.com/dblock).
+- [#5](https://github.com/dblock/rubocop-prose/pull/5): Add shared configurable front-matter exclusion - [@dblock](https://github.com/dblock).
+- [#4](https://github.com/dblock/rubocop-prose/pull/4): Add `Prose/Syntax` to report parser diagnostics without duplicate reference reports - [@dblock](https://github.com/dblock).
+- [#3](https://github.com/dblock/rubocop-prose/pull/3): Add single-line paragraph unwrapping and CLI integration - [@dblock](https://github.com/dblock).
+- [#2](https://github.com/dblock/rubocop-prose/pull/2): Add `Prose/MaxLength` (MD013) for safe Markdown paragraph wrapping - [@dblock](https://github.com/dblock).
+- [#1](https://github.com/dblock/rubocop-prose/pull/1): Add the parser-backed RuboCop plugin foundation with original-source ranges and opt-in document cops - [@dblock](https://github.com/dblock).
