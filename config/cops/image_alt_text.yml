@@ -1,0 +1,3 @@
+Prose/ImageAltText:
+  Description: 'Require nonblank Markdown image alternative text (MD045-inspired).'
+  Enabled: false
