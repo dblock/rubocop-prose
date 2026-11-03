@@ -1,0 +1,3 @@
+Prose/CodeSpanSpacing:
+  Description: 'Avoid unnecessary padding inside inline code (MD038).'
+  Enabled: false
