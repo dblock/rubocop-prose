@@ -1,0 +1,4 @@
+Prose/HeadingPunctuation:
+  Description: 'Avoid configured trailing heading punctuation (MD026).'
+  Enabled: false
+  Punctuation: '.,;:!?'
