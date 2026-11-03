@@ -25,7 +25,14 @@ module RuboCop
         private
 
         def document
-          @document ||= processed_source.prose_document
+          @document ||= begin
+            ignore = config.fetch('Prose', {}).fetch('IgnoreFrontMatter', true)
+            unless [true, false].include?(ignore)
+              raise ValidationError, 'Prose: IgnoreFrontMatter must be true or false.'
+            end
+
+            processed_source.prose_document(ignore_front_matter: ignore)
+          end
         end
 
         def investigate_document
