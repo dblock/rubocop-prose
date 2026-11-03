@@ -1,5 +1,5 @@
 Prose/ShellPrompts:
-  Description: Omit dollar prompts in shell-only examples without output (MD014).
+  Description: Omit dollar prompts in shell-only examples without output.
   Enabled: false
   ShellLanguages:
     - bash

@@ -1,5 +1,5 @@
 Prose/BareUrl:
-  Description: 'Require Markdown links or autolinks around bare URLs (MD034-inspired).'
+  Description: 'Require Markdown links or autolinks around bare URLs.'
   Enabled: false
   Schemes:
     - http

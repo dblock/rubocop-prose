@@ -1,3 +1,3 @@
 Prose/TableColumns:
-  Description: 'Match table body column counts to the header (MD056).'
+  Description: 'Match table body column counts to the header.'
   Enabled: false

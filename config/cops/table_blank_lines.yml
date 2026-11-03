@@ -1,3 +1,3 @@
 Prose/TableBlankLines:
-  Description: 'Surround Markdown tables with blank lines (MD058).'
+  Description: 'Surround Markdown tables with blank lines.'
   Enabled: false

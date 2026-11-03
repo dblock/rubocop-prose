@@ -1,5 +1,5 @@
 Prose/ListMarkerSpacing:
-  Description: Configure spaces after ordered and unordered list markers (MD030).
+  Description: Configure spaces after ordered and unordered list markers.
   Enabled: false
   UnorderedSingle: 1
   OrderedSingle: 1

@@ -1,5 +1,5 @@
 Prose/HeadingStyle:
-  Description: 'Use a consistent heading syntax (MD003).'
+  Description: 'Use a consistent heading syntax.'
   Enabled: false
   EnforcedStyle: consistent
   SupportedStyles:

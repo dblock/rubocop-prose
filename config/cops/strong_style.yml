@@ -1,4 +1,4 @@
 Prose/StrongStyle:
-  Description: 'Use a configured or consistent strong delimiter (MD050).'
+  Description: 'Use a configured or consistent strong delimiter.'
   Enabled: false
   Style: consistent

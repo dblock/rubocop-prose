@@ -1,5 +1,5 @@
 Prose/HeadingBlankLines:
-  Description: 'Surround headings with blank lines (MD022).'
+  Description: 'Surround headings with blank lines.'
   Enabled: false
   LinesAbove: 1
   LinesBelow: 1

@@ -1,5 +1,5 @@
 Prose/LinkStyle:
-  Description: 'Configure permitted link and image styles independently (MD054-inspired).'
+  Description: 'Configure permitted link and image styles independently.'
   Enabled: false
   AllowedLinkStyles:
     - inline

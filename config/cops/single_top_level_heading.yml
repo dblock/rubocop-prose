@@ -1,4 +1,4 @@
 Prose/SingleTopLevelHeading:
-  Description: 'Allow at most one top-level heading (MD025).'
+  Description: 'Allow at most one top-level heading.'
   Enabled: false
   Level: 1

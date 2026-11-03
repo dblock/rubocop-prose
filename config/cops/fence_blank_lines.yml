@@ -1,4 +1,4 @@
 Prose/FenceBlankLines:
-  Description: Surround fenced code blocks with container-aware blank lines (MD031).
+  Description: Surround fenced code blocks with container-aware blank lines.
   Enabled: false
   ListItems: true

@@ -1,5 +1,5 @@
 Prose/DescriptiveLinkText:
-  Description: 'Require descriptive link text instead of generic labels (MD059-inspired).'
+  Description: 'Require descriptive link text instead of generic labels.'
   Enabled: false
   GenericLabels:
     - click here

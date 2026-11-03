@@ -1,4 +1,4 @@
 Prose/ThematicBreakStyle:
-  Description: 'Use a configured or consistent thematic break (MD035).'
+  Description: 'Use a configured or consistent thematic break.'
   Enabled: false
   Style: consistent
