@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::LinkStyle do
+RSpec.describe RuboCop::Cop::Markdown::LinkStyle do
   it 'accepts every supported style by default' do
     source = "[inline](page.md) <https://example.test> <person@example.test> [full][id] [id][] [id] ![alt](img.svg)\n\n[id]: page.md\n"
     expect(offenses(described_class, source)).to be_empty

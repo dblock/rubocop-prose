@@ -1,8 +1,0 @@
-Prose/DescriptiveLinkText:
-  Description: 'Require descriptive link text instead of generic labels.'
-  Enabled: false
-  GenericLabels:
-    - click here
-    - here
-    - link
-    - more

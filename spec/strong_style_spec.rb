@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::StrongStyle do
+RSpec.describe RuboCop::Cop::Markdown::StrongStyle do
   it 'uses the first parsed strong style in consistent mode' do
     source = "__first__ and **second**.\n"
     expect(offenses(described_class, source).size).to eq(1)

@@ -1,0 +1,4 @@
+Markdown/EmphasisStyle:
+  Description: 'Use a configured or consistent emphasis delimiter.'
+  Enabled: false
+  Style: consistent

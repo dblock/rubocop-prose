@@ -1,0 +1,9 @@
+plugins:
+  - rubocop-prose
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+Markdown/Syntax:
+  Enabled: true
+Markdown/ReferenceDefinitions:
+  Enabled: true

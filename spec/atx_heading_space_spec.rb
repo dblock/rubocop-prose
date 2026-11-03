@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::AtxHeadingSpace do
+RSpec.describe RuboCop::Cop::Markdown::AtxHeadingSpace do
   it 'reports missing opening whitespace' do
     expect(offenses(described_class, "##Résumé\n").map(&:line)).to eq([1])
   end

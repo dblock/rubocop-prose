@@ -1,0 +1,3 @@
+Markdown/TableBlankLines:
+  Description: 'Surround Markdown tables with blank lines.'
+  Enabled: false

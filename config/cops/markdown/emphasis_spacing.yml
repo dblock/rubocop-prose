@@ -1,0 +1,3 @@
+Markdown/EmphasisSpacing:
+  Description: 'Remove whitespace immediately inside emphasis delimiters.'
+  Enabled: false

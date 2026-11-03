@@ -1,0 +1,3 @@
+Markdown/EmptyLink:
+  Description: 'Require a nonempty link destination.'
+  Enabled: false

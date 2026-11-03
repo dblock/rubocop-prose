@@ -1,0 +1,4 @@
+Markdown/StrongStyle:
+  Description: 'Use a configured or consistent strong delimiter.'
+  Enabled: false
+  Style: consistent

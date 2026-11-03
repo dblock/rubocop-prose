@@ -1,0 +1,6 @@
+Markdown/LinkFragment:
+  Description: 'Validate local fragments using configurable heading anchors.'
+  Enabled: false
+  Renderer: github
+  AdditionalAnchors: []
+  AllowEmptyFragment: true

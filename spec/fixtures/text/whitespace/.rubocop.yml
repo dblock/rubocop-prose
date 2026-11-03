@@ -1,0 +1,11 @@
+plugins:
+  - rubocop-prose
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+Text/TrailingWhitespace:
+  Enabled: true
+Prose/TrailingNewline:
+  Enabled: true
+Markdown/TrailingWhitespace:
+  Enabled: true

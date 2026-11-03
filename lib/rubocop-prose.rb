@@ -5,16 +5,19 @@ require 'yaml'
 require_relative 'rubocop/prose/version'
 require_relative 'rubocop/prose/parser'
 require_relative 'rubocop/prose/document'
+require_relative 'rubocop/prose/markdown_document'
+require_relative 'rubocop/prose/text_document'
 require_relative 'rubocop/prose/source'
 require_relative 'rubocop/prose/plugin'
 require_relative 'rubocop/cop/prose/base'
 
-Dir[File.join(__dir__, 'rubocop/cop/prose/*.rb')].each { |path| require path }
+Dir[File.join(__dir__, 'rubocop/cop/{prose,markdown,text}/*.rb')].each { |path| require path }
 
 module RuboCop
   module Prose
     def self.default_configuration
-      paths = Dir[File.expand_path('../config/{default,cops/*}.yml', __dir__)]
+      paths = Dir[File.expand_path('../config/default.yml', __dir__),
+                  File.expand_path('../config/cops/**/*.yml', __dir__)]
       paths.each_with_object({}) { |path, config| config.merge!(YAML.safe_load_file(path)) }
     end
   end

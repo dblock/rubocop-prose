@@ -1,4 +1,0 @@
-Prose/DuplicateHeadings:
-  Description: 'Avoid duplicate heading text.'
-  Enabled: false
-  Scope: document

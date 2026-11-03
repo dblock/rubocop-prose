@@ -1,0 +1,4 @@
+Markdown/UndefinedReference:
+  Description: 'Require definitions for link and image references.'
+  Enabled: false
+  ShortcutSyntax: false

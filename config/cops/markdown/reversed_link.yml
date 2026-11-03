@@ -1,0 +1,3 @@
+Markdown/ReversedLink:
+  Description: 'Report reversed Markdown link delimiters.'
+  Enabled: false

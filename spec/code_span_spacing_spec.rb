@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::CodeSpanSpacing do
+RSpec.describe RuboCop::Cop::Markdown::CodeSpanSpacing do
   it 'removes redundant symmetric single-space padding without changing backticks' do
     source = "Text ` foo ` and `` bar ``.\n"
     expected = "Text `foo` and ``bar``.\n"

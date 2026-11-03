@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::EmptyLink do
+RSpec.describe RuboCop::Cop::Markdown::EmptyLink do
   it 'reports empty destinations and page-top placeholders, not empty visible text' do
     source = '[empty]() [space]( ) [top](#) [angle](<>) [title]( "" ) [](real.md)'
     result, rewritten = investigate(described_class, source)

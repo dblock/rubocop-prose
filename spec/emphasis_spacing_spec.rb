@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::EmphasisSpacing do
+RSpec.describe RuboCop::Cop::Markdown::EmphasisSpacing do
   it 'removes inner edge whitespace from emphasis and strong emphasis' do
     source = "Text * loose * and ** bold ** and _ spaced_ and *** both ***.\n"
     expected = "Text *loose* and **bold** and _spaced_ and ***both***.\n"

@@ -1,0 +1,4 @@
+Markdown/ThematicBreakStyle:
+  Description: 'Use a configured or consistent thematic break.'
+  Enabled: false
+  Style: consistent

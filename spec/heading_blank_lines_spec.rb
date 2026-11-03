@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::HeadingBlankLines do
+RSpec.describe RuboCop::Cop::Markdown::HeadingBlankLines do
   it 'reports missing surrounding blank lines' do
     expect(offenses(described_class, "Before\n# Title\nAfter\n").map(&:line)).to eq([2])
   end

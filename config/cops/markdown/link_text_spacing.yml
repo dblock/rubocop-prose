@@ -1,0 +1,3 @@
+Markdown/LinkTextSpacing:
+  Description: 'Remove leading and trailing whitespace from link text.'
+  Enabled: false

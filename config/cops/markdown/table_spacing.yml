@@ -1,0 +1,4 @@
+Markdown/TableSpacing:
+  Description: 'Use configured spacing around table cell content.'
+  Enabled: false
+  Style: aligned

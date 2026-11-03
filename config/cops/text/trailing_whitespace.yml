@@ -1,0 +1,3 @@
+Text/TrailingWhitespace:
+  Description: Remove all trailing spaces and tabs from plain-text lines.
+  Enabled: false

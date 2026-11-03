@@ -1,0 +1,5 @@
+Markdown/HeadingBlankLines:
+  Description: 'Surround headings with blank lines.'
+  Enabled: false
+  LinesAbove: 1
+  LinesBelow: 1

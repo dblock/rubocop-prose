@@ -1,3 +1,0 @@
-Prose/ListBlankLines:
-  Description: Surround parsed lists with blank lines.
-  Enabled: false

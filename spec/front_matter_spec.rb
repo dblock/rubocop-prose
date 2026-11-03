@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Prose front matter configuration' do
+RSpec.describe 'Markdown front matter configuration' do
   let(:cop) { RuboCop::Cop::Prose::MaxLength }
   let(:source) { "---\ntitle: First\nsummary: Second\n...\n\nBody stays.\n" }
 
@@ -9,7 +9,7 @@ RSpec.describe 'Prose front matter configuration' do
   end
 
   it 'can treat metadata as ordinary Markdown without validating YAML' do
-    result = corrected(cop, source, { 'Max' => false }, settings: { 'Prose' => { 'IgnoreFrontMatter' => false } })
+    result = corrected(cop, source, { 'Max' => false }, settings: { 'Markdown' => { 'IgnoreFrontMatter' => false } })
     expect(result).to eq("---\ntitle: First summary: Second ...\n\nBody stays.\n")
   end
 
@@ -21,7 +21,7 @@ RSpec.describe 'Prose front matter configuration' do
 
   it 'rejects invalid settings explicitly' do
     expect do
-      offenses(cop, source, { 'Max' => false }, settings: { 'Prose' => { 'IgnoreFrontMatter' => 'yes' } })
+      offenses(cop, source, { 'Max' => false }, settings: { 'Markdown' => { 'IgnoreFrontMatter' => 'yes' } })
     end.to raise_error(RuboCop::ValidationError, /IgnoreFrontMatter/)
   end
 end

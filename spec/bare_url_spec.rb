@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::BareUrl do
+RSpec.describe RuboCop::Cop::Markdown::BareUrl do
   it 'reports bare URLs without sentence punctuation or unmatched brackets' do
     source = "Résumé https://example.test/a(b), (https://example.test/docs).\n"
     result, rewritten = investigate(described_class, source)

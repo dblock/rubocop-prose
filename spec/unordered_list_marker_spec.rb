@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::UnorderedListMarker do
+RSpec.describe RuboCop::Cop::Markdown::UnorderedListMarker do
   it 'uses the first unordered marker throughout the document' do
     source = "- one\n\n+ two\n"
     expect(offenses(described_class, source).size).to eq(1)

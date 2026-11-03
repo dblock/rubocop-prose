@@ -1,0 +1,3 @@
+Markdown/CodeSpanSpacing:
+  Description: 'Avoid unnecessary padding inside inline code.'
+  Enabled: false

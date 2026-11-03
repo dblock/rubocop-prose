@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::ListIndentation do
+RSpec.describe RuboCop::Cop::Markdown::ListIndentation do
   it 'reports inconsistent parsed siblings without moving their contents' do
     source = "- one\n - two\n"
     expect(offenses(described_class, source).size).to eq(1)

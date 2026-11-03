@@ -11,3 +11,4 @@ AllCops:
     - '**/*.ronn'
     - '**/*.scd'
     - '**/*.workbook'
+    - '**/*.[tT][xX][tT]'

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::TableColumns do
+RSpec.describe RuboCop::Cop::Markdown::TableColumns do
   it 'reports too few and too many body columns even when GFM rejects the table' do
     source = "| a | b |\n| --- | --- |\n| x |\n| x | y | z |\n"
     expect(offenses(described_class, source).map(&:line)).to eq([3, 4])

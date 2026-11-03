@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::HeadingIndentation do
+RSpec.describe RuboCop::Cop::Markdown::HeadingIndentation do
   it 'reports indented ATX headings' do
     expect(offenses(described_class, "  ## Title\n").size).to eq(1)
   end

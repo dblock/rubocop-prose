@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::ReversedLink do
+RSpec.describe RuboCop::Cop::Markdown::ReversedLink do
   it 'reports reversed delimiters at their original Unicode source positions' do
     source = "Résumé (API reference)[https://example.test/api]\n"
     result, rewritten = investigate(described_class, source)

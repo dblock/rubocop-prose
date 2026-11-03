@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::TrailingWhitespace do
+RSpec.describe RuboCop::Cop::Markdown::TrailingWhitespace do
   it 'removes unexpected spaces but retains and normalizes paragraph hard breaks' do
     source = "First \nsecond  \nthird   \nfourth.\n"
     expect(corrected(described_class, source)).to eq("First\nsecond  \nthird  \nfourth.\n")

@@ -1,0 +1,5 @@
+offenses:
+  Prose/MaxLength: 1
+  Markdown/TrailingWhitespace: 1
+  Prose/TrailingNewline: 1
+remaining_offenses: {}

@@ -1,8 +1,0 @@
-Prose/CodeBlockStyle:
-  Description: Use fenced, indented, or consistently styled code blocks.
-  Enabled: false
-  EnforcedStyle: consistent
-  SupportedStyles:
-    - consistent
-    - fenced
-    - indented

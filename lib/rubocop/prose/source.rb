@@ -7,7 +7,8 @@ module RuboCop
 
       def prose_document(ignore_front_matter: true)
         @prose_documents ||= {}
-        @prose_documents[ignore_front_matter] ||= Document.new(
+        @prose_documents[ignore_front_matter] ||= Document.build(
+          path,
           prose_markdown_document ? prose_markdown_document.buffer : buffer,
           ignore_front_matter: ignore_front_matter
         )
@@ -18,13 +19,14 @@ module RuboCop
       end
 
       def comments
+        return [] if TextDocument.file?(path)
         return super unless Document.file?(path) && !prose_markdown_document
 
         prose_comments
       end
 
       def prose_markdown_document
-        markdown_document if respond_to?(:markdown_document)
+        markdown_document if MarkdownDocument.file?(path) && respond_to?(:markdown_document)
       end
 
       private
@@ -40,7 +42,8 @@ module RuboCop
       end
 
       def parse(source, *)
-        return super unless Document.file?(path) && !respond_to?(:markdown_document)
+        return super unless Document.file?(path)
+        return super if MarkdownDocument.file?(path) && respond_to?(:markdown_document)
 
         super('', *)
         @buffer = ::Parser::Source::Buffer.new(path, source: source)

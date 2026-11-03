@@ -1,0 +1,10 @@
+Markdown/ShellPrompts:
+  Description: Omit dollar prompts in shell-only examples without output.
+  Enabled: false
+  ShellLanguages:
+    - bash
+    - console
+    - ksh
+    - sh
+    - shell
+    - zsh

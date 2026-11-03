@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::HardTabs do
+RSpec.describe RuboCop::Cop::Markdown::HardTabs do
   it 'reports exact Unicode-aware tab locations without guessing a correction' do
     source = "Hello \u{1f600}\tworld.\n"
     result = offenses(described_class, source)

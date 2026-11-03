@@ -1,0 +1,4 @@
+Markdown/TablePipes:
+  Description: 'Use consistent leading and trailing table pipes.'
+  Enabled: false
+  Style: consistent

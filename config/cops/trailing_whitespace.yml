@@ -1,5 +1,0 @@
-Prose/TrailingWhitespace:
-  Description: 'Remove trailing whitespace while retaining Markdown hard breaks.'
-  Enabled: false
-  HardBreakSpaces: 2
-  CodeBlocks: false

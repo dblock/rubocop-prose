@@ -1,4 +1,0 @@
-Prose/UnorderedListIndentation:
-  Description: Use a configured indentation width for unordered lists.
-  Enabled: false
-  Indent: 2

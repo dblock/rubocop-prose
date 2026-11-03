@@ -1,0 +1,4 @@
+offenses:
+  Markdown/UndefinedReference: 1
+remaining_offenses:
+  Markdown/UndefinedReference: 1
