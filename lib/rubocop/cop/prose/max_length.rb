@@ -7,18 +7,37 @@ module RuboCop
         extend AutoCorrector
 
         MSG = 'Prose line is too long. [%<length>d/%<max>d]'
+        UNWRAP_MSG = 'Keep paragraph text on a single source line.'
         BLOCK_START = /\A(?:[>#]|[-+*](?:\s|\z)|\d+[.)](?:\s|\z)|`{3}|~{3}|[=-]+[\t ]*\z)/
 
         def validate_config
+          return if cop_config['Max'] == false
           return if cop_config['Max'].is_a?(Integer) && cop_config['Max'].positive?
 
-          raise ValidationError, 'Prose/MaxLength: Max must be a positive integer.'
+          raise ValidationError, 'Prose/MaxLength: Max must be a positive integer or false.'
         end
 
         private
 
         def investigate_paragraph(paragraph)
+          return unwrap_paragraph(paragraph) if cop_config['Max'] == false
+
           document.line_numbers(paragraph).each { |number| inspect_line(paragraph, number) }
+        end
+
+        def unwrap_paragraph(paragraph)
+          document.soft_breaks(paragraph).each do |number|
+            previous = document.line(number)
+            following = document.line(number + 1)
+            column = document.content_start(paragraph, number + 1)
+            next if previous.match?(/<br\b[^>]*>\s*\z/i) || following[column..].match?(/\A<br\b[^>]*>/i)
+
+            join = document.range(number, previous.rstrip.length, number + 1, column)
+            offense = document.range(number + 1, column)
+            prose_offense(offense, message: UNWRAP_MSG) do |corrector|
+              corrector.replace(processed_range(join), ' ')
+            end
+          end
         end
 
         def inspect_line(paragraph, number)
