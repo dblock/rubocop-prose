@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- [#65](https://github.com/dblock/rubocop-prose/pull/65): Configure Markdown and text Include patterns with per-file discovery, source dispatch, and a README settings catalog - [@dblock](https://github.com/dblock).
 - [#64](https://github.com/dblock/rubocop-prose/pull/64): Add README badges for lint and test CI workflows - [@dblock](https://github.com/dblock).
 - [#63](https://github.com/dblock/rubocop-prose/pull/63): Add plain-text support with shared Prose, Markdown, and Text departments, format-specific policies, and grouped integration tests - [@dblock](https://github.com/dblock).
 - [#62](https://github.com/dblock/rubocop-prose/pull/62): Organize contributor and design guides, add agent instructions and a README cop catalog, and document native cop names with good/bad examples - [@dblock](https://github.com/dblock).

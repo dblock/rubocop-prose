@@ -16,7 +16,10 @@ module IntegrationFixtures
   end
 
   def run_fixture(fixture, data, loading, order)
-    inputs = Dir.glob(File.join(fixture, 'input.*')).select { |path| RuboCop::Prose::Document.file?(path) }
+    fixture_config = RuboCop::Config.new(YAML.safe_load_file(File.join(fixture, '.rubocop.yml')))
+    inputs = Dir.glob(File.join(fixture, 'input.*')).select do |path|
+      RuboCop::Prose::Document.file?(path, fixture_config)
+    end
     raise ArgumentError, "Expected one input document in #{fixture}" unless inputs.one?
 
     input = inputs.first

@@ -1,0 +1,8 @@
+# Heading.
+
+A paragraph split
+across two lines.
+
+<!-- # rubocop:disable Prose/MaxLength -->
+Leave this
+paragraph split.

@@ -18,13 +18,13 @@ To include interoperability tests locally, set `RUBOCOP_MD_PATH` to the checkout
 
 ## Tests
 
-Keep focused cop tests in `spec/<name>_spec.rb`. Cover offenses, exclusions, original Unicode locations, safe corrections, and ambiguous cases that must remain report-only. Document adapters are covered by `spec/document_spec.rb`, `spec/text_document_spec.rb`, and `spec/front_matter_spec.rb`. Format-specific cops must not investigate the other format, even when explicitly selected.
+Keep focused cop tests in `spec/<name>_spec.rb`. Cover offenses, exclusions, original Unicode locations, safe corrections, and ambiguous cases that must remain report-only. Document adapters are covered by `spec/document_spec.rb`, `spec/text_document_spec.rb`, and `spec/front_matter_spec.rb`. File-pattern validation, inherited per-file configuration, and discovery are covered by `spec/file_types_spec.rb`. Format-specific cops must not investigate the other format, even when explicitly selected.
 
 Exercise the real CLI when changing plugin loading, stdin, suppression directives, or cross-cop corrections. Test both CLI-option and YAML plugin loading. Interoperability coverage must include both preprocessor loading orders, simultaneous prose/Ruby corrections, repeated runs, and stdin.
 
 ### Integration fixtures
 
-CLI integration scenarios are file/data-driven under `spec/fixtures`. Each scenario contains one `input.md` or `input.txt` document, `.rubocop.yml`, and `case.yml`. Autocorrectable scenarios also provide `expected` with the same extension as the input; without it, the input must remain byte-for-byte unchanged. Uppercase `.TXT` is supported.
+CLI integration scenarios are file/data-driven under `spec/fixtures`. Each scenario contains one `input` document selected by its `.rubocop.yml`, plus `case.yml`. Autocorrectable scenarios also provide `expected` with the same extension as the input; without it, the input must remain byte-for-byte unchanged. Custom patterns and uppercase suffixes use the same runner.
 
 Integration entry points live in `spec/integration/`. Their fixture subfolders are `spec/fixtures/prose/`, `spec/fixtures/markdown/`, `spec/fixtures/text/`, and `spec/fixtures/markdown_interoperability/`. Directory placement selects the suite, while the input extension selects the document adapter; no format or preprocessor flag is needed.
 
@@ -40,7 +40,7 @@ Run `bundle exec rspec spec/integration`. Set `RUBOCOP_MD_PATH` as described abo
 
 Add the implementation under `lib/rubocop/cop/prose`, `lib/rubocop/cop/markdown`, or `lib/rubocop/cop/text`, subclassing `RuboCop::Cop::Prose::Base`. Put defaults in `config/cops/<department>/<name>.yml` with `Enabled: false`, supported options, autocorrection safety, and applicable file patterns. The loader discovers cop implementations and merges configuration files automatically.
 
-Add focused specs, a user-facing `docs/cops/<department>/<name>.md` with good/bad examples, and a linked entry with a one-line summary in [the README catalog](README.md#cop-catalog). Document behavior and limitations using the native cop name, without external rule IDs or plugin comparisons. Put implementation rationale in [DESIGN.md](DESIGN.md), not in the user guide. Validate default configuration and packaging when adding files.
+Add focused specs, a user-facing `docs/cops/<department>/<name>.md` with good/bad examples, and a linked entry with a one-line summary in [the README cops section](README.md#cops). Document behavior and limitations using the native cop name, without external rule IDs or plugin comparisons. Put implementation rationale in [DESIGN.md](DESIGN.md), not in the user guide. Validate default configuration and packaging when adding files.
 
 ## Pull requests
 

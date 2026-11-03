@@ -1,14 +1,16 @@
-AllCops:
+Markdown:
   Include:
-    - '**/*.md'
-    - '**/*.markdown'
-    - '**/*.mdown'
-    - '**/*.mdwn'
-    - '**/*.mkd'
-    - '**/*.mkdn'
-    - '**/*.mkdown'
-    - '**/*.livemd'
-    - '**/*.ronn'
-    - '**/*.scd'
-    - '**/*.workbook'
+    - '**/*.[mM][dD]'
+    - '**/*.[mM][aA][rR][kK][dD][oO][wW][nN]'
+    - '**/*.[mM][dD][oO][wW][nN]'
+    - '**/*.[mM][dD][wW][nN]'
+    - '**/*.[mM][kK][dD]'
+    - '**/*.[mM][kK][dD][nN]'
+    - '**/*.[mM][kK][dD][oO][wW][nN]'
+    - '**/*.[lL][iI][vV][eE][mM][dD]'
+    - '**/*.[rR][oO][nN][nN]'
+    - '**/*.[sS][cC][dD]'
+    - '**/*.[wW][oO][rR][kK][bB][oO][oO][kK]'
+Text:
+  Include:
     - '**/*.[tT][xX][tT]'

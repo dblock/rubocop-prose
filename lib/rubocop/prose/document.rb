@@ -5,18 +5,16 @@ module RuboCop
     class Document
       attr_reader :buffer, :lines
 
-      def self.format(path)
-        return :markdown if MarkdownDocument.file?(path)
-
-        :text if TextDocument.file?(path)
+      def self.format(path, configuration = nil)
+        (configuration ? configuration.prose_file_types : FileTypes.default).format(path)
       end
 
-      def self.file?(path)
-        !format(path).nil?
+      def self.file?(path, configuration = nil)
+        !format(path, configuration).nil?
       end
 
-      def self.build(path, buffer, ignore_front_matter: true)
-        case format(path)
+      def self.build(path, buffer, ignore_front_matter: true, format: self.format(path))
+        case format
         when :markdown then MarkdownDocument.new(buffer, ignore_front_matter: ignore_front_matter)
         when :text then TextDocument.new(buffer)
         else raise ArgumentError, "Unsupported prose document: #{path.inspect}"

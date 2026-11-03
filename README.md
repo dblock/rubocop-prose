@@ -1,9 +1,9 @@
+<img src="assets/logo.png" alt="The RuboCop helmet logo with a parchment scroll alongside it." width="160">
+
 # rubocop-prose
 
 [![Lint](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml)
 [![Tests](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml)
-
-<img src="assets/logo.png" alt="The RuboCop helmet logo with a parchment scroll alongside it." width="160">
 
 Markdown and plain-text prose checks for RuboCop. Use `Prose/*` for shared formatting, `Markdown/*` for Markdown structure and style, and `Text/*` for plain-text policies.
 
@@ -57,9 +57,9 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 
 ## Configuration
 
-With `Max: false`, paragraph formatting keeps each paragraph on one source line; set a positive character count to wrap paragraphs instead. The [cop catalog](#cop-catalog) lists all available cops, options, and supported scope.
+With `Max: false`, paragraph formatting keeps each paragraph on one source line; set a positive character count to wrap paragraphs instead. The [cops](#cops) below list all available checks, options, and supported scope.
 
-Markdown extensions are `.md`, `.markdown`, `.mdown`, `.mdwn`, `.mkd`, `.mkdn`, `.mkdown`, `.livemd`, `.ronn`, `.scd`, and `.workbook`. Plain text uses `.txt`, including `.TXT`. Adapter selection is case-insensitive. Ruby files are unaffected.
+File selection and front-matter handling are configured through the settings under [Markdown](#markdown) and [Text](#text) below. Configured files are discovered automatically, respecting exclusions and per-directory configuration. Ruby files remain unaffected unless explicitly assigned to a prose format.
 
 Text is literal: headings, fences, links, HTML, and front-matter-looking delimiters are ordinary content. Paragraphs are separated by blank lines. Indented text blocks can report formatting offenses but are not automatically reflowed. Enable strict plain-text whitespace independently:
 
@@ -68,11 +68,13 @@ Text/TrailingWhitespace:
   Enabled: true
 ```
 
-Leading [front matter](docs/settings/front_matter.md) is ignored by default. Hidden directives use native RuboCop syntax, for example `<!-- # rubocop:disable Prose/MaxLength -->`; directives inside code or metadata do not control prose cops.
+Hidden directives use native RuboCop syntax, for example `<!-- # rubocop:disable Prose/MaxLength -->`; directives inside code or ignored metadata do not control prose cops.
 
-## Cop catalog
+## Cops
 
-All cops are opt-in. Follow each link for configuration, supported scope, and good/bad examples.
+All cops are opt-in. Follow each link for configuration, supported scope, and good/bad examples. Shared `Prose/*` cops appear in both tables.
+
+### Markdown
 
 | Cop | Purpose |
 | --- | ------- |
@@ -131,9 +133,28 @@ All cops are opt-in. Follow each link for configuration, supported scope, and go
 | [Prose/MaxLength](docs/cops/prose/max_length.md) | Wrap or unwrap prose paragraphs in Markdown and plain text. |
 | [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md) | Limit consecutive blank lines outside code. |
 | [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md) | Require exactly one final newline. |
+
+#### Settings
+
+| Setting | Purpose |
+| --- | --- |
+| [Markdown/Include](docs/settings/files.md) | Select files parsed as Markdown using native RuboCop file patterns. |
+| [Markdown/IgnoreFrontMatter](docs/settings/front_matter.md) | Ignore closed leading metadata during Markdown inspection. |
+
+### Text
+
+| Cop | Purpose |
+| --- | ------- |
+| [Prose/MaxLength](docs/cops/prose/max_length.md) | Wrap or unwrap prose paragraphs in Markdown and plain text. |
+| [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md) | Limit consecutive blank lines outside code. |
+| [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md) | Require exactly one final newline. |
 | [Text/TrailingWhitespace](docs/cops/text/trailing_whitespace.md) | Remove all trailing spaces and tabs from plain-text lines. |
 
-The shared [front-matter setting](docs/settings/front_matter.md) controls inspection of leading metadata; it is not a cop or a YAML linter.
+#### Settings
+
+| Setting | Purpose |
+| --- | --- |
+| [Text/Include](docs/settings/files.md) | Select files parsed as literal text using native RuboCop file patterns. |
 
 ## Project documentation
 

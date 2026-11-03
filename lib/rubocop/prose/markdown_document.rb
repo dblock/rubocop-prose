@@ -3,14 +3,13 @@
 module RuboCop
   module Prose
     class MarkdownDocument < Document
-      EXTENSIONS = %w[.md .markdown .mdown .mdwn .mkd .mkdn .mkdown .livemd .ronn .scd .workbook].freeze
       FRONT_MATTER = /\A(?:\uFEFF)?---[ \t]*\r?\n.*?^(?:---|\.\.\.)[ \t]*(?:\r?\n|\z)/m
       BLOCK_START = /\A(?:[>#]|[-+*](?:\s|\z)|\d+[.)](?:\s|\z)|`{3}|~{3}|[=-]+[\t ]*\z)/
 
       attr_reader :front_matter
 
-      def self.file?(path)
-        path && EXTENSIONS.include?(File.extname(path).downcase)
+      def self.file?(path, configuration = nil)
+        Document.format(path, configuration) == :markdown
       end
 
       def initialize(buffer, ignore_front_matter: true)
