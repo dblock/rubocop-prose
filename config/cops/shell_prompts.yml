@@ -1,0 +1,10 @@
+Prose/ShellPrompts:
+  Description: Omit dollar prompts in shell-only examples without output (MD014).
+  Enabled: false
+  ShellLanguages:
+    - bash
+    - console
+    - ksh
+    - sh
+    - shell
+    - zsh
