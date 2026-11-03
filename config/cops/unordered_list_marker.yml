@@ -1,0 +1,9 @@
+Prose/UnorderedListMarker:
+  Description: Use a configured or consistent unordered list marker (MD004).
+  Enabled: false
+  EnforcedStyle: consistent
+  SupportedStyles:
+    - consistent
+    - asterisk
+    - plus
+    - dash
