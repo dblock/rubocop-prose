@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+- [#74](https://github.com/dblock/rubocop-prose/pull/74): Add optional disallowed fence languages - [@dblock](https://github.com/dblock).
 - [#69](https://github.com/dblock/rubocop-prose/pull/69): Add reproducible prose benchmarks and share Markdown document analysis across cops - [@dblock](https://github.com/dblock).
 - [#66](https://github.com/dblock/rubocop-prose/pull/66): Enable common-sense Markdown and text checks and unwrapped paragraphs by default, with conservative heading, tab, and reference policies - [@dblock](https://github.com/dblock).
 - [#65](https://github.com/dblock/rubocop-prose/pull/65): Configure Markdown and text Include patterns with per-file discovery, source dispatch, and a README settings catalog - [@dblock](https://github.com/dblock).
