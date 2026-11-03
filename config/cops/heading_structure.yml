@@ -1,0 +1,4 @@
+Prose/HeadingStructure:
+  Description: 'Match a configured exact heading outline (MD043).'
+  Enabled: false
+  Headings: []
