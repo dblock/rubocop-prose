@@ -1,0 +1,3 @@
+Prose/HeadingIncrement:
+  Description: 'Increase heading levels without skipping levels (MD001).'
+  Enabled: false
