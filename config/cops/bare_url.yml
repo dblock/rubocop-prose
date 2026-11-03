@@ -1,0 +1,7 @@
+Prose/BareUrl:
+  Description: 'Require Markdown links or autolinks around bare URLs (MD034-inspired).'
+  Enabled: false
+  Schemes:
+    - http
+    - https
+    - ftp
