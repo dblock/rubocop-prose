@@ -1,0 +1,10 @@
+Prose/LinkStyle:
+  Description: 'Configure permitted link and image styles independently (MD054-inspired).'
+  Enabled: false
+  AllowedLinkStyles:
+    - inline
+    - reference
+    - autolink
+  AllowedImageStyles:
+    - inline
+    - reference
