@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
+  <title id="title">rubocop-prose logo</title>
+  <desc id="description">RuboCop's original helmet logo alongside a parchment scroll with lines of prose.</desc>
+  <path fill="#fff" d="M0 0h512v512H0z"/>
+  <image href="rubocop-logo.svg" x="0" y="72" width="360" height="360"/>
+  <g transform="translate(423 258)" stroke-linecap="round" stroke-linejoin="round">
+    <path fill="#fff" stroke="#fff" stroke-width="16" d="M-46-96h94c18 0 18 26 0 26V80c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z"/>
+    <path fill="#fff6e5" stroke="#17191c" stroke-width="5" d="M-46-83h94V80c0 9-6 16-13 16h-81z"/>
+    <path fill="#f2dfbf" stroke="#17191c" stroke-width="5" d="M-46-96h94c18 0 18 26 0 26h-94z"/>
+    <circle cx="-46" cy="-83" r="13" fill="#e7c9a0" stroke="#17191c" stroke-width="5"/>
+    <path fill="none" stroke="#17191c" stroke-width="3" d="M-43-89c-8-2-13 8-6 12 4 3 9-1 6-5"/>
+    <path fill="none" stroke="#ec1826" stroke-width="6" d="M-26-42H10"/>
+    <path fill="none" stroke="#17191c" stroke-width="4" d="M-26-16H28M-26 5h55M-26 26h40M-26 47h48"/>
+    <path fill="#f2dfbf" stroke="#17191c" stroke-width="5" d="M-46 66h81c19 0 19 30 0 30h-81z"/>
+    <circle cx="-46" cy="81" r="15" fill="#e7c9a0" stroke="#17191c" stroke-width="5"/>
+    <path fill="none" stroke="#17191c" stroke-width="3" d="M-43 74c-9-2-15 10-7 14 5 3 11-2 7-7"/>
+  </g>
+</svg>
