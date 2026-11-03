@@ -1,0 +1,3 @@
+Prose/LinkTextSpacing:
+  Description: 'Remove leading and trailing whitespace from link text (MD039-inspired).'
+  Enabled: false
