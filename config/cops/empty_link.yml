@@ -1,0 +1,3 @@
+Prose/EmptyLink:
+  Description: 'Require a nonempty link destination (MD042-inspired).'
+  Enabled: false
