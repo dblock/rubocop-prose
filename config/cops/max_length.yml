@@ -1,0 +1,4 @@
+Prose/MaxLength:
+  Description: 'Wrap long prose lines without splitting Markdown tokens.'
+  Enabled: false
+  Max: 80
