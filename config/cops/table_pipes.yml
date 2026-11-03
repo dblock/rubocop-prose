@@ -1,0 +1,4 @@
+Prose/TablePipes:
+  Description: 'Use consistent leading and trailing table pipes (MD055).'
+  Enabled: false
+  Style: consistent
