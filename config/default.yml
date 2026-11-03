@@ -1,0 +1,13 @@
+AllCops:
+  Include:
+    - '**/*.md'
+    - '**/*.markdown'
+    - '**/*.mdown'
+    - '**/*.mdwn'
+    - '**/*.mkd'
+    - '**/*.mkdn'
+    - '**/*.mkdown'
+    - '**/*.livemd'
+    - '**/*.ronn'
+    - '**/*.scd'
+    - '**/*.workbook'
