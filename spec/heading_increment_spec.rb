@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::HeadingIncrement do
+RSpec.describe RuboCop::Cop::Markdown::HeadingIncrement do
   it 'reports a skipped level' do
     result = offenses(described_class, "# Title\n\n### Detail\n")
     expect(result.map(&:line)).to eq([3])

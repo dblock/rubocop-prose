@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::ClosedHeadingSpace do
+RSpec.describe RuboCop::Cop::Markdown::ClosedHeadingSpace do
   it 'reports attached closing hashes' do
     expect(offenses(described_class, "## Résumé##\n").size).to eq(1)
   end

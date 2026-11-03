@@ -1,9 +1,0 @@
-plugins:
-  - rubocop-prose
-AllCops:
-  NewCops: enable
-  SuggestExtensions: false
-Prose/Syntax:
-  Enabled: true
-Prose/UndefinedReference:
-  Enabled: true

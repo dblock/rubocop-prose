@@ -1,7 +1,0 @@
-Prose/ReferenceDefinitions:
-  Description: 'Report unused and duplicate reference definitions.'
-  Enabled: false
-  CheckUnused: true
-  CheckDuplicates: true
-  IgnoredDefinitions:
-    - '//'

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::BlockquoteBlankLines do
+RSpec.describe RuboCop::Cop::Markdown::BlockquoteBlankLines do
   it 'fills unmarked blank lines between adjacent quotes' do
     source = "> first\n\n> second\n"
     expect(offenses(described_class, source).size).to eq(1)

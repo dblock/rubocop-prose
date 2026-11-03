@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::CodeBlockStyle do
+RSpec.describe RuboCop::Cop::Markdown::CodeBlockStyle do
   it 'uses the first parsed code style in consistent mode' do
     source = "```\none\n```\n\n    two\n"
     expect(offenses(described_class, source).size).to eq(1)

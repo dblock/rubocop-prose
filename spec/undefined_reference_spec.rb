@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::UndefinedReference do
+RSpec.describe RuboCop::Cop::Markdown::UndefinedReference do
   it 'reports full and collapsed references, including images, without guessing destinations' do
     source = '[guide][missing] [absent][] ![diagram][image]'
     result, rewritten = investigate(described_class, source)

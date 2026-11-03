@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Prose::Document do
+RSpec.describe RuboCop::Prose::MarkdownDocument do
   def document(source)
     described_class.new(Parser::Source::Buffer.new('test.md', source: source))
   end

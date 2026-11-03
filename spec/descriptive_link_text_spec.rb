@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::DescriptiveLinkText do
+RSpec.describe RuboCop::Cop::Markdown::DescriptiveLinkText do
   it 'reports whole generic labels rather than substrings and does not invent a correction' do
     source = '[click here](page.md) [HERE](page.md) [click here for installation](page.md)'
     result, rewritten = investigate(described_class, source)

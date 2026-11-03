@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::SingleTopLevelHeading do
+RSpec.describe RuboCop::Cop::Markdown::SingleTopLevelHeading do
   it 'reports every extra top-level heading' do
     expect(offenses(described_class, "# One\n\n# Two\n\n# Three\n").map(&:line)).to eq([3, 5])
   end

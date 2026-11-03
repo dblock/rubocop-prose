@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::ListBlankLines do
+RSpec.describe RuboCop::Cop::Markdown::ListBlankLines do
   it 'adds a blank before a list following a paragraph' do
     source = "Introduction\n- item\n"
     expect(offenses(described_class, source).size).to eq(1)

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::ClosedHeadingSpacing do
+RSpec.describe RuboCop::Cop::Markdown::ClosedHeadingSpacing do
   it 'reports excess closing spacing' do
     expect(offenses(described_class, "# Title  ##\n").size).to eq(1)
   end

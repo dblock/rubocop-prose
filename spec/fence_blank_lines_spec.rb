@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::FenceBlankLines do
+RSpec.describe RuboCop::Cop::Markdown::FenceBlankLines do
   it 'adds missing boundaries and is idempotent' do
     source = "Intro\n```ruby\nx\n```\nAfter\n"
     expect(offenses(described_class, source).size).to eq(2)

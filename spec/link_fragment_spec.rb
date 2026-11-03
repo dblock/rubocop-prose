@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::LinkFragment do
+RSpec.describe RuboCop::Cop::Markdown::LinkFragment do
   it 'reports only unresolved local fragments and does not rewrite destinations' do
     source = "# Guide\n\n[ok](#guide) [bad](#missing) [file](other.md#missing) [web](https://example.test/#missing)\n"
     result, rewritten = investigate(described_class, source)

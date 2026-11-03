@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::ListMarkerSpacing do
+RSpec.describe RuboCop::Cop::Markdown::ListMarkerSpacing do
   it 'corrects simple item spacing and is idempotent' do
     source = "-  one\n- two\n"
     expect(offenses(described_class, source).size).to eq(1)

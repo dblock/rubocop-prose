@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::Syntax do
+RSpec.describe RuboCop::Cop::Markdown::Syntax do
   it 'reports native parser diagnostics at original locations after front matter' do
     source = "---\ntitle: metadata\n---\n\nText [label][missing].\n"
     result = offenses(described_class, source)

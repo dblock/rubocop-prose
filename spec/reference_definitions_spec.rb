@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::ReferenceDefinitions do
+RSpec.describe RuboCop::Cop::Markdown::ReferenceDefinitions do
   it 'reports unused and normalized duplicate definitions at their own source ranges' do
     source = "[text][used]\n\n[used]: one.md\n[ USED ]: two.md\n[orphan]: unused.md\n"
     result, rewritten = investigate(described_class, source)

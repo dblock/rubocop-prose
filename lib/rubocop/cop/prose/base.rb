@@ -9,7 +9,7 @@ module RuboCop
         def on_new_investigation
           super
           @document = nil
-          investigate_document if RuboCop::Prose::Document.file?(processed_source.path)
+          investigate_document if applicable_document?
         end
 
         def on_other_file
@@ -24,15 +24,26 @@ module RuboCop
 
         private
 
-        def document
-          @document ||= begin
-            ignore = config.fetch('Prose', {}).fetch('IgnoreFrontMatter', true)
-            unless [true, false].include?(ignore)
-              raise ValidationError, 'Prose: IgnoreFrontMatter must be true or false.'
-            end
-
-            processed_source.prose_document(ignore_front_matter: ignore)
+        def applicable_document?
+          path = processed_source.path
+          case self.class.department.to_s
+          when 'Markdown' then RuboCop::Prose::MarkdownDocument.file?(path)
+          when 'Text' then RuboCop::Prose::TextDocument.file?(path)
+          else RuboCop::Prose::Document.file?(path)
           end
+        end
+
+        def document
+          @document ||= processed_source.prose_document(ignore_front_matter: ignore_front_matter?)
+        end
+
+        def ignore_front_matter?
+          return true unless RuboCop::Prose::MarkdownDocument.file?(processed_source.path)
+
+          ignore = config.fetch('Markdown', {}).fetch('IgnoreFrontMatter', true)
+          return ignore if [true, false].include?(ignore)
+
+          raise ValidationError, 'Markdown: IgnoreFrontMatter must be true or false.'
         end
 
         def investigate_document

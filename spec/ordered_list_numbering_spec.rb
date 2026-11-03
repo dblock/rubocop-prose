@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::OrderedListNumbering do
+RSpec.describe RuboCop::Cop::Markdown::OrderedListNumbering do
   it 'corrects sequential numbering relative to the first number' do
     source = "3. three\n3. four\n"
     expect(offenses(described_class, source).size).to eq(1)

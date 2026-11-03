@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::TablePipes do
+RSpec.describe RuboCop::Cop::Markdown::TablePipes do
   it 'matches the first row leading and trailing pipe style per table' do
     source = "| a | b |\n--- | ---\nx | y |\n"
     expected = "| a | b |\n|--- | ---|\n|x | y |\n"

@@ -1,0 +1,15 @@
+plugins:
+  - rubocop-prose
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+Markdown:
+  Enabled: false
+  Autodetect: false
+  WarnInvalid: false
+  IgnoreFrontMatter: true
+Prose/MaxLength:
+  Enabled: true
+  Max: false
+Style/StringLiterals:
+  Enabled: true

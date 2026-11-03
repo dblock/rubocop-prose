@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::TableBlankLines do
+RSpec.describe RuboCop::Cop::Markdown::TableBlankLines do
   it 'inserts surrounding blank lines without changing table content' do
     source = "before\n| a | b |\n| --- | --- |\n| x | y |\nafter\n"
     expected = "before\n\n| a | b |\n| --- | --- |\n| x | y |\n\nafter\n"

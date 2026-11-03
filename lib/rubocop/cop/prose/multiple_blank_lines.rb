@@ -20,7 +20,7 @@ module RuboCop
           source_lines = document.source.lines
           document.lines.each_with_index do |text, index|
             number = index + 1
-            if document.code_line?(number) || document.front_matter_line?(number) || !text.strip.empty?
+            if document.ignored_line?(number) || !text.strip.empty?
               consecutive = 0
               next
             end

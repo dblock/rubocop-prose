@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::DuplicateHeadings do
+RSpec.describe RuboCop::Cop::Markdown::DuplicateHeadings do
   it 'reports repeated plain text in document scope' do
     expect(offenses(described_class, "# Résumé\n\n## *Résumé*\n").map(&:line)).to eq([3])
   end

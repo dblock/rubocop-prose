@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::HeadingStructure do
+RSpec.describe RuboCop::Cop::Markdown::HeadingStructure do
   let(:options) { { 'Headings' => ['# Title', '## Usage'] } }
 
   it 'reports incorrect levels, names and unexpected headings' do

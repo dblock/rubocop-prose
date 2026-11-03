@@ -1,0 +1,7 @@
+Markdown/OrderedListNumbering:
+  Description: Use sequential numbers or repeated ones in ordered lists.
+  Enabled: false
+  EnforcedStyle: sequential
+  SupportedStyles:
+    - sequential
+    - ones

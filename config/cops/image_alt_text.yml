@@ -1,3 +1,0 @@
-Prose/ImageAltText:
-  Description: 'Require nonblank Markdown image alternative text.'
-  Enabled: false

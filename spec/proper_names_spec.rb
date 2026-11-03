@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::ProperNames do
+RSpec.describe RuboCop::Cop::Markdown::ProperNames do
   let(:options) { { 'Names' => ['GitHub', 'Ruby', 'C++'] } }
 
   it 'corrects configured whole names including punctuation' do

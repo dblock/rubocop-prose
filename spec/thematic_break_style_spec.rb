@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::ThematicBreakStyle do
+RSpec.describe RuboCop::Cop::Markdown::ThematicBreakStyle do
   it 'uses the first thematic break in consistent mode' do
     source = "***\n\n- - -\n"
     expect(offenses(described_class, source).size).to eq(1)

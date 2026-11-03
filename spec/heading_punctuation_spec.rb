@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::HeadingPunctuation do
+RSpec.describe RuboCop::Cop::Markdown::HeadingPunctuation do
   it 'reports trailing punctuation through inline formatting' do
     expect(offenses(described_class, "## *Title!* ##\n").size).to eq(1)
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::ImageAltText do
+RSpec.describe RuboCop::Cop::Markdown::ImageAltText do
   it 'reports blank image descriptions without fabricating a correction' do
     source = "![](diagram.svg) ![ \t ](diagram.svg)\n"
     result, rewritten = investigate(described_class, source)

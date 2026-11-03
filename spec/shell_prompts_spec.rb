@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::ShellPrompts do
+RSpec.describe RuboCop::Cop::Markdown::ShellPrompts do
   it 'removes prompts from commands without output and is idempotent' do
     source = "```sh\n$ echo one\n\n$ echo two\n```\n"
     expect(offenses(described_class, source).size).to eq(2)

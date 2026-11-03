@@ -1,0 +1,7 @@
+Markdown/BareUrl:
+  Description: 'Require Markdown links or autolinks around bare URLs.'
+  Enabled: false
+  Schemes:
+    - http
+    - https
+    - ftp

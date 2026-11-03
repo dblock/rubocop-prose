@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::FirstHeading do
+RSpec.describe RuboCop::Cop::Markdown::FirstHeading do
   it 'reports prose before the first heading and a wrong level' do
     expect(offenses(described_class, "Preamble\n\n# Title\n").map(&:line)).to eq([1])
     expect(offenses(described_class, "## Title\n").size).to eq(1)

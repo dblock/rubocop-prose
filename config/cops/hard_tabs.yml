@@ -1,5 +1,0 @@
-Prose/HardTabs:
-  Description: 'Disallow hard tabs with code-language exceptions.'
-  Enabled: false
-  CodeBlocks: true
-  AllowedCodeLanguages: []

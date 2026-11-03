@@ -1,3 +1,0 @@
-Prose/BlockquoteBlankLines:
-  Description: Keep quote markers on blank lines between blockquotes.
-  Enabled: false

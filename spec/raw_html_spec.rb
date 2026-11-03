@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::RawHtml do
+RSpec.describe RuboCop::Cop::Markdown::RawHtml do
   it 'reports parser-recognized inline and block HTML' do
     source = "<div>\n<b>hello</b>\n</div>\n\nText <i>world</i>.\n"
     expect(offenses(described_class, source).map(&:line)).to eq([1, 2, 5])

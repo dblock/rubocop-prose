@@ -7,8 +7,8 @@ Gem::Specification.new do |spec|
   spec.version = RuboCop::Prose::VERSION
   spec.authors = ['Daniel (dB.) Doubrovkine']
   spec.email = ['dblock@dblock.org']
-  spec.summary = 'Markdown prose, structure, and style checks for RuboCop.'
-  spec.description = 'Parser-backed RuboCop cops for Markdown documents, with source-preserving corrections.'
+  spec.summary = 'Markdown and plain-text prose checks for RuboCop.'
+  spec.description = 'Format-aware RuboCop cops for Markdown and plain text, with source-preserving corrections.'
   spec.homepage = 'https://github.com/dblock/rubocop-prose'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 3.2'

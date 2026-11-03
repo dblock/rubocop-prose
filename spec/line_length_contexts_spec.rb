@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::MaxLength, 'document line-length contexts' do
+RSpec.describe RuboCop::Cop::Markdown::StructuralLineLength do
   it 'reports heading source without rewriting its structure' do
     source = "# A very long heading\n"
     expect(offenses(described_class, source, 'HeadingMax' => 10).map(&:line)).to eq([1])
@@ -23,9 +23,10 @@ RSpec.describe RuboCop::Cop::Prose::MaxLength, 'document line-length contexts' d
     expect(corrected(described_class, source, 'Max' => 10, 'Tables' => true)).to eq(source)
   end
 
-  it 'offers relaxed or strict URL-only line reporting' do
-    source = "https://example.com/a-long-address\n"
-    expect(offenses(described_class, source, 'Max' => 10)).to be_empty
-    expect(offenses(described_class, source, 'Max' => 10, 'IgnoreURLs' => false).length).to eq(1)
+  it 'rejects invalid limits and does not check text files' do
+    expect do
+      offenses(described_class, "# Heading\n", 'Max' => false)
+    end.to raise_error(RuboCop::ValidationError, /positive integer/)
+    expect(offenses(described_class, "# A long text line\n", { 'Max' => 5 }, path: 'example.txt')).to be_empty
   end
 end

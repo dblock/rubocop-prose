@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- [#63](https://github.com/dblock/rubocop-prose/pull/63): Add plain-text support with shared Prose, Markdown, and Text departments, format-specific policies, and grouped integration tests - [@dblock](https://github.com/dblock).
 - [#62](https://github.com/dblock/rubocop-prose/pull/62): Organize contributor and design guides, add agent instructions and a README cop catalog, and document native cop names with good/bad examples - [@dblock](https://github.com/dblock).
 - [#61](https://github.com/dblock/rubocop-prose/pull/61): Move CLI integration scenarios to file-driven fixtures with shared reporting, correction, repeated-run, and stdin checks - [@dblock](https://github.com/dblock).
 - [#60](https://github.com/dblock/rubocop-prose/pull/60): Add a RuboCop-inspired logo with a parchment scroll, editable SVG artwork, and a README image - [@dblock](https://github.com/dblock).

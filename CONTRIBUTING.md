@@ -14,33 +14,33 @@ The default Rake task runs RuboCop and RSpec. For a focused change, run its affe
 
 CI runs separate lint and test workflows on every pull request and pushes to `main`. Tests cover minimum/current Ruby and RuboCop combinations, gem building, and optional Markdown source-mapping interoperability.
 
-To include interoperability tests locally, set `RUBOCOP_MD_PATH` to the checkout used by the dedicated CI job, then run `bundle exec rspec spec/markdown_integration_spec.rb`. That checkout must expose the original-source API described in [DESIGN.md](DESIGN.md#preprocessor-interoperability). Without it, interoperability examples are skipped; standalone examples still run. Keep the functional dependency loading and checkout settings intact.
+To include interoperability tests locally, set `RUBOCOP_MD_PATH` to the checkout used by the dedicated CI job, then run `bundle exec rspec spec/integration/markdown_interoperability_spec.rb`. That checkout must expose the original-source API described in [DESIGN.md](DESIGN.md#preprocessor-interoperability). Without it, interoperability examples are skipped; standalone examples still run. Keep the functional dependency loading and checkout settings intact.
 
 ## Tests
 
-Keep focused cop tests in `spec/<name>_spec.rb`. Cover offenses, exclusions, original Unicode locations, safe corrections, and ambiguous cases that must remain report-only. Shared document parsing is covered by `spec/document_spec.rb` and `spec/front_matter_spec.rb`.
+Keep focused cop tests in `spec/<name>_spec.rb`. Cover offenses, exclusions, original Unicode locations, safe corrections, and ambiguous cases that must remain report-only. Document adapters are covered by `spec/document_spec.rb`, `spec/text_document_spec.rb`, and `spec/front_matter_spec.rb`. Format-specific cops must not investigate the other format, even when explicitly selected.
 
 Exercise the real CLI when changing plugin loading, stdin, suppression directives, or cross-cop corrections. Test both CLI-option and YAML plugin loading. Interoperability coverage must include both preprocessor loading orders, simultaneous prose/Ruby corrections, repeated runs, and stdin.
 
 ### Integration fixtures
 
-CLI integration scenarios are file/data-driven under `spec/fixtures`. Each scenario is a directory containing `input.md`, `.rubocop.yml`, and `case.yml`. Autocorrectable scenarios also provide `expected.md`; without it, the input must remain byte-for-byte unchanged.
+CLI integration scenarios are file/data-driven under `spec/fixtures`. Each scenario contains one `input.md` or `input.txt` document, `.rubocop.yml`, and `case.yml`. Autocorrectable scenarios also provide `expected` with the same extension as the input; without it, the input must remain byte-for-byte unchanged. Uppercase `.TXT` is supported.
 
-`spec/fixtures/integration/` contains standalone prose scenarios run by `spec/integration_spec.rb`. `spec/fixtures/markdown_integration/` contains preprocessor interoperability scenarios run by `spec/markdown_integration_spec.rb`. Directory placement selects the suite; no format or preprocessor flag is needed.
+Integration entry points live in `spec/integration/`. Their fixture subfolders are `spec/fixtures/prose/`, `spec/fixtures/markdown/`, `spec/fixtures/text/`, and `spec/fixtures/markdown_interoperability/`. Directory placement selects the suite, while the input extension selects the document adapter; no format or preprocessor flag is needed.
 
 `case.yml` declares expected offense counts by cop under `offenses` and post-correction counts under `remaining_offenses`. All expectations are explicit, including empty maps for clean results. Add a scenario directory to the appropriate suite to add coverage without changing the runner.
 
-The shared runner copies each directory to an isolated temporary workspace and runs the real RuboCop CLI from there so correction cannot modify repository files. It checks reporting, safe autocorrection, a repeated run, and stdin, with both CLI-option and configuration-file plugin loading. Assert unchanged input during reporting, exact corrected bytes, stable repeated runs, and unchanged on-disk files during stdin reporting. The interoperability suite also runs with both plugin require orders when `RUBOCOP_MD_PATH` is set; only that suite is skipped when the preprocessor is unavailable.
+The shared runner copies each directory to an isolated temporary workspace and runs the real RuboCop CLI from there so correction cannot modify repository files. It renames the input to an example document and removes the copied expectation document from discovery. It checks explicit-file reporting, automatic file discovery, safe autocorrection, a repeated run, and stdin, with both CLI-option and configuration-file plugin loading. Assert unchanged input during reporting, exact corrected bytes, stable repeated runs, and unchanged on-disk files during stdin reporting. The interoperability suite also runs with both plugin require orders when `RUBOCOP_MD_PATH` is set; only that suite is skipped when the preprocessor is unavailable.
 
 The composed-correction fixture intentionally includes trailing spaces and extra final blank lines. Its targeted Git whitespace attributes preserve those regression inputs.
 
-Run `bundle exec rspec spec/integration_spec.rb spec/markdown_integration_spec.rb`. Set `RUBOCOP_MD_PATH` as described above to include interoperability scenarios.
+Run `bundle exec rspec spec/integration`. Set `RUBOCOP_MD_PATH` as described above to include interoperability scenarios.
 
 ## Adding a cop
 
-Add the implementation under `lib/rubocop/cop/prose`, subclassing `RuboCop::Cop::Prose::Base`. Put defaults in `config/cops/<name>.yml` with `Enabled: false`, supported options, autocorrection safety, and applicable file patterns. The loader discovers cop implementations and merges configuration files automatically.
+Add the implementation under `lib/rubocop/cop/prose`, `lib/rubocop/cop/markdown`, or `lib/rubocop/cop/text`, subclassing `RuboCop::Cop::Prose::Base`. Put defaults in `config/cops/<department>/<name>.yml` with `Enabled: false`, supported options, autocorrection safety, and applicable file patterns. The loader discovers cop implementations and merges configuration files automatically.
 
-Add focused specs, a user-facing `docs/cops/<name>.md` with good/bad examples, and a linked entry with a one-line summary in [the README catalog](README.md#cop-catalog). Document behavior and limitations using the native cop name, without external rule IDs or plugin comparisons. Put implementation rationale in [DESIGN.md](DESIGN.md), not in the user guide. Validate default configuration and packaging when adding files.
+Add focused specs, a user-facing `docs/cops/<department>/<name>.md` with good/bad examples, and a linked entry with a one-line summary in [the README catalog](README.md#cop-catalog). Document behavior and limitations using the native cop name, without external rule IDs or plugin comparisons. Put implementation rationale in [DESIGN.md](DESIGN.md), not in the user guide. Validate default configuration and packaging when adding files.
 
 ## Pull requests
 

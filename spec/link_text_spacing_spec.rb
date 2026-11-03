@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::LinkTextSpacing do
+RSpec.describe RuboCop::Cop::Markdown::LinkTextSpacing do
   it 'corrects only the label, preserving Unicode positions, nested text, destination and title' do
     source = "Résumé [ guide [v2] ](docs/a(b).md \"Guide\")\n"
     result, rewritten = investigate(described_class, source)

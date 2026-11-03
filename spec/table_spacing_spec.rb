@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::TableSpacing do
+RSpec.describe RuboCop::Cop::Markdown::TableSpacing do
   it 'pads aligned cells to the widest source content in each column' do
     source = "| a|long |\n|---|---|\n|xx| y|\n"
     expected = "| a   | long |\n| --- | ---  |\n| xx  | y    |\n"

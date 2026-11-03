@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::FenceStyle do
+RSpec.describe RuboCop::Cop::Markdown::FenceStyle do
   it 'uses the first fence style and is idempotent' do
     source = "```ruby\nx\n```\n\n~~~sh\npwd\n~~~\n"
     expect(offenses(described_class, source).size).to eq(1)

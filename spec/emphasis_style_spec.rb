@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::EmphasisStyle do
+RSpec.describe RuboCop::Cop::Markdown::EmphasisStyle do
   it 'uses the first parsed emphasis style in consistent mode' do
     source = "_first_ and *second*.\n"
     expect(offenses(described_class, source).size).to eq(1)

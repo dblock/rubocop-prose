@@ -1,3 +1,0 @@
-Prose/ClosedHeadingSpace:
-  Description: 'Separate closing ATX heading hashes from text.'
-  Enabled: false

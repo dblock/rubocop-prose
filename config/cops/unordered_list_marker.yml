@@ -1,9 +1,0 @@
-Prose/UnorderedListMarker:
-  Description: Use a configured or consistent unordered list marker.
-  Enabled: false
-  EnforcedStyle: consistent
-  SupportedStyles:
-    - consistent
-    - asterisk
-    - plus
-    - dash

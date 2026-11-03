@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::HeadingStyle do
+RSpec.describe RuboCop::Cop::Markdown::HeadingStyle do
   it 'infers the first heading style' do
     expect(offenses(described_class, "# Title\n\n## Detail ##\n").map(&:line)).to eq([3])
   end

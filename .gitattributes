@@ -1,1 +1,2 @@
-spec/fixtures/integration/composed_corrections/*.md whitespace=-blank-at-eol,-blank-at-eof
+spec/fixtures/markdown/composed_corrections/*.md whitespace=-blank-at-eol,-blank-at-eof
+spec/fixtures/text/whitespace/*.txt whitespace=-blank-at-eol,-blank-at-eof

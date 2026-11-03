@@ -16,11 +16,19 @@ module IntegrationFixtures
   end
 
   def run_fixture(fixture, data, loading, order)
+    inputs = Dir.glob(File.join(fixture, 'input.*')).select { |path| RuboCop::Prose::Document.file?(path) }
+    raise ArgumentError, "Expected one input document in #{fixture}" unless inputs.one?
+
+    input = inputs.first
+    extension = File.extname(input)
+    filename = "example#{extension}"
+    expected_path = File.join(fixture, "expected#{extension}")
     Dir.mktmpdir('rubocop-prose-fixture') do |directory|
       FileUtils.cp_r(File.join(fixture, '.'), directory)
-      file = File.join(directory, 'example.md')
-      source = File.binread(File.join(directory, 'input.md'))
-      FileUtils.cp(File.join(directory, 'input.md'), file)
+      file = File.join(directory, filename)
+      source = File.binread(input)
+      FileUtils.mv(File.join(directory, File.basename(input)), file)
+      FileUtils.rm(File.join(directory, File.basename(expected_path))) if File.file?(expected_path)
       configuration = File.join(directory, '.rubocop.yml')
       config = YAML.safe_load_file(configuration)
       if loading == 'options'
@@ -31,17 +39,17 @@ module IntegrationFixtures
       raise ArgumentError, "No enabled cops in #{configuration}" if only.empty?
 
       command = fixture_command(configuration, only, loading, order)
-      assert_fixture_report(command + ['example.md'], directory, data.fetch('offenses'))
+      assert_fixture_report(command + [filename], directory, data.fetch('offenses'))
+      assert_fixture_report(command, directory, data.fetch('offenses'))
       expect(File.binread(file)).to eq(source)
 
-      expected_path = File.join(fixture, 'expected.md')
       expected = File.file?(expected_path) ? File.binread(expected_path) : source
-      assert_fixture_report(command + ['-a', 'example.md'], directory, data.fetch('remaining_offenses'),
+      assert_fixture_report(command + ['-a', filename], directory, data.fetch('remaining_offenses'),
                             corrected: true)
       expect(File.binread(file)).to eq(expected)
-      assert_fixture_report(command + ['example.md'], directory, data.fetch('remaining_offenses'))
+      assert_fixture_report(command + [filename], directory, data.fetch('remaining_offenses'))
       expect(File.binread(file)).to eq(expected)
-      assert_fixture_report(command + ['--stdin', 'example.md'], directory, data.fetch('offenses'),
+      assert_fixture_report(command + ['--stdin', filename], directory, data.fetch('offenses'),
                             stdin_data: source)
       expect(File.binread(file)).to eq(expected)
     end

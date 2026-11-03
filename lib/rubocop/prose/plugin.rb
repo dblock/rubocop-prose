@@ -10,7 +10,7 @@ module RuboCop
         LintRoller::About.new(
           name: 'rubocop-prose', version: VERSION,
           homepage: 'https://github.com/dblock/rubocop-prose',
-          description: 'Lint Markdown prose, structure, and style.'
+          description: 'Lint prose in Markdown and plain-text documents.'
         )
       end
 

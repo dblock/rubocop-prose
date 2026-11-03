@@ -1,0 +1,13 @@
+plugins:
+  - rubocop-prose
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+Prose/MaxLength:
+  Enabled: true
+  Max: false
+Markdown/FenceLanguage:
+  Enabled: true
+Markdown/HeadingStyle:
+  Enabled: true
+  EnforcedStyle: setext

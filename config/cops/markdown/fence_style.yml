@@ -1,0 +1,8 @@
+Markdown/FenceStyle:
+  Description: Use backtick, tilde, or consistently styled fences.
+  Enabled: false
+  EnforcedStyle: consistent
+  SupportedStyles:
+    - consistent
+    - backtick
+    - tilde

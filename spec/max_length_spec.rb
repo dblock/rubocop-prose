@@ -34,4 +34,10 @@ RSpec.describe RuboCop::Cop::Prose::MaxLength do
   it 'does not inspect ordinary Ruby files' do
     expect(offenses(described_class, "# Very long Ruby comment.\n", { 'Max' => 5 }, path: 'test.rb')).to be_empty
   end
+
+  it 'offers relaxed or strict URL-only line reporting' do
+    source = "https://example.com/a-long-address\n"
+    expect(offenses(described_class, source, 'Max' => 10)).to be_empty
+    expect(offenses(described_class, source, 'Max' => 10, 'IgnoreURLs' => false).length).to eq(1)
+  end
 end

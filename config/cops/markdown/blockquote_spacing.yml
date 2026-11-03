@@ -1,0 +1,3 @@
+Markdown/BlockquoteSpacing:
+  Description: Avoid multiple spaces after blockquote markers.
+  Enabled: false

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::AtxHeadingSpacing do
+RSpec.describe RuboCop::Cop::Markdown::AtxHeadingSpacing do
   it 'reports excess opening spacing' do
     expect(offenses(described_class, "##  Résumé\n").size).to eq(1)
   end

@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::EmphasisHeading do
+RSpec.describe RuboCop::Cop::Markdown::EmphasisHeading do
   it 'reports single-line strong and emphasis-only paragraphs' do
     expect(offenses(described_class, "**Overview**\n\n_Usage_\n").map(&:line)).to eq([1, 3])
   end

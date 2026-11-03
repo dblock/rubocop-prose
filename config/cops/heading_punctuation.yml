@@ -1,4 +1,0 @@
-Prose/HeadingPunctuation:
-  Description: 'Avoid configured trailing heading punctuation.'
-  Enabled: false
-  Punctuation: '.,;:!?'

@@ -1,0 +1,9 @@
+Markdown/HeadingStyle:
+  Description: 'Use a consistent heading syntax.'
+  Enabled: false
+  EnforcedStyle: consistent
+  SupportedStyles:
+    - consistent
+    - atx
+    - atx_closed
+    - setext

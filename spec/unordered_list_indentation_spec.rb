@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::UnorderedListIndentation do
+RSpec.describe RuboCop::Cop::Markdown::UnorderedListIndentation do
   it 'reports a nested list with the wrong width without unsafe correction' do
     source = "- parent\n    - child\n"
     expect(offenses(described_class, source).size).to eq(1)

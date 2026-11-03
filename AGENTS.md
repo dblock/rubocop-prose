@@ -6,7 +6,9 @@ Keep changes focused and preserve existing configuration and supported Ruby/Rubo
 
 Preserve untouched original source buffers, character-based locations, Markdown container prefixes, hard breaks, and atomic inline syntax. Withhold corrections when the intended rewrite cannot be established safely. Add focused regression coverage for behavior changes, including original-source ranges and repeated correction where relevant.
 
-New cops need a native `Prose/*` name, per-cop configuration, tests, a user-facing document with good/bad examples, and a one-line entry in the README catalog. Avoid numeric aliases from other rule catalogs and comparisons with other plugins; retain functional dependency loading and compatibility CI settings.
+Use `Prose/*` for shared rules, `Markdown/*` for Markdown-only policies, and `Text/*` for text-only policies. New cops need per-cop configuration, tests, a user-facing document with good/bad examples, and a one-line entry in the README catalog. Avoid numeric aliases from other rule catalogs and comparisons with other plugins; retain functional dependency loading and compatibility CI settings.
+
+Do not parse Markdown syntax or interpret hidden HTML directives in plain text. Enforce format applicability before a cop accesses format-specific document APIs. Keep integration specs and fixtures grouped by prose, Markdown, text, and Markdown interoperability.
 
 Keep user instructions in README and per-cop documentation, developer instructions in CONTRIBUTING, and architecture/rationale in DESIGN. Do not hard-wrap Markdown paragraphs. Include a linked pull-request changelog entry.
 

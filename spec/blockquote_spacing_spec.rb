@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::BlockquoteSpacing do
+RSpec.describe RuboCop::Cop::Markdown::BlockquoteSpacing do
   it 'corrects extra spaces at each quote level' do
     source = ">  >  words\n"
     expect(offenses(described_class, source).size).to eq(2)

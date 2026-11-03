@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::FenceLanguage do
+RSpec.describe RuboCop::Cop::Markdown::FenceLanguage do
   it 'reports missing languages without guessing a correction' do
     source = "```\nexample\n```\n"
     expect(offenses(described_class, source).size).to eq(1)
