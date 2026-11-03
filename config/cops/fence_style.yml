@@ -1,0 +1,8 @@
+Prose/FenceStyle:
+  Description: Use backtick, tilde, or consistently styled fences (MD048).
+  Enabled: false
+  EnforcedStyle: consistent
+  SupportedStyles:
+    - consistent
+    - backtick
+    - tilde
