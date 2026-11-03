@@ -10,7 +10,7 @@ module RuboCop
     class LinkRules
       Link = Struct.new(:begin_pos, :end_pos, :label_begin_pos, :label_end_pos, :label, :destination,
                         :style, :reference, :image, keyword_init: true)
-      Definition = Struct.new(:begin_pos, :end_pos, :label, :reference, :destination, keyword_init: true)
+      Definition = Struct.new(:begin_pos, :end_pos, :label, :reference, :destination, :title, keyword_init: true)
 
       attr_reader :document, :links, :definitions, :html_anchors
 
@@ -224,7 +224,7 @@ module RuboCop
             prefix = @text[(line_start ? line_start + 1 : 0)...first]
             destination = definition_destination(index + 1) if prefix.match?(/\A[ \t]*(?:>[ \t]*)*\z/)
             if destination
-              index = destination.last
+              index = destination[1]
               next
             end
           end
@@ -459,7 +459,7 @@ module RuboCop
         return unless @source[finish..].match?(/\A[ \t]*(?:\r?\n|\z)/)
         return if value.empty? && @source[start] != '<'
 
-        [value, finish]
+        [value, finish, title && @source[(gap + 1)...(title - 1)]]
       end
 
       def scan_definitions
@@ -475,9 +475,9 @@ module RuboCop
               result = definition_destination(ending + 2)
             end
             if result
-              value, finish = result
+              value, finish, title = result
               @definitions << Definition.new(begin_pos: first, end_pos: finish, label: label,
-                                             reference: normalize(label), destination: value)
+                                             reference: normalize(label), destination: value, title: title)
             end
           end
           offset += line.length
