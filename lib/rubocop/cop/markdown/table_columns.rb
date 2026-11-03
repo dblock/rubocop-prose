@@ -5,7 +5,7 @@ require_relative '../../prose/table_rules'
 module RuboCop
   module Cop
     module Markdown
-      class TableColumns < Prose::Base
+      class TableColumns < Base
         def investigate_document
           RuboCop::Prose::TableRules.tables(document).each do |table|
             count = table.rows.first.cells.length

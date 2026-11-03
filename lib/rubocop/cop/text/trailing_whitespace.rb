@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Text
-      class TrailingWhitespace < Prose::Base
+      class TrailingWhitespace < Base
         extend AutoCorrector
 
         private

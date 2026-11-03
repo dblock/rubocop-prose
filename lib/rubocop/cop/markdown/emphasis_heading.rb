@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Markdown
-      class EmphasisHeading < Prose::Base
+      class EmphasisHeading < Base
         def investigate_paragraph(paragraph)
           children = paragraph.children.reject { |child| child.type == :text && child.value.strip.empty? }
           return unless children.one? && %i[em strong].include?(children.first.type)

@@ -5,7 +5,7 @@ require_relative '../../prose/inline_rules'
 module RuboCop
   module Cop
     module Markdown
-      class EmphasisSpacing < Prose::Base
+      class EmphasisSpacing < Base
         extend AutoCorrector
 
         def investigate_document

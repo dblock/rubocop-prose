@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class UndefinedReference < Prose::Base
+      class UndefinedReference < Base
         MSG = 'Define the link or image reference.'
 
         private

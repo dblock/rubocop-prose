@@ -13,9 +13,9 @@ module RuboCop
         !format(path, configuration).nil?
       end
 
-      def self.build(path, buffer, ignore_front_matter: true, format: self.format(path))
+      def self.build(path, buffer, configuration: nil, format: self.format(path, configuration))
         case format
-        when :markdown then MarkdownDocument.new(buffer, ignore_front_matter: ignore_front_matter)
+        when :markdown then MarkdownDocument.new(buffer, configuration: configuration || {})
         when :text then TextDocument.new(buffer)
         else raise ArgumentError, "Unsupported prose document: #{path.inspect}"
         end

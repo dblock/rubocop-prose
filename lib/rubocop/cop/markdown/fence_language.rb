@@ -5,7 +5,7 @@ require_relative '../../prose/code_rules'
 module RuboCop
   module Cop
     module Markdown
-      class FenceLanguage < Prose::Base
+      class FenceLanguage < Base
         include RuboCop::Prose::CodeRules
 
         private

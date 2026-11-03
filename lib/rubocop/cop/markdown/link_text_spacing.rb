@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class LinkTextSpacing < Prose::Base
+      class LinkTextSpacing < Base
         extend AutoCorrector
 
         MSG = 'Remove whitespace at the edges of link text.'

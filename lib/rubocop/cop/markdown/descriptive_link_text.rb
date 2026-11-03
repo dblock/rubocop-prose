@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class DescriptiveLinkText < Prose::Base
+      class DescriptiveLinkText < Base
         MSG = 'Use descriptive link text instead of a generic label.'
 
         private

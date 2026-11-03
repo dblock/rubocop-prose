@@ -24,4 +24,22 @@ RSpec.describe 'Markdown front matter configuration' do
       offenses(cop, source, { 'Max' => false }, settings: { 'Markdown' => { 'IgnoreFrontMatter' => 'yes' } })
     end.to raise_error(RuboCop::ValidationError, /IgnoreFrontMatter/)
   end
+
+  it 'applies the same document setting to Markdown-specific cops' do
+    heading = RuboCop::Cop::Markdown::HeadingPunctuation
+    text = "---\n# Heading.\n---\n\nBody stays.\n"
+    expect(offenses(heading, text)).to be_empty
+    expect(offenses(heading, text, settings: { 'Markdown' => { 'IgnoreFrontMatter' => false } })
+             .map(&:line)).to eq([2])
+  end
+
+  it 'keeps configured documents separate from the default document used for directives' do
+    processed = RuboCop::ProcessedSource.new(source, 3.2, 'example.md')
+    enabled = RuboCop::Config.new('Markdown' => { 'IgnoreFrontMatter' => true })
+    disabled = RuboCop::Config.new('Markdown' => { 'IgnoreFrontMatter' => false })
+    expect(processed.prose_document(configuration: disabled).front_matter_line?(2)).to be(false)
+    expect(processed.prose_document(configuration: enabled).front_matter_line?(2)).to be(true)
+    expect(processed.prose_document.front_matter_line?(2)).to be(true)
+    expect(processed.prose_document(configuration: disabled).front_matter_line?(2)).to be(false)
+  end
 end

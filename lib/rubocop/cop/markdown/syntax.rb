@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Markdown
-      class Syntax < Prose::Base
+      class Syntax < Base
         private
 
         def investigate_document

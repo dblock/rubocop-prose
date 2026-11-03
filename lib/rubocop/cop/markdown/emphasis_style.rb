@@ -5,7 +5,7 @@ require_relative '../../prose/inline_rules'
 module RuboCop
   module Cop
     module Markdown
-      class EmphasisStyle < Prose::Base
+      class EmphasisStyle < Base
         extend AutoCorrector
 
         def investigate_document

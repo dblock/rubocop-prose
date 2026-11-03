@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class LinkStyle < Prose::Base
+      class LinkStyle < Base
         MSG = 'Use an allowed %<kind>s style instead of %<style>s.'
 
         private

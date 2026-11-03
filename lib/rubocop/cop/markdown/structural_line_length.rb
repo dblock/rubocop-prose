@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Markdown
-      class StructuralLineLength < Prose::Base
+      class StructuralLineLength < Base
         MSG = 'Markdown source line is too long. [%<length>d/%<max>d]'
 
         def validate_config

@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class EmptyLink < Prose::Base
+      class EmptyLink < Base
         MSG = 'Provide a nonempty link destination.'
 
         private

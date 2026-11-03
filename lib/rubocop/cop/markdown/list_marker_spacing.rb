@@ -5,7 +5,7 @@ require_relative '../../prose/list_rules'
 module RuboCop
   module Cop
     module Markdown
-      class ListMarkerSpacing < Prose::Base
+      class ListMarkerSpacing < Base
         extend AutoCorrector
         include RuboCop::Prose::ListRules
 

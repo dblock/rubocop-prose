@@ -5,7 +5,7 @@ require_relative '../../prose/list_rules'
 module RuboCop
   module Cop
     module Markdown
-      class ListBlankLines < Prose::Base
+      class ListBlankLines < Base
         extend AutoCorrector
         include RuboCop::Prose::ListRules
 

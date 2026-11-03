@@ -40,7 +40,7 @@ Run `bundle exec rspec spec/integration`. Set `RUBOCOP_MD_PATH` as described abo
 
 ## Adding a cop
 
-Add the implementation under `lib/rubocop/cop/prose`, `lib/rubocop/cop/markdown`, or `lib/rubocop/cop/text`, subclassing `RuboCop::Cop::Prose::Base`. Put defaults in `config/cops/<department>/<name>.yml` with an explicit `Enabled` value, supported options, autocorrection safety, and applicable file patterns. Enable broadly applicable cleanup by default; leave project-specific, editorial, and renderer-dependent policies opt-in as described in [the default policy](docs/settings/defaults.md). The loader discovers cop implementations and merges configuration files automatically.
+Add the implementation under `lib/rubocop/cop/prose`, `lib/rubocop/cop/markdown`, or `lib/rubocop/cop/text`, subclassing that department's `Base`: `RuboCop::Cop::Prose::Base`, `RuboCop::Cop::Markdown::Base`, or `RuboCop::Cop::Text::Base`. Put defaults in `config/cops/<department>/<name>.yml` with an explicit `Enabled` value, supported options, autocorrection safety, and applicable file patterns. Enable broadly applicable cleanup by default; leave project-specific, editorial, and renderer-dependent policies opt-in. The loader loads the abstract bases before discovering cop implementations and merges configuration files automatically.
 
 Add focused specs, a user-facing `docs/cops/<department>/<name>.md` with good/bad examples, and a linked entry with a one-line summary in [the README cops section](README.md#cops). Document behavior and limitations using the native cop name, without external rule IDs or plugin comparisons. Put implementation rationale in [DESIGN.md](DESIGN.md), not in the user guide. Validate default configuration and packaging when adding files.
 

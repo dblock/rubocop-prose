@@ -12,7 +12,12 @@ module RuboCop
         Document.format(path, configuration) == :markdown
       end
 
-      def initialize(buffer, ignore_front_matter: true)
+      def initialize(buffer, ignore_front_matter: true, configuration: {})
+        ignore_front_matter = configuration.fetch('Markdown', {}).fetch('IgnoreFrontMatter', ignore_front_matter)
+        unless [true, false].include?(ignore_front_matter)
+          raise ValidationError, 'Markdown: IgnoreFrontMatter must be true or false.'
+        end
+
         super(buffer)
         @front_matter = source[FRONT_MATTER]
         @ignore_front_matter = ignore_front_matter

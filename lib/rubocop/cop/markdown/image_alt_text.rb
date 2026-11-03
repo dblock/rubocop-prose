@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class ImageAltText < Prose::Base
+      class ImageAltText < Base
         MSG = 'Provide alternative text for the image.'
 
         private

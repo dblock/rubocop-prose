@@ -5,7 +5,7 @@ require_relative '../../prose/link_rules'
 module RuboCop
   module Cop
     module Markdown
-      class ReversedLink < Prose::Base
+      class ReversedLink < Base
         MSG = 'Use [link text](destination), not (link text)[destination].'
 
         private

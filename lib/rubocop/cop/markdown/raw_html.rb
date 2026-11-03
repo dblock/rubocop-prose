@@ -5,7 +5,7 @@ require_relative '../../prose/inline_rules'
 module RuboCop
   module Cop
     module Markdown
-      class RawHtml < Prose::Base
+      class RawHtml < Base
         def investigate_document
           allowed = Array(cop_config['AllowedElements']).map(&:downcase)
           offsets = Hash.new(0)

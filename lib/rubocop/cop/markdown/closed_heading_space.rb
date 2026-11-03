@@ -5,7 +5,7 @@ require_relative '../../prose/heading_rules'
 module RuboCop
   module Cop
     module Markdown
-      class ClosedHeadingSpace < Prose::Base
+      class ClosedHeadingSpace < Base
         include RuboCop::Prose::HeadingRules
 
         def investigate_document
