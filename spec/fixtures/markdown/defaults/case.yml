@@ -1,4 +1,5 @@
 offenses:
+  Prose/MaxLength: 1
   Markdown/TrailingWhitespace: 1
   Markdown/UndefinedReference: 1
   Markdown/ImageAltText: 1

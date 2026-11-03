@@ -1,24 +1,31 @@
 # Markdown/ProperNames
 
-Disabled by default.
-
-`Names` supplies canonical spellings and defaults to `[]`; matching is case-insensitive with Unicode letter, digit, and underscore boundaries, and punctuation within configured names is literal.
+Configured canonical spellings are matched case-insensitively with Unicode letter, digit, and underscore boundaries. Punctuation within configured names is literal.
 
 Autocorrection replaces only a matched name with its configured capitalization in prose, headings, and table cells.
 
-`CodeBlocks: false` excludes both inline code and code blocks; setting it to `true` checks both kinds of code, but never fence info strings.
-
 Links including labels and destinations, HTML including its contents, escaped characters, and ignored YAML front matter are excluded; this cop excludes code unless explicitly enabled and deliberately does not enforce capitalization inside link labels or raw HTML.
 
-## Examples
+## Configuration
+
+```yaml
+Markdown/ProperNames:
+  Enabled: false
+  Names: [] # Canonical spellings; an empty list disables checks.
+  CodeBlocks: false # Set true to check inline code and code blocks, but never fence info strings.
+```
+
+## Example
 
 For this configuration:
 
 ```yaml
 Markdown/ProperNames:
   Enabled: true
-  Names: ["GitHub", "Ruby", "C++"]
-  CodeBlocks: false
+  Names:
+    - GitHub
+    - Ruby
+    - C++
 ```
 
 ### Bad

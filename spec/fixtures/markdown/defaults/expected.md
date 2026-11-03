@@ -1,7 +1,6 @@
 # Ready?
 
-A paragraph split
-across two lines.
+A paragraph split across two lines.
 
 [Missing][missing]
 

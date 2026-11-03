@@ -1,3 +1,6 @@
+plugins:
+  - rubocop-prose
+
 AllCops:
   TargetRubyVersion: 3.2
   NewCops: enable
@@ -5,6 +8,8 @@ AllCops:
   Exclude:
     - 'vendor/**/*'
     - 'tmp/**/*'
+    - 'spec/fixtures/**/*'
+    - 'LICENSE.txt'
 
 Style/Documentation:
   Enabled: false

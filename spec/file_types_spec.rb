@@ -19,6 +19,12 @@ RSpec.describe RuboCop::Prose::FileTypes do
     )
   end
 
+  it 'accepts Pathname sources when RuboCop inspects the project gemspec' do
+    path = Pathname.new(File.expand_path('../rubocop-prose.gemspec', __dir__))
+    expect(RuboCop::ProcessedSource.from_file(path, 3.2).valid_syntax?).to be(true)
+    expect(RuboCop::Prose::Document.format(Pathname.new('file.md'))).to eq(:markdown)
+  end
+
   it 'rejects malformed lists and files that match both formats' do
     [nil, '*.txt', {}, [nil], ['']].each do |value|
       expect { configuration('Text' => { 'Include' => value }).prose_file_types }.to raise_error(RuboCop::ValidationError, %r{Text/Include must be an array})

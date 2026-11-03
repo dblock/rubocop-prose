@@ -27,7 +27,7 @@ module RuboCop
       def format(path)
         return unless path
 
-        matches = @matchers.select { |_, matcher| matcher.file_to_include?(path) }.keys
+        matches = @matchers.select { |_, matcher| matcher.file_to_include?(path.to_s) }.keys
         raise ValidationError, "#{path.inspect} matches both Markdown/Include and Text/Include." if matches.length > 1
 
         matches.first
