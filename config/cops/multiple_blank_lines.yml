@@ -1,0 +1,4 @@
+Prose/MultipleBlankLines:
+  Description: 'Limit consecutive blank lines outside code (MD012).'
+  Enabled: false
+  Max: 1
