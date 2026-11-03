@@ -56,7 +56,7 @@ Add the implementation under `lib/rubocop/cop/prose`, `lib/rubocop/cop/markdown`
 
 Add focused specs, a user-facing `docs/cops/<department>/<name>.md` with good/bad examples, and a linked entry with a one-line summary in [the README cops section](README.md#cops). Document behavior and limitations using the native cop name, without external rule IDs or plugin comparisons. Put implementation rationale in [DESIGN.md](DESIGN.md), not in the user guide. Validate default configuration and packaging when adding files.
 
-Put complete default settings under `Configuration`, followed by one `Example` section with bad/good inputs. Show example-specific overrides there when needed. Link mentions of other cops to their documentation. Keep Markdown and text cop guides focused on their own format rather than explaining exclusions for the other format.
+Lead each cop guide with a short purpose, then complete default settings under `Configuration` and one `Example` section with bad/good inputs. Show example-specific overrides in a YAML block introduced by "For this configuration:". Keep only meaningful caveats; do not repeat the README's shared exclusions or list unsupported features. Put implementation details in DESIGN. Link mentions of other cops to their documentation, and keep each guide focused on its own format.
 
 ## Pull requests
 

@@ -1,12 +1,8 @@
 # Markdown/TableColumns
 
-Reports delimiter and body rows whose structural cell count differs from the header; empty cells count, exterior pipes do not count as extra cells, and escaped pipes and pipes inside matching backtick runs are literal content.
+Requires delimiter and body rows to have the same number of cells as the header. Empty cells count; escaped pipes and pipes inside inline code are cell content.
 
-The cop does not autocorrect because adding or removing cells could discard content or invent structure.
-
-This cop recognizes a pipe-containing header and dash delimiter row inside parser-recognized prose even when inconsistent column counts cause GFM to reject the table.
-
-Root and blockquote tables are supported; code, raw HTML blocks, ignored YAML front matter, ordinary pipe-containing prose without a delimiter row, and table-like text outside parser-recognized prose are excluded.
+Report-only: adding or removing cells can lose content.
 
 ## Configuration
 

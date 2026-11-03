@@ -1,8 +1,8 @@
 # Markdown/FenceLanguage
 
-Every parsed fenced code block must specify a language. Nested list and quote fences are included; indented code and front matter are ignored.
+Requires a language on fenced code blocks, optionally restricted to an allowlist. Names are case-sensitive.
 
-This rule is report-only because the language cannot safely be inferred. Language aliases are not normalized and a separate language-only information-string mode is not provided. Language metadata is read from the parser, not guessed from raw fence-looking text; only fence syntax recognized by the configured Markdown parser is checked.
+Report-only: specify the appropriate language.
 
 ## Configuration
 

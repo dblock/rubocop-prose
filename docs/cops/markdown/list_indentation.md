@@ -1,8 +1,8 @@
 # Markdown/ListIndentation
 
-Sibling markers in each parsed ordered or unordered list must align with the first sibling. Nested lists are compared independently, and blockquote prefixes are excluded from indentation.
+Requires sibling markers to align with the first item in each ordered or unordered list. Nested lists are checked independently; blockquote prefixes do not count toward indentation.
 
-This rule is report-only: moving a marker alone could change the ownership of continuation paragraphs, nested lists, or code. Only siblings recognized by the Markdown parser are compared; lines parsed as code or a different list are not inferred to be misindented siblings. Indentation is measured in source characters, not expanded tab stops.
+Indentation counts source characters, not tab stops. Report-only: moving a marker could change which content belongs to the item.
 
 ## Configuration
 

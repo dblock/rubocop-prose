@@ -1,8 +1,8 @@
 # Markdown/UnorderedListIndentation
 
-Top-level unordered markers start at zero indentation; nested unordered markers use the configured indentation beyond their immediate parent list marker, including ordered parents. Quote prefixes are excluded, and entering a deeper quote container starts a fresh zero-indentation baseline.
+Requires top-level unordered markers at zero indentation and nested markers at the configured offset from their parent, including ordered parents. A deeper blockquote starts a fresh baseline.
 
-This rule is report-only because reindenting a list requires preserving all continuation blocks. It checks parsed unordered items, not marker-shaped code. `start_indented` and `start_indent` modes are not provided, and tabs are measured as source characters rather than expanded tab stops.
+Indentation counts source characters, not tab stops. Report-only: moving a list can change its continuation blocks.
 
 ## Configuration
 

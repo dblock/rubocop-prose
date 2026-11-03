@@ -1,8 +1,8 @@
 # Markdown/FenceStyle
 
-Consistent mode adopts the first parsed fence's delimiter throughout the document. Indented code and front matter are ignored.
+Enforces backtick, tilde, or consistent code fences. Consistent mode follows the first fence.
 
-Corrections replace opening and closing delimiters together, preserve language metadata and container prefixes, and lengthen the new fence if needed to avoid delimiter runs in its content. A conversion to backticks with backticks in the information string is report-only. This rule does not enforce an exact fence length or normalize language information; only parsed, source-mappable fence pairs are checked.
+Autocorrection preserves contents, language metadata, and nesting. Conversion to backticks is report-only if the information string contains backticks.
 
 ## Configuration
 

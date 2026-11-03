@@ -1,10 +1,8 @@
 # Markdown/BareUrl
 
-Reports literal URLs in prose. Trailing sentence punctuation and unmatched closing brackets are excluded from the offense range.
+Reports bare URLs in prose. Use `<https://example.test/docs>` or `[the documentation](https://example.test/docs)` instead.
 
-Use `<https://example.test/docs>` or `[the documentation](https://example.test/docs)` instead. The rule is report-only: automatically choosing autolinks over descriptive text is an editorial decision.
-
-Markdown links and images (including resolved references), definitions, angle autolinks, code spans/blocks, front matter, HTML tags/comments and raw HTML blocks/regions are excluded. Plain email addresses, `www.` without a scheme, and URLs assembled with Markdown escapes are intentionally not detected.
+Report-only: choose an autolink or descriptive label when fixing the URL.
 
 ## Configuration
 

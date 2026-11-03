@@ -1,10 +1,8 @@
 # Markdown/HeadingIncrement
 
-Reports a parsed heading whose level increases by more than one from the preceding heading, for example `# Title` followed by `### Detail`; decreases and an initial heading at any level are allowed.
+Reports skipped heading levels, such as `# Title` followed by `### Detail`. The first heading can have any level, and decreases are unrestricted.
 
-ATX, closed ATX and Setext headings participate, including parsed container headings; fenced code, indented code, escaped markers and front matter do not.
-
-Report-only: choosing a replacement heading level would change the document structure.
+Report-only: choose the appropriate heading level.
 
 ## Configuration
 

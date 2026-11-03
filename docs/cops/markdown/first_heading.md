@@ -1,10 +1,8 @@
 # Markdown/FirstHeading
 
-Requires the first nonblank content line to begin a parsed heading at the configured level. ATX and Setext headings qualify; leading prose, HTML and code do not. Empty and front-matter-only documents are accepted.
+Requires the first content line to be a heading at the configured level, unless a configured front-matter title qualifies. Empty documents are accepted.
 
-Invalid or unsafe YAML, aliases and non-string titles do not qualify for a front-matter title exemption.
-
-Parsed container headings count if they begin on the first content line. Report-only: adding or moving a title changes structure.
+Front-matter titles must be strings; YAML aliases are not accepted. Report-only: adding or moving a heading changes structure.
 
 ## Configuration
 

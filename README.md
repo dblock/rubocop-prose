@@ -54,6 +54,8 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 
 ### Markdown
 
+Markdown checks ignore [front matter](docs/settings/front_matter.md) by default and do not treat code blocks as prose. Dedicated code-block cops check their structure; [Markdown/HardTabs](docs/cops/markdown/hard_tabs.md) and [Markdown/StructuralLineLength](docs/cops/markdown/structural_line_length.md) can also inspect code content. Inline formatting checks leave code spans, links, escaped syntax, and HTML untouched unless they specifically check those constructs.
+
 | Cop                                                                                   | Default  | Purpose                                                                             |
 | ---                                                                                   | ---      | -------                                                                             |
 | [Markdown/AtxHeadingSpace](docs/cops/markdown/atx_heading_space.md)                   | Enabled  | Separate opening ATX heading hashes from text.                                      |

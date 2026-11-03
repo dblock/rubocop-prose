@@ -1,8 +1,8 @@
 # Markdown/ListBlankLines
 
-Parsed lists need a blank line before and after adjacent content. File boundaries count as blank boundaries; a front-matter closing line is also accepted before a list. Corrections insert blank lines and retain quote prefixes.
+Adds blank lines around lists, preserving blockquote nesting. Document boundaries and a preceding front-matter header do not require padding.
 
-Nested lists do not require separation from their parent items. Lazy continuation text belonging to a list item is not treated as content after the list. Code and marker-shaped non-list text are ignored.
+Nested lists need no separation from their parent items. Continuation text within an item is not content after the list.
 
 ## Configuration
 

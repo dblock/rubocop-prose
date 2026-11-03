@@ -1,10 +1,8 @@
 # Markdown/AtxHeadingSpace
 
-Reports one to six opening hashes immediately followed by non-whitespace, such as `##Title`. Empty headings and a single separating tab or space are accepted.
+Reports a missing separator after one to six opening heading hashes, such as `##Title`, including in lists and blockquotes. A space or tab is accepted.
 
-This lexical check recognizes ordinary blockquote and list prefixes, but deliberately does not infer arbitrary Markdown containers; four-space-indented code, fenced code, front matter, escaped opening hashes and runs of seven or more hashes are excluded. Unlike structural cops, it must inspect text that the parser does not recognize as a heading.
-
-Report-only: inserting whitespace could turn intentional prose, tags or identifiers into a heading.
+Report-only: inserting a space could turn intentional text into a heading.
 
 ## Configuration
 

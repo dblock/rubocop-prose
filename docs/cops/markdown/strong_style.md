@@ -1,12 +1,8 @@
 # Markdown/StrongStyle
 
-Consistent mode follows the first parsed strong span in document order.
+Enforces `**`, `__`, or consistent strong emphasis. Consistent mode follows the first span; ordinary emphasis belongs to [Markdown/EmphasisStyle](emphasis_style.md).
 
-The cop checks parser-recognized strong emphasis, including nesting and multiline spans in prose and headings and inline spans in tables; ordinary emphasis is checked separately by [Markdown/EmphasisStyle](emphasis_style.md).
-
-Autocorrection changes only `**` or `__` delimiters, preserving the enclosed text and any nested emphasis; intraword asterisk strong spans are reported without an underscore correction when that correction would lose the formatting.
-
-Code, links including labels, escaped delimiters, HTML, and ignored YAML front matter are excluded; intraword underscores that the parser does not recognize as strong emphasis are not offenses.
+Autocorrection preserves content. Intraword asterisks are not changed to underscores when that would remove the formatting.
 
 ## Configuration
 

@@ -1,8 +1,8 @@
 # Markdown/BlockquoteBlankLines
 
-Blank lines between adjacent parsed blockquotes in the same container must retain quote markers. Corrections add the next blockquote's prefix, preserving outer quote levels and indentation. Multiple intervening blank lines are checked individually.
+Adds quote markers to blank lines between adjacent blockquotes, preserving nesting and indentation.
 
-Quotes separated by other content and quote-shaped code are ignored. Adjacency follows the parsed block structure. This rule intentionally treats adjacent quotes as one intended quotation; separate them with content if they should remain distinct.
+This treats adjacent quotes as one quotation. Separate them with other content if they should remain distinct.
 
 ## Configuration
 

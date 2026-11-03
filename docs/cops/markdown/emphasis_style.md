@@ -1,12 +1,8 @@
 # Markdown/EmphasisStyle
 
-Consistent mode follows the first parsed emphasis span in document order.
+Enforces a configured emphasis delimiter or follows the first one in consistent mode. Strong emphasis belongs to [Markdown/StrongStyle](strong_style.md).
 
-The cop uses parser-recognized emphasis rather than guessing from punctuation, including nested and multiline emphasis in prose and headings and inline emphasis in tables; strong emphasis is checked separately by [Markdown/StrongStyle](strong_style.md).
-
-Autocorrection replaces only the opening and closing delimiters, preserving content and container prefixes; intraword asterisk emphasis is reported but not changed to underscores because that would stop being emphasis.
-
-Code, links including labels, escaped delimiters, HTML, and ignored YAML front matter are excluded; intraword underscores that the parser does not recognize as emphasis are not offenses.
+Autocorrection preserves content. Intraword asterisks are not changed to underscores when that would remove the emphasis.
 
 ## Configuration
 

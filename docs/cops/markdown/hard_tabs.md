@@ -1,8 +1,8 @@
 # Markdown/HardTabs
 
-Hard-tab diagnostics with original character columns.
+Reports hard tabs, with configurable code-language exceptions.
 
-This rule is report-only: a tab's intended width and meaning depend on context, and replacing tabs inside embedded strings or Makefiles is unsafe.
+Report-only: replacing tabs can change embedded code or Makefiles.
 
 ## Configuration
 

@@ -1,8 +1,8 @@
 # Markdown/ShellPrompts
 
-In configured shell-language fenced blocks, remove each command's leading `$` and following space only when every nonblank line starts with that prompt. Blank lines are preserved. Corrections retain list and quote container prefixes.
+Removes leading `$` prompts followed by a space when every nonblank line in a shell-language fence starts with one. Blocks containing output or unprompted continuation lines are left alone; blank lines and nesting are preserved.
 
-Any output or unprompted continuation makes the entire block ineligible. If removing prompts could expose a closing fence inside the example, all offenses in that block are report-only. Unlabeled and indented blocks are deliberately ignored, and shell languages are explicitly configurable and case-sensitive. Root prompts (`#`) and other prompt formats are not interpreted.
+Corrections are withheld if removing prompts could expose a closing fence. Language names are case-sensitive.
 
 ## Configuration
 

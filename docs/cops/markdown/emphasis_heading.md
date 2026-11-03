@@ -1,10 +1,8 @@
 # Markdown/EmphasisHeading
 
-Reports a single-line parsed paragraph consisting entirely of one emphasis or strong-emphasis element, such as `**Overview**`; ordinary mixed prose, multiline emphasis, escaped emphasis markers and actual headings are accepted.
+Reports single-line paragraphs consisting entirely of italic or bold text, such as `**Overview**`, including in lists and blockquotes.
 
-Terminal punctuation does not exempt the paragraph. Parsed list-item and blockquote paragraphs also participate. Code blocks, front matter and paragraphs consisting only of HTML are excluded by the parser.
-
-Report-only: an emphasis-only paragraph may be intentional, and its intended heading level cannot be inferred safely.
+Report-only: the paragraph may be intentional; otherwise, choose an appropriate heading level.
 
 ## Configuration
 

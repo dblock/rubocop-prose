@@ -1,10 +1,8 @@
 # Markdown/DuplicateHeadings
 
-Sibling headings have the same nearest preceding lower-level heading. Root headings share a scope, and a new parent heading starts a new scope even if its text repeats.
+Reports duplicate heading text within the configured scope. Comparison is case-sensitive text without whitespace normalization, including inline code but ignoring emphasis.
 
-Comparison is case-sensitive parsed plain text, including inline-code text but ignoring emphasis markers; no slug generation, case folding or whitespace normalization is performed. ATX and Setext headings participate; code and front matter do not.
-
-Report-only: renaming headings can break links and alter meaning.
+Sibling headings share a parent heading; root headings share a scope. Each new parent starts a fresh scope, even when its text repeats. Report-only: renaming headings can break links.
 
 ## Configuration
 

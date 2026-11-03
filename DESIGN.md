@@ -28,9 +28,13 @@ Each Markdown document lazily indexes its AST by node type and shares paragraph 
 
 `Document` retains the original buffer and creates character-based `Parser::Source::Range` objects. `MarkdownDocument` uses a Kramdown GFM parser extension to record paragraph source text, code-block source locations, and atomic inline spans such as links, code, HTML, and task-list markers. Byte offsets from parser scanners are converted into character positions before mapping back to the document, preserving Unicode locations.
 
-Front matter is masked only in the text supplied to prose parsing, retaining line endings and character positions. The original buffer is never rewritten for filtering. Only closed leading headers are metadata; unclosed or non-initial delimiters remain Markdown. The shared setting changes Markdown inspection, not YAML validation or another processor's Ruby extraction. Hidden directives in ignored front matter remain inactive.
+Front matter is masked only in the text supplied to prose parsing, retaining line endings and character positions. The original buffer is never rewritten for filtering. Only closed leading headers are metadata; an optional BOM and CRLF line endings are supported. Unclosed or non-initial delimiters remain Markdown. The shared setting changes Markdown inspection, not YAML validation or another processor's Ruby extraction. Hidden directives in ignored front matter remain inactive.
 
 The parser supplies document structure, but source-aware scanners are needed for malformed constructs that do not become AST nodes, including uneven tables and missing heading separators. These scanners must exclude code, escaped syntax, and ignored metadata rather than interpreting arbitrary marker-shaped text as document structure.
+
+Inline formatting helpers protect code spans, links and their labels, escapes, and HTML. The link scanner separately retains original reference spellings and duplicate definitions that AST resolution discards, normalizes reference IDs, and excludes footnotes and raw HTML regions. Table scanning respects escaped pipes and matching backtick runs, recognizes header-plus-delimiter tables even with malformed body rows, and maps root and blockquote rows to original source positions.
+
+Heading fragments use rendered text, including code spans, entities, and image alt text. GitHub-style slugs lowercase text, retain Unicode letters/marks/numbers and underscores, remove punctuation, and replace spaces with hyphens. GitLab additionally collapses consecutive hyphens. Kramdown uses ASCII letters/numbers/spaces/hyphens, discards nonletter prefixes, and falls back to `section`. Duplicate slugs receive collision-aware numeric suffixes. These algorithms approximate renderer behavior rather than guaranteeing every renderer version or extension.
 
 ## Preprocessor interoperability
 
@@ -48,9 +52,11 @@ Paragraph wrapping operates on soft whitespace boundaries supplied by each adapt
 
 Structural conversions are permitted only when source mapping and resulting Markdown semantics are established. Reindenting arbitrary list continuation blocks, discarding code metadata, inventing descriptive labels, or guessing target fragments is not safe correction. Where a valid offense has an ambiguous rewrite, report it without a corrector.
 
+Fence-style corrections replace both delimiters and choose a length greater than any conflicting content delimiter run. Code-block style conversions require reproducible source mappings and standalone root blocks with blank boundaries; indentation-to-fence conversion requires literal four-space indentation, and conversion to indentation rejects adjacent code blocks to avoid merging them. Table corrections change exterior pipes or cell-edge padding without changing contents. Alignment measures source characters, not terminal display width.
+
 Parser warnings are native syntax diagnostics, not a complete CommonMark validator. Specialized reference cops own corresponding diagnostics when enabled, preventing duplicate reporting. Fragment-anchor generation is renderer-dependent and documented as a configurable approximation; validation does not fetch external links or files.
 
-Detailed supported syntax, scope exclusions, options, and correction limitations belong in individual cop documents so users can determine whether a rule fits their documents.
+Cop guides document user-visible behavior and meaningful correction limits. Shared inspection behavior belongs in the README; parsing, source mapping, and correction algorithms belong here.
 
 ## Artwork
 

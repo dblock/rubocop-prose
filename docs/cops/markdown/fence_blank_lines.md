@@ -1,8 +1,8 @@
 # Markdown/FenceBlankLines
 
-Parsed fenced code blocks require blank lines before and after adjacent content. File boundaries and a preceding front-matter closing line are accepted. Corrections insert container-aware blank lines, deduplicating boundaries shared by adjacent fences.
+Adds blank lines around fenced code blocks, preserving list and blockquote nesting. Document boundaries and a preceding front-matter header do not require extra padding.
 
-An opening fence on the list marker's own line never requires a blank before that line. This avoids detaching the fence from its list item. Indented code is ignored.
+A fence on a list marker's own line does not require a blank before it.
 
 ## Configuration
 
