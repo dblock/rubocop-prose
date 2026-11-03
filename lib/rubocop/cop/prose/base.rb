@@ -17,7 +17,7 @@ module RuboCop
         end
 
         def current_corrector
-          return super unless RuboCop::Prose::Document.file?(processed_source.path)
+          return super unless processed_source.prose_format
 
           @current_corrector ||= Corrector.new(processed_source)
         end
@@ -25,11 +25,11 @@ module RuboCop
         private
 
         def applicable_document?
-          path = processed_source.path
+          format = processed_source.prose_format
           case self.class.department.to_s
-          when 'Markdown' then RuboCop::Prose::MarkdownDocument.file?(path)
-          when 'Text' then RuboCop::Prose::TextDocument.file?(path)
-          else RuboCop::Prose::Document.file?(path)
+          when 'Markdown' then format == :markdown
+          when 'Text' then format == :text
+          else !format.nil?
           end
         end
 
@@ -38,7 +38,7 @@ module RuboCop
         end
 
         def ignore_front_matter?
-          return true unless RuboCop::Prose::MarkdownDocument.file?(processed_source.path)
+          return true unless processed_source.prose_format == :markdown
 
           ignore = config.fetch('Markdown', {}).fetch('IgnoreFrontMatter', true)
           return ignore if [true, false].include?(ignore)

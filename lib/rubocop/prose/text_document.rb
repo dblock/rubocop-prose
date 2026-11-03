@@ -5,8 +5,8 @@ module RuboCop
     class TextDocument < Document
       Paragraph = Struct.new(:first_line, :last_line)
 
-      def self.file?(path)
-        path && File.extname(path).casecmp?('.txt')
+      def self.file?(path, configuration = nil)
+        Document.format(path, configuration) == :text
       end
 
       def paragraphs

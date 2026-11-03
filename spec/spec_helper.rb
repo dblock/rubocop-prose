@@ -18,7 +18,7 @@ module ProseHelpers
     configuration = RuboCop::ConfigLoader.merge_with_default(
       RuboCop::Config.new(defaults), File.expand_path('../.rubocop.yml', __dir__)
     )
-    processed = RuboCop::ProcessedSource.new(source, 3.2, path)
+    processed = RuboCop::ProcessedSource.new(source, 3.2, path, prose_configuration: configuration)
     processed.config = configuration if processed.respond_to?(:config=)
     processed.registry = RuboCop::Cop::Registry.new(cop_classes) if processed.respond_to?(:registry=)
     team = RuboCop::Cop::Team.mobilize(cop_classes, configuration, raise_error: true, autocorrect: true)

@@ -4,6 +4,8 @@ AllCops:
   NewCops: enable
   SuggestExtensions: false
 Markdown:
+  Include:
+    - '**/*.md'
   Enabled: false
   Autodetect: false
   WarnInvalid: false

@@ -1,0 +1,17 @@
+plugins:
+  - rubocop-prose
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+Markdown:
+  Include:
+    - '**/*.NOTES'
+Text:
+  Include: []
+Prose/MaxLength:
+  Enabled: true
+  Max: false
+Markdown/HeadingPunctuation:
+  Enabled: true
+Text/TrailingWhitespace:
+  Enabled: true

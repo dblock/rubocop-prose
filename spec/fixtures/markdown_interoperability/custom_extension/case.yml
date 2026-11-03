@@ -1,0 +1,5 @@
+offenses:
+  Markdown/HeadingPunctuation: 1
+  Prose/MaxLength: 1
+remaining_offenses:
+  Markdown/HeadingPunctuation: 1
