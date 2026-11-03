@@ -1,0 +1,5 @@
+Prose/HardTabs:
+  Description: 'Disallow hard tabs with code-language exceptions (MD010).'
+  Enabled: false
+  CodeBlocks: true
+  AllowedCodeLanguages: []
