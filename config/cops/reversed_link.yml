@@ -1,0 +1,3 @@
+Prose/ReversedLink:
+  Description: 'Report reversed Markdown link delimiters (MD011-inspired).'
+  Enabled: false
