@@ -1,0 +1,4 @@
+Prose/RawHtml:
+  Description: 'Disallow raw HTML except explicitly allowed elements (MD033).'
+  Enabled: false
+  AllowedElements: []
