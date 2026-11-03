@@ -1,0 +1,3 @@
+Prose/ListBlankLines:
+  Description: Surround parsed lists with blank lines (MD032).
+  Enabled: false
