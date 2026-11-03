@@ -1,0 +1,3 @@
+Prose/ClosedHeadingSpacing:
+  Description: 'Use one space before closing ATX heading hashes (MD021).'
+  Enabled: false
