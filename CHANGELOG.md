@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- [#66](https://github.com/dblock/rubocop-prose/pull/66): Enable common-sense Markdown and text checks by default with conservative heading, tab, and reference policies - [@dblock](https://github.com/dblock).
 - [#65](https://github.com/dblock/rubocop-prose/pull/65): Configure Markdown and text Include patterns with per-file discovery, source dispatch, and a README settings catalog - [@dblock](https://github.com/dblock).
 - [#64](https://github.com/dblock/rubocop-prose/pull/64): Add README badges for lint and test CI workflows - [@dblock](https://github.com/dblock).
 - [#63](https://github.com/dblock/rubocop-prose/pull/63): Add plain-text support with shared Prose, Markdown, and Text departments, format-specific policies, and grouped integration tests - [@dblock](https://github.com/dblock).

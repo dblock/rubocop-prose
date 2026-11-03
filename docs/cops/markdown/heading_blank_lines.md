@@ -1,6 +1,6 @@
 # Markdown/HeadingBlankLines
 
-Disabled by default.
+Enabled by default.
 
 `LinesAbove` and `LinesBelow` set minimum blank-line counts, both defaulting to `1`; `0` disables the respective requirement. Boundaries of the document and the end of front matter do not require padding.
 

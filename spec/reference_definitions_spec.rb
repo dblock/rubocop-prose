@@ -1,14 +1,11 @@
 # frozen_string_literal: true
 
 RSpec.describe RuboCop::Cop::Markdown::ReferenceDefinitions do
-  it 'reports unused and normalized duplicate definitions at their own source ranges' do
+  it 'reports normalized duplicates at their own ranges while permitting unused definitions by default' do
     source = "[text][used]\n\n[used]: one.md\n[ USED ]: two.md\n[orphan]: unused.md\n"
     result, rewritten = investigate(described_class, source)
-    expect(result.map { |offense| offense.location.source }).to eq(['[ USED ]: two.md', '[orphan]: unused.md'])
-    expect(result.map(&:message)).to include(
-      a_string_including('Remove or rename the duplicate reference definition.'),
-      a_string_including('Reference definition is not used.')
-    )
+    expect(result.map { |offense| offense.location.source }).to eq(['[ USED ]: two.md'])
+    expect(result.first.message).to include('Remove or rename the duplicate reference definition.')
     expect(rewritten).to eq(source)
   end
 
@@ -27,7 +24,7 @@ RSpec.describe RuboCop::Cop::Markdown::ReferenceDefinitions do
 
   it 'preserves multiline definitions and their title ranges' do
     source = "[ unused\n ID ]:\n  <docs.md>\n  \"A title\"\n"
-    expect(offenses(described_class, source).map { |offense| offense.location.source }).to eq([source.strip])
+    expect(offenses(described_class, source, 'CheckUnused' => true).map { |offense| offense.location.source }).to eq([source.strip])
   end
 
   it 'recognizes references and continued definitions inside block quotes' do
@@ -47,7 +44,7 @@ RSpec.describe RuboCop::Cop::Markdown::ReferenceDefinitions do
 
   it 'does not count code or escaped references as uses' do
     source = "`[id]` \\[id]\n\n[id]: unused.md\n"
-    expect(offenses(described_class, source).map { |offense| offense.location.source }).to eq(['[id]: unused.md'])
+    expect(offenses(described_class, source, 'CheckUnused' => true).map { |offense| offense.location.source }).to eq(['[id]: unused.md'])
   end
 
   it 'excludes front matter, code, HTML, escaped definitions and footnotes' do

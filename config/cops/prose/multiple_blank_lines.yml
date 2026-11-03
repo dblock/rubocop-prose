@@ -1,4 +1,4 @@
 Prose/MultipleBlankLines:
   Description: 'Limit consecutive blank lines outside code.'
-  Enabled: false
+  Enabled: true
   Max: 1

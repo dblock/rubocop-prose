@@ -1,6 +1,6 @@
 # Markdown/TableBlankLines
 
-Disabled by default.
+Enabled by default.
 
 Requires a blank line before and after each table, except at document boundaries; whitespace-only lines and empty blockquote lines count as blank.
 

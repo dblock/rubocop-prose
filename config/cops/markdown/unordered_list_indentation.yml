@@ -1,4 +1,4 @@
 Markdown/UnorderedListIndentation:
   Description: Use a configured indentation width for unordered lists.
-  Enabled: false
+  Enabled: true
   Indent: 2

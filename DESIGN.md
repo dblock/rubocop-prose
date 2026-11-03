@@ -2,7 +2,7 @@
 
 ## Scope and naming
 
-This plugin implements native Ruby checks for Markdown and plain-text prose. `Prose/*` cop badges identify shared policies, `Markdown/*` identify Markdown-specific policies, and `Text/*` identify plain-text-specific policies. Every document cop is disabled by default. User configuration and supported behavior are documented in [the README cops section](README.md#cops).
+This plugin implements native Ruby checks for Markdown and plain-text prose. `Prose/*` cop badges identify shared policies, `Markdown/*` identify Markdown-specific policies, and `Text/*` identify plain-text-specific policies. Common-sense cleanup is enabled by default; project-specific structure, editorial choices, paragraph layout, and renderer-dependent policies remain opt-in. User configuration and supported behavior are documented in [the README cops section](README.md#cops) and [the default policy](docs/settings/defaults.md).
 
 File recognition is centralized in the configuration-local `FileTypes` resolver, exposed through `Document.format`, and `Document.build` dispatches to `MarkdownDocument` or `TextDocument`. `Markdown/Include` and `Text/Include` contain native file patterns; a file matching both formats is a configuration error. Matching delegates to RuboCop's configuration matcher with the original configuration path. `Base` independently gates investigation by department and the source's resolved format, so selecting a Markdown cop cannot make it inspect text. Ruby snippet evaluation and spelling are outside the plugin's scope.
 

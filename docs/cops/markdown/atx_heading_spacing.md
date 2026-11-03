@@ -1,6 +1,6 @@
 # Markdown/AtxHeadingSpacing
 
-Disabled by default.
+Enabled by default.
 
 Reports two or more spaces or tabs between a parsed ATX opening marker and non-whitespace content. Autocorrection replaces only that separator with one space, retaining container prefixes and Unicode text.
 

@@ -1,6 +1,6 @@
 # Markdown/ClosedHeadingSpacing
 
-Disabled by default.
+Enabled by default.
 
 Reports multiple spaces or tabs before a parser-recognized closing ATX hash run, such as `# Title  #`. Autocorrection replaces only that separator with one space; the closing markers and trailing whitespace are preserved.
 

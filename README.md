@@ -26,7 +26,7 @@ Ruby 3.2 or newer and RuboCop 1.72.1 or newer within 1.x are supported. No JavaS
 
 ## Usage
 
-All cops are opt-in. For example, enable paragraph unwrapping in `.rubocop.yml`:
+Most checks run as soon as the plugin is loaded. For optional paragraph unwrapping, add to `.rubocop.yml`:
 
 ```yaml
 Prose/MaxLength:
@@ -61,18 +61,13 @@ With `Max: false`, paragraph formatting keeps each paragraph on one source line;
 
 File selection and front-matter handling are configured through the settings under [Markdown](#markdown) and [Text](#text) below. Configured files are discovered automatically, respecting exclusions and per-directory configuration. Ruby files remain unaffected unless explicitly assigned to a prose format.
 
-Text is literal: headings, fences, links, HTML, and front-matter-looking delimiters are ordinary content. Paragraphs are separated by blank lines. Indented text blocks can report formatting offenses but are not automatically reflowed. Enable strict plain-text whitespace independently:
-
-```yaml
-Text/TrailingWhitespace:
-  Enabled: true
-```
+Text is literal: headings, fences, links, HTML, and front-matter-looking delimiters are ordinary content. Paragraphs are separated by blank lines. Indented text blocks can report formatting offenses but are not automatically reflowed. `Text/TrailingWhitespace` removes trailing spaces and tabs by default.
 
 Hidden directives use native RuboCop syntax, for example `<!-- # rubocop:disable Prose/MaxLength -->`; directives inside code or ignored metadata do not control prose cops.
 
 ## Cops
 
-All cops are opt-in. Follow each link for configuration, supported scope, and good/bad examples. Shared `Prose/*` cops appear in both tables.
+40 cops are enabled by default; 16 project-specific or opinionated policies remain opt-in. The [default policy](docs/settings/defaults.md) explains the exceptions and conservative settings. Set `Enabled: false` for an individual cop to disable it. Follow each cop link for configuration, supported scope, and good/bad examples. Shared `Prose/*` cops appear in both tables.
 
 ### Markdown
 

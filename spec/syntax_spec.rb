@@ -20,4 +20,13 @@ RSpec.describe RuboCop::Cop::Markdown::Syntax do
     source = "[label][missing]\n"
     expect(corrected(described_class, source)).to eq(source)
   end
+
+  it 'delegates reference diagnostics only when their owning cops are part of the investigation' do
+    cops = [described_class, RuboCop::Cop::Markdown::UndefinedReference,
+            RuboCop::Cop::Markdown::ReferenceDefinitions]
+    source = "[label][missing]\n\n[id]: /one\n[id]: /two\n"
+    expect(offenses(cops, source).map(&:cop_name)).to contain_exactly(
+      'Markdown/UndefinedReference', 'Markdown/ReferenceDefinitions'
+    )
+  end
 end

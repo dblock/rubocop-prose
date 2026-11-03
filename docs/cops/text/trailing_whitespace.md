@@ -1,6 +1,6 @@
 # Text/TrailingWhitespace
 
-Disabled by default. Removes all trailing spaces and tabs from `.txt` lines, including whitespace-only lines. Plain text has no Markdown hard breaks, code fences, metadata exclusions, or hidden HTML directives. This cop never inspects Markdown; use `Markdown/TrailingWhitespace` to preserve its hard-break semantics.
+Enabled by default. Removes all trailing spaces and tabs from `.txt` lines, including whitespace-only lines. Plain text has no Markdown hard breaks, code fences, metadata exclusions, or hidden HTML directives. This cop never inspects Markdown; use `Markdown/TrailingWhitespace` to preserve its hard-break semantics.
 
 ## Examples
 

@@ -1,6 +1,6 @@
 Markdown/DescriptiveLinkText:
   Description: 'Require descriptive link text instead of generic labels.'
-  Enabled: false
+  Enabled: true
   GenericLabels:
     - click here
     - here

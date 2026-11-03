@@ -2,7 +2,7 @@
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, validation, and pull-request conventions, and [DESIGN.md](DESIGN.md) before changing document parsing, source mapping, or correction behavior.
 
-Keep changes focused and preserve existing configuration and supported Ruby/RuboCop versions. All document cops are opt-in. Do not add a dependency on an external preprocessor for standalone linting.
+Keep changes focused and preserve existing configuration and supported Ruby/RuboCop versions. Most document cops are enabled by default; keep project-specific, editorial, and renderer-dependent policies opt-in. Do not add a dependency on an external preprocessor for standalone linting.
 
 Preserve untouched original source buffers, character-based locations, Markdown container prefixes, hard breaks, and atomic inline syntax. Withhold corrections when the intended rewrite cannot be established safely. Add focused regression coverage for behavior changes, including original-source ranges and repeated correction where relevant.
 

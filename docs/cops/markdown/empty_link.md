@@ -1,6 +1,6 @@
 # Markdown/EmptyLink
 
-Disabled by default.
+Enabled by default.
 
 Reports Markdown links whose decoded destination is empty or exactly `#`, including angle-delimited empty destinations, optional titles, and links resolved through empty reference definitions. An empty visible label with a real destination is not an empty destination.
 

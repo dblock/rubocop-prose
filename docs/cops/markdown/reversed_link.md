@@ -1,6 +1,6 @@
 # Markdown/ReversedLink
 
-Disabled by default.
+Enabled by default.
 
 Reports adjacent `(link text)[destination]` with a nonblank label and a whitespace-free bracketed destination. Nested parentheses and escaped delimiters are respected. Whitespace-separated parentheses followed by a reference, and references that actually resolve, are not treated as reversed links.
 

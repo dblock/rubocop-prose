@@ -1,6 +1,6 @@
 # Markdown/DescriptiveLinkText
 
-Disabled by default.
+Enabled by default.
 
 Reports inline and resolved reference links whose complete rendered label matches an entry in `GenericLabels`. Defaults are `click here`, `here`, `link`, and `more`. Matching ignores case and collapses whitespace; formatting, code spans, and HTML entities in labels are interpreted before matching.
 

@@ -1,6 +1,6 @@
 # Markdown/TablePipes
 
-Disabled by default.
+Enabled by default.
 
 `Style` accepts `consistent` (the default), `leading_and_trailing`, `leading_only`, `trailing_only`, or `no_leading_or_trailing`; consistent mode independently follows each table header's leading and trailing pipe presence.
 

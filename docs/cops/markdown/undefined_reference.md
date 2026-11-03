@@ -1,6 +1,6 @@
 # Markdown/UndefinedReference
 
-Disabled by default.
+Enabled by default.
 
 Reports undefined full `[text][id]` and collapsed `[id][]` references, including images. Definitions can appear before or after their uses; IDs are matched case-insensitively with collapsed whitespace. Link labels can span lines and contain nested bracket text.
 

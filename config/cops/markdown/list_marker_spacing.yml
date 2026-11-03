@@ -1,6 +1,6 @@
 Markdown/ListMarkerSpacing:
   Description: Configure spaces after ordered and unordered list markers.
-  Enabled: false
+  Enabled: true
   UnorderedSingle: 1
   OrderedSingle: 1
   UnorderedMulti: 1

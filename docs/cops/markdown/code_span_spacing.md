@@ -1,6 +1,6 @@
 # Markdown/CodeSpanSpacing
 
-Disabled by default.
+Enabled by default.
 
 Reports edge whitespace in matched inline code spans in parser-recognized prose, headings, and tables, while preserving all-space code values and symmetric padding needed to separate literal edge backticks from the delimiters.
 

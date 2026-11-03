@@ -1,6 +1,6 @@
 Markdown/UnorderedListMarker:
   Description: Use a configured or consistent unordered list marker.
-  Enabled: false
+  Enabled: true
   EnforcedStyle: consistent
   SupportedStyles:
     - consistent

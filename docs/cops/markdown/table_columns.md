@@ -1,6 +1,6 @@
 # Markdown/TableColumns
 
-Disabled by default.
+Enabled by default.
 
 Reports delimiter and body rows whose structural cell count differs from the header; empty cells count, exterior pipes do not count as extra cells, and escaped pipes and pipes inside matching backtick runs are literal content.
 

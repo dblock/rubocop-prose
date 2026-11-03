@@ -1,5 +1,5 @@
 Markdown/TrailingWhitespace:
   Description: 'Remove trailing whitespace while retaining Markdown hard breaks.'
-  Enabled: false
+  Enabled: true
   HardBreakSpaces: 2
   CodeBlocks: false

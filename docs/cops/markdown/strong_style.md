@@ -1,6 +1,6 @@
 # Markdown/StrongStyle
 
-Disabled by default.
+Enabled by default.
 
 `Style` accepts `consistent` (the default), `asterisk`, or `underscore`; consistent mode follows the first parsed strong span in document order.
 
