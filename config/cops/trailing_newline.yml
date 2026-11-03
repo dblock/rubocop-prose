@@ -1,0 +1,3 @@
+Prose/TrailingNewline:
+  Description: 'Require exactly one final newline (MD047).'
+  Enabled: false
