@@ -22,6 +22,41 @@ RSpec.describe RuboCop::Cop::Markdown::DescriptiveLinkText do
     expect(offenses(described_class, source, { 'GenericLabels' => [] })).to be_empty
   end
 
+  it 'can reject labels made entirely of configured non-descriptive words' do
+    source = '[click this link](page.md) [click here for more](page.md) [click here for more *info*](page.md)'
+    options = { 'NonDescriptiveWords' => %w[click this link here for more] }
+    result, rewritten = investigate(described_class, source, options)
+
+    expect(result.map { |offense| offense.location.source }).to eq(['click this link', 'click here for more'])
+    expect(rewritten).to eq(source)
+  end
+
+  it 'combines word matching with exact generic labels without treating punctuation as whitespace' do
+    source = '[Details](page.md) [this LINK](page.md) [installation link](page.md) [link!](page.md) [](page.md)'
+    options = { 'GenericLabels' => ['details'], 'NonDescriptiveWords' => %w[this link] }
+
+    expect(offenses(described_class, source, options).map { |offense| offense.location.source }).to eq(
+      ['Details', 'this LINK']
+    )
+  end
+
+  it 'normalizes rendered words, references, Unicode case and whitespace consistently' do
+    source = "[**CLICK** this&nbsp;LINK][id] [Stra\u00dfe here](page.md)\n\n[id]: page.md\n"
+    options = { 'GenericLabels' => [], 'NonDescriptiveWords' => [' click ', 'this', 'link', 'STRASSE', 'here'] }
+
+    expect(offenses(described_class, source, options).map { |offense| offense.location.source }).to eq(
+      ['**CLICK** this&nbsp;LINK', "Stra\u00dfe here"]
+    )
+  end
+
+  it 'rejects malformed or multiword word lists explicitly' do
+    [nil, 'here', [42], ['click here'], [' ']].each do |words|
+      expect do
+        offenses(described_class, '[here](page.md)', 'NonDescriptiveWords' => words)
+      end.to raise_error(RuboCop::ValidationError, /must be an array of individual nonempty words/)
+    end
+  end
+
   it 'checks normalized references but not images, autolinks or undefined references' do
     source = "[Here][ ID ] [more][] [LINK] ![here](img.svg) <https://example.test> [here][unknown]\n\n[id]: page.md\n[more]: page.md\n[link]: page.md\n"
     expect(offenses(described_class, source).map { |offense| offense.location.source }).to eq(%w[Here more LINK])
