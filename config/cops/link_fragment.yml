@@ -1,0 +1,6 @@
+Prose/LinkFragment:
+  Description: 'Validate local fragments using configurable heading anchors (MD051-inspired).'
+  Enabled: false
+  Renderer: github
+  AdditionalAnchors: []
+  AllowEmptyFragment: true
