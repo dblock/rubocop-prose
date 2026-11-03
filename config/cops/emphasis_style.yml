@@ -1,0 +1,4 @@
+Prose/EmphasisStyle:
+  Description: 'Use a configured or consistent emphasis delimiter (MD049).'
+  Enabled: false
+  Style: consistent
