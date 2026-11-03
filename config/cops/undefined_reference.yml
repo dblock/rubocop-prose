@@ -1,0 +1,4 @@
+Prose/UndefinedReference:
+  Description: 'Require definitions for link and image references (MD052-inspired).'
+  Enabled: false
+  ShortcutSyntax: false
