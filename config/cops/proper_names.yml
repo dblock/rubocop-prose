@@ -1,0 +1,5 @@
+Prose/ProperNames:
+  Description: 'Use configured capitalization for proper names (MD044).'
+  Enabled: false
+  Names: []
+  CodeBlocks: false
