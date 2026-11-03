@@ -14,7 +14,9 @@ The default Rake task runs RuboCop and RSpec. For a focused change, run its affe
 
 CI runs separate lint and test workflows on every pull request and pushes to `main`. Each row in the test workflow's `matrix.entry` lists one Ruby/RuboCop combination explicitly. Tests cover Ruby 3.2 and 4.0 with RuboCop `~> 1.72`, gem building, and optional Markdown source-mapping interoperability. Pull requests also run Danger checks for changelog entries.
 
-The lint configuration loads this checkout's rubocop-prose plugin to check project prose alongside Ruby. Intentionally invalid integration fixtures are excluded from project linting.
+The lint configuration loads this checkout's rubocop-prose plugin to check project prose alongside Ruby, plus rubocop-rspec and rubocop-rake for test and task checks. Intentionally invalid integration fixtures are excluded from project linting.
+
+Cop specs use a flat `spec/<cop>_spec.rb` layout and keep related diagnostic and correction assertions together, so RSpec's file-path, example-length, and expectation-count policies are disabled. The fixture runner is registered as an assertion helper; end-to-end specs do not have to describe a single class.
 
 To include interoperability tests locally, set `RUBOCOP_MD_PATH` to the checkout used by the dedicated CI job, then run `bundle exec rspec spec/integration/markdown_interoperability_spec.rb`. That checkout must expose the original-source API described in [DESIGN.md](DESIGN.md#preprocessor-interoperability). Without it, interoperability examples are skipped; standalone examples still run. Keep the functional dependency loading and checkout settings intact.
 
@@ -60,7 +62,7 @@ Put complete default settings under `Configuration`, followed by one `Example` s
 
 Keep each feature in a focused pull request with one coherent commit; use squash merges. Include behavior/configuration documentation with the change. Preserve unrelated worktree changes.
 
-Add an unreleased changelog entry using this format, with the actual pull-request number:
+Add an unreleased changelog entry for a notable user-facing change, using the actual pull-request number. Do not add separate entries for documentation, tooling, refactoring, or fixes to functionality that has not been released; update the original feature entry when needed.
 
 ```markdown
 - [#123](https://github.com/dblock/rubocop-prose/pull/123): Describe the change - [@dblock](https://github.com/dblock).

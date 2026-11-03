@@ -4,18 +4,11 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
-- [#70](https://github.com/dblock/rubocop-prose/pull/70): Remove the runtime comparison from the README - [@dblock](https://github.com/dblock).
 - [#69](https://github.com/dblock/rubocop-prose/pull/69): Add reproducible prose benchmarks and share Markdown document analysis across cops - [@dblock](https://github.com/dblock).
-- [#68](https://github.com/dblock/rubocop-prose/pull/68): Add explicit CI combinations, Danger checks, self-linting, default paragraph unwrapping, and complete cop configuration guides - [@dblock](https://github.com/dblock).
-- [#67](https://github.com/dblock/rubocop-prose/pull/67): Use format-specific cop bases and resolve front-matter settings during Markdown document construction - [@dblock](https://github.com/dblock).
-- [#66](https://github.com/dblock/rubocop-prose/pull/66): Enable common-sense Markdown and text checks by default with conservative heading, tab, and reference policies - [@dblock](https://github.com/dblock).
+- [#66](https://github.com/dblock/rubocop-prose/pull/66): Enable common-sense Markdown and text checks and unwrapped paragraphs by default, with conservative heading, tab, and reference policies - [@dblock](https://github.com/dblock).
 - [#65](https://github.com/dblock/rubocop-prose/pull/65): Configure Markdown and text Include patterns with per-file discovery, source dispatch, and a README settings catalog - [@dblock](https://github.com/dblock).
-- [#64](https://github.com/dblock/rubocop-prose/pull/64): Add README badges for lint and test CI workflows - [@dblock](https://github.com/dblock).
 - [#63](https://github.com/dblock/rubocop-prose/pull/63): Add plain-text support with shared Prose, Markdown, and Text departments, format-specific policies, and grouped integration tests - [@dblock](https://github.com/dblock).
-- [#62](https://github.com/dblock/rubocop-prose/pull/62): Organize contributor and design guides, add agent instructions and a README cop catalog, and document native cop names with good/bad examples - [@dblock](https://github.com/dblock).
-- [#61](https://github.com/dblock/rubocop-prose/pull/61): Move CLI integration scenarios to file-driven fixtures with shared reporting, correction, repeated-run, and stdin checks - [@dblock](https://github.com/dblock).
 - [#60](https://github.com/dblock/rubocop-prose/pull/60): Add a RuboCop-inspired logo with a parchment scroll, editable SVG artwork, and a README image - [@dblock](https://github.com/dblock).
-- [#59](https://github.com/dblock/rubocop-prose/pull/59): Document the complete cop catalog, verify cross-plugin composition, and update CI and installation documentation for main - [@dblock](https://github.com/dblock).
 - [#58](https://github.com/dblock/rubocop-prose/pull/58): Add `Prose/TableSpacing` for table cell spacing - [@dblock](https://github.com/dblock).
 - [#57](https://github.com/dblock/rubocop-prose/pull/57): Add `Prose/TableBlankLines` for blank lines around tables - [@dblock](https://github.com/dblock).
 - [#56](https://github.com/dblock/rubocop-prose/pull/56): Add `Prose/TableColumns` for consistent table column counts - [@dblock](https://github.com/dblock).

@@ -1,10 +1,16 @@
+inherit_mode:
+  merge:
+    - Exclude
+    - Expectations
+
 plugins:
   - rubocop-prose
+  - rubocop-rake
+  - rubocop-rspec
 
 AllCops:
   TargetRubyVersion: 3.2
   NewCops: enable
-  SuggestExtensions: false
   Exclude:
     - 'vendor/**/*'
     - 'tmp/**/*'
@@ -25,3 +31,27 @@ Layout/LineLength:
   Max: 120
   Exclude:
     - 'spec/**/*'
+
+RSpec:
+  Language:
+    Expectations:
+      - run_fixture
+
+# Regression examples keep related diagnostic and correction assertions together.
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+# Cop specs deliberately use a flat spec/<cop>_spec.rb layout.
+RSpec/SpecFilePathFormat:
+  Enabled: false
+
+# These exercise end-to-end behavior rather than one class.
+RSpec/DescribeClass:
+  Exclude:
+    - 'spec/integration/**/*'
+    - 'spec/benchmark_spec.rb'
+    - 'spec/front_matter_spec.rb'
+    - 'spec/text_spec.rb'

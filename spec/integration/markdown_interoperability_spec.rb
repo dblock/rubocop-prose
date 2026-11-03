@@ -9,8 +9,8 @@ RSpec.describe 'Markdown source-mapping integration' do
 
   IntegrationFixtures.cases('markdown_interoperability').each do |fixture, data|
     %w[prose_first markdown_first].each do |order|
-      context "#{File.basename(fixture)} with #{order} loading" do
-        include_examples 'a prose CLI fixture', fixture, data, order
+      context "with #{File.basename(fixture)} and #{order} loading" do
+        it_behaves_like 'a prose CLI fixture', fixture, data, order
       end
     end
   end

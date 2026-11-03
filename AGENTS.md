@@ -12,6 +12,6 @@ Do not parse Markdown syntax or interpret hidden HTML directives in plain text. 
 
 Resolve configurable file patterns from each file's effective configuration before source parsing. Reuse the shared resolver for discovery and applicability; do not introduce independent file-type lists or a global format registry.
 
-Keep user instructions in README and per-cop documentation, developer instructions in CONTRIBUTING, and architecture/rationale in DESIGN. Do not hard-wrap Markdown paragraphs. Include a linked pull-request changelog entry.
+Keep user instructions in README and per-cop documentation, developer instructions in CONTRIBUTING, and architecture/rationale in DESIGN. Do not hard-wrap Markdown paragraphs. Add a linked pull-request changelog entry for notable user-facing changes, not documentation, tooling, refactoring, or fixes to unreleased functionality.
 
 Do not modify the vendored upstream helmet SVG or remove its license. Regenerate the PNG after editing the logo composition and check both full-size and README-size rendering.
