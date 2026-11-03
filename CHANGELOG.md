@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+- [#75](https://github.com/dblock/rubocop-prose/pull/75): Configure independent blank-line counts above and below fenced code blocks - [@dblock](https://github.com/dblock).
 - [#72](https://github.com/dblock/rubocop-prose/pull/72): Allow identical reference definitions while retaining conflict and unused checks - [@dblock](https://github.com/dblock).
 - [#69](https://github.com/dblock/rubocop-prose/pull/69): Add reproducible prose benchmarks and share Markdown document analysis across cops - [@dblock](https://github.com/dblock).
 - [#66](https://github.com/dblock/rubocop-prose/pull/66): Enable common-sense Markdown and text checks and unwrapped paragraphs by default, with conservative heading, tab, and reference policies - [@dblock](https://github.com/dblock).

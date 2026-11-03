@@ -1,4 +1,6 @@
 Markdown/FenceBlankLines:
   Description: Surround fenced code blocks with container-aware blank lines.
   Enabled: true
+  LinesAbove: 1
+  LinesBelow: 1
   ListItems: true

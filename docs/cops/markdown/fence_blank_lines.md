@@ -1,14 +1,18 @@
 # Markdown/FenceBlankLines
 
-Adds blank lines around fenced code blocks, preserving list and blockquote nesting. Document boundaries and a preceding front-matter header do not require extra padding.
+Requires the configured minimum blank lines above and below fenced code blocks, preserving list and blockquote nesting. Set either count to zero to leave that boundary unchecked. Document boundaries and a preceding front-matter header do not require extra padding.
 
 A fence on a list marker's own line does not require a blank before it.
+
+For counts above one, also raise [Prose/MultipleBlankLines](../prose/multiple_blank_lines.md)'s `Max` to permit them.
 
 ## Configuration
 
 ```yaml
 Markdown/FenceBlankLines:
   Enabled: true
+  LinesAbove: 1 # Nonnegative minimum; zero disables checks above fences.
+  LinesBelow: 1 # Nonnegative minimum; zero disables checks below fences.
   ListItems: true # Set false to skip fences inside list items.
 ```
 
