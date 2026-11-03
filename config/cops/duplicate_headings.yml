@@ -1,0 +1,4 @@
+Prose/DuplicateHeadings:
+  Description: 'Avoid duplicate heading text (MD024).'
+  Enabled: false
+  Scope: document
