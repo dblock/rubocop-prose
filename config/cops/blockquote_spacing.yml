@@ -1,0 +1,3 @@
+Prose/BlockquoteSpacing:
+  Description: Avoid multiple spaces after blockquote markers (MD027).
+  Enabled: false
