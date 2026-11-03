@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
     'rubygems_mfa_required' => 'true',
     'default_lint_roller_plugin' => 'RuboCop::Prose::Plugin'
   }
-  spec.files = Dir['lib/**/*.rb', 'config/**/*.yml', 'docs/**/*.md'] +
+  spec.files = Dir['lib/**/*.rb', 'config/**/*.yml', 'docs/**/*.md', 'assets/**/*'] +
                %w[README.md CHANGELOG.md LICENSE.txt]
   spec.require_paths = ['lib']
   spec.add_dependency 'kramdown', '~> 2.5'

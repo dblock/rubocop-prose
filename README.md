@@ -1,5 +1,7 @@
 # rubocop-prose
 
+<img src="assets/logo.png" alt="The RuboCop helmet logo with a parchment scroll alongside it." width="160">
+
 Markdown prose, structure, and style checks for RuboCop. Ruby snippets belong to [rubocop-md](https://github.com/rubocop/rubocop-md); spelling belongs to [rubocop-spellcheck](https://github.com/dblock/rubocop-spellcheck).
 
 The initial implementation was developed as a stack of focused feature pull requests.
