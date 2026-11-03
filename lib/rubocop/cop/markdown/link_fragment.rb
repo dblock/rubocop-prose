@@ -15,7 +15,7 @@ module RuboCop
           raise ArgumentError, "Unknown anchor renderer: #{renderer}" unless %w[github gitlab
                                                                                 kramdown].include?(renderer)
 
-          scanner = RuboCop::Prose::LinkRules.new(document)
+          scanner = document.link_rules
           anchors = scanner.anchors(renderer, cop_config.fetch('AdditionalAnchors', []))
           scanner.links.each do |link|
             next if link.image || !scanner.resolved?(link)

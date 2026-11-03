@@ -32,11 +32,21 @@ module RuboCop
       end
 
       def nodes(type)
-        walk(root).select { |node| node.type == type }
+        @nodes ||= walk(root).group_by(&:type)
+        @nodes.fetch(type, [])
       end
 
       def paragraphs
-        nodes(:p).select { |node| node.options[:prose_source] }
+        @paragraphs ||= nodes(:p).select { |node| node.options[:prose_source] }
+      end
+
+      def link_rules
+        @link_rules ||= LinkRules.new(self)
+      end
+
+      def multiline_atoms
+        @multiline_atoms ||= paragraphs.flat_map { |paragraph| atomic_ranges(paragraph) }
+                                       .reject { |range| range.line == range.last_line }
       end
 
       def headings
@@ -124,7 +134,7 @@ module RuboCop
       private
 
       def source_lines(paragraph)
-        paragraph.options[:prose_source].split("\n", -1)
+        paragraph.options[:prose_lines] ||= paragraph.options[:prose_source].split("\n", -1)
       end
 
       def parsed

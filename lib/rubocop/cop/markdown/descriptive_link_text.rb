@@ -11,7 +11,7 @@ module RuboCop
         private
 
         def investigate_document
-          scanner = RuboCop::Prose::LinkRules.new(document)
+          scanner = document.link_rules
           generic = cop_config.fetch('GenericLabels', ['click here', 'here', 'link', 'more'])
                               .map { |label| scanner.normalize_text(label) }
           scanner.links.each do |link|

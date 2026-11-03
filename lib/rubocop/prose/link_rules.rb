@@ -24,6 +24,9 @@ module RuboCop
         exclude_blocks
         exclude_spans
         scan_definitions
+        @definitions_by_reference = definitions.each_with_object({}) do |definition, index|
+          index[definition.reference] ||= definition
+        end
         scan_links
       end
 
@@ -40,7 +43,7 @@ module RuboCop
       end
 
       def definition_for(link)
-        definitions.find { |definition| definition.reference == link.reference } if link.reference
+        @definitions_by_reference[link.reference] if link.reference
       end
 
       def destination(link)

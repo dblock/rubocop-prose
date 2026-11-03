@@ -11,7 +11,7 @@ module RuboCop
         private
 
         def investigate_document
-          scanner = RuboCop::Prose::LinkRules.new(document)
+          scanner = document.link_rules
           scanner.links.each do |link|
             next unless scanner.resolved?(link)
 

@@ -18,6 +18,14 @@ The lint configuration loads this checkout's rubocop-prose plugin to check proje
 
 To include interoperability tests locally, set `RUBOCOP_MD_PATH` to the checkout used by the dedicated CI job, then run `bundle exec rspec spec/integration/markdown_interoperability_spec.rb`. That checkout must expose the original-source API described in [DESIGN.md](DESIGN.md#preprocessor-interoperability). Without it, interoperability examples are skipped; standalone examples still run. Keep the functional dependency loading and checkout settings intact.
 
+### Benchmarks
+
+Run `bundle exec rake benchmark` from this checkout. Override sample counts and corpus sizes with `ITERATIONS=5 SECTIONS=10,50,100 bundle exec rake benchmark`.
+
+The generated Markdown corpus contains Unicode, headings, links and reference definitions, emphasis, containers, tables, and fenced code. The text corpus contains literal markup and wrapped paragraphs. Each size measures document analysis, default-enabled cop investigation, and single-pass autocorrection separately. Every operation constructs a fresh document; linting also constructs a fresh processed source and cop team. Corrections stay in memory and do not write files. Plugin loading and configuration setup are excluded.
+
+Results show median wall-clock seconds and allocated Ruby objects per operation after one warm-up, with garbage collection enabled. Fingerprints cover document locations and atomic ranges, or complete offense names, ranges, messages, severities, and corrected source. Each sample must match its warm-up fingerprint. Compare fingerprints across revisions using the same Ruby, RuboCop, and corpus settings before interpreting timing changes; timings are machine-dependent and are not CI thresholds.
+
 ## Tests
 
 Keep focused cop tests in `spec/<name>_spec.rb`. Cover offenses, exclusions, original Unicode locations, safe corrections, and ambiguous cases that must remain report-only. Document adapters are covered by `spec/document_spec.rb`, `spec/text_document_spec.rb`, and `spec/front_matter_spec.rb`. File-pattern validation, inherited per-file configuration, and discovery are covered by `spec/file_types_spec.rb`. Format-specific cops must not investigate the other format, even when explicitly selected.

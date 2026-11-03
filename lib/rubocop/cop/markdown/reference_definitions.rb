@@ -9,7 +9,7 @@ module RuboCop
         private
 
         def investigate_document
-          scanner = RuboCop::Prose::LinkRules.new(document)
+          scanner = document.link_rules
           used = scanner.links.filter_map(&:reference).to_set
           ignored = cop_config.fetch('IgnoredDefinitions', ['//']).map { |label| scanner.normalize(label) }
           seen = Set.new
