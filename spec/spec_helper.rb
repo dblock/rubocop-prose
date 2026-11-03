@@ -9,15 +9,18 @@ module ProseHelpers
     options = options.merge(cop_options.transform_keys(&:to_s))
     defaults = RuboCop::Prose.default_configuration
     defaults.merge!(settings)
-    name = cop_class.cop_name
-    defaults[name] = defaults.fetch(name, {}).merge(options).merge('Enabled' => true)
+    cop_classes = Array(cop_class)
+    cop_classes.each do |klass|
+      name = klass.cop_name
+      defaults[name] = defaults.fetch(name, {}).merge(options).merge('Enabled' => true)
+    end
     configuration = RuboCop::ConfigLoader.merge_with_default(
       RuboCop::Config.new(defaults), File.expand_path('../.rubocop.yml', __dir__)
     )
     processed = RuboCop::ProcessedSource.new(source, 3.2, path)
     processed.config = configuration if processed.respond_to?(:config=)
-    processed.registry = RuboCop::Cop::Registry.new([cop_class]) if processed.respond_to?(:registry=)
-    team = RuboCop::Cop::Team.mobilize([cop_class], configuration, raise_error: true, autocorrect: true)
+    processed.registry = RuboCop::Cop::Registry.new(cop_classes) if processed.respond_to?(:registry=)
+    team = RuboCop::Cop::Team.mobilize(cop_classes, configuration, raise_error: true, autocorrect: true)
     report = team.investigate(processed)
     corrector = report.correctors.compact.first
     [report.offenses.reject(&:disabled?), corrector ? corrector.rewrite : source]
