@@ -1,0 +1,7 @@
+Prose/ReferenceDefinitions:
+  Description: 'Report unused and duplicate reference definitions (MD053-inspired).'
+  Enabled: false
+  CheckUnused: true
+  CheckDuplicates: true
+  IgnoredDefinitions:
+    - '//'
