@@ -23,7 +23,7 @@ plugins:
   - rubocop-prose
 ```
 
-Ruby 3.2 or newer and RuboCop 1.72.1 or newer within 1.x are supported. No JavaScript runtime or external linter is needed.
+Ruby 3.2 or newer and RuboCop 1.72.1 or newer within 1.x are supported.
 
 ## Usage
 
