@@ -1,0 +1,3 @@
+Prose/AtxHeadingSpacing:
+  Description: 'Use one space after opening ATX heading hashes (MD019).'
+  Enabled: false
