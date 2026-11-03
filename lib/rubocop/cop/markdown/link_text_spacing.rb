@@ -13,7 +13,7 @@ module RuboCop
         private
 
         def investigate_document
-          scanner = RuboCop::Prose::LinkRules.new(document)
+          scanner = document.link_rules
           scanner.links.each do |link|
             next if link.image || link.style == 'autolink' || !scanner.resolved?(link)
             next if link.label == link.label.strip

@@ -11,7 +11,7 @@ module RuboCop
         private
 
         def investigate_document
-          scanner = RuboCop::Prose::LinkRules.new(document)
+          scanner = document.link_rules
           scanner.links.each do |link|
             next unless link.reference && !scanner.resolved?(link)
             next if link.style == 'shortcut_reference' && !cop_config.fetch('ShortcutSyntax', false)

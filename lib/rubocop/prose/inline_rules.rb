@@ -127,8 +127,7 @@ module RuboCop
       end
 
       def self.multiline_atoms(document)
-        document.paragraphs.flat_map { |paragraph| document.atomic_ranges(paragraph) }
-                .reject { |range| range.line == range.last_line }
+        document.multiline_atoms
       end
 
       def self.mask(text, include_code: false, document: nil, number: nil)

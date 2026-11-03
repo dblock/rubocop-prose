@@ -22,6 +22,8 @@ The source installs its parsing wrapper on the instance so it runs before option
 
 Document instances are cached on the processed source by configuration identity, allowing enabled cops to share parsing without hashing mutable configuration values or mixing different configurations. Markdown document construction resolves and validates `Markdown/IgnoreFrontMatter`, including for shared prose cops; text construction never reads Markdown options. Directive scanning uses a separate default document so leading metadata remains excluded from hidden directives. Hidden native RuboCop directives are surfaced as source comments only for Markdown outside parsed code and ignored metadata; all directive-shaped text remains literal in `.txt`.
 
+Each Markdown document lazily indexes its AST by node type and shares paragraph lines, multiline inline-atom ranges, and link scanning across cops. Reference definitions are indexed by normalized ID with the first definition winning. These caches belong to one document, not a process or cop instance, so corrected sources and different configurations cannot reuse stale analysis. Configuration-dependent link policies are still evaluated by each cop.
+
 ## Original-source parsing and ranges
 
 `Document` retains the original buffer and creates character-based `Parser::Source::Range` objects. `MarkdownDocument` uses a Kramdown GFM parser extension to record paragraph source text, code-block source locations, and atomic inline spans such as links, code, HTML, and task-list markers. Byte offsets from parser scanners are converted into character positions before mapping back to the document, preserving Unicode locations.
