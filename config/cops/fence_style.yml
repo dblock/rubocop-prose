@@ -1,5 +1,5 @@
 Prose/FenceStyle:
-  Description: Use backtick, tilde, or consistently styled fences (MD048).
+  Description: Use backtick, tilde, or consistently styled fences.
   Enabled: false
   EnforcedStyle: consistent
   SupportedStyles:

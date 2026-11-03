@@ -1,5 +1,5 @@
 Prose/FirstHeading:
-  Description: 'Begin documents with a heading or front-matter title (MD041).'
+  Description: 'Begin documents with a heading or front-matter title.'
   Enabled: false
   Level: 1
   FrontMatterTitle: true

@@ -1,4 +1,4 @@
 Prose/TableSpacing:
-  Description: 'Use configured spacing around table cell content (MD060).'
+  Description: 'Use configured spacing around table cell content.'
   Enabled: false
   Style: aligned

@@ -1,6 +1,6 @@
 # Prose/LinkFragment
 
-Inspired by markdownlint MD051; disabled by default.
+Disabled by default.
 
 Checks only destinations beginning with `#` in inline and resolved reference links. Fragments are HTML-entity decoded and percent decoded, without treating `+` as a space; matching is case sensitive. Images and destinations such as `other.md#heading`, `/page#heading`, or `https://example.test/#heading` are intentionally not checked. No files or networks are fetched.
 
@@ -10,4 +10,29 @@ Heading text includes formatted text, code spans, entities, and image alt text. 
 
 Only headings recognized by the shared Markdown parser are used, including its single-line setext headings; this rule does not impose a separate heading grammar.
 
-Code blocks/spans, front matter, escaped syntax, HTML links, and comments/raw HTML regions do not supply Markdown links. The rule is report-only; it does not guess the intended heading or autocorrect fragments. It is not exact markdownlint equivalence.
+Code blocks/spans, front matter, escaped syntax, HTML links, and comments/raw HTML regions do not supply Markdown links. The rule is report-only; it does not guess the intended heading or autocorrect fragments.
+
+## Examples
+
+For this configuration:
+
+```yaml
+Prose/LinkFragment:
+  Enabled: true
+```
+
+### Bad
+
+```markdown
+# Installation
+
+[Install](#missing)
+```
+
+### Good
+
+```markdown
+# Installation
+
+[Install](#installation)
+```

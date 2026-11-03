@@ -1,4 +1,4 @@
 Prose/FenceLanguage:
-  Description: Require a language and optionally restrict fence languages (MD040).
+  Description: Require a language and optionally restrict fence languages.
   Enabled: false
   AllowedLanguages: []
