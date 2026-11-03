@@ -14,10 +14,13 @@ module RuboCop
         end
 
         def owned_elsewhere?(warning)
-          (warning.start_with?('No link definition') && config['Markdown/UndefinedReference']&.fetch('Enabled',
-                                                                                                     false)) ||
-            (warning.start_with?('Duplicate link ID') && config['Markdown/ReferenceDefinitions']&.fetch('Enabled',
-                                                                                                        false))
+          owner = if warning.start_with?('No link definition')
+                    'Markdown/UndefinedReference'
+                  elsif warning.start_with?('Duplicate link ID')
+                    'Markdown/ReferenceDefinitions'
+                  end
+          owner && config.cop_enabled?(owner) &&
+            processed_source.registry&.any? { |cop| cop.cop_name == owner }
         end
 
         def warning_line(warning)

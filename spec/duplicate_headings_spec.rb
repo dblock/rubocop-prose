@@ -4,17 +4,17 @@ require 'spec_helper'
 
 RSpec.describe RuboCop::Cop::Markdown::DuplicateHeadings do
   it 'reports repeated plain text in document scope' do
-    expect(offenses(described_class, "# Résumé\n\n## *Résumé*\n").map(&:line)).to eq([3])
+    expect(offenses(described_class, "# Résumé\n\n## *Résumé*\n", 'Scope' => 'document').map(&:line)).to eq([3])
   end
 
   it 'allows different case and distinct text' do
     expect(offenses(described_class, "# Title\n\n## title\n\n## Other\n")).to be_empty
   end
 
-  it 'allows the same child under distinct parents in sibling scope' do
+  it 'allows the same child under distinct parents by default' do
     source = "# First\n\n## Usage\n\n# Second\n\n## Usage\n"
-    expect(offenses(described_class, source, { 'Scope' => 'siblings' })).to be_empty
-    expect(offenses(described_class, source).size).to eq(1)
+    expect(offenses(described_class, source)).to be_empty
+    expect(offenses(described_class, source, { 'Scope' => 'document' }).size).to eq(1)
   end
 
   it 'reports siblings even when their heading levels skip' do
@@ -30,7 +30,7 @@ RSpec.describe RuboCop::Cop::Markdown::DuplicateHeadings do
   it 'includes Setext headings but excludes code and front matter' do
     source = "---\ntitle: Title\n---\nTitle\n=====\n\n```\n# Title\n```\n\n    # Title\n\n\\# Title\n"
     expect(offenses(described_class, source)).to be_empty
-    expect(offenses(described_class, "Title\n=====\n\n## Title\n").size).to eq(1)
+    expect(offenses(described_class, "Title\n=====\n\n## Title\n", 'Scope' => 'document').size).to eq(1)
   end
 
   it 'does not rename duplicates' do

@@ -1,0 +1,4 @@
+offenses:
+  Text/TrailingWhitespace: 1
+  Prose/MultipleBlankLines: 1
+remaining_offenses: {}

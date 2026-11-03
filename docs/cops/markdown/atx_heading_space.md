@@ -1,6 +1,6 @@
 # Markdown/AtxHeadingSpace
 
-Disabled by default.
+Enabled by default.
 
 Reports one to six opening hashes immediately followed by non-whitespace, such as `##Title`. Empty headings and a single separating tab or space are accepted.
 

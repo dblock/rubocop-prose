@@ -1,6 +1,6 @@
 # Markdown/ClosedHeadingSpace
 
-Disabled by default.
+Enabled by default.
 
 Reports a parsed ATX heading with trailing unescaped hashes attached to its text, such as `# Title#`. Properly separated closing hashes and escaped terminal hashes are accepted; code and front matter are excluded.
 

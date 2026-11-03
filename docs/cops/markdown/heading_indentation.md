@@ -1,6 +1,6 @@
 # Markdown/HeadingIndentation
 
-Disabled by default.
+Enabled by default.
 
 Reports headings whose physical source line begins with spaces or tabs. In addition to already parsed headings, one-to-three-space-indented candidates are reparsed without indentation because the project's parser does not normally recognize them. ATX and Setext headings are included, but indented code, fenced code, escaped markers and front matter are not headings.
 

@@ -8,11 +8,11 @@ RSpec.describe RuboCop::Cop::Markdown::HardTabs do
     expect(corrected(described_class, source)).to eq(source)
   end
 
-  it 'allows configured code languages or all code to be excluded' do
+  it 'ignores code by default and supports language exceptions when code checking is enabled' do
     source = "```make\n\ttarget:\n```\n"
-    expect(offenses(described_class, source).map(&:line)).to eq([2])
-    expect(offenses(described_class, source, 'AllowedCodeLanguages' => ['make'])).to be_empty
-    expect(offenses(described_class, source, 'CodeBlocks' => false)).to be_empty
+    expect(offenses(described_class, source)).to be_empty
+    expect(offenses(described_class, source, 'CodeBlocks' => true).map(&:line)).to eq([2])
+    expect(offenses(described_class, source, 'CodeBlocks' => true, 'AllowedCodeLanguages' => ['make'])).to be_empty
   end
 
   it 'does not report front matter or tab-free prose' do

@@ -30,15 +30,17 @@ Integration entry points live in `spec/integration/`. Their fixture subfolders a
 
 `case.yml` declares expected offense counts by cop under `offenses` and post-correction counts under `remaining_offenses`. All expectations are explicit, including empty maps for clean results. Add a scenario directory to the appropriate suite to add coverage without changing the runner.
 
+Fixtures with explicit `Enabled: true` cop entries run with `--only` for those cops. Fixtures without such entries run the configured defaults without `--only`, covering normal plugin behavior.
+
 The shared runner copies each directory to an isolated temporary workspace and runs the real RuboCop CLI from there so correction cannot modify repository files. It renames the input to an example document and removes the copied expectation document from discovery. It checks explicit-file reporting, automatic file discovery, safe autocorrection, a repeated run, and stdin, with both CLI-option and configuration-file plugin loading. Assert unchanged input during reporting, exact corrected bytes, stable repeated runs, and unchanged on-disk files during stdin reporting. The interoperability suite also runs with both plugin require orders when `RUBOCOP_MD_PATH` is set; only that suite is skipped when the preprocessor is unavailable.
 
-The composed-correction fixture intentionally includes trailing spaces and extra final blank lines. Its targeted Git whitespace attributes preserve those regression inputs.
+Whitespace and default-policy fixtures intentionally include trailing spaces or extra blank lines. Targeted Git whitespace attributes preserve those regression inputs.
 
 Run `bundle exec rspec spec/integration`. Set `RUBOCOP_MD_PATH` as described above to include interoperability scenarios.
 
 ## Adding a cop
 
-Add the implementation under `lib/rubocop/cop/prose`, `lib/rubocop/cop/markdown`, or `lib/rubocop/cop/text`, subclassing `RuboCop::Cop::Prose::Base`. Put defaults in `config/cops/<department>/<name>.yml` with `Enabled: false`, supported options, autocorrection safety, and applicable file patterns. The loader discovers cop implementations and merges configuration files automatically.
+Add the implementation under `lib/rubocop/cop/prose`, `lib/rubocop/cop/markdown`, or `lib/rubocop/cop/text`, subclassing `RuboCop::Cop::Prose::Base`. Put defaults in `config/cops/<department>/<name>.yml` with an explicit `Enabled` value, supported options, autocorrection safety, and applicable file patterns. Enable broadly applicable cleanup by default; leave project-specific, editorial, and renderer-dependent policies opt-in as described in [the default policy](docs/settings/defaults.md). The loader discovers cop implementations and merges configuration files automatically.
 
 Add focused specs, a user-facing `docs/cops/<department>/<name>.md` with good/bad examples, and a linked entry with a one-line summary in [the README cops section](README.md#cops). Document behavior and limitations using the native cop name, without external rule IDs or plugin comparisons. Put implementation rationale in [DESIGN.md](DESIGN.md), not in the user guide. Validate default configuration and packaging when adding files.
 

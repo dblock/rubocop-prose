@@ -1,7 +1,7 @@
 Markdown/ReferenceDefinitions:
   Description: 'Report unused and duplicate reference definitions.'
-  Enabled: false
-  CheckUnused: true
+  Enabled: true
+  CheckUnused: false
   CheckDuplicates: true
   IgnoredDefinitions:
     - '//'

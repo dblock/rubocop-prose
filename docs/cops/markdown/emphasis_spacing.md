@@ -1,6 +1,6 @@
 # Markdown/EmphasisSpacing
 
-Disabled by default.
+Enabled by default.
 
 Reports whitespace immediately inside a balanced, single-line pair of `*`, `_`, `**`, `__`, `***`, or `___` delimiters in parser-recognized prose, headings, and tables.
 

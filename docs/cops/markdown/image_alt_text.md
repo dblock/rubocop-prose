@@ -1,6 +1,6 @@
 # Markdown/ImageAltText
 
-Disabled by default.
+Enabled by default.
 
 Reports inline and resolved reference images whose rendered alternative text is blank, including images nested in links. Full, collapsed, and shortcut reference syntax is recognized with case/whitespace-normalized IDs.
 

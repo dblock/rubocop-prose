@@ -1,2 +1,4 @@
 spec/fixtures/markdown/composed_corrections/*.md whitespace=-blank-at-eol,-blank-at-eof
 spec/fixtures/text/whitespace/*.txt whitespace=-blank-at-eol,-blank-at-eof
+spec/fixtures/markdown/defaults/input.md whitespace=-blank-at-eol
+spec/fixtures/text/defaults/input.txt whitespace=-blank-at-eol

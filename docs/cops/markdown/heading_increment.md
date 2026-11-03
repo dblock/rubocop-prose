@@ -1,6 +1,6 @@
 # Markdown/HeadingIncrement
 
-Disabled by default.
+Enabled by default.
 
 Reports a parsed heading whose level increases by more than one from the preceding heading, for example `# Title` followed by `### Detail`; decreases and an initial heading at any level are allowed.
 

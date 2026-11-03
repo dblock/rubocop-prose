@@ -39,8 +39,6 @@ module IntegrationFixtures
         File.write(configuration, config.to_yaml)
       end
       only = config.select { |name, options| name.include?('/') && options.fetch('Enabled', false) }.keys
-      raise ArgumentError, "No enabled cops in #{configuration}" if only.empty?
-
       command = fixture_command(configuration, only, loading, order)
       assert_fixture_report(command + [filename], directory, data.fetch('offenses'))
       assert_fixture_report(command, directory, data.fetch('offenses'))
@@ -66,8 +64,8 @@ module IntegrationFixtures
       requires = order == 'prose_first' ? %w[rubocop-prose rubocop-md] : %w[rubocop-md rubocop-prose]
       command.concat(requires.map { |name| "-r#{name}" })
     end
-    command.push('-S', 'rubocop', '--config', configuration, '--cache', 'false', '--format', 'json',
-                 '--only', only.join(','))
+    command.push('-S', 'rubocop', '--config', configuration, '--cache', 'false', '--format', 'json')
+    command.push('--only', only.join(',')) unless only.empty?
     command.push('--plugin', 'rubocop-prose') if loading == 'options'
     command
   end

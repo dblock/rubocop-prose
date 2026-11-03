@@ -1,6 +1,6 @@
 # Markdown/ThematicBreakStyle
 
-Disabled by default.
+Enabled by default.
 
 `Style` defaults to `consistent`, which uses the exact marker spelling of the first parser-recognized thematic break in the document; alternatively, configure a literal valid thematic break such as `---`, `***`, or `* * *`.
 

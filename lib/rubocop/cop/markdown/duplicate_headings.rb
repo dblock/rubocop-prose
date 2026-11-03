@@ -13,7 +13,7 @@ module RuboCop
           parents = []
           heading_entries.each do |heading|
             parents.pop while parents.any? && parents.last[:level] >= heading[:level]
-            scope = cop_config.fetch('Scope', 'document') == 'siblings' ? parents.last&.fetch(:line) : nil
+            scope = cop_config.fetch('Scope', 'siblings') == 'siblings' ? parents.last&.fetch(:line) : nil
             key = [scope, heading[:text]]
             if seen.include?(key)
               prose_offense(heading_range(heading), message: 'Use unique heading text within the configured scope.')

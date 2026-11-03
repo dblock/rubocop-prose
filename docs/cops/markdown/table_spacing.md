@@ -1,6 +1,6 @@
 # Markdown/TableSpacing
 
-Disabled by default.
+Enabled by default.
 
 `Style` accepts `aligned` (the default), `compact`, or `tight`; aligned mode uses one leading space and pads each column to its widest source cell, compact mode uses exactly one space adjacent to a pipe, and tight mode removes cell-edge padding.
 

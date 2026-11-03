@@ -1,6 +1,6 @@
 # Markdown/EmphasisStyle
 
-Disabled by default.
+Enabled by default.
 
 `Style` accepts `consistent` (the default), `asterisk`, or `underscore`; consistent mode follows the first parsed emphasis span in document order.
 

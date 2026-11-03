@@ -19,7 +19,7 @@ module RuboCop
 
             message = if duplicate && cop_config.fetch('CheckDuplicates', true)
                         'Remove or rename the duplicate reference definition.'
-                      elsif !used.include?(definition.reference) && cop_config.fetch('CheckUnused', true)
+                      elsif !used.include?(definition.reference) && cop_config.fetch('CheckUnused', false)
                         'Reference definition is not used.'
                       end
             next unless message
