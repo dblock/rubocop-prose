@@ -1,0 +1,3 @@
+Prose/BlockquoteBlankLines:
+  Description: Keep quote markers on blank lines between blockquotes (MD028).
+  Enabled: false
