@@ -1,5 +1,8 @@
 # rubocop-prose
 
+[![Lint](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml)
+[![Tests](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml)
+
 <img src="assets/logo.png" alt="The RuboCop helmet logo with a parchment scroll alongside it." width="160">
 
 Markdown and plain-text prose checks for RuboCop. Use `Prose/*` for shared formatting, `Markdown/*` for Markdown structure and style, and `Text/*` for plain-text policies.
