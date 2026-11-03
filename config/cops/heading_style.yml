@@ -1,0 +1,9 @@
+Prose/HeadingStyle:
+  Description: 'Use a consistent heading syntax (MD003).'
+  Enabled: false
+  EnforcedStyle: consistent
+  SupportedStyles:
+    - consistent
+    - atx
+    - atx_closed
+    - setext
