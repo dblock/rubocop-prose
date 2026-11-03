@@ -1,0 +1,3 @@
+Prose/EmphasisHeading:
+  Description: 'Avoid single-line emphasis-only paragraphs in place of headings (MD036).'
+  Enabled: false
