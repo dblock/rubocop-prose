@@ -1,0 +1,11 @@
+plugins:
+  - rubocop-prose
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+Prose/MaxLength:
+  Enabled: true
+  Max: false
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes

@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- [#61](https://github.com/dblock/rubocop-prose/pull/61): Move CLI integration scenarios to file-driven fixtures with shared reporting, correction, repeated-run, and stdin checks - [@dblock](https://github.com/dblock).
 - [#60](https://github.com/dblock/rubocop-prose/pull/60): Add a RuboCop-inspired logo with a parchment scroll, editable SVG artwork, and a README image - [@dblock](https://github.com/dblock).
 - [#59](https://github.com/dblock/rubocop-prose/pull/59): Document the complete cop catalog, verify cross-plugin composition, and update CI and installation documentation for main - [@dblock](https://github.com/dblock).
 - [#58](https://github.com/dblock/rubocop-prose/pull/58): Add `Prose/TableSpacing` (MD060) for table cell spacing - [@dblock](https://github.com/dblock).

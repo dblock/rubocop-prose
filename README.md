@@ -36,3 +36,5 @@ The foundation follows rubocop-spellcheck's evolution: a standard `lint_roller` 
 Run `bundle install`, then `bundle exec rake` for lint and tests. Ruby 3.2 or newer and RuboCop 1.72.1 or newer within 1.x are supported. CI runs on every pull request and pushes to `main`.
 
 Set `RUBOCOP_MD_PATH` to an original-buffer-enabled rubocop-md checkout to include interoperability checks locally. The source adapter and rule set do not require rubocop-md for standalone Markdown linting.
+
+CLI integration scenarios are file/data-driven under [`spec/fixtures`](spec/fixtures/README.md). Each directory supplies Markdown input, cop configuration, expected diagnostics, and optional corrected output; the shared runner uses isolated temporary workspaces.
