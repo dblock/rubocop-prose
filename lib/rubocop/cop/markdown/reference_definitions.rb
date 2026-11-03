@@ -12,9 +12,13 @@ module RuboCop
           scanner = document.link_rules
           used = scanner.links.filter_map(&:reference).to_set
           ignored = cop_config.fetch('IgnoredDefinitions', ['//']).map { |label| scanner.normalize(label) }
-          seen = Set.new
+          seen = {}
           scanner.definitions.each do |definition|
-            duplicate = !seen.add?(definition.reference)
+            first = seen[definition.reference]
+            seen[definition.reference] ||= definition
+            duplicate = first && !(cop_config.fetch('AllowIdenticalDuplicates', false) &&
+              scanner.decode(first.destination) == scanner.decode(definition.destination) &&
+              first.title == definition.title)
             next if ignored.include?(definition.reference)
 
             message = if duplicate && cop_config.fetch('CheckDuplicates', true)

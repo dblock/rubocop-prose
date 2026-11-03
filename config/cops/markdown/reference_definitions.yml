@@ -3,5 +3,6 @@ Markdown/ReferenceDefinitions:
   Enabled: true
   CheckUnused: false
   CheckDuplicates: true
+  AllowIdenticalDuplicates: false
   IgnoredDefinitions:
     - '//'

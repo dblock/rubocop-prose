@@ -1,6 +1,26 @@
 # frozen_string_literal: true
 
 RSpec.describe RuboCop::Cop::Markdown::ReferenceDefinitions do
+  it 'optionally allows identical normalized definitions but reports conflicting destinations and titles' do
+    source = <<~MARKDOWN
+      [docs]
+
+      [docs]: <guide?a=1&amp;b=2> "Guide"
+      [ DOCS ]: guide?a=1&b=2 "Guide"
+      [docs]: other "Guide"
+      [docs]: guide?a=1&b=2 "Other"
+    MARKDOWN
+    result = offenses(described_class, source, 'AllowIdenticalDuplicates' => true)
+    expect(result.map { |offense| offense.location.line }).to eq([5, 6])
+    expect(corrected(described_class, source, 'AllowIdenticalDuplicates' => true)).to eq(source)
+  end
+
+  it 'continues reporting unused definitions when identical duplicates are permitted' do
+    source = "[docs]: guide\n[DOCS]: guide\n"
+    expect(offenses(described_class, source, 'AllowIdenticalDuplicates' => true, 'CheckUnused' => true).size).to eq(2)
+    expect(offenses(described_class, source).size).to eq(1)
+  end
+
   it 'reports normalized duplicates at their own ranges while permitting unused definitions by default' do
     source = "[text][used]\n\n[used]: one.md\n[ USED ]: two.md\n[orphan]: unused.md\n"
     result, rewritten = investigate(described_class, source)
