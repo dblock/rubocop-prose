@@ -1,8 +1,8 @@
 # Markdown/HeadingPunctuation
 
-Checks the final non-whitespace character of parsed heading plain text, including inline-code text and excluding closing heading hashes. Unlike a source-regex implementation, inline emphasis and links are interpreted by the parser; punctuation escaped in Markdown still appears in the rendered text and is checked. Code blocks and front matter are excluded.
+Reports configured punctuation at the end of rendered heading text, including inline code. Closing heading hashes do not count as punctuation.
 
-Report-only: punctuation can be meaningful, including in code or identifiers.
+Report-only: punctuation may be meaningful.
 
 ## Configuration
 

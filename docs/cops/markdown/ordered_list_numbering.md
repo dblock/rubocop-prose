@@ -1,8 +1,8 @@
 # Markdown/OrderedListNumbering
 
-Sequential numbering starts at the first number of each parsed list, so lists can start at zero or another number. Nested and quoted lists are checked independently.
+Enforces sequential numbering or repeated ones. Sequential numbering starts at each list's first number, including zero; nested and quoted lists are checked independently.
 
-Corrections preserve punctuation and only replace numbers of equal character width; width-changing offenses are report-only because continuation indentation could change meaning. Automatic style inference and a forced sequential start at 1 are not provided. Code, escaped markers, and front matter are excluded.
+Autocorrection preserves punctuation. Changes in number width are report-only because they can affect continuation indentation.
 
 ## Configuration
 

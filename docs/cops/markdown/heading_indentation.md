@@ -1,10 +1,8 @@
 # Markdown/HeadingIndentation
 
-Reports headings whose physical source line begins with spaces or tabs. In addition to already parsed headings, one-to-three-space-indented candidates are reparsed without indentation because the project's parser does not normally recognize them. ATX and Setext headings are included, but indented code, fenced code, escaped markers and front matter are not headings.
+Reports indentation before headings or their outermost container marker; `> # Title` is accepted only without leading spaces. For Setext headings, only the text line's indentation is checked.
 
-Indentation is measured before the outermost container marker, not after blockquote or list prefixes; for example `> # Title` is accepted. Setext underline indentation is not checked independently.
-
-Report-only: dedenting can move a heading out of a container or change block structure.
+Report-only: removing indentation can change the surrounding structure.
 
 ## Configuration
 

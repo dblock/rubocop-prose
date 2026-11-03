@@ -1,10 +1,8 @@
 # Markdown/HeadingBlankLines
 
-Boundaries of the document and the end of front matter do not require padding.
+Requires the configured blank lines around headings, measuring below the underline for Setext headings. Document boundaries and the end of front matter do not require padding; empty blockquote lines count as blank.
 
-Checks parsed ATX and Setext headings, measuring after the underline for Setext syntax. Whitespace-only and blockquote-marker-only lines count as blank; fenced and indented code are not headings. Container boundaries are inspected as physical source lines.
-
-Report-only: adding blank lines can change lists, blockquotes and paragraph interpretation.
+Report-only: inserting blank lines can change surrounding lists and blockquotes.
 
 ## Configuration
 

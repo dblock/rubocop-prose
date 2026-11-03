@@ -1,12 +1,10 @@
 # Markdown/LinkStyle
 
-Link and image styles are configured independently.
+Restricts link and image styles independently, including images nested in links.
 
-The value `reference` permits all resolved reference forms. To be more selective, replace it with any of `full_reference`, `collapsed_reference`, and `shortcut_reference`. The value `inline` permits `[text](destination)` or `![alt](destination)`. The link-only value `autolink` permits angle-bracketed scheme URLs and email addresses; bare URLs are handled separately by [Markdown/BareUrl](bare_url.md).
+Use `inline`, `reference`, or individual reference forms: `full_reference`, `collapsed_reference`, and `shortcut_reference`. Links also support `autolink` for angle-bracketed URLs and email addresses. Bare URLs belong to [Markdown/BareUrl](bare_url.md).
 
-Nested images are checked independently of their containing links. Unresolved references, code blocks/spans, front matter, HTML links/comments/raw regions, and escaped delimiters are excluded.
-
-The rule is report-only: converting styles requires choosing and placing definitions or inventing visible labels.
+Report-only: changing styles may require new labels or definitions.
 
 ## Configuration
 

@@ -1,10 +1,8 @@
 # Markdown/RawHtml
 
-Reports opening HTML elements recognized by the Markdown parser, including inline elements, block elements, nested elements, and table cells; closing tags are not separate offenses.
+Reports HTML elements outside the configured allowlist, including nested elements and table cells. Only opening tags are checked; comments are ignored.
 
-Code blocks, inline code, escaped tags, comments, autolinks, and ignored YAML front matter are excluded.
-
-This cop follows the GFM AST and does not infer HTML from tag-looking text that the parser treats as literal text; it does not autocorrect because removing HTML could remove content or structure.
+Report-only: removing HTML can discard content or structure.
 
 ## Configuration
 

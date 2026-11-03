@@ -1,10 +1,8 @@
 # Markdown/ProperNames
 
-Configured canonical spellings are matched case-insensitively with Unicode letter, digit, and underscore boundaries. Punctuation within configured names is literal.
+Corrects configured names to their canonical capitalization in prose, headings, and tables. Matching is case-insensitive, uses whole-word boundaries, and treats punctuation in names literally.
 
-Autocorrection replaces only a matched name with its configured capitalization in prose, headings, and table cells.
-
-Links including labels and destinations, HTML including its contents, escaped characters, and ignored YAML front matter are excluded; this cop excludes code unless explicitly enabled and deliberately does not enforce capitalization inside link labels or raw HTML.
+Code is checked only when enabled.
 
 ## Configuration
 

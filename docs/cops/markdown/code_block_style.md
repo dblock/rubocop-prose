@@ -1,10 +1,8 @@
 # Markdown/CodeBlockStyle
 
-Consistent mode adopts the first parsed code block's style across the document, including nested containers.
+Enforces fenced, indented, or consistent code blocks, including nested blocks. Consistent mode follows the first block.
 
-Corrections are intentionally conservative. Only standalone root-level blocks with blank boundaries are converted. Fences with language or other metadata, nested list/quote blocks, empty fenced bodies, bodies with leading or trailing blank lines, and source mappings that cannot be reproduced exactly are report-only. Conversion to indentation is also report-only beside any code block separated only by whitespace, avoiding merges during simultaneous corrections. Converting indentation to fences requires literal four-space indentation and uses a backtick fence longer than any content backtick run.
-
-Conversion is not attempted when it could discard metadata or change container structure. Front matter and code-looking text not parsed as code blocks are excluded.
+Autocorrection is limited to standalone root-level blocks with blank boundaries. Blocks with metadata, nested containers, empty fenced bodies, or leading/trailing blank content are report-only. Adjacent code blocks are not converted to indentation, to avoid merging them.
 
 ## Configuration
 

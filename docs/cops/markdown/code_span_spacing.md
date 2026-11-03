@@ -1,12 +1,8 @@
 # Markdown/CodeSpanSpacing
 
-Reports edge whitespace in matched inline code spans in parser-recognized prose, headings, and tables, while preserving all-space code values and symmetric padding needed to separate literal edge backticks from the delimiters.
+Reports unnecessary padding inside inline code. All-space values and padding needed around literal backticks are accepted.
 
-Autocorrection removes exactly one redundant space from each edge of a single-line span, retaining its original delimiter length; `` ` foo ` `` becomes `` `foo` ``.
-
-One-sided padding, multiple edge spaces, and multiline padding are reported without autocorrection because removing them can change the code value; necessary backtick padding and all-space values are accepted.
-
-This cop never shortens backtick runs or strips semantically significant code whitespace; code blocks, escaped backticks, links and labels, HTML, and ignored front matter are excluded.
+Autocorrection removes a single redundant space from each edge of a single-line span: `` ` foo ` `` becomes `` `foo` ``. Other padding is report-only because removing it can change the code value.
 
 ## Configuration
 

@@ -1,12 +1,8 @@
 # Markdown/ReferenceDefinitions
 
-Reports reference definitions that are unused or duplicate an earlier definition. All link and image reference forms count as uses, including nested images and shortcut references; IDs are case-insensitive and whitespace-normalized. Duplicate definitions are retained by the source scanner even when the Markdown AST discards them.
+Reports duplicate reference definitions and, when enabled, unused definitions. All link and image reference forms count as uses; IDs ignore case and repeated whitespace. Footnotes are not checked.
 
-A duplicate definition gets one diagnostic, not separate duplicate and unused diagnostics.
-
-Definitions may have angle-delimited destinations and titles on the same or following source line. Code blocks/spans, front matter, HTML tags/comments/raw regions, escaped definition syntax, and footnotes are excluded from reference processing.
-
-The rule is report-only: removing a definition can remove a comment or select a different duplicate destination.
+Report-only: removing definitions can change link targets or remove comments.
 
 ## Configuration
 

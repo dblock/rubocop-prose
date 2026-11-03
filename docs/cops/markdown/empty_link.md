@@ -1,10 +1,8 @@
 # Markdown/EmptyLink
 
-Reports Markdown links whose decoded destination is empty or exactly `#`, including angle-delimited empty destinations, optional titles, and links resolved through empty reference definitions. An empty visible label with a real destination is not an empty destination.
+Reports links with an empty destination or just `#`, including reference links. Empty labels with real destinations and images are not checked.
 
-Images, unresolved references, code blocks/spans, front matter, HTML tags/comments/raw regions, and escaped delimiters are excluded. This rule does not fetch files or URLs and makes no judgment about a nonempty destination's existence.
-
-The rule is report-only because the intended destination cannot be inferred.
+Report-only: supply the intended destination.
 
 ## Configuration
 

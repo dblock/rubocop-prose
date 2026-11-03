@@ -1,6 +1,6 @@
 # Prose/TrailingNewline
 
-Final-newline normalization. Nonempty Markdown and plain-text documents must end in exactly one newline. Autocorrection inserts a missing newline or removes excess trailing blank lines; empty files are accepted. Embedded source and internal blank lines are untouched.
+Ensures nonempty documents end in exactly one newline, inserting a missing newline or removing trailing blank lines. Empty files are accepted; internal content is unchanged.
 
 ## Configuration
 

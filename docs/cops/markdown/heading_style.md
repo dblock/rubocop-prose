@@ -1,10 +1,8 @@
 # Markdown/HeadingStyle
 
-Consistent mode infers the style from the first parsed heading. All parsed headings, including container headings, are checked.
+Enforces ATX, closed ATX, Setext, or consistent headings. Consistent mode follows the first heading. Setext supports only levels one and two.
 
-Combined ATX/Setext style modes are not provided; `setext` intentionally requires Setext syntax for every heading, so a level-three heading cannot satisfy it. Code, escaped markers and front matter are excluded by the parser.
-
-Report-only: syntax conversion may change level, inline parsing or surrounding block structure.
+Report-only: changing syntax can alter heading levels or surrounding structure.
 
 ## Configuration
 
