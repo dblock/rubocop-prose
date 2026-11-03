@@ -6,6 +6,8 @@
 
 Markdown and plain-text prose checks for RuboCop.
 
+Use [rubocop-md](https://github.com/rubocop/rubocop-md) to lint Ruby code inside Markdown.
+
 This project was inspired by [To Wrap or Not to Wrap in Markdown](https://code.dblock.org/2021/06/07/to-wrap-or-not-to-wrap-in-markdown.html) and borrows many Markdown checks from [markdownlint](https://github.com/DavidAnson/markdownlint).
 
 ## Installation

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::MaxLength, 'paragraph unwrapping' do
+RSpec.describe RuboCop::Cop::Prose::MaxLength do
   let(:cop) { described_class }
 
   it 'joins soft breaks but keeps paragraphs separate and stabilizes' do
