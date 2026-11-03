@@ -1,0 +1,3 @@
+Prose/ClosedHeadingSpace:
+  Description: 'Separate closing ATX heading hashes from text (MD020).'
+  Enabled: false
