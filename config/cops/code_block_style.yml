@@ -1,0 +1,8 @@
+Prose/CodeBlockStyle:
+  Description: Use fenced, indented, or consistently styled code blocks (MD046).
+  Enabled: false
+  EnforcedStyle: consistent
+  SupportedStyles:
+    - consistent
+    - fenced
+    - indented
