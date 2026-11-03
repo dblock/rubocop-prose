@@ -1,0 +1,16 @@
+# Prose/EmphasisSpacing
+
+Equivalent intent: markdownlint MD037.
+
+Reports whitespace immediately inside a balanced, single-line pair of `*`, `_`, `**`, `__`, `***`, or `___` delimiters in parser-recognized prose, headings, and tables.
+
+```yaml
+Prose/EmphasisSpacing:
+  Enabled: true
+```
+
+Autocorrection removes only the inner edge whitespace and preserves internal whitespace, links, backticks, and delimiter spelling; for example, `** two  words **` becomes `**two  words**`.
+
+Code, links and their labels, escaped delimiters, HTML spans and blocks, ignored YAML front matter, thematic breaks, and actual list markers are excluded.
+
+Unlike MD037 implementations that infer arbitrary unmatched emphasis, this cop requires matching delimiters on one line and nonempty content; it intentionally does not rewrite multiline or unmatched emphasis.
