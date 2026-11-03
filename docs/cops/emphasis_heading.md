@@ -1,0 +1,9 @@
+# Prose/EmphasisHeading
+
+Related rule: MD036. Disabled by default.
+
+Reports a single-line parsed paragraph consisting entirely of one emphasis or strong-emphasis element, such as `**Overview**`; ordinary mixed prose, multiline emphasis, escaped emphasis markers and actual headings are accepted.
+
+Unlike markdownlint's punctuation heuristics, terminal punctuation does not exempt the paragraph. Parsed list-item and blockquote paragraphs also participate. Code blocks, front matter and paragraphs consisting only of HTML are excluded by the parser.
+
+Report-only: an emphasis-only paragraph may be intentional, and its intended heading level cannot be inferred safely.
