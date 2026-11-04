@@ -4,6 +4,8 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, tests, and pull-request conve
 
 Keep user guidance in the README and cop guides, contributor workflow in CONTRIBUTING, architecture and rationale in DESIGN, and this file focused on high-value agent guidance. Link to the authoritative documentation instead of duplicating it.
 
+Update DESIGN only for new architectural decisions or non-obvious invariants not already covered there. Do not add per-cop implementation summaries or repeat configuration behavior from cop guides; ordinary feature changes usually need no DESIGN update.
+
 Preserve original source buffers and character-based locations, Markdown container prefixes and hard breaks, and atomic inline syntax. Plain text must remain literal; format-specific cops must not inspect the other format. Withhold corrections when a safe rewrite cannot be established.
 
 Keep common cleanup enabled by default and project-specific, editorial, or renderer-dependent policies opt-in. Do not add an external preprocessor dependency. Preserve functional dependency loading and compatibility settings.
