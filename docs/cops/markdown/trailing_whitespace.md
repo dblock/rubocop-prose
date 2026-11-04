@@ -34,7 +34,7 @@ Inputs are shown as Ruby strings so tabs, trailing spaces, and newline character
 "A paragraph.\n"
 ```
 
-## Empty blockquote lines
+## Empty Blockquote Lines
 
 For this configuration:
 

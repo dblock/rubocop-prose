@@ -1,6 +1,6 @@
 # Design
 
-## Scope and file selection
+## Scope and File Selection
 
 The plugin checks Markdown and plain-text prose without evaluating Ruby snippets. `Prose/*` policies apply to both formats; `Markdown/*` and `Text/*` are format-specific. Common cleanup is enabled by default, while project-specific, editorial, and renderer-dependent policies remain opt-in. User-visible behavior and defaults are in [the README cops catalog](README.md#cops) and the cop guides.
 
@@ -8,7 +8,7 @@ The plugin checks Markdown and plain-text prose without evaluating Ruby snippets
 
 The plugin loads document support and abstract cop bases before concrete cops, then merges shared and per-cop defaults. The runner supplies a file's configuration before source construction when its selected format differs from RuboCop's default classification. This keeps nested configuration, explicit files, stdin, and autocorrection on the same dispatch path.
 
-## Documents and source preservation
+## Documents and Source Preservation
 
 `Document` retains the untouched input buffer and exposes character-based ranges. `MarkdownDocument` parses Markdown and provides its structure; `TextDocument` groups nonblank lines into paragraphs without interpreting headings, links, fences, HTML, or metadata. Text indentation may indicate preformatted content, so indented paragraphs can be reported but are not automatically reflowed.
 
@@ -20,13 +20,13 @@ Standalone Markdown and all plain text initialize Ruby parsing with empty input 
 
 Each Markdown document shares positioned emphasis and strong ranges across style and spacing cops, including table-row source mapping. Both types are collected in one parse; style policies remain cop-local, and corrected sources receive fresh documents.
 
-## Preprocessor interoperability
+## Preprocessor Interoperability
 
 An optional Markdown preprocessor can expose `processed_source.markdown_document` with an untouched `buffer` and `original_range` / `processed_range` mapping methods. The plugin analyzes that original buffer and translates offense and correction ranges at the RuboCop boundary, preserving the preprocessor's Ruby buffer so both kinds of corrections can coexist. This API is optional; standalone Markdown and text linting do not require a preprocessor.
 
 Plain text never consults the preprocessor API. A preprocessor without the original-buffer mapping methods is unsupported. Custom Markdown extensions remain lintable standalone when the preprocessor does not recognize them; Ruby extraction is then unavailable. The shared `Markdown:` section preserves keys owned by the preprocessor, while `IgnoreFrontMatter` belongs to this plugin.
 
-## Correction safety
+## Correction Safety
 
 Corrections are limited to rewrites whose source mapping and resulting document semantics are known. Markdown reflow preserves container prefixes, hard breaks, inline atomic syntax, and HTML break behavior; text preserves literal contents and paragraph boundaries. Unbreakable tokens and ambiguous structural rewrites can be reported without correction. Markdown structural checks do not reflow headings, tables, or code.
 

@@ -1,6 +1,6 @@
 # Contributing
 
-## Setup and validation
+## Setup and Validation
 
 Use Ruby 3.2 or newer. Supported RuboCop versions are 1.72.1 and newer within 1.x.
 
@@ -30,11 +30,13 @@ Keep focused cop tests in `spec/<name>_spec.rb`. Cover offenses, exclusions, Uni
 
 Exercise the real CLI when changing plugin loading, stdin, suppression directives, or cross-cop corrections. Test both CLI-option and YAML plugin loading. Interoperability changes also need both preprocessor loading orders, simultaneous prose/Ruby corrections, repeated runs, and stdin.
 
-### Integration fixtures
+### Integration Fixtures
 
 Scenarios live under `spec/fixtures/{prose,markdown,text,markdown_interoperability}/`, with specs in `spec/integration/` and `spec/interoperability/`. Each contains an `input` document, a `case.yml` declaring `offenses` and `remaining_offenses` counts (empty maps for clean results), and an `expected` document when correction changes the input.
 
 Content fixtures call `RuboCop::CLI` in-process with fresh configuration state, checking explicit files, discovery, corrections, repeated runs, and stdin with both plugin-loading configurations. Fixtures with explicit `Enabled: true` cop entries run with `--only`; others exercise configured defaults. Mark whitespace-sensitive fixtures using the existing Git attributes.
+
+Set `unsafe_autocorrect: true` in `case.yml` for fixtures that require `-A` instead of safe autocorrection.
 
 Fresh-process smoke tests in `spec/integration/cli_spec.rb` check YAML and CLI-option plugin boot for Markdown and text, standard and custom-extension discovery, stdin without disk mutation, and stable corrections. Interoperability keeps a combined Ruby/Markdown scenario across both loading orders and plugin-loading mechanisms; edge cases check reporting, correction, and stability under both loading orders using YAML plugin loading.
 
@@ -42,7 +44,7 @@ Mixed default-cop scenarios in `spec/fixtures/markdown_stability/` check content
 
 For optional interoperability, set `RUBOCOP_MD_PATH` to a checkout supporting the [original-buffer mapping API](DESIGN.md#preprocessor-interoperability) and run `bundle exec rake spec:interoperability`. Without that variable, the suite is skipped. Its separate CI workflow runs only on Ruby 4.0; update the rubocop-md ref when the required API is released.
 
-## Adding a cop
+## Adding a Cop
 
 Add implementations under `lib/rubocop/cop/prose`, `lib/rubocop/cop/markdown`, or `lib/rubocop/cop/text`, inheriting from the corresponding department `Base`. Add a per-cop YAML file under `config/cops/<department>/` with an explicit `Enabled` value, supported options, correction policy, and applicable file patterns. The loader discovers implementations and merges their configuration files.
 
@@ -50,7 +52,7 @@ Add focused specs, a guide under `docs/cops/<department>/` with complete default
 
 Validate defaults, packaging, and the affected tests. Enable broadly applicable cleanup by default; keep project-specific, editorial, and renderer-dependent policies opt-in. Preserve functional dependency loading and compatibility CI settings.
 
-## Pull requests
+## Pull Requests
 
 See [RELEASING.md](RELEASING.md) for the maintainer release procedure.
 

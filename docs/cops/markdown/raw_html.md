@@ -16,7 +16,7 @@ Markdown/RawHtml:
 
 ## Examples
 
-### Disallow all HTML
+### Disallow All HTML
 
 For this configuration:
 
@@ -42,7 +42,7 @@ Markdown/RawHtml:
 ![Results](chart.png)
 ```
 
-### Allow an element with or without attributes
+### Allow an Element with or Without Attributes
 
 For this configuration:
 
@@ -54,13 +54,13 @@ Markdown/RawHtml:
     - img
 ```
 
-#### Bad: an unlisted element
+#### Bad: an Unlisted Element
 
 ```markdown
 <div>Results</div>
 ```
 
-#### Good: attributes are optional and unrestricted
+#### Good: Attributes Are Optional and Unrestricted
 
 ```markdown
 Text<br>More text.
@@ -70,7 +70,7 @@ Text<br>More text.
 <img src="chart.png" alt="Results" width="320" height="200">
 ```
 
-### Allow only specific attributes
+### Allow Only Specific Attributes
 
 For this configuration:
 
@@ -87,7 +87,7 @@ Markdown/RawHtml:
         - style
 ```
 
-#### Bad: an unlisted attribute, even alongside allowed ones
+#### Bad: an Unlisted Attribute, Even Alongside Allowed Ones
 
 ```markdown
 <img src="chart.png" alt="Results" loading="lazy">
@@ -95,7 +95,7 @@ Markdown/RawHtml:
 <img src="chart.png" width="320" data-note="width=320">
 ```
 
-#### Good: zero or more allowed attributes
+#### Good: Zero or More Allowed Attributes
 
 ```markdown
 ![Results](chart.png)
@@ -113,7 +113,7 @@ Text<br>More text.
 <img src="chart.png" alt="Results" style="width: 50%">
 ```
 
-### Matching rules
+### Matching Rules
 
 Each attribute-rule entry maps one element name to a list of permitted attribute names. None are required. An empty attribute list permits only tags with no attributes. Attribute values are not checked: `width="320"` and `width="50%"` are both permitted when `width` is listed. `data-note="width=320"` is rejected unless `data-note` itself is listed.
 

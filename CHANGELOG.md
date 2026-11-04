@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file. The format 
 - [#138](https://github.com/dblock/rubocop-prose/pull/138): Add opt-in `Markdown/ListItemPunctuation` to check punctuation presence across sibling list items - [@dblock](https://github.com/dblock).
 - [#139](https://github.com/dblock/rubocop-prose/pull/139): Add an opt-in exception for a single trailing space on empty Markdown blockquote lines, including nested quotes - [@dblock](https://github.com/dblock).
 - [#140](https://github.com/dblock/rubocop-prose/pull/140): Add per-element attribute allowlists to `Markdown/RawHtml` - [@dblock](https://github.com/dblock).
+- [#141](https://github.com/dblock/rubocop-prose/pull/141): Add opt-in `Markdown/HeadingCapitalization` with title-case and initial-capital styles and unsafe autocorrection - [@dblock](https://github.com/dblock).
 - Your contribution here.
 
 ## 0.1.0 (2026/11/03)

@@ -1,4 +1,4 @@
-# Contributor instructions
+# Contributor Instructions
 
 Read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, tests, and pull-request conventions. Read [DESIGN.md](DESIGN.md) before changing parsing, source mapping, or correction behavior.
 

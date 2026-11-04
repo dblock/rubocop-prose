@@ -1,4 +1,4 @@
-# File selection
+# File Selection
 
 `Markdown/Include` and `Text/Include` select files using RuboCop's normal filename and glob patterns.
 

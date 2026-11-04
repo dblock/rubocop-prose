@@ -20,6 +20,12 @@ AllCops:
 Style/Documentation:
   Enabled: false
 
+Markdown/HeadingCapitalization:
+  Enabled: true
+  IgnoredWords:
+    - rubocop
+    - prose
+
 Naming/FileName:
   Exclude:
     - 'lib/rubocop-prose.rb'

@@ -14,14 +14,14 @@ Markdown/HardBreakStyle:
 
 ## Example
 
-### Bad: trailing spaces
+### Bad: Trailing Spaces
 
 ```markdown
 First line.  
 Second line.
 ```
 
-### Good: backslash
+### Good: Backslash
 
 ```markdown
 First line.\
@@ -35,14 +35,14 @@ Markdown/HardBreakStyle:
   Style: spaces
 ```
 
-### Bad: backslash
+### Bad: Backslash
 
 ```markdown
 First line.\
 Second line.
 ```
 
-### Good: trailing spaces
+### Good: Trailing Spaces
 
 ```markdown
 First line.  
