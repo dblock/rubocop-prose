@@ -22,13 +22,7 @@ module RuboCop
 
         def investigate_document
           @insertions = {}
-          code_blocks.each do |node|
-            next if !cop_config.fetch('ListItems', true) &&
-                    code_ancestors(node).any? { |ancestor| ancestor.type == :li }
-
-            details = fence_details(node)
-            next unless details
-
+          fenced_blocks(list_items: cop_config.fetch('ListItems', true)) do |details|
             first = details[:first]
             last = details[:last]
             prefix = code_continuation_prefix(details[:opening][:prefix]).rstrip

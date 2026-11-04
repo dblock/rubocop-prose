@@ -24,7 +24,7 @@ module RuboCop
           count = 0
           while number.between?(1, document.lines.length)
             return Float::INFINITY if document.front_matter_line?(number) && direction.negative?
-            break unless document.line(number).match?(/\A(?: {0,3}>[ \t]?)*[ \t]*\z/)
+            break unless heading_blank?(number)
 
             count += 1
             number += direction

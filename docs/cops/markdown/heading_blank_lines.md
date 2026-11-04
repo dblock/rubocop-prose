@@ -4,6 +4,8 @@ Requires the configured blank lines around headings, measuring below the underli
 
 Report-only: inserting blank lines can change surrounding lists and blockquotes.
 
+[Prose/MultipleBlankLines](../prose/multiple_blank_lines.md) preserves these minimums at heading boundaries without relaxing its limit elsewhere.
+
 ## Configuration
 
 ```yaml
