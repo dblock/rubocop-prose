@@ -41,7 +41,7 @@ module RuboCop
 
         def emphasis_spans
           %i[em strong].flat_map do |type|
-            RuboCop::Prose::InlineRules.emphasis(document, type).filter_map do |opening, closing, _delimiter|
+            document.emphasis_ranges(type).filter_map do |opening, closing, _delimiter|
               next unless opening.line == closing.line
 
               first = opening.begin_pos

@@ -18,6 +18,8 @@ Front matter is recognized only as a closed leading header. When ignored, it is 
 
 Standalone Markdown and all plain text initialize Ruby parsing with empty input and keep the original document in a separate buffer, preventing Ruby cops from interpreting prose. The cop bases enforce format applicability before accessing format-specific APIs. Documents are cached on the processed source by configuration identity, so cops can share analysis without mixing configuration-dependent results.
 
+Each Markdown document shares positioned emphasis and strong ranges across style and spacing cops, including table-row source mapping. Both types are collected in one parse; style policies remain cop-local, and corrected sources receive fresh documents.
+
 ## Preprocessor interoperability
 
 An optional Markdown preprocessor can expose `processed_source.markdown_document` with an untouched `buffer` and `original_range` / `processed_range` mapping methods. The plugin analyzes that original buffer and translates offense and correction ranges at the RuboCop boundary, preserving the preprocessor's Ruby buffer so both kinds of corrections can coexist. This API is optional; standalone Markdown and text linting do not require a preprocessor.

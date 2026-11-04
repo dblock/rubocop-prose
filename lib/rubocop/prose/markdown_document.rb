@@ -44,6 +44,11 @@ module RuboCop
         @link_rules ||= LinkRules.new(self)
       end
 
+      def emphasis_ranges(type)
+        @emphasis_ranges ||= InlineRules.emphasis(self)
+        @emphasis_ranges.fetch(type, [])
+      end
+
       def multiline_atoms
         @multiline_atoms ||= paragraphs.flat_map { |paragraph| atomic_ranges(paragraph) }
                                        .reject { |range| range.line == range.last_line }
