@@ -115,7 +115,8 @@ module RuboCop
           last = nil
           last = closing(text, finish + 1, '[', ']') if text[finish + 1] == '['
           if last && !text[(index + 1)...finish].strip.empty? &&
-             text[(finish + 2)...last].match?(/\A[^\s]+\z/) && !unescaped_brackets?(finish + 2, last)
+             text[(finish + 2)...last].match?(/\A[^\s]+\z/) && !unescaped_brackets?(finish + 2, last) &&
+             !citation_reference?(finish + 2, last)
             results << [index, last + 1]
             index = last + 1
           else
@@ -156,6 +157,12 @@ module RuboCop
       end
 
       private
+
+      def citation_reference?(first, last)
+        @source[first...last].match?(
+          %r{\A-?@[\p{L}\p{N}_](?:[\p{L}\p{M}\p{N}_:.#$%&+?<>~/-]*[\p{L}\p{M}\p{N}_])?\z}
+        )
+      end
 
       def explicit_heading_ids
         # GFM eagerly inserts its own auto IDs into node.attr. Parse without

@@ -19,6 +19,34 @@ RSpec.describe RuboCop::Cop::Markdown::ReversedLink do
     expect(offenses(described_class, source)).to be_empty
   end
 
+  it 'accepts single citation keys with optional author suppression' do
+    source = <<~MARKDOWN
+      (abbrev)[@citekey] and (abbrev)[-@R-base]
+      (abbrev)[@a] and (abbrev)[-@1]
+      (abbrev)[@doe:2024.test_2] and (abbrev)[-@cafe\u0301-2024]
+      (abbrev)[@研究2024] and (abbrev)[@doe/2024+edition]
+    MARKDOWN
+    result, rewritten = investigate(described_class, source)
+    expect(result).to be_empty
+    expect(rewritten).to eq(source)
+  end
+
+  it 'still reports reversed links and destinations that are not complete citation keys' do
+    source = <<~'MARKDOWN'
+      Résumé (guide)[./guide.md] and (section)[#citekey]
+      (empty)[@] and (suppressed)[-@]
+      (path)[@/guide] and (punctuation)[@key?]
+      (escaped)[\@citekey] and (entity)[&#64;citekey]
+    MARKDOWN
+    result, rewritten = investigate(described_class, source)
+    expect(result.map { |offense| offense.location.source }).to eq(
+      ['(guide)[./guide.md]', '(section)[#citekey]', '(empty)[@]', '(suppressed)[-@]',
+       '(path)[@/guide]', '(punctuation)[@key?]', '(escaped)[\@citekey]', '(entity)[&#64;citekey]']
+    )
+    expect(result.first.column).to eq(7)
+    expect(rewritten).to eq(source)
+  end
+
   it 'excludes code, front matter, escaped syntax, HTML and autolinks' do
     source = <<~'MARKDOWN'
       ---
