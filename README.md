@@ -81,6 +81,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/HardBreakStyle](docs/cops/markdown/hard_break_style.md)                           | Enabled  | Use backslashes or trailing spaces for paragraph hard breaks.                       |
 | [Markdown/HardTabs](docs/cops/markdown/hard_tabs.md)                                        | Enabled  | Disallow hard tabs with code-language exceptions.                                   |
 | [Markdown/HeadingBlankLines](docs/cops/markdown/heading_blank_lines.md)                     | Enabled  | Surround headings with blank lines.                                                 |
+| [Markdown/HeadingCapitalization](docs/cops/markdown/heading_capitalization.md)              | Disabled | Enforce initial capitalization or title case in headings.                           |
 | [Markdown/HeadingIncrement](docs/cops/markdown/heading_increment.md)                        | Enabled  | Increase heading levels without skipping levels.                                    |
 | [Markdown/HeadingIndentation](docs/cops/markdown/heading_indentation.md)                    | Enabled  | Avoid leading indentation before headings.                                          |
 | [Markdown/HeadingPunctuation](docs/cops/markdown/heading_punctuation.md)                    | Disabled | Avoid configured trailing heading punctuation.                                      |
@@ -144,7 +145,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | ---                                    | ---                                                                     |
 | [Text/Include](docs/settings/files.md) | Select files parsed as literal text using native RuboCop file patterns. |
 
-## Project documentation
+## Project Documentation
 
 See [CONTRIBUTING](CONTRIBUTING.md) for development, testing, and artwork maintenance, [DESIGN](DESIGN.md) for architecture and design decisions, and [AGENTS](AGENTS.md) for contributor instructions for coding agents.
 

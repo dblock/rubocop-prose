@@ -1,0 +1,31 @@
+Markdown/HeadingCapitalization:
+  Description: 'Enforce initial capitalization or title case in headings.'
+  Enabled: false
+  SafeAutoCorrect: false
+  EnforcedStyle: title_case
+  PreserveMixedCase: true
+  IgnoredWords: []
+  MinorWords:
+    - a
+    - an
+    - and
+    - as
+    - at
+    - but
+    - by
+    - for
+    - from
+    - in
+    - nor
+    - of
+    - 'on'
+    - or
+    - per
+    - the
+    - to
+    - via
+    - vs
+    - with
+  SupportedStyles:
+    - initial_capital
+    - title_case

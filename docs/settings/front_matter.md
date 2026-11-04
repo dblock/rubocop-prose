@@ -1,4 +1,4 @@
-# Front matter
+# Front Matter
 
 By default, Markdown checks ignore a leading header opened with `---` and closed with `---` or `...`. Unclosed headers and delimiters elsewhere remain ordinary Markdown.
 

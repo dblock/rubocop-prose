@@ -46,10 +46,11 @@ module IntegrationFixtures
       expect(File.binread(file)).to eq(source)
 
       expected = File.file?(expected_path) ? File.binread(expected_path) : source
-      assert_fixture_report(command + ['-a', filename], directory, data.fetch('remaining_offenses'),
+      correction = data.fetch('unsafe_autocorrect', false) ? '-A' : '-a'
+      assert_fixture_report(command + [correction, filename], directory, data.fetch('remaining_offenses'),
                             corrected: true, in_process: in_process)
       expect(File.binread(file)).to eq(expected)
-      assert_fixture_report(command + ['-a', filename], directory, data.fetch('remaining_offenses'),
+      assert_fixture_report(command + [correction, filename], directory, data.fetch('remaining_offenses'),
                             corrected: true, in_process: in_process)
       expect(File.binread(file)).to eq(expected)
       next unless comprehensive

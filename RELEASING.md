@@ -27,6 +27,6 @@ gem push pkg/rubocop-prose-0.1.0.gem
 
 Verify that exact version on RubyGems before creating and pushing an annotated `v0.1.0` tag at the release commit. Create a GitHub release with matching changelog notes. Do not move an existing release tag.
 
-## Next development iteration
+## Next Development Iteration
 
 Bump the gem version, add a matching `(Next)` CHANGELOG section with `- Your contribution here.`, then commit and push to `main`.
