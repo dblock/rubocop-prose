@@ -2,7 +2,7 @@
 
 # rubocop-prose
 
-[![Lint](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml) [![Tests](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml)
+[![Gem Version](https://badge.fury.io/rb/rubocop-prose.svg)](https://rubygems.org/gems/rubocop-prose) [![Lint](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml) [![Tests](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml)
 
 Markdown and plain-text prose checks for RuboCop.
 
