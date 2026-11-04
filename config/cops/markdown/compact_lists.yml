@@ -1,0 +1,3 @@
+Markdown/CompactLists:
+  Description: Avoid blank lines between simple list items.
+  Enabled: true

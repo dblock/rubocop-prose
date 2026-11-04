@@ -65,6 +65,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/BlockquoteSpacing](docs/cops/markdown/blockquote_spacing.md)                | Enabled  | Avoid multiple spaces after blockquote markers.                                     |
 | [Markdown/ClosedHeadingSpace](docs/cops/markdown/closed_heading_space.md)             | Enabled  | Separate closing ATX heading hashes from text.                                      |
 | [Markdown/ClosedHeadingSpacing](docs/cops/markdown/closed_heading_spacing.md)         | Enabled  | Use one space before closing ATX heading hashes.                                    |
+| [Markdown/CompactLists](docs/cops/markdown/compact_lists.md)                          | Enabled  | Avoid blank lines between simple list items.                                        |
 | [Markdown/CodeBlockStyle](docs/cops/markdown/code_block_style.md)                     | Disabled | Use fenced, indented, or consistently styled code blocks.                           |
 | [Markdown/CodeSpanSpacing](docs/cops/markdown/code_span_spacing.md)                   | Enabled  | Avoid unnecessary padding inside inline code.                                       |
 | [Markdown/DescriptiveLinkText](docs/cops/markdown/descriptive_link_text.md)           | Enabled  | Require descriptive link text instead of generic labels.                            |
