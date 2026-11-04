@@ -1,0 +1,3 @@
+Markdown/ListContinuationIndentation:
+  Description: Indent list continuation text to its item's content column.
+  Enabled: true
