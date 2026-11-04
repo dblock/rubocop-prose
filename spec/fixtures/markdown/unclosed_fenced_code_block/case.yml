@@ -1,0 +1,4 @@
+offenses:
+  Markdown/UnclosedFencedCodeBlock: 1
+remaining_offenses:
+  Markdown/UnclosedFencedCodeBlock: 1
