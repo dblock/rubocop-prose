@@ -18,7 +18,7 @@ Add to your Gemfile, then run `bundle install`:
 gem 'rubocop-prose', '~> 0.1', require: false
 ```
 
-Load it using RuboCop's plugin interface:
+Add it to `.rubocop.yml` using RuboCop's plugin interface:
 
 ```yaml
 plugins:
