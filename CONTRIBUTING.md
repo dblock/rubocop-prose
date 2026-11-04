@@ -14,6 +14,8 @@ The default Rake task runs RuboCop and the full test suite. For focused changes,
 
 CI covers Ruby 3.2 and 4.0, gem packaging, and optional Markdown-preprocessor interoperability. See the [workflows](.github/workflows) for suite selection and dependency versions.
 
+Run `COVERAGE=true bundle exec rake spec` to generate an HTML report in `coverage/` and `coverage/.resultset.json` for Coveralls. CI combines the Ruby 4.0 unit and standalone integration reports on [Coveralls](https://coveralls.io/github/dblock/rubocop-prose); subprocess smoke tests and optional interoperability are not instrumented.
+
 The lint configuration loads this checkout's plugin alongside rubocop-rspec and rubocop-rake; intentionally invalid fixtures are excluded.
 
 ### Benchmarks
