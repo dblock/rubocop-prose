@@ -48,6 +48,9 @@ module IntegrationFixtures
       assert_fixture_report(command + ['-a', filename], directory, data.fetch('remaining_offenses'),
                             corrected: true)
       expect(File.binread(file)).to eq(expected)
+      assert_fixture_report(command + ['-a', filename], directory, data.fetch('remaining_offenses'),
+                            corrected: true)
+      expect(File.binread(file)).to eq(expected)
       assert_fixture_report(command + [filename], directory, data.fetch('remaining_offenses'))
       expect(File.binread(file)).to eq(expected)
       assert_fixture_report(command + ['--stdin', filename], directory, data.fetch('offenses'),

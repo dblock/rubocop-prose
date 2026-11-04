@@ -32,7 +32,7 @@ Exercise the real CLI when changing plugin loading, stdin, suppression directive
 
 CLI scenarios live under `spec/fixtures/{prose,markdown,text,markdown_interoperability}/`; each suite runs from the matching directory under `spec/integration/`. A scenario contains an `input` document and `case.yml`; autocorrectable cases also include an `expected` document with the same extension. The case file declares expected offense counts under `offenses` and post-correction counts under `remaining_offenses`, including empty maps for clean results.
 
-Fixtures with explicit `Enabled: true` cop entries run with `--only`; others exercise configured defaults. The shared runner checks explicit files, discovery, reporting, correction, repeated runs, and stdin while keeping repository files unchanged. Put whitespace-sensitive fixtures under the existing Git whitespace attributes.
+Fixtures with explicit `Enabled: true` cop entries run with `--only`; others exercise configured defaults. The shared runner checks explicit files, discovery, reporting, correction, repeated autocorrection and reporting, and stdin while keeping repository files unchanged. Put whitespace-sensitive fixtures under the existing Git whitespace attributes.
 
 Run `bundle exec rspec spec/integration`. To include the optional preprocessor suite, set `RUBOCOP_MD_PATH` to its checkout and run `bundle exec rspec spec/integration/markdown_interoperability_spec.rb`. Interoperability requires the original-buffer mapping API described in [DESIGN.md](DESIGN.md#preprocessor-interoperability); without it, only that suite is skipped.
 

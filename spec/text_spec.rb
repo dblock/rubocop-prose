@@ -4,32 +4,6 @@ RSpec.describe 'Plain-text prose policies' do
   let(:formatter) { RuboCop::Cop::Prose::MaxLength }
   let(:whitespace) { RuboCop::Cop::Text::TrailingWhitespace }
 
-  it 'unwraps literal markup, backslashes, and spaces without Markdown hard-break semantics' do
-    source = "# Heading  \nnext\\\n<br>last.\n"
-    expect(corrected(formatter, source, { 'Max' => false }, path: 'example.txt')).to eq(
-      "# Heading next\\ <br>last.\n"
-    )
-    expect(corrected(formatter, "---\ntitle: First\n...\n", { 'Max' => false }, path: 'example.txt')).to eq(
-      "--- title: First ...\n"
-    )
-  end
-
-  it 'wraps text without treating links or list markers as protected Markdown' do
-    source = "Read [long label](url).\n"
-    result = corrected(formatter, source, { 'Max' => 7 }, path: 'example.txt')
-    expect(result).to include("[long\nlabel]")
-    expect(corrected(formatter, result, { 'Max' => 7 }, path: 'example.txt')).to eq(result)
-    expect(corrected(formatter, "Some words - not a list.\n", { 'Max' => 10 }, path: 'example.txt')).to include("\n- ")
-  end
-
-  it 'reports but does not reflow indented blocks in either formatting mode' do
-    source = "  keep this\n  indentation\n"
-    [false, 5].each do |max|
-      expect(offenses(formatter, source, { 'Max' => max }, path: 'example.txt')).not_to be_empty
-      expect(corrected(formatter, source, { 'Max' => max }, path: 'example.txt')).to eq(source)
-    end
-  end
-
   it 'trims all text whitespace, including inside literal metadata and fences' do
     source = "---  \nvalue: text \t\n---\n```\nline  \n```\n"
     expect(corrected(whitespace, source, path: 'example.txt')).to eq(

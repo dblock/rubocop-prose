@@ -1,0 +1,8 @@
+plugins:
+  - rubocop-prose
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+Prose/MaxLength:
+  Enabled: true
+  Max: 7
