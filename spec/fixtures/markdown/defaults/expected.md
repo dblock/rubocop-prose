@@ -7,3 +7,5 @@ A paragraph split across two lines.
 ![](image.png)
 
 [unused]: https://example.com
+
+> Quoted text.

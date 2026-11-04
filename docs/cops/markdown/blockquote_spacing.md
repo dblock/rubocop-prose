@@ -1,8 +1,8 @@
 # Markdown/BlockquoteSpacing
 
-Replaces multiple spaces or tabs after blockquote markers with one space, including nested markers. Missing spaces are not reported.
+Requires one space after each nonempty blockquote marker, including nested markers, and replaces multiple spaces or tabs with one space. This cop is enabled by default.
 
-Empty quote lines and indentation inside quoted lists are preserved because those spaces can carry structure.
+Empty quote lines and indentation inside quoted lists and code are preserved. Missing separators are autocorrected only when reparsing confirms the Markdown structure is unchanged; otherwise, the offense is report-only.
 
 ## Configuration
 
@@ -16,11 +16,15 @@ Markdown/BlockquoteSpacing:
 ### Bad
 
 ```markdown
+>A quotation.
 >  A quotation.
+>>A nested quotation.
 ```
 
 ### Good
 
 ```markdown
 > A quotation.
+> A quotation.
+> > A nested quotation.
 ```
