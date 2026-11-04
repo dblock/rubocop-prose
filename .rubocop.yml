@@ -26,6 +26,9 @@ Markdown/HeadingCapitalization:
     - rubocop
     - prose
 
+Markdown/ListItemCapitalization:
+  Enabled: true
+
 Naming/FileName:
   Exclude:
     - 'lib/rubocop-prose.rb'

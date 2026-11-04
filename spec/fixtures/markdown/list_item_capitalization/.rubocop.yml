@@ -1,0 +1,6 @@
+plugins:
+  - rubocop-prose
+
+Markdown/ListItemCapitalization:
+  Enabled: true
+  EnforcedStyle: title_case
