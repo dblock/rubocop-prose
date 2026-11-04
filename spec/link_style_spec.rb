@@ -35,6 +35,19 @@ RSpec.describe RuboCop::Cop::Markdown::LinkStyle do
     expect(result.map { |offense| offense.location.source }).to eq(['[inner](inner.md)'])
   end
 
+  it 'preserves Unicode destinations, nested parentheses, escapes and title boundaries' do
+    source = '😀 [nested](目录/一(二).md) [escaped](目录/一\)二.md) [opening](目录/一\(二.md "题")'
+    result, rewritten = investigate(described_class, source, { 'AllowedLinkStyles' => [] })
+
+    expect(result.map { |offense| offense.location.source }).to eq(
+      ['[nested](目录/一(二).md)', '[escaped](目录/一\)二.md)', '[opening](目录/一\(二.md "题")']
+    )
+    expect(result.map { |offense| offense.location.begin_pos }).to eq(
+      %w[[nested] [escaped] [opening]].map { |label| source.index(label) }
+    )
+    expect(rewritten).to eq(source)
+  end
+
   it 'retains Unicode ranges while skipping prose, escaped syntax and masked spans' do
     source = '😀 café \\[escaped](skip) `[code](skip)` <!-- [hidden](skip) --> [résumé](guide.md)![图](image.svg)<https://example.test>'
     result, rewritten = investigate(described_class, source,

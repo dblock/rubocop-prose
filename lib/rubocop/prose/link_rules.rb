@@ -436,6 +436,9 @@ module RuboCop
         cursor = index
         depth = 0
         while cursor < @source.length
+          cursor = @source.index(/[\s()<]/, cursor) || @source.length
+          break if cursor == @source.length
+
           char = @source[cursor]
           break if char.match?(/\s/) || (char == ')' && depth.zero? && !escaped?(cursor))
 
