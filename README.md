@@ -27,8 +27,6 @@ plugins:
 
 Ruby 3.2 or newer and RuboCop 1.72.1 or newer within 1.x are supported.
 
-Standalone prose checks do not require rubocop-md. Combined Ruby/prose corrections require rubocop-md's original-source mapping API, currently available in [rubocop-md#57](https://github.com/rubocop/rubocop-md/pull/57); existing releases without that API are unsupported.
-
 ## Usage
 
 Given `example.md`:
