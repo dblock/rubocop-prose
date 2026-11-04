@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+- [#120](https://github.com/dblock/rubocop-prose/pull/120): Add a default-enabled Markdown hard-break style policy with backslash and trailing-space syntax options - [@dblock](https://github.com/dblock).
 - [#110](https://github.com/dblock/rubocop-prose/pull/110): Add enabled-by-default `Markdown/ListContinuationIndentation` to report lazy list continuation text outside its item's content column - [@dblock](https://github.com/dblock).
 - [#114](https://github.com/dblock/rubocop-prose/pull/114): Add the default-enabled `Markdown/UnclosedFencedCodeBlock` report for EOF-terminated fenced code blocks - [@dblock](https://github.com/dblock).
 - [#108](https://github.com/dblock/rubocop-prose/pull/108): Allow multiple explicit thematic-break spellings with report-only handling for ambiguous corrections - [@dblock](https://github.com/dblock).

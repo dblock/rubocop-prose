@@ -40,6 +40,10 @@ module RuboCop
         @paragraphs ||= nodes(:p).select { |node| node.options[:prose_source] }
       end
 
+      def hard_breaks
+        @hard_breaks ||= paragraphs.flat_map { |paragraph| find_hard_breaks(paragraph) }
+      end
+
       def link_rules
         @link_rules ||= LinkRules.new(self)
       end
@@ -151,6 +155,12 @@ module RuboCop
 
       def walk(node)
         [node] + node.children.flat_map { |child| walk(child) }
+      end
+
+      def find_hard_breaks(node)
+        node.children.flat_map do |child|
+          child.type == :br ? [child] : find_hard_breaks(child)
+        end
       end
     end
   end
