@@ -56,6 +56,8 @@ General blank-line cleanup derives Markdown boundary minimums from the effective
 
 Fence-style corrections replace both delimiters and choose a length greater than any conflicting content delimiter run. Code-block style conversions require reproducible source mappings and standalone root blocks with blank boundaries; indentation-to-fence conversion requires literal four-space indentation, and conversion to indentation rejects adjacent code blocks to avoid merging them. Table corrections change exterior pipes or cell-edge padding without changing contents. Alignment measures source characters, not terminal display width.
 
+`Markdown/ThematicBreakStyle` accepts a single literal or a positive list of literal thematic breaks. In consistent mode the first parsed thematic break remains the correction target; a single configured spelling is also safe to correct to. A disallowed spelling under a multi-value list is report-only because choosing one accepted separator could change its intended meaning.
+
 Parser warnings are native syntax diagnostics, not a complete CommonMark validator. Specialized reference cops own corresponding diagnostics when enabled, preventing duplicate reporting. Fragment-anchor generation is renderer-dependent and documented as a configurable approximation; validation does not fetch external links or files.
 
 Cop guides document user-visible behavior and meaningful correction limits. Shared inspection behavior belongs in the README; parsing, source mapping, and correction algorithms belong here.
