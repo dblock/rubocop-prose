@@ -107,6 +107,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/TableColumns](docs/cops/markdown/table_columns.md)                          | Enabled  | Match table body column counts to the header.                                       |
 | [Markdown/TablePipes](docs/cops/markdown/table_pipes.md)                              | Enabled  | Use consistent leading and trailing table pipes.                                    |
 | [Markdown/TableSpacing](docs/cops/markdown/table_spacing.md)                          | Enabled  | Use configured spacing around table cell content.                                   |
+| [Markdown/ThematicBreakBlankLines](docs/cops/markdown/thematic_break_blank_lines.md)  | Enabled  | Surround parsed thematic breaks with container-aware blank lines.                   |
 | [Markdown/ThematicBreakStyle](docs/cops/markdown/thematic_break_style.md)             | Enabled  | Use a configured or consistent thematic break.                                      |
 | [Markdown/TrailingWhitespace](docs/cops/markdown/trailing_whitespace.md)              | Enabled  | Remove trailing whitespace while retaining Markdown hard breaks.                    |
 | [Markdown/UndefinedReference](docs/cops/markdown/undefined_reference.md)              | Enabled  | Require definitions for link and image references.                                  |

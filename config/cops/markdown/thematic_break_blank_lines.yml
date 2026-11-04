@@ -1,0 +1,5 @@
+Markdown/ThematicBreakBlankLines:
+  Description: Surround parsed thematic breaks with container-aware blank lines.
+  Enabled: true
+  LinesAbove: 1
+  LinesBelow: 1
