@@ -4,6 +4,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ## 0.1.1 (Next)
 
+- [#126](https://github.com/dblock/rubocop-prose/pull/126): Report unit and integration test coverage to Coveralls - [@dblock](https://github.com/dblock).
 - Your contribution here.
 
 ## 0.1.0 (2026/11/03)

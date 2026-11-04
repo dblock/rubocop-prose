@@ -10,4 +10,4 @@ Keep common cleanup enabled by default and project-specific, editorial, or rende
 
 When adding a cop, follow the checklist in [CONTRIBUTING.md](CONTRIBUTING.md#adding-a-cop); document its user-visible behavior and meaningful limits without repeating shared exclusions.
 
-Do not edit historical changelog entries or add one for documentation, tooling, refactoring, or unreleased functionality. Preserve the vendored helmet SVG and its license; follow CONTRIBUTING for artwork changes.
+Do not edit historical changelog entries or add one for documentation, tooling, refactoring, or unreleased functionality. Keep `- Your contribution here.` at the end of the `(Next)` changelog change list without a blank line above it; remove it only when preparing that version for release. Preserve the vendored helmet SVG and its license; follow CONTRIBUTING for artwork changes.

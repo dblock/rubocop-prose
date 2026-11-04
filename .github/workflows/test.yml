@@ -22,6 +22,7 @@ jobs:
     name: test (Ruby ${{ matrix.entry.ruby }}, RuboCop ${{ matrix.entry.rubocop }}, ${{ matrix.entry.suite }})
     env:
       RUBOCOP_VERSION: ${{ matrix.entry.rubocop }}
+      COVERAGE: ${{ matrix.entry.ruby == '4.0' && 'true' || '' }}
     steps:
       - uses: actions/checkout@v7
         with:
@@ -32,3 +33,18 @@ jobs:
           bundler-cache: true
       - run: bundle exec rake spec:${{ matrix.entry.suite }}
       - run: bundle exec rake build
+      - uses: coverallsapp/github-action@v2
+        if: matrix.entry.ruby == '4.0'
+        with:
+          file: coverage/.resultset.json
+          format: simplecov
+          flag-name: ${{ matrix.entry.suite }}
+          parallel: true
+  coverage:
+    needs: test
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: coverallsapp/github-action@v2
+        with:
+          parallel-finished: true
