@@ -151,7 +151,7 @@ module RuboCop
         result
       end
 
-      def self.emphasis(document, type)
+      def self.emphasis(document)
         source = document.source.dup
         document.lines.each_with_index do |_, index|
           next unless document.front_matter_line?(index + 1)
@@ -175,8 +175,9 @@ module RuboCop
             number += 1
           end
         end
-        ranges = records.filter_map do |node, line_offset, column_offset|
-          next unless node.type == type && node.options[:prose_delimiters]
+        ranges = { em: [], strong: [] }
+        records.each do |node, line_offset, column_offset|
+          next unless ranges.key?(node.type) && node.options[:prose_delimiters]
 
           text, first, last, number = node.options[:prose_delimiters]
           next unless number
@@ -199,11 +200,13 @@ module RuboCop
           position = document.range(number, column, number, column + 1)
           next if multiline_atoms(document).any? { |range| range.contains?(position) }
 
-          width = type == :strong ? 2 : 1
-          [document.range(number, column, number, column + width),
-           document.range(last_number, last_column - width, last_number, last_column), node.options[:char]]
+          width = node.type == :strong ? 2 : 1
+          ranges.fetch(node.type) << [
+            document.range(number, column, number, column + width),
+            document.range(last_number, last_column - width, last_number, last_column), node.options[:char]
+          ]
         end
-        ranges.sort_by { |opening, _, _| opening.begin_pos }
+        ranges.transform_values { |entries| entries.sort_by { |opening, _, _| opening.begin_pos } }
       end
     end
   end

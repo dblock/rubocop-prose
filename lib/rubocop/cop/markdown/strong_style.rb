@@ -10,7 +10,7 @@ module RuboCop
 
         def investigate_document
           expected = cop_config.fetch('Style', 'consistent')
-          RuboCop::Prose::InlineRules.emphasis(document, :strong).each do |opening, closing, char|
+          document.emphasis_ranges(:strong).each do |opening, closing, char|
             actual = char == '*' ? 'asterisk' : 'underscore'
             expected = actual if expected == 'consistent'
             next if actual == expected
