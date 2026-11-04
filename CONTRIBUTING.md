@@ -74,10 +74,12 @@ Keep each Markdown paragraph on one source line. Do not duplicate developer inst
 
 Edit `assets/logo.svg`, leaving the adjacent `assets/rubocop-logo.svg` unchanged. Keep the upstream license notice in `assets/RUBOCOP-LICENSE`. The composition and licensing rationale are documented in [DESIGN.md](DESIGN.md#artwork).
 
+The SVG scroll rolls up and unfurls, with a fully unrolled still version for reduced-motion preferences. Inspect the animation and reduced-motion rendering in a browser. Keep the PNG a static, fully unrolled fallback. The README uses `assets/logo.gif` because GitHub's image rendering does not reliably preserve SVG animation. When changing the animation, regenerate the GIF from a full six-second SVG cycle at 15 frames per second, keeping the fully unrolled first frame and infinite looping.
+
 With `rsvg-convert` installed, regenerate the committed image from the repository root:
 
 ```sh
 rsvg-convert assets/logo.svg -o assets/logo.png
 ```
 
-Check the 512px PNG and its 160px README rendering for clipping, legibility, vertical scroll orientation, and separation from the helmet. Keep the opaque white background and package the SVG, rendered PNG, upstream source, and license together.
+Check the 512px PNG and the animated GIF's 160px README rendering for clipping, legibility, vertical scroll orientation, and separation from the helmet. Keep the opaque white background and package the SVG, rendered PNG, animated GIF, upstream source, and license together.
