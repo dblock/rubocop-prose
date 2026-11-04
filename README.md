@@ -86,6 +86,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/HeadingStructure](docs/cops/markdown/heading_structure.md)                  | Disabled | Match a configured exact heading outline.                                           |
 | [Markdown/HeadingStyle](docs/cops/markdown/heading_style.md)                          | Disabled | Use a consistent heading syntax.                                                    |
 | [Markdown/ImageAltText](docs/cops/markdown/image_alt_text.md)                         | Enabled  | Require nonblank Markdown image alternative text.                                   |
+| [Markdown/ImagePathSeparators](docs/cops/markdown/image_path_separators.md)           | Enabled  | Use forward slashes in local image destinations.                                    |
 | [Markdown/LinkFragment](docs/cops/markdown/link_fragment.md)                          | Disabled | Validate local fragments using configurable heading anchors.                        |
 | [Markdown/LinkStyle](docs/cops/markdown/link_style.md)                                | Disabled | Configure permitted link and image styles independently.                            |
 | [Markdown/LinkTextSpacing](docs/cops/markdown/link_text_spacing.md)                   | Enabled  | Remove leading and trailing whitespace from link text.                              |

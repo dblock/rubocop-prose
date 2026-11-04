@@ -24,6 +24,8 @@ Document instances are cached on the processed source by configuration identity,
 
 Each Markdown document lazily indexes its AST by node type and shares paragraph lines, multiline inline-atom ranges, and link scanning across cops. Reference definitions are indexed by normalized ID with the first definition winning. These caches belong to one document, not a process or cop instance, so corrected sources and different configurations cannot reuse stale analysis. Configuration-dependent link policies are still evaluated by each cop.
 
+`Markdown/ImagePathSeparators` reuses the link scanner's source ranges for inline destinations and resolved reference definitions. It considers only image destinations that are local, ignores backslashes that escape ASCII punctuation, and withholds correction for adjacent-backslash cases whose path intent is ambiguous. External URI semantics and link-only references remain outside the check.
+
 ## Original-source parsing and ranges
 
 `Document` retains the original buffer and creates character-based `Parser::Source::Range` objects. `MarkdownDocument` uses a Kramdown GFM parser extension to record paragraph source text, code-block source locations, and atomic inline spans such as links, code, HTML, and task-list markers. Byte offsets from parser scanners are converted into character positions before mapping back to the document, preserving Unicode locations.

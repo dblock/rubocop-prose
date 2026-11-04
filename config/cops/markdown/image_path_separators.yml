@@ -1,0 +1,3 @@
+Markdown/ImagePathSeparators:
+  Description: 'Use forward slashes in local image destinations.'
+  Enabled: true
