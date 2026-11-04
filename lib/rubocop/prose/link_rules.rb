@@ -9,8 +9,9 @@ module RuboCop
     # discards duplicate definitions and the spelling and positions of references.
     class LinkRules
       Link = Struct.new(:begin_pos, :end_pos, :label_begin_pos, :label_end_pos, :label, :destination,
-                        :style, :reference, :image, keyword_init: true)
-      Definition = Struct.new(:begin_pos, :end_pos, :label, :reference, :destination, :title, keyword_init: true)
+                        :destination_begin_pos, :destination_end_pos, :style, :reference, :image, keyword_init: true)
+      Definition = Struct.new(:begin_pos, :end_pos, :label, :reference, :destination,
+                              :destination_begin_pos, :destination_end_pos, :title, keyword_init: true)
 
       attr_reader :document, :links, :definitions, :html_anchors
 
@@ -44,6 +45,28 @@ module RuboCop
 
       def definition_for(link)
         @definitions_by_reference[link.reference] if link.reference
+      end
+
+      def image_path_separators(link)
+        return [] unless link.image && resolved?(link)
+
+        definition = definition_for(link)
+        raw = definition ? definition.destination : link.destination
+        first = definition ? definition.destination_begin_pos : link.destination_begin_pos
+        last = definition ? definition.destination_end_pos : link.destination_end_pos
+        return [] unless raw && first && last && last - first == raw.length
+
+        decoded = destination(link)
+        return [] if external_destination?(decoded)
+
+        raw.each_char.with_index.filter_map do |character, offset|
+          next unless character == '\\'
+
+          following = raw[offset + 1]
+          next unless following && !(following.ascii_only? && following.match?(/[[:punct:]]/))
+
+          [first + offset, offset.positive? && raw[offset - 1] == '\\']
+        end
       end
 
       def destination(link)
@@ -164,6 +187,13 @@ module RuboCop
         )
       end
 
+      def external_destination?(destination)
+        return true if destination.start_with?('//')
+        return false if destination.match?(%r{\A[A-Za-z]:[\\/]})
+
+        destination.match?(/\A[a-z][a-z0-9+.-]*:/i)
+      end
+
       def explicit_heading_ids
         # GFM eagerly inserts its own auto IDs into node.attr. Parse without
         # those IDs so the selected renderer, not GFM, controls generated slugs.
@@ -221,7 +251,7 @@ module RuboCop
           if @text[index] == '(' && @text[index - 1] == ']' && opening_bracket(index - 1)
             destination = inline_destination(index)
             if destination
-              index = destination.last
+              index = destination[1]
               next
             end
           end
@@ -394,7 +424,9 @@ module RuboCop
         if @source[index] == '<'
           cursor = index + 1
           while cursor < @source.length
-            return [@source[(index + 1)...cursor], cursor + 1] if @source[cursor] == '>' && !escaped?(cursor)
+            if @source[cursor] == '>' && !escaped?(cursor)
+              return [@source[(index + 1)...cursor], cursor + 1, index + 1, cursor]
+            end
             return if @source[cursor] == "\n" || (@source[cursor] == '<' && !escaped?(cursor))
 
             cursor += 1
@@ -415,7 +447,7 @@ module RuboCop
           end
           cursor += 1
         end
-        [@source[index...cursor], cursor] if depth.zero?
+        [@source[index...cursor], cursor, index, cursor] if depth.zero?
       end
 
       def title_end(index)
@@ -439,19 +471,19 @@ module RuboCop
 
         if first > index + 1 && ['"', "'"].include?(@source[first]) && (ending = title_end(first))
           finish = whitespace(ending, @source)
-          return ['', finish + 1] if finish && @source[finish] == ')'
+          return ['', finish + 1, first, first] if finish && @source[finish] == ')'
         end
         result = read_destination(first)
         return unless result
 
-        value, ending = result
+        value, ending, destination_first, destination_last = result
         finish = whitespace(ending, @source)
         return unless finish
-        return [value, finish + 1] if @source[finish] == ')'
+        return [value, finish + 1, destination_first, destination_last] if @source[finish] == ')'
         return unless finish > ending && (title = title_end(finish))
 
         finish = whitespace(title, @source)
-        [value, finish + 1] if finish && @source[finish] == ')'
+        [value, finish + 1, destination_first, destination_last] if finish && @source[finish] == ')'
       end
 
       def definition_destination(index)
@@ -459,14 +491,14 @@ module RuboCop
         result = read_destination(start) if start
         return unless result
 
-        value, finish = result
+        value, finish, destination_first, destination_last = result
         gap = whitespace(finish, @source)
         title = title_end(gap) if gap && gap > finish
         finish = title if title && @source[title..].match?(/\A[ \t]*(?:\r?\n|\z)/)
         return unless @source[finish..].match?(/\A[ \t]*(?:\r?\n|\z)/)
         return if value.empty? && @source[start] != '<'
 
-        [value, finish, title && @source[(gap + 1)...(title - 1)]]
+        [value, finish, title && @source[(gap + 1)...(title - 1)], destination_first, destination_last]
       end
 
       def scan_definitions
@@ -482,9 +514,11 @@ module RuboCop
               result = definition_destination(ending + 2)
             end
             if result
-              value, finish, title = result
+              value, finish, title, destination_first, destination_last = result
               @definitions << Definition.new(begin_pos: first, end_pos: finish, label: label,
-                                             reference: normalize(label), destination: value, title: title)
+                                             reference: normalize(label), destination: value, title: title,
+                                             destination_begin_pos: destination_first,
+                                             destination_end_pos: destination_last)
             end
           end
           offset += line.length
@@ -541,7 +575,7 @@ module RuboCop
         link = Link.new(begin_pos: image ? index - 1 : index, label_begin_pos: index + 1,
                         label_end_pos: ending, label: label, image: image)
         if @text[ending + 1] == '(' && (result = inline_destination(ending + 1))
-          link.destination, link.end_pos = result
+          link.destination, link.end_pos, link.destination_begin_pos, link.destination_end_pos = result
           link.style = 'inline'
         else
           following = whitespace(ending + 1)
