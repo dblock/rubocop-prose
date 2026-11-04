@@ -62,7 +62,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/AtxHeadingSpacing](docs/cops/markdown/atx_heading_spacing.md)               | Enabled  | Use one space after opening ATX heading hashes.                                     |
 | [Markdown/BareUrl](docs/cops/markdown/bare_url.md)                                    | Disabled | Require Markdown links or autolinks around bare URLs.                               |
 | [Markdown/BlockquoteBlankLines](docs/cops/markdown/blockquote_blank_lines.md)         | Enabled  | Keep quote markers on blank lines between blockquotes.                              |
-| [Markdown/BlockquoteSpacing](docs/cops/markdown/blockquote_spacing.md)                | Enabled  | Avoid multiple spaces after blockquote markers.                                     |
+| [Markdown/BlockquoteSpacing](docs/cops/markdown/blockquote_spacing.md)                | Enabled  | Use one space after nonempty blockquote markers.                                    |
 | [Markdown/ClosedHeadingSpace](docs/cops/markdown/closed_heading_space.md)             | Enabled  | Separate closing ATX heading hashes from text.                                      |
 | [Markdown/ClosedHeadingSpacing](docs/cops/markdown/closed_heading_spacing.md)         | Enabled  | Use one space before closing ATX heading hashes.                                    |
 | [Markdown/CompactLists](docs/cops/markdown/compact_lists.md)                          | Enabled  | Avoid blank lines between simple list items.                                        |

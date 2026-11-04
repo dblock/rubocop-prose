@@ -3,6 +3,7 @@ offenses:
   Markdown/TrailingWhitespace: 1
   Markdown/UndefinedReference: 1
   Markdown/ImageAltText: 1
+  Markdown/BlockquoteSpacing: 1
 remaining_offenses:
   Markdown/UndefinedReference: 1
   Markdown/ImageAltText: 1
