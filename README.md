@@ -93,6 +93,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/ListIndentation](docs/cops/markdown/list_indentation.md)                    | Enabled  | Keep sibling list markers consistently indented.                                    |
 | [Markdown/ListMarkerSpacing](docs/cops/markdown/list_marker_spacing.md)               | Enabled  | Configure spaces after ordered and unordered list markers.                          |
 | [Markdown/OrderedListNumbering](docs/cops/markdown/ordered_list_numbering.md)         | Disabled | Use sequential numbers or repeated ones in ordered lists.                           |
+| [Markdown/OutsideSpacing](docs/cops/markdown/outside_spacing.md)                      | Enabled  | Report inline formatting directly adjacent to prose words.                          |
 | [Markdown/ProperNames](docs/cops/markdown/proper_names.md)                            | Disabled | Use configured capitalization for proper names.                                     |
 | [Markdown/RawHtml](docs/cops/markdown/raw_html.md)                                    | Disabled | Disallow raw HTML except explicitly allowed elements.                               |
 | [Markdown/ReferenceDefinitions](docs/cops/markdown/reference_definitions.md)          | Enabled  | Report unused and duplicate reference definitions.                                  |
