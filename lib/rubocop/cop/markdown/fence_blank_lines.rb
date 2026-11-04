@@ -11,7 +11,7 @@ module RuboCop
 
         def validate_config
           %w[LinesAbove LinesBelow].each do |name|
-            value = cop_config.fetch(name, 1)
+            value = cop_config[name]
             next if value.is_a?(Integer) && value >= 0
 
             raise ValidationError, "Markdown/FenceBlankLines: #{name} must be a nonnegative integer."
