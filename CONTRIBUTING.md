@@ -10,11 +10,11 @@ bundle exec rake
 bundle exec rake build
 ```
 
-The default Rake task runs RuboCop and RSpec. For focused changes, run the affected specs with `bundle exec rspec spec/path_to_spec.rb` and lint with `bundle exec rubocop`. To test the minimum supported RuboCop version, use `RUBOCOP_VERSION=1.72.1 bundle install`.
+The default Rake task runs RuboCop and the full test suite. For focused changes, use `bundle exec rspec spec/path_to_spec.rb` and `bundle exec rubocop`. Run unit or integration tests separately with `bundle exec rake spec:unit` or `bundle exec rake spec:integration`. To install the minimum supported RuboCop, use `RUBOCOP_VERSION=1.72.1 bundle install`.
 
-CI runs lint, tests, and gem packaging on pull requests. The test matrix covers Ruby 3.2 and 4.0 with RuboCop `~> 1.72`; a separate job tests optional Markdown-preprocessor interoperability.
+CI covers Ruby 3.2 and 4.0, gem packaging, and optional Markdown-preprocessor interoperability. See the [workflows](.github/workflows) for suite selection and dependency versions.
 
-The project lint configuration loads this checkout's plugin alongside rubocop-rspec and rubocop-rake. Intentionally invalid integration fixtures are excluded. Cop specs use a flat `spec/<cop>_spec.rb` layout; focused assertions for diagnostics and corrections belong together.
+The lint configuration loads this checkout's plugin alongside rubocop-rspec and rubocop-rake; intentionally invalid fixtures are excluded.
 
 ### Benchmarks
 
@@ -30,13 +30,13 @@ Exercise the real CLI when changing plugin loading, stdin, suppression directive
 
 ### Integration fixtures
 
-CLI scenarios live under `spec/fixtures/{prose,markdown,text,markdown_interoperability}/`; each suite runs from the matching directory under `spec/integration/`. A scenario contains an `input` document and `case.yml`; autocorrectable cases also include an `expected` document with the same extension. The case file declares expected offense counts under `offenses` and post-correction counts under `remaining_offenses`, including empty maps for clean results.
+CLI scenarios live under `spec/fixtures/{prose,markdown,text,markdown_interoperability}/`, with specs in `spec/integration/`. Each contains an `input` document, a `case.yml` declaring `offenses` and `remaining_offenses` counts (empty maps for clean results), and an `expected` document when correction changes the input.
 
-Fixtures with explicit `Enabled: true` cop entries run with `--only`; others exercise configured defaults. The shared runner checks explicit files, discovery, reporting, correction, repeated autocorrection and reporting, and stdin while keeping repository files unchanged. Put whitespace-sensitive fixtures under the existing Git whitespace attributes.
+Fixtures with explicit `Enabled: true` cop entries run with `--only`; others exercise configured defaults. The runner checks explicit files, discovery, corrections, repeated runs, and stdin with both plugin-loading mechanisms. Mark whitespace-sensitive fixtures using the existing Git attributes.
 
-Mixed default-cop release-gate scenarios live under `spec/fixtures/markdown_stability/`. Their focused integration spec checks independently declared expected output and GFM content trees after every correction, allowing only soft-wrap, blank-padding, delimiter-style, and tight-list normalizations. It bounds convergence, rejects oscillation, and checks another byte-identical run after reaching a fixed point; the two scenarios cover YAML and CLI plugin loading without repeating the shared runner's full matrix.
+Mixed default-cop scenarios in `spec/fixtures/markdown_stability/` check content and document structure after every correction, convergence without cycles, and byte-identical output after stabilization.
 
-Run `bundle exec rspec spec/integration`. To include the optional preprocessor suite, set `RUBOCOP_MD_PATH` to its checkout and run `bundle exec rspec spec/integration/markdown_interoperability_spec.rb`. Interoperability requires the original-buffer mapping API described in [DESIGN.md](DESIGN.md#preprocessor-interoperability); without it, only that suite is skipped.
+For optional interoperability, set `RUBOCOP_MD_PATH` to a checkout supporting the [original-buffer mapping API](DESIGN.md#preprocessor-interoperability) and run `bundle exec rake spec:integration:interoperability`. Without that variable, the suite is skipped.
 
 ## Adding a cop
 
