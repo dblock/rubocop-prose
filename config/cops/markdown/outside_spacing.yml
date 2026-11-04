@@ -1,0 +1,3 @@
+Markdown/OutsideSpacing:
+  Description: 'Report inline formatting directly adjacent to prose words.'
+  Enabled: true

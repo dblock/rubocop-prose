@@ -36,6 +36,8 @@ Inline formatting helpers protect code spans, links and their labels, escapes, a
 
 `Markdown/BlockquoteSpacing` limits marker checks to source lines inside parsed blockquotes and requires the source marker count to match the AST nesting depth before reporting missing separators. It reparses each proposed insertion with the effective Markdown configuration and autocorrects only when the parsed tree and warnings are unchanged.
 
+`Markdown/OutsideSpacing` uses the inline source scanners and positioned emphasis parser to report formatting delimiters directly adjoining Unicode prose letters or numbers. It excludes links, HTML, escapes, and multiline atoms, and reports original character ranges. Adjacent words cannot be inferred safely from text alone, so the cop does not autocorrect. It also leaves scripts commonly written without spaces, including CJK and Southeast Asian scripts, unreported rather than imposing Western word-boundary assumptions.
+
 Heading fragments use rendered text, including code spans, entities, and image alt text. GitHub-style slugs lowercase text, retain Unicode letters/marks/numbers and underscores, remove punctuation, and replace spaces with hyphens. GitLab additionally collapses consecutive hyphens. Kramdown uses ASCII letters/numbers/spaces/hyphens, discards nonletter prefixes, and falls back to `section`. Duplicate slugs receive collision-aware numeric suffixes. These algorithms approximate renderer behavior rather than guaranteeing every renderer version or extension.
 
 ## Preprocessor interoperability
