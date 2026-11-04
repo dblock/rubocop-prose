@@ -1,0 +1,7 @@
+offenses:
+  Markdown/TrailingWhitespace: 1
+  Markdown/BlockquoteSpacing: 2
+  Markdown/BlockquoteBlankLines: 1
+  Markdown/HardBreakStyle: 1
+  Prose/MultipleBlankLines: 2
+remaining_offenses: {}

@@ -2,10 +2,11 @@
 
 All notable changes to this project will be documented in this file. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.1.1 (Next)
+## 0.2.0 (Next)
 
 - [#126](https://github.com/dblock/rubocop-prose/pull/126): Report unit and integration test coverage to Coveralls - [@dblock](https://github.com/dblock).
 - [#138](https://github.com/dblock/rubocop-prose/pull/138): Add opt-in `Markdown/ListItemPunctuation` to check punctuation presence across sibling list items - [@dblock](https://github.com/dblock).
+- [#139](https://github.com/dblock/rubocop-prose/pull/139): Add an opt-in exception for a single trailing space on empty Markdown blockquote lines, including nested quotes - [@dblock](https://github.com/dblock).
 - Your contribution here.
 
 ## 0.1.0 (2026/11/03)

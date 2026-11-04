@@ -1,0 +1,14 @@
+plugins:
+  - rubocop-prose
+
+Markdown/TrailingWhitespace:
+  Enabled: true
+  AllowEmptyBlockquoteSpace: true
+Markdown/BlockquoteSpacing:
+  Enabled: true
+Markdown/BlockquoteBlankLines:
+  Enabled: true
+Markdown/HardBreakStyle:
+  Enabled: true
+Prose/MultipleBlankLines:
+  Enabled: true

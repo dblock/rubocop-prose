@@ -27,6 +27,7 @@ module RuboCop
 
             match = text.match(/[ \t]+\z/)
             next unless match
+            next if allowed_empty_blockquote_space?(text, number, match[0])
 
             spaces = text[/ +\z/].to_s.length
             hard_break = !text.strip.empty? && paragraphs.include?(number) && spaces >= 2
@@ -48,6 +49,11 @@ module RuboCop
         def hard_break_style
           style = config.for_cop('Markdown/HardBreakStyle')
           style if style && style['Enabled']
+        end
+
+        def allowed_empty_blockquote_space?(text, number, whitespace)
+          cop_config['AllowEmptyBlockquoteSpace'] && whitespace == ' ' &&
+            !document.code_line?(number) && text.match?(/\A[ \t]*>(?:[ \t]*>)* \z/)
         end
       end
     end
