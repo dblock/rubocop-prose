@@ -80,6 +80,8 @@ Parser warnings are native syntax diagnostics, not a complete CommonMark validat
 
 Cop guides document user-visible behavior and meaningful correction limits. Shared inspection behavior belongs in the README; parsing, source mapping, and correction algorithms belong here.
 
+`Markdown/ListContinuationIndentation` uses parsed list-item membership and each paragraph's original-source mapping to find continuation lines, excluding following root paragraphs and child list blocks. Its expected column comes from the parsed item's marker, so ordered marker widths and container prefixes are retained. It reports only: reindentation could change Markdown block ownership, so no correction is offered.
+
 ## Artwork
 
 The logo combines the unchanged official RuboCop helmet with a vertical parchment scroll and lines of prose. Separating the two silhouettes keeps the scroll legible at the README's 160px display size. The parchment tones distinguish paper from the black helmet, while the red line echoes its visor. An opaque white background preserves contrast on dark pages.
