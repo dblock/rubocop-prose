@@ -52,6 +52,7 @@ RSpec/SpecFilePathFormat:
 RSpec/DescribeClass:
   Exclude:
     - 'spec/integration/**/*'
+    - 'spec/interoperability/**/*'
     - 'spec/benchmark_spec.rb'
     - 'spec/front_matter_spec.rb'
     - 'spec/text_spec.rb'

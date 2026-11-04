@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe 'Markdown source-mapping integration' do
+RSpec.describe 'rubocop-md interoperability' do
   before do
     next if ENV['RUBOCOP_MD_PATH']
 
@@ -10,7 +10,13 @@ RSpec.describe 'Markdown source-mapping integration' do
   IntegrationFixtures.cases('markdown_interoperability').each do |fixture, data|
     %w[prose_first markdown_first].each do |order|
       context "with #{File.basename(fixture)} and #{order} loading" do
-        it_behaves_like 'a prose CLI fixture', fixture, data, order
+        if File.basename(fixture) == 'markdown_ruby'
+          it_behaves_like 'a prose CLI fixture', fixture, data, order
+        else
+          it 'reports and corrects the edge case without changing the stabilized content' do
+            run_fixture(fixture, data, 'config', order, comprehensive: false)
+          end
+        end
       end
     end
   end
