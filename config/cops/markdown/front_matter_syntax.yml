@@ -1,0 +1,3 @@
+Markdown/FrontMatterSyntax:
+  Description: 'Report invalid YAML syntax in closed leading front matter.'
+  Enabled: true
