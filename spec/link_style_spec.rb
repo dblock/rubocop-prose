@@ -35,6 +35,19 @@ RSpec.describe RuboCop::Cop::Markdown::LinkStyle do
     expect(result.map { |offense| offense.location.source }).to eq(['[inner](inner.md)'])
   end
 
+  it 'retains Unicode ranges while skipping prose, escaped syntax and masked spans' do
+    source = '😀 café \\[escaped](skip) `[code](skip)` <!-- [hidden](skip) --> [résumé](guide.md)![图](image.svg)<https://example.test>'
+    result, rewritten = investigate(described_class, source,
+                                    { 'AllowedLinkStyles' => [], 'AllowedImageStyles' => [] })
+    expect(result.map { |offense| offense.location.source }).to eq(
+      ['[résumé](guide.md)', '![图](image.svg)', '<https://example.test>']
+    )
+    expect(result.map { |offense| offense.location.begin_pos }).to eq(
+      ['[résumé]', '![图]', '<https:'].map { |text| source.index(text) }
+    )
+    expect(rewritten).to eq(source)
+  end
+
   it 'leaves unresolved references and bare URLs for their own rules' do
     source = '[text][missing] ![alt][unknown] https://example.test'
     expect(offenses(described_class, source, { 'AllowedLinkStyles' => [], 'AllowedImageStyles' => [] })).to be_empty

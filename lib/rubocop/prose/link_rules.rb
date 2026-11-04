@@ -107,8 +107,8 @@ module RuboCop
         links.each { |link| mask(text, link.begin_pos, link.end_pos) if resolved?(link) }
         results = []
         index = 0
-        while index < text.length
-          unless text[index] == '(' && !escaped?(index) && (finish = closing(text, index, '(', ')'))
+        while (index = text.index('(', index))
+          unless !escaped?(index) && (finish = closing(text, index, '(', ')'))
             index += 1
             next
           end
@@ -216,7 +216,7 @@ module RuboCop
 
       def exclude_spans
         index = 0
-        while index < @text.length
+        while (index = @text.index(/[(:`<]/, index))
           destination = nil
           if @text[index] == '(' && @text[index - 1] == ']' && opening_bracket(index - 1)
             destination = inline_destination(index)
@@ -499,8 +499,8 @@ module RuboCop
 
       def scan_links
         cursor = 0
-        while cursor < @text.length
-          unless @text[cursor] == '[' && !escaped?(cursor)
+        while (cursor = @text.index('[', cursor))
+          if escaped?(cursor)
             cursor += 1
             next
           end

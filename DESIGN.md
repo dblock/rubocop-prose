@@ -36,6 +36,8 @@ The parser supplies document structure, but source-aware scanners are needed for
 
 Inline formatting helpers protect code spans, links and their labels, escapes, and HTML. The link scanner separately retains original reference spellings and duplicate definitions that AST resolution discards, normalizes reference IDs, and excludes footnotes and raw HTML regions. Table scanning respects escaped pipes and matching backtick runs, recognizes header-plus-delimiter tables even with malformed body rows, and maps root and blockquote rows to original source positions.
 
+The link scanner uses character-based string searches to skip ordinary prose between candidate delimiters instead of indexing every source character. Searches operate on the current masked text, preserving exclusions and original Unicode offsets without adding another cache.
+
 `Markdown/BlockquoteSpacing` limits marker checks to source lines inside parsed blockquotes and requires the source marker count to match the AST nesting depth before reporting missing separators. It reparses each proposed insertion with the effective Markdown configuration and autocorrects only when the parsed tree and warnings are unchanged.
 
 `Markdown/OutsideSpacing` uses the inline source scanners and positioned emphasis parser to report formatting delimiters directly adjoining Unicode prose letters or numbers. It excludes links, HTML, escapes, and multiline atoms, and reports original character ranges. Adjacent words cannot be inferred safely from text alone, so the cop does not autocorrect. It also leaves scripts commonly written without spaces, including CJK and Southeast Asian scripts, unreported rather than imposing Western word-boundary assumptions.
