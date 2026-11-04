@@ -121,4 +121,54 @@ RSpec.describe RuboCop::Cop::Prose::MultipleBlankLines do
     child_result = "Before.\n\n# Title\n\nAfter.\n"
     expect(results).to eq([parent_result, child_result, parent_result])
   end
+
+  it 'reduces quote-only blank lines inside one parsed blockquote and stabilizes' do
+    source = "> First paragraph.\n>\n>\n> Second paragraph.\n"
+    result = corrected(described_class, source)
+    expect(result).to eq("> First paragraph.\n>\n> Second paragraph.\n")
+    expect(offenses(described_class, result)).to be_empty
+    expect(corrected(described_class, result)).to eq(result)
+  end
+
+  it 'preserves nested quote prefixes and respects the configured limit' do
+    source = "> > First.\n> >\n> >\n> > Second.\n"
+    expect(offenses(described_class, source, 'Max' => 2)).to be_empty
+    expect(corrected(described_class, source)).to eq("> > First.\n> >\n> > Second.\n")
+    expect(corrected(described_class, source, 'Max' => 0)).to eq(source)
+  end
+
+  it 'reports Unicode quote lines at original positions' do
+    source = "> 😀 First.\n>\n>\n> Second.\n"
+    offense = offenses(described_class, source).fetch(0)
+    expect([offense.location.line, offense.location.column]).to eq([3, 0])
+    expect(corrected(described_class, source)).to eq("> 😀 First.\n>\n> Second.\n")
+  end
+
+  it 'does not merge separate quote containers or inspect quoted code' do
+    source = "> First.\n>\n\n> Second.\n>\n>\n> Third.\n> ```\n> code\n>\n>\n> more code\n> ```\n"
+    result = corrected(described_class, source)
+    expect(offenses(described_class, source).length).to eq(1)
+    expect(result).to eq(
+      "> First.\n>\n\n> Second.\n>\n> Third.\n> ```\n> code\n>\n>\n> more code\n> ```\n"
+    )
+  end
+
+  it 'does not interpret quote-looking lines in plain text as Markdown' do
+    source = "> First.\n>\n>\n> Second.\n"
+    expect(offenses(described_class, source, path: 'example.txt')).to be_empty
+    expect(corrected(described_class, source, path: 'example.txt')).to eq(source)
+  end
+
+  it 'retains structural minimums when removing excess quote-only blank lines' do
+    settings = {
+      'Markdown/HeadingBlankLines' => { 'Enabled' => true, 'LinesAbove' => 2, 'LinesBelow' => 2 },
+      'Markdown/FenceBlankLines' => { 'Enabled' => true, 'LinesAbove' => 2, 'LinesBelow' => 2 }
+    }
+    source = "> Préface.\n>\n>\n>\n> # Tête\n>\n>\n>\n> ```ruby\n> puts 'hello'\n> ```\n>\n>\n>\n> Fin.\n"
+    expected = "> Préface.\n>\n>\n> # Tête\n>\n>\n> ```ruby\n> puts 'hello'\n> ```\n>\n>\n> Fin.\n"
+
+    expect(corrected(described_class, source, settings: settings)).to eq(expected)
+    expect(offenses(described_class, expected, settings: settings)).to be_empty
+    expect(corrected(described_class, expected, settings: settings)).to eq(expected)
+  end
 end

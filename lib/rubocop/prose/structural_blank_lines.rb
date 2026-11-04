@@ -83,9 +83,7 @@ module RuboCop
         end
         return unless number.between?(1, document.lines.length)
 
-        # Marker-only lines already satisfy part of the structural minimum and are never removed.
-        empty, marked = blanks.partition { |line| document.line(line).strip.empty? }
-        @protected_lines.merge(empty.sort.first([required - marked.length, 0].max))
+        @protected_lines.merge(blanks.sort.first(required))
       end
     end
   end

@@ -1,4 +1,4 @@
 Prose/MultipleBlankLines:
-  Description: 'Limit consecutive blank lines outside code.'
+  Description: 'Limit consecutive blank lines in prose, including Markdown blockquotes.'
   Enabled: true
   Max: 1

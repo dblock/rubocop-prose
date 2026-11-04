@@ -1,8 +1,8 @@
 # Prose/MultipleBlankLines
 
-Removes excess consecutive blank lines while preserving paragraph separation. Markdown code blocks and ignored metadata are left alone; plain text is checked literally.
+Removes excess consecutive blank lines while preserving paragraph separation. In Markdown, marker-only blank lines inside one parsed blockquote count toward the same limit; code blocks and ignored metadata are left alone. Plain text is checked literally without interpreting quote-looking lines as Markdown.
 
-Blank blockquote markers are handled by [Markdown/BlockquoteBlankLines](../markdown/blockquote_blank_lines.md) rather than counted as empty lines here.
+[Markdown/BlockquoteBlankLines](../markdown/blockquote_blank_lines.md) handles the separate case of adding markers between adjacent blockquotes.
 
 At Markdown structural boundaries, the effective limit is at least the minimum required by the enabled [heading](../markdown/heading_blank_lines.md), [fence](../markdown/fence_blank_lines.md), [list](../markdown/list_blank_lines.md), or [table](../markdown/table_blank_lines.md) spacing cop in that file's configuration. Shared boundaries use the largest minimum, not their sum. `Max` still applies elsewhere, including document edges where no structural padding is required.
 
@@ -16,6 +16,13 @@ Prose/MultipleBlankLines:
 
 ## Example
 
+For this configuration:
+
+```yaml
+Prose/MultipleBlankLines:
+  Max: 1
+```
+
 ### Bad
 
 ```markdown
@@ -23,6 +30,11 @@ First paragraph.
 
 
 Second paragraph.
+
+> First paragraph.
+>
+>
+> Second paragraph.
 ```
 
 ### Good
@@ -31,4 +43,8 @@ Second paragraph.
 First paragraph.
 
 Second paragraph.
+
+> First paragraph.
+>
+> Second paragraph.
 ```
