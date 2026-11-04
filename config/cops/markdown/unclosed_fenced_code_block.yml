@@ -1,0 +1,3 @@
+Markdown/UnclosedFencedCodeBlock:
+  Description: Require an explicit closing fence for fenced code blocks.
+  Enabled: true

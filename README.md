@@ -110,6 +110,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/ThematicBreakBlankLines](docs/cops/markdown/thematic_break_blank_lines.md)  | Enabled  | Surround parsed thematic breaks with container-aware blank lines.                   |
 | [Markdown/ThematicBreakStyle](docs/cops/markdown/thematic_break_style.md)             | Enabled  | Use a configured or consistent thematic break.                                      |
 | [Markdown/TrailingWhitespace](docs/cops/markdown/trailing_whitespace.md)              | Enabled  | Remove trailing whitespace while retaining Markdown hard breaks.                    |
+| [Markdown/UnclosedFencedCodeBlock](docs/cops/markdown/unclosed_fenced_code_block.md)  | Enabled  | Require an explicit closing fence for fenced code blocks.                           |
 | [Markdown/UndefinedReference](docs/cops/markdown/undefined_reference.md)              | Enabled  | Require definitions for link and image references.                                  |
 | [Markdown/UnorderedListIndentation](docs/cops/markdown/unordered_list_indentation.md) | Enabled  | Use a configured indentation width for unordered lists.                             |
 | [Markdown/UnorderedListMarker](docs/cops/markdown/unordered_list_marker.md)           | Enabled  | Use a configured or consistent unordered list marker.                               |

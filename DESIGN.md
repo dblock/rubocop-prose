@@ -32,6 +32,8 @@ Front matter is masked only in the text supplied to prose parsing, retaining lin
 
 The parser supplies document structure, but source-aware scanners are needed for malformed constructs that do not become AST nodes, including uneven tables and missing heading separators. These scanners must exclude code, escaped syntax, and ignored metadata rather than interpreting arbitrary marker-shaped text as document structure.
 
+`Markdown/UnclosedFencedCodeBlock` scans source lines for fenced-block delimiters because an EOF-terminated fence may not produce a code-block AST node. It tracks the opening delimiter and container prefixes only to decide whether a matching explicit closer exists; it reports the original opening range and never proposes a closing location.
+
 Inline formatting helpers protect code spans, links and their labels, escapes, and HTML. The link scanner separately retains original reference spellings and duplicate definitions that AST resolution discards, normalizes reference IDs, and excludes footnotes and raw HTML regions. Table scanning respects escaped pipes and matching backtick runs, recognizes header-plus-delimiter tables even with malformed body rows, and maps root and blockquote rows to original source positions.
 
 `Markdown/BlockquoteSpacing` limits marker checks to source lines inside parsed blockquotes and requires the source marker count to match the AST nesting depth before reporting missing separators. It reparses each proposed insertion with the effective Markdown configuration and autocorrects only when the parsed tree and warnings are unchanged.
