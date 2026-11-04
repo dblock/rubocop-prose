@@ -5,3 +5,5 @@ spec/fixtures/markdown/hard_break_style/*.md whitespace=-blank-at-eol,-blank-at-
 spec/fixtures/markdown/hard_break_spaces/*.md whitespace=-blank-at-eol,-blank-at-eof
 spec/fixtures/text/defaults/input.txt whitespace=-blank-at-eol
 docs/cops/markdown/hard_break_style.md whitespace=-blank-at-eol
+spec/fixtures/prose/paragraph_unwrapping_boundaries/input.md whitespace=-blank-at-eol
+spec/fixtures/text/paragraph_unwrapping_literal_breaks/input.txt whitespace=-blank-at-eol
