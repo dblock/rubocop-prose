@@ -32,6 +32,8 @@ Corrections are limited to rewrites whose source mapping and resulting document 
 
 Source scanners retain original reference spellings and ranges when AST resolution discards them, and protect inline constructs such as links, code, escapes, and HTML from unrelated formatting corrections. Renderer-dependent heading fragments are configurable approximations, not guarantees for every renderer or extension. Parser warnings are native syntax diagnostics rather than a complete CommonMark validation.
 
+Bare link destinations use character-based searches to skip ordinary path text, retaining whitespace, nesting, and escape checks at candidate boundaries without changing original Unicode offsets.
+
 Shared blank-line cleanup respects the minimum padding required by enabled, applicable Markdown structure-spacing cops, without applying those rules to plain text. When an offense has multiple plausible rewrites, the cop reports it without choosing one.
 
 Shell-prompt removal preserves code-content ranges and container prefixes. Blocks with output or ambiguous `#` prompts remain uncorrected; so does an entire block if removing any prompt could expose its closing delimiter. See [Markdown/ShellPrompts](docs/cops/markdown/shell_prompts.md) for prompt and language settings.
