@@ -42,6 +42,10 @@ module RuboCop
         document.line_range(entry.fetch(:line))
       end
 
+      def heading_blank?(number)
+        document.line(number).match?(/\A(?: {0,3}>[ \t]?)*[ \t]*\z/)
+      end
+
       def heading_end_range
         ::Parser::Source::Range.new(document.buffer, document.source.length, document.source.length)
       end

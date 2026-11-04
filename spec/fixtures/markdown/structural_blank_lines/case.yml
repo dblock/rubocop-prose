@@ -1,0 +1,4 @@
+offenses:
+  Prose/MultipleBlankLines: 3
+  Markdown/FenceBlankLines: 3
+remaining_offenses: {}

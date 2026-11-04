@@ -1,0 +1,6 @@
+AllCops:
+  NewCops: enable
+Markdown/HeadingBlankLines:
+  Enabled: true
+  LinesAbove: 2
+  LinesBelow: 2

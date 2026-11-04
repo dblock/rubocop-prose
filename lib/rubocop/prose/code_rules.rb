@@ -7,6 +7,17 @@ module RuboCop
         document.nodes(:codeblock)
       end
 
+      def fenced_blocks(list_items: true)
+        return enum_for(__method__, list_items: list_items) unless block_given?
+
+        code_blocks.each do |node|
+          next if !list_items && code_ancestors(node).any? { |ancestor| ancestor.type == :li }
+
+          details = fence_details(node)
+          yield details if details
+        end
+      end
+
       def code_ancestors(target, node = document.root, parents = [])
         return parents if node.equal?(target)
 

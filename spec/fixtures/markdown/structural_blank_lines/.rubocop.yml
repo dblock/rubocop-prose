@@ -1,0 +1,16 @@
+plugins:
+  - rubocop-prose
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+Prose/MultipleBlankLines:
+  Enabled: true
+  Max: 1
+Markdown/HeadingBlankLines:
+  Enabled: true
+  LinesAbove: 2
+  LinesBelow: 2
+Markdown/FenceBlankLines:
+  Enabled: true
+  LinesAbove: 3
+  LinesBelow: 2
