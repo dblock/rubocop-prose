@@ -66,6 +66,8 @@ Fence-style corrections replace both delimiters and choose a length greater than
 
 `Markdown/ThematicBreakStyle` accepts a single literal or a positive list of literal thematic breaks. In consistent mode the first parsed thematic break remains the correction target; a single configured spelling is also safe to correct to. A disallowed spelling under a multi-value list is report-only because choosing one accepted separator could change its intended meaning.
 
+`Markdown/ThematicBreakBlankLines` only considers parser-produced thematic-break nodes. Its boundary insertions preserve the source container prefix, merge duplicate insertions for adjacent breaks, and leave document and front-matter boundaries untouched.
+
 Parser warnings are native syntax diagnostics, not a complete CommonMark validator. Specialized reference cops own corresponding diagnostics when enabled, preventing duplicate reporting. Fragment-anchor generation is renderer-dependent and documented as a configurable approximation; validation does not fetch external links or files.
 
 Cop guides document user-visible behavior and meaningful correction limits. Shared inspection behavior belongs in the README; parsing, source mapping, and correction algorithms belong here.
