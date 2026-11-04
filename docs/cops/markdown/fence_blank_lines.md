@@ -4,6 +4,8 @@ Requires the configured minimum blank lines above and below fenced code blocks, 
 
 A fence on a list marker's own line does not require a blank before it.
 
+Both counts must be nonnegative integers; `null` is invalid.
+
 [Prose/MultipleBlankLines](../prose/multiple_blank_lines.md) preserves these minimums at fence boundaries without relaxing its limit elsewhere.
 
 ## Configuration

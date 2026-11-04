@@ -79,4 +79,15 @@ RSpec.describe RuboCop::Cop::Markdown::FenceBlankLines do
       end
     end
   end
+
+  it 'rejects null counts when merged plugin defaults remove the setting' do
+    defaults = RuboCop::Config.new(RuboCop::Prose.default_configuration)
+    allow(RuboCop::ConfigLoader).to receive(:default_configuration).and_return(defaults)
+
+    %w[LinesAbove LinesBelow].each do |name|
+      expect do
+        offenses(described_class, "```ruby\nx\n```\n", name => nil)
+      end.to raise_error(RuboCop::ValidationError, /#{name} must be a nonnegative integer/)
+    end
+  end
 end
