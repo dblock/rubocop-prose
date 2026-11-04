@@ -37,15 +37,15 @@ RSpec.describe 'Default Markdown autocorrection stability' do
         config = YAML.safe_load_file(File.join(fixture, '.rubocop.yml'))
         config.delete('plugins') if data.fetch('loading') == 'options'
         File.write(configuration, config.to_yaml)
-        command = fixture_command(configuration, [], data.fetch('loading'), nil)
-        assert_fixture_report(command + ['example.md'], directory, data.fetch('offenses'))
+        command = fixture_command(configuration, [], data.fetch('loading'), nil, in_process: true)
+        assert_fixture_report(command + ['example.md'], directory, data.fetch('offenses'), in_process: true)
 
         previous = original
         seen = { original => 0 }
         stabilized = false
         1.upto(5) do |pass|
           assert_fixture_report(command + ['-a', 'example.md'], directory,
-                                data.fetch('remaining_offenses'), corrected: true)
+                                data.fetch('remaining_offenses'), corrected: true, in_process: true)
           current = File.read(file)
           expect(markdown_structure(current)).to eq(structure), "Markdown semantics changed after CLI pass #{pass}"
           if current == previous
@@ -61,7 +61,7 @@ RSpec.describe 'Default Markdown autocorrection stability' do
         expect(File.binread(file)).to eq(expected.b)
 
         assert_fixture_report(command + ['-a', 'example.md'], directory,
-                              data.fetch('remaining_offenses'), corrected: true)
+                              data.fetch('remaining_offenses'), corrected: true, in_process: true)
         expect(File.binread(file)).to eq(expected.b)
       end
     end

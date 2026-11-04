@@ -1,0 +1,33 @@
+name: Interoperability
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+jobs:
+  markdown-integration:
+    runs-on: ubuntu-latest
+    env:
+      RUBOCOP_VERSION: '~> 1.72'
+      RUBOCOP_MD_PATH: ${{ github.workspace }}/tmp/rubocop-md
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@v7
+        with:
+          repository: rubocop/rubocop-md
+          # Replace with a release tag once rubocop-md ships the original-source mapping API.
+          ref: refs/pull/57/head
+          path: tmp/rubocop-md
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '4.0'
+          bundler-cache: true
+      - run: bundle exec rake spec:interoperability
+      - run: bundle exec rake build
