@@ -69,4 +69,41 @@ RSpec.describe RuboCop::Prose::MarkdownDocument do
     expect(result).to eq(source)
     expect(RuboCop::Prose::LinkRules).to have_received(:new).once
   end
+
+  it 'preserves both emphasis types and Unicode corrections across style and spacing cops' do
+    source = "😀 _first_ and __bold__.\n\n> café *word* and **text**.\n"
+    expected = "😀 _first_ and __bold__.\n\n> café _word_ and __text__.\n"
+    cops = [
+      RuboCop::Cop::Markdown::OutsideSpacing,
+      RuboCop::Cop::Markdown::EmphasisStyle, RuboCop::Cop::Markdown::StrongStyle
+    ]
+
+    result, rewritten = investigate(cops, source, { 'Style' => 'underscore' })
+    expect(result.map { |offense| [offense.cop_name, offense.location.source, offense.location.column] }).to eq(
+      [['Markdown/EmphasisStyle', '*', 7], ['Markdown/StrongStyle', '**', 18]]
+    )
+    expect(rewritten).to eq("😀 _first_ and __bold__.\n\n> café _word_ and **text**.\n")
+    rewritten = corrected(cops, rewritten, { 'Style' => 'underscore' })
+    expect(rewritten).to eq(expected)
+    expect(offenses(cops, rewritten, { 'Style' => 'underscore' })).to be_empty
+    result = offenses(cops, rewritten, { 'Style' => 'asterisk' })
+    expect(result.map(&:cop_name)).to contain_exactly(
+      'Markdown/EmphasisStyle', 'Markdown/StrongStyle', 'Markdown/EmphasisStyle', 'Markdown/StrongStyle'
+    )
+  end
+
+  it 'keeps emphasis ranges isolated between effective front-matter configurations' do
+    source = "---\ntitle: *hidden* and **secret**\n---\n\n😀 *visible* and **bold**.\n"
+    processed = RuboCop::ProcessedSource.new(source, 3.2, 'test.md')
+    ignored = processed.prose_document(configuration: { 'Markdown' => { 'IgnoreFrontMatter' => true } })
+    included = processed.prose_document(configuration: { 'Markdown' => { 'IgnoreFrontMatter' => false } })
+    ranges = lambda do |doc, type|
+      doc.emphasis_ranges(type).map { |opening, closing, _| [opening.line, opening.column, closing.column] }
+    end
+
+    expect(ranges.call(ignored, :em)).to eq([[5, 2, 10]])
+    expect(ranges.call(included, :strong)).to eq([[2, 20, 28], [5, 16, 22]])
+    expect(ranges.call(ignored, :strong)).to eq([[5, 16, 22]])
+    expect(ranges.call(included, :em)).to eq([[2, 7, 14], [5, 2, 10]])
+  end
 end
