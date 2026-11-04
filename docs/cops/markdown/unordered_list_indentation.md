@@ -1,6 +1,6 @@
 # Markdown/UnorderedListIndentation
 
-Requires top-level unordered markers at zero indentation and nested markers at the configured offset from their parent, including ordered parents. A deeper blockquote starts a fresh baseline.
+Requires top-level unordered markers at zero indentation and nested markers at the configured offset from their parent. Under an ordered parent, the offset is at least the width of the parent's marker and following spacing, so the child can align with its content. A deeper blockquote starts a fresh baseline.
 
 Indentation counts source characters, not tab stops. Report-only: moving a list can change its continuation blocks.
 
@@ -9,7 +9,7 @@ Indentation counts source characters, not tab stops. Report-only: moving a list 
 ```yaml
 Markdown/UnorderedListIndentation:
   Enabled: true
-  Indent: 2 # Characters beyond the immediate parent list marker.
+  Indent: 2 # Characters beyond the parent marker, or its content offset if wider and ordered.
 ```
 
 ## Example
@@ -19,6 +19,14 @@ Markdown/UnorderedListIndentation:
 ```markdown
 - Parent
    - Child
+
+1. Ordered parent
+
+    - Child
+
+10. Wider ordered parent
+
+     - Child
 ```
 
 ### Good
@@ -26,4 +34,12 @@ Markdown/UnorderedListIndentation:
 ```markdown
 - Parent
   - Child
+
+1. Ordered parent
+
+   - Child
+
+10. Wider ordered parent
+
+    - Child
 ```
