@@ -1,0 +1,4 @@
+unsafe_autocorrect: true
+offenses:
+  Markdown/ListItemCapitalization: 2
+remaining_offenses: {}

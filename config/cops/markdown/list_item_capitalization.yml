@@ -1,0 +1,32 @@
+Markdown/ListItemCapitalization:
+  Description: Enforce consistent initials, initial capitals, or title case in list items.
+  Enabled: false
+  SafeAutoCorrect: false
+  EnforcedStyle: consistent
+  SupportedStyles:
+    - consistent
+    - initial_capital
+    - title_case
+  PreserveMixedCase: true
+  IgnoredWords: []
+  MinorWords:
+    - a
+    - an
+    - and
+    - as
+    - at
+    - but
+    - by
+    - for
+    - from
+    - in
+    - nor
+    - of
+    - 'on'
+    - or
+    - per
+    - the
+    - to
+    - via
+    - vs
+    - with
