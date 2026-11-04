@@ -36,6 +36,8 @@ Bare link destinations use character-based searches to skip ordinary path text, 
 
 Shared blank-line cleanup respects the minimum padding required by enabled, applicable Markdown structure-spacing cops, without applying those rules to plain text. When an offense has multiple plausible rewrites, the cop reports it without choosing one.
 
+`Markdown/HardBreakStyle` applies to parser-recognized paragraph hard breaks, not arbitrary terminal backslashes or code. Its default backslash style is coordinated with `Markdown/TrailingWhitespace` so the two cops do not issue overlapping edits; conversions that could change backslash escaping are report-only.
+
 Shell-prompt removal preserves code-content ranges and container prefixes. Blocks with output or ambiguous `#` prompts remain uncorrected; so does an entire block if removing any prompt could expose its closing delimiter. See [Markdown/ShellPrompts](docs/cops/markdown/shell_prompts.md) for prompt and language settings.
 
 `Markdown/ListContinuationIndentation` uses parsed list-item membership and each paragraph's original-source mapping to find continuation lines, excluding following root paragraphs and child list blocks. Its expected column comes from the parsed item's marker, so ordered marker widths and container prefixes are retained. It reports only: reindentation could change Markdown block ownership, so no correction is offered.

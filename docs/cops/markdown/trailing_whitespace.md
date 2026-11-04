@@ -2,6 +2,8 @@
 
 Trims trailing whitespace while preserving paragraph hard breaks at the configured width. Hard-break width must be positive.
 
+When [Markdown/HardBreakStyle](hard_break_style.md) is enabled, that cop selects the hard-break syntax and this cop avoids overlapping corrections.
+
 ## Configuration
 
 ```yaml

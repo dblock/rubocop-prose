@@ -19,6 +19,7 @@ module RuboCop
 
         def investigate_document
           paragraphs = document.paragraphs.flat_map { |paragraph| document.line_numbers(paragraph).to_a }.to_set
+          hard_break_lines = document.hard_breaks.to_set { |node| node.options[:location] }
           document.lines.each_with_index do |text, index|
             number = index + 1
             next if document.front_matter_line?(number)
@@ -29,6 +30,11 @@ module RuboCop
 
             spaces = text[/ +\z/].to_s.length
             hard_break = !text.strip.empty? && paragraphs.include?(number) && spaces >= 2
+            style = hard_break_style
+            handled_by_style = hard_break_lines.include?(number) && hard_break &&
+                               style && (style['Style'] == 'backslash' || text[0...-spaces].end_with?('\\'))
+            next if handled_by_style
+
             keep = hard_break ? ' ' * cop_config['HardBreakSpaces'] : ''
             next if match[0] == keep
 
@@ -37,6 +43,11 @@ module RuboCop
               corrector.replace(processed_range(range), keep) unless document.code_line?(number)
             end
           end
+        end
+
+        def hard_break_style
+          style = config.for_cop('Markdown/HardBreakStyle')
+          style if style && style['Enabled']
         end
       end
     end

@@ -1,0 +1,6 @@
+plugins:
+  - rubocop-prose
+
+Markdown/HardBreakStyle:
+  Enabled: true
+  Style: spaces
