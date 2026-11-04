@@ -42,6 +42,8 @@ Shell-prompt removal preserves code-content ranges and container prefixes. Block
 
 `Markdown/ListContinuationIndentation` uses parsed list-item membership and each paragraph's original-source mapping to find continuation lines, excluding following root paragraphs and child list blocks. Its expected column comes from the parsed item's marker, so ordered marker widths and container prefixes are retained. It reports only: reindentation could change Markdown block ownership, so no correction is offered.
 
+`Markdown/ListItemPunctuation` uses parsed sibling membership and rendered inline text to check only terminal punctuation presence, not the punctuation character. Consistent mode uses the first item as its baseline; explicit always/never styles inspect every eligible item against the configured policy. It checks a list only when every item has exactly one paragraph and a source-mapped marker; code and multi-block items are ambiguous and skipped. Nested lists remain independent.
+
 Cop guides describe user-visible behavior and correction limits. Parsing, source mapping, and correction rationale belong here rather than in individual guides.
 
 ## Artwork
