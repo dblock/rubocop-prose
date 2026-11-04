@@ -74,7 +74,6 @@ module IntegrationFixtures
     end
     command.push('-S', 'rubocop') unless in_process
     command.push('--config', configuration, '--cache', 'false', '--format', 'json')
-    command.push('--no-parallel') if in_process
     command.push('--only', only.join(',')) unless only.empty?
     command.push('--plugin', 'rubocop-prose') if loading == 'options'
     command

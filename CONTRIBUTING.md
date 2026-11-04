@@ -50,6 +50,8 @@ Validate defaults, packaging, and the affected tests. Enable broadly applicable 
 
 ## Pull requests
 
+See [RELEASING.md](RELEASING.md) for the maintainer release procedure.
+
 Keep each pull request focused, with one coherent commit, and use squash merges. Include behavior and configuration documentation. Preserve unrelated worktree changes.
 
 Add a linked unreleased changelog entry only for a notable user-facing change, using the actual pull-request number. Do not add entries for documentation, tooling, refactoring, or unreleased functionality; update an existing feature entry when appropriate.
