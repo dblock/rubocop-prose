@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. The format 
 - [#111](https://github.com/dblock/rubocop-prose/pull/111): Add default-enabled `Markdown/OutsideSpacing` for inline formatting adjacent to prose - [@dblock](https://github.com/dblock).
 - [#113](https://github.com/dblock/rubocop-prose/pull/113): Add `Markdown/ThematicBreakBlankLines` for default-enabled, container-aware spacing around parsed thematic breaks - [@dblock](https://github.com/dblock).
 - [#115](https://github.com/dblock/rubocop-prose/pull/115): Add a default-enabled check for backslash separators in local Markdown image paths - [@dblock](https://github.com/dblock).
+- [#106](https://github.com/dblock/rubocop-prose/pull/106): Enable dollar and percent shell-prompt cleanup with configurable markers and report-only handling of ambiguous shell comments - [@dblock](https://github.com/dblock).
 - [#75](https://github.com/dblock/rubocop-prose/pull/75): Configure independent blank-line counts above and below fenced code blocks - [@dblock](https://github.com/dblock).
 - [#72](https://github.com/dblock/rubocop-prose/pull/72): Allow identical reference definitions while retaining conflict and unused checks - [@dblock](https://github.com/dblock).
 - [#69](https://github.com/dblock/rubocop-prose/pull/69): Add reproducible prose benchmarks and share Markdown document analysis across cops - [@dblock](https://github.com/dblock).

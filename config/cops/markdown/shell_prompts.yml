@@ -1,6 +1,9 @@
 Markdown/ShellPrompts:
-  Description: Omit dollar prompts in shell-only examples without output.
-  Enabled: false
+  Description: Omit configured shell prompts in examples without output.
+  Enabled: true
+  Prompts:
+    - '$'
+    - '%'
   ShellLanguages:
     - bash
     - console

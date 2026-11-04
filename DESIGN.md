@@ -74,6 +74,8 @@ Fence-style corrections replace both delimiters and choose a length greater than
 
 `Markdown/ThematicBreakBlankLines` only considers parser-produced thematic-break nodes. Its boundary insertions preserve the source container prefix, merge duplicate insertions for adjacent breaks, and leave document and front-matter boundaries untouched.
 
+Shell-prompt recognition uses one positive `Prompts` set within `ShellLanguages`, with `$` and `%` enabled by default. Blank lines and unprompted shell comments do not count as output; other unprompted lines prevent reporting and correction for the block. Explicitly configured markers beginning with `#` remain ambiguous with shell comments, so any block containing them is report-only. Prompt removal uses shared code-content ranges and fence details, preserves original container prefixes, and withholds all corrections in a block if removing any prompt could expose its closing delimiter.
+
 Parser warnings are native syntax diagnostics, not a complete CommonMark validator. Specialized reference cops own corresponding diagnostics when enabled, preventing duplicate reporting. Fragment-anchor generation is renderer-dependent and documented as a configurable approximation; validation does not fetch external links or files.
 
 Cop guides document user-visible behavior and meaningful correction limits. Shared inspection behavior belongs in the README; parsing, source mapping, and correction algorithms belong here.

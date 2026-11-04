@@ -99,7 +99,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/RawHtml](docs/cops/markdown/raw_html.md)                                    | Disabled | Disallow raw HTML except explicitly allowed elements.                               |
 | [Markdown/ReferenceDefinitions](docs/cops/markdown/reference_definitions.md)          | Enabled  | Report unused and duplicate reference definitions.                                  |
 | [Markdown/ReversedLink](docs/cops/markdown/reversed_link.md)                          | Enabled  | Report reversed Markdown link delimiters.                                           |
-| [Markdown/ShellPrompts](docs/cops/markdown/shell_prompts.md)                          | Disabled | Omit dollar prompts in shell-only examples without output.                          |
+| [Markdown/ShellPrompts](docs/cops/markdown/shell_prompts.md)                          | Enabled  | Omit configured shell prompts in examples without output.                           |
 | [Markdown/SingleTopLevelHeading](docs/cops/markdown/single_top_level_heading.md)      | Disabled | Allow at most one top-level heading.                                                |
 | [Markdown/StrongStyle](docs/cops/markdown/strong_style.md)                            | Enabled  | Use a configured or consistent strong delimiter.                                    |
 | [Markdown/StructuralLineLength](docs/cops/markdown/structural_line_length.md)         | Disabled | Report overlong heading, code-block, and table source lines without reflowing them. |
