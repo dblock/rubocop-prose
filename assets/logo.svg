@@ -1,18 +1,80 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title description">
   <title id="title">rubocop-prose logo</title>
-  <desc id="description">RuboCop's original helmet logo alongside a parchment scroll with lines of prose.</desc>
+  <desc id="description">RuboCop's original helmet logo alongside a parchment scroll that rolls up and unfurls.</desc>
+  <style>
+    .scroll-static { display: none; }
+    @media (prefers-reduced-motion: reduce) {
+      .scroll-animated { display: none; }
+      .scroll-static { display: inline; }
+    }
+  </style>
+  <defs>
+    <g id="scroll-paper-static">
+      <path fill="#fff" stroke="#fff" stroke-width="16" d="M-46-96h94c18 0 18 26 0 26V80c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z"/>
+      <path fill="#fff6e5" stroke="#17191c" stroke-width="5" d="M-46-83h94V80c0 9-6 16-13 16h-81z"/>
+    </g>
+    <g id="scroll-top">
+      <path fill="#f2dfbf" stroke="#17191c" stroke-width="5" d="M-46-96h94c18 0 18 26 0 26h-94z"/>
+      <circle cx="-46" cy="-83" r="13" fill="#e7c9a0" stroke="#17191c" stroke-width="5"/>
+      <path fill="none" stroke="#17191c" stroke-width="3" d="M-43-89c-8-2-13 8-6 12 4 3 9-1 6-5"/>
+    </g>
+    <g id="scroll-lines">
+      <path fill="none" stroke="#ec1826" stroke-width="6" d="M-26-42H10"/>
+      <path fill="none" stroke="#17191c" stroke-width="4" d="M-26-16H28M-26 5h55M-26 26h40M-26 47h48"/>
+    </g>
+    <g id="scroll-bottom">
+      <path fill="#f2dfbf" stroke="#17191c" stroke-width="5" d="M-46 66h81c19 0 19 30 0 30h-81z"/>
+      <circle cx="-46" cy="81" r="15" fill="#e7c9a0" stroke="#17191c" stroke-width="5"/>
+    </g>
+    <path id="scroll-curl" fill="none" stroke="#17191c" stroke-width="3" d="M-43 74c-9-2-15 10-7 14 5 3 11-2 7-7"/>
+    <clipPath id="scroll-paper-clip">
+      <rect x="-64" y="-83" width="128" height="179">
+        <animate attributeName="height" dur="6s" repeatCount="indefinite"
+          values="179;179;43;43;179;179" keyTimes="0;0.25;0.45;0.55;0.75;1"
+          calcMode="spline" keySplines="0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1"/>
+      </rect>
+    </clipPath>
+  </defs>
   <path fill="#fff" d="M0 0h512v512H0z"/>
   <image href="rubocop-logo.svg" x="0" y="72" width="360" height="360"/>
   <g transform="translate(423 258)" stroke-linecap="round" stroke-linejoin="round">
-    <path fill="#fff" stroke="#fff" stroke-width="16" d="M-46-96h94c18 0 18 26 0 26V80c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z"/>
-    <path fill="#fff6e5" stroke="#17191c" stroke-width="5" d="M-46-83h94V80c0 9-6 16-13 16h-81z"/>
-    <path fill="#f2dfbf" stroke="#17191c" stroke-width="5" d="M-46-96h94c18 0 18 26 0 26h-94z"/>
-    <circle cx="-46" cy="-83" r="13" fill="#e7c9a0" stroke="#17191c" stroke-width="5"/>
-    <path fill="none" stroke="#17191c" stroke-width="3" d="M-43-89c-8-2-13 8-6 12 4 3 9-1 6-5"/>
-    <path fill="none" stroke="#ec1826" stroke-width="6" d="M-26-42H10"/>
-    <path fill="none" stroke="#17191c" stroke-width="4" d="M-26-16H28M-26 5h55M-26 26h40M-26 47h48"/>
-    <path fill="#f2dfbf" stroke="#17191c" stroke-width="5" d="M-46 66h81c19 0 19 30 0 30h-81z"/>
-    <circle cx="-46" cy="81" r="15" fill="#e7c9a0" stroke="#17191c" stroke-width="5"/>
-    <path fill="none" stroke="#17191c" stroke-width="3" d="M-43 74c-9-2-15 10-7 14 5 3 11-2 7-7"/>
+    <g class="scroll-static">
+      <use href="#scroll-paper-static"/>
+      <use href="#scroll-top"/>
+      <use href="#scroll-lines"/>
+      <use href="#scroll-bottom"/>
+      <use href="#scroll-curl"/>
+    </g>
+    <g class="scroll-animated">
+      <path fill="#fff" stroke="#fff" stroke-width="16" d="M-46-96h94c18 0 18 26 0 26V80c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z">
+        <animate attributeName="d" dur="6s" repeatCount="indefinite"
+          values="M-46-96h94c18 0 18 26 0 26V80c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z;M-46-96h94c18 0 18 26 0 26V80c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z;M-46-96h94c18 0 18 26 0 26V-56c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z;M-46-96h94c18 0 18 26 0 26V-56c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z;M-46-96h94c18 0 18 26 0 26V80c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z;M-46-96h94c18 0 18 26 0 26V80c0 9-6 16-13 16h-81c-19 0-19-30 0-30V-70c-17 0-17-26 0-26z"
+          keyTimes="0;0.25;0.45;0.55;0.75;1" calcMode="spline"
+          keySplines="0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1"/>
+      </path>
+      <path id="scroll-paper" fill="#fff6e5" stroke="#17191c" stroke-width="5" d="M-46-83h94V80c0 9-6 16-13 16h-81z">
+        <animate attributeName="d" dur="6s" repeatCount="indefinite"
+          values="M-46-83h94V80c0 9-6 16-13 16h-81z;M-46-83h94V80c0 9-6 16-13 16h-81z;M-46-83h94V-56c0 9-6 16-13 16h-81z;M-46-83h94V-56c0 9-6 16-13 16h-81z;M-46-83h94V80c0 9-6 16-13 16h-81z;M-46-83h94V80c0 9-6 16-13 16h-81z"
+          keyTimes="0;0.25;0.45;0.55;0.75;1" calcMode="spline"
+          keySplines="0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1"/>
+      </path>
+      <use href="#scroll-top"/>
+      <g clip-path="url(#scroll-paper-clip)">
+        <use href="#scroll-lines"/>
+      </g>
+      <g id="scroll-roller">
+        <animateTransform attributeName="transform" type="translate" dur="6s" repeatCount="indefinite"
+          values="0 0;0 0;0 -136;0 -136;0 0;0 0" keyTimes="0;0.25;0.45;0.55;0.75;1"
+          calcMode="spline" keySplines="0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1"/>
+        <use href="#scroll-bottom"/>
+        <g>
+          <animateTransform attributeName="transform" type="rotate" dur="6s" repeatCount="indefinite"
+            values="0 -46 81;0 -46 81;-540 -46 81;-540 -46 81;0 -46 81;0 -46 81"
+            keyTimes="0;0.25;0.45;0.55;0.75;1" calcMode="spline"
+            keySplines="0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1;0.45 0 0.2 1"/>
+          <use href="#scroll-curl"/>
+        </g>
+      </g>
+    </g>
   </g>
 </svg>

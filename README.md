@@ -1,4 +1,4 @@
-<img src="assets/logo.png" alt="The RuboCop helmet logo with a parchment scroll alongside it." width="160">
+<img src="assets/logo.gif" alt="The RuboCop helmet logo alongside a parchment scroll rolling up and unfurling." width="160">
 
 # rubocop-prose
 
