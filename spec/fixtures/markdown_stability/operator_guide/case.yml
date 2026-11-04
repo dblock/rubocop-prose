@@ -1,0 +1,10 @@
+loading: options
+offenses:
+  Markdown/HeadingBlankLines: 2
+  Prose/MaxLength: 3
+  Markdown/FenceBlankLines: 4
+  Markdown/AtxHeadingSpacing: 1
+  Markdown/TableSpacing: 6
+  Markdown/FenceStyle: 1
+  Markdown/HardBreakStyle: 1
+remaining_offenses: {}

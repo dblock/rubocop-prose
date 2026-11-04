@@ -34,6 +34,8 @@ CLI scenarios live under `spec/fixtures/{prose,markdown,text,markdown_interopera
 
 Fixtures with explicit `Enabled: true` cop entries run with `--only`; others exercise configured defaults. The shared runner checks explicit files, discovery, reporting, correction, repeated autocorrection and reporting, and stdin while keeping repository files unchanged. Put whitespace-sensitive fixtures under the existing Git whitespace attributes.
 
+Mixed default-cop release-gate scenarios live under `spec/fixtures/markdown_stability/`. Their focused integration spec checks independently declared expected output and GFM content trees after every correction, allowing only soft-wrap, blank-padding, delimiter-style, and tight-list normalizations. It bounds convergence, rejects oscillation, and checks another byte-identical run after reaching a fixed point; the two scenarios cover YAML and CLI plugin loading without repeating the shared runner's full matrix.
+
 Run `bundle exec rspec spec/integration`. To include the optional preprocessor suite, set `RUBOCOP_MD_PATH` to its checkout and run `bundle exec rspec spec/integration/markdown_interoperability_spec.rb`. Interoperability requires the original-buffer mapping API described in [DESIGN.md](DESIGN.md#preprocessor-interoperability); without it, only that suite is skipped.
 
 ## Adding a cop

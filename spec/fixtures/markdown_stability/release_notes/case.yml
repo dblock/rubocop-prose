@@ -1,0 +1,13 @@
+loading: config
+offenses:
+  Markdown/AtxHeadingSpacing: 1
+  Prose/MaxLength: 6
+  Markdown/HardBreakStyle: 2
+  Prose/MultipleBlankLines: 2
+  Markdown/BlockquoteSpacing: 1
+  Markdown/EmphasisStyle: 1
+  Markdown/StrongStyle: 1
+  Markdown/ListMarkerSpacing: 2
+  Markdown/ListBlankLines: 1
+  Markdown/CompactLists: 1
+remaining_offenses: {}
