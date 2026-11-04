@@ -5,6 +5,7 @@ All notable changes to this project will be documented in this file. The format 
 ## [Unreleased]
 
 - [#108](https://github.com/dblock/rubocop-prose/pull/108): Allow multiple explicit thematic-break spellings with report-only handling for ambiguous corrections - [@dblock](https://github.com/dblock).
+- [#107](https://github.com/dblock/rubocop-prose/pull/107): Apply the configured blank-line limit inside Markdown blockquotes while preserving quote markers and paragraph separation - [@dblock](https://github.com/dblock).
 - [#75](https://github.com/dblock/rubocop-prose/pull/75): Configure independent blank-line counts above and below fenced code blocks - [@dblock](https://github.com/dblock).
 - [#72](https://github.com/dblock/rubocop-prose/pull/72): Allow identical reference definitions while retaining conflict and unused checks - [@dblock](https://github.com/dblock).
 - [#69](https://github.com/dblock/rubocop-prose/pull/69): Add reproducible prose benchmarks and share Markdown document analysis across cops - [@dblock](https://github.com/dblock).
