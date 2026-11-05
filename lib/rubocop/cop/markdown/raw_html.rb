@@ -44,8 +44,8 @@ module RuboCop
                           message: "Raw HTML element <#{node.value}> is not allowed.")
           end
           # GFM table cell span locations are relative to the cell, not the document.
-          RuboCop::Prose::InlineRules.lines(document).each do |text, number, _|
-            protected = RuboCop::Prose::InlineRules.spans(text).reject { |span| span.kind == :html }
+          document.inline_lines.each do |text, number, _|
+            protected = document.inline_spans(number).reject { |span| span.kind == :html }
             text.to_enum(:scan, OPENING_TAG).each do
               match = Regexp.last_match
               name = match[1].downcase

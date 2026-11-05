@@ -28,6 +28,7 @@ class ProseBenchmark
     @sizes.each do |size|
       { markdown: markdown(size), text: text(size) }.each do |format, source|
         measure("document/#{format}", size, source) { document(source, format) }
+        measure('analysis/markdown', size, source) { markdown_analysis(source) } if format == :markdown
         @configurations.each do |profile, configuration|
           cops = RuboCop::Cop::Registry.global.select do |cop|
             %i[Prose Markdown Text].include?(cop.department) && configuration[cop.cop_name]['Enabled']
@@ -95,6 +96,19 @@ class ProseBenchmark
       [offense.cop_name, offense.location.begin_pos, offense.location.end_pos, offense.message, offense.severity.name]
     end.sort
     [offenses, options.fetch(:stdin)]
+  end
+
+  def markdown_analysis(source)
+    buffer = Parser::Source::Buffer.new(path(:markdown), source: source)
+    document = RuboCop::Prose::Document.build(path(:markdown), buffer)
+    links = document.link_rules
+    [links.links.map(&:to_a), links.definitions.map(&:to_a),
+     document.tables.map { |table| table.rows.map { |row| [row.number, row.cells.map(&:to_a)] } },
+     %i[em strong].map do |type|
+       document.emphasis_ranges(type).map do |opening, closing, marker|
+         [opening.begin_pos, opening.end_pos, closing.begin_pos, closing.end_pos, marker]
+       end
+     end]
   end
 
   def path(format)

@@ -132,7 +132,8 @@ module RuboCop
 
       def self.mask(text, include_code: false, document: nil, number: nil)
         result = text.dup
-        spans(text).each do |span|
+        protected = document && text == document.line(number) ? document.inline_spans(number) : spans(text)
+        protected.each do |span|
           next if include_code && span.kind == :code
 
           result[span.begin_pos...span.end_pos] = ' ' * (span.end_pos - span.begin_pos)
@@ -160,8 +161,10 @@ module RuboCop
           source[range.begin_pos...range.end_pos] = ' ' * range.size
         end
         root = PositionedParser.parse(source, hard_wrap: false, gfm_quirks: %i[paragraph_end no_auto_typographic]).first
-        nodes = lambda do |node|
-          [node] + (node.type == :table ? [] : node.children.flat_map { |child| nodes.call(child) })
+        nodes = lambda do |node, found = []|
+          found << node
+          node.children.each { |child| nodes.call(child, found) } unless node.type == :table
+          found
         end
         records = nodes.call(root).map { |node| [node, 0, nil] }
         document.nodes(:table).each do |table|
@@ -169,9 +172,11 @@ module RuboCop
           while number <= document.lines.length && !document.line(number).strip.empty?
             # Cell locations are not document-relative; parsing the row as inline prose
             # recovers offsets without changing the table parser or its AST.
-            row = PositionedParser.parse("prose #{document.line(number).tr('|', ';')}",
-                                         hard_wrap: false, gfm_quirks: %i[paragraph_end no_auto_typographic]).first
-            records.concat(nodes.call(row).map { |node| [node, number - 1, -6] })
+            if document.line(number).match?(/[*_]/)
+              row = PositionedParser.parse("prose #{document.line(number).tr('|', ';')}",
+                                           hard_wrap: false, gfm_quirks: %i[paragraph_end no_auto_typographic]).first
+              records.concat(nodes.call(row).map { |node| [node, number - 1, -6] })
+            end
             number += 1
           end
         end
@@ -197,7 +202,7 @@ module RuboCop
 
           column = first_prefix + before.rpartition("\n").last.length
           last_column = last_prefix + through.rpartition("\n").last.length
-          next if spans(document.line(number)).any? { |span| span.begin_pos <= column && span.end_pos > column }
+          next if document.inline_spans(number).any? { |span| span.begin_pos <= column && span.end_pos > column }
 
           position = document.range(number, column, number, column + 1)
           next if multiline_atoms(document).any? { |range| range.contains?(position) }

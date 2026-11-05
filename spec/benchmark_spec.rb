@@ -12,7 +12,7 @@ RSpec.describe 'Prose benchmarks' do
       )
 
       expect(status.success?).to be(true), "#{stdout}\n#{stderr}"
-      expect(stdout).to include('document/markdown', 'document/text')
+      expect(stdout).to include('document/markdown', 'document/text', 'analysis/markdown')
       %w[default project].each do |profile|
         %w[markdown text].each do |format|
           expect(stdout).to include("lint/#{profile}/#{format}", "correct/#{profile}/#{format}")

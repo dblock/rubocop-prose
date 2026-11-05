@@ -23,16 +23,16 @@ module RuboCop
 
         def code_spans
           multiline = RuboCop::Prose::InlineRules.multiline_atoms(document)
-          RuboCop::Prose::InlineRules.lines(document).flat_map do |text, number, column|
+          document.inline_lines.flat_map do |_, number, column|
             line_start = document.line_range(number).begin_pos
-            RuboCop::Prose::InlineRules.spans(text).filter_map do |span|
+            document.inline_spans(number).filter_map do |span|
               next unless span.kind == :code && span.begin_pos >= column
 
               first = line_start + span.begin_pos
               last = line_start + span.end_pos
               range = ::Parser::Source::Range.new(document.buffer, first, last)
               next if multiline.any? { |atom| atom.overlaps?(range) }
-              next if protected_ranges(number, text, line_start).any? { |atom| atom.overlaps?(range) }
+              next if protected_ranges(number, line_start).any? { |atom| atom.overlaps?(range) }
 
               [first, last, first + span.delimiter.length, last - span.delimiter.length]
             end
@@ -48,7 +48,7 @@ module RuboCop
               last = closing.end_pos
               number = opening.line
               line_start = document.line_range(number).begin_pos
-              next if protected_ranges(number, document.line(number), line_start)
+              next if protected_ranges(number, line_start)
                       .any? { |atom| atom.begin_pos < last && first < atom.end_pos }
 
               [first, last, opening.end_pos, closing.begin_pos]
@@ -56,9 +56,9 @@ module RuboCop
           end
         end
 
-        def protected_ranges(number, text, line_start)
+        def protected_ranges(number, line_start)
           @protected_ranges ||= {}
-          @protected_ranges[number] ||= RuboCop::Prose::InlineRules.spans(text).filter_map do |span|
+          @protected_ranges[number] ||= document.inline_spans(number).filter_map do |span|
             next if span.kind == :code
 
             ::Parser::Source::Range.new(document.buffer, line_start + span.begin_pos, line_start + span.end_pos)

@@ -11,8 +11,8 @@ module RuboCop
         def investigate_document
           multiline = RuboCop::Prose::InlineRules.multiline_atoms(document)
                                                  .select { |range| range.source.start_with?('`') }
-          RuboCop::Prose::InlineRules.lines(document).each do |text, number, column|
-            RuboCop::Prose::InlineRules.spans(text).each do |span|
+          document.inline_lines.each do |text, number, column|
+            document.inline_spans(number).each do |span|
               next unless span.kind == :code && span.begin_pos >= column
 
               position = document.range(number, span.begin_pos, number, span.end_pos)

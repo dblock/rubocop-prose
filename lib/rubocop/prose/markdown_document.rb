@@ -55,6 +55,15 @@ module RuboCop
         @tables ||= TableRules.tables(self)
       end
 
+      def inline_lines
+        @inline_lines ||= InlineRules.lines(self)
+      end
+
+      def inline_spans(number)
+        @inline_spans ||= {}
+        @inline_spans[number] ||= InlineRules.spans(line(number))
+      end
+
       def emphasis_ranges(type)
         @emphasis_ranges ||= InlineRules.emphasis(self)
         @emphasis_ranges.fetch(type, [])
@@ -135,8 +144,11 @@ module RuboCop
 
       def atomic_ranges(paragraph)
         paragraph.options[:original_ranges] ||= begin
-          inline = ::Parser::Source::Buffer.new('(paragraph)', source: paragraph.options[:prose_source])
-          paragraph.options[:prose_atoms].map do |first, last|
+          atoms = paragraph.options[:prose_atoms]
+          unless atoms.empty?
+            inline = ::Parser::Source::Buffer.new('(paragraph)', source: paragraph.options[:prose_source])
+          end
+          atoms.map do |first, last|
             start_line, start_column = inline.decompose_position(first)
             end_line, end_column = inline.decompose_position(last)
             first_line = paragraph.options[:location] + start_line - 1
@@ -160,14 +172,17 @@ module RuboCop
         end
       end
 
-      def walk(node)
-        [node] + node.children.flat_map { |child| walk(child) }
+      def walk(node, found = [])
+        found << node
+        node.children.each { |child| walk(child, found) }
+        found
       end
 
-      def find_hard_breaks(node)
-        node.children.flat_map do |child|
-          child.type == :br ? [child] : find_hard_breaks(child)
+      def find_hard_breaks(node, found = [])
+        node.children.each do |child|
+          child.type == :br ? found << child : find_hard_breaks(child, found)
         end
+        found
       end
     end
   end
