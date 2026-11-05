@@ -4,7 +4,7 @@ Checks ATX and Setext headings, ignoring emphasis delimiters, link syntax, and l
 
 Lowercase openings inside inline code or quoted terms are reported, including ``## `excalc` usage`` and `## "excalc" usage`; neither their literal contents nor later words are changed. Opaque leading content such as HTML or images is conservatively skipped. `PreserveMixedCase: true` (the default) preserves mixed-case words such as `eBay`, `iOS`, and `macOS` where an initial capital is required, in either style. Set it to `false` to require uppercase initials even for those words. `IgnoredWords` still takes precedence.
 
-Use native RuboCop suppression directives for intentional lowercase headings. [Markdown/ProperNames](proper_names.md) independently enforces configured canonical spellings; its configuration does not exempt headings from this cop.
+Use native RuboCop suppression directives for intentional lowercase headings. [Prose/ProperNames](../prose/proper_names.md) independently enforces configured canonical spellings; its configuration does not exempt headings from this cop.
 
 `IgnoredWords` skips exact, case-sensitive whole words in either style without exempting the rest of the heading. Mixed-case brands such as `macOS` already pass; use this option for additional spellings such as `npm`.
 

@@ -54,7 +54,7 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 
 ### Markdown
 
-Markdown checks ignore [front matter](docs/settings/front_matter.md) by default and do not treat code blocks as prose. Dedicated code-block cops check their structure; [Markdown/HardTabs](docs/cops/markdown/hard_tabs.md) and [Markdown/StructuralLineLength](docs/cops/markdown/structural_line_length.md) can also inspect code content. Inline formatting checks leave code spans, links, escaped syntax, and HTML untouched unless they specifically check those constructs.
+Markdown checks ignore [front matter](docs/settings/front_matter.md) by default and do not treat code blocks as prose. Dedicated code-block cops check their structure; [Prose/HardTabs](docs/cops/prose/hard_tabs.md) and [Markdown/StructuralLineLength](docs/cops/markdown/structural_line_length.md) can also inspect code content. Prose/HardTabs checks every line of plain text, where tabs are reported without correction. Prose/ProperNames checks literal text in plain-text files; in Markdown, inline code, links, escaped syntax, HTML, and front matter remain excluded by default.
 
 | Cop                                                                                         | Default  | Purpose                                                                             |
 | ---                                                                                         | ---      | -------                                                                             |
@@ -81,7 +81,6 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/FrontMatterKeys](docs/cops/markdown/front_matter_keys.md)                         | Disabled | Restrict allowed and require mandatory top-level front matter keys.                 |
 | [Markdown/FrontMatterSyntax](docs/cops/markdown/front_matter_syntax.md)                     | Enabled  | Report YAML syntax errors in closed leading front matter.                           |
 | [Markdown/HardBreakStyle](docs/cops/markdown/hard_break_style.md)                           | Enabled  | Use backslashes or trailing spaces for paragraph hard breaks.                       |
-| [Markdown/HardTabs](docs/cops/markdown/hard_tabs.md)                                        | Enabled  | Disallow hard tabs with code-language exceptions.                                   |
 | [Markdown/HeadingBlankLines](docs/cops/markdown/heading_blank_lines.md)                     | Enabled  | Surround headings with blank lines.                                                 |
 | [Markdown/HeadingCapitalization](docs/cops/markdown/heading_capitalization.md)              | Disabled | Enforce initial capitalization or title case in headings.                           |
 | [Markdown/HeadingIncrement](docs/cops/markdown/heading_increment.md)                        | Enabled  | Increase heading levels without skipping levels.                                    |
@@ -102,7 +101,6 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/ListMarkerSpacing](docs/cops/markdown/list_marker_spacing.md)                     | Enabled  | Configure spaces after ordered and unordered list markers.                          |
 | [Markdown/OrderedListNumbering](docs/cops/markdown/ordered_list_numbering.md)               | Disabled | Use sequential numbers or repeated ones in ordered lists.                           |
 | [Markdown/OutsideSpacing](docs/cops/markdown/outside_spacing.md)                            | Enabled  | Report inline formatting directly adjacent to prose words.                          |
-| [Markdown/ProperNames](docs/cops/markdown/proper_names.md)                                  | Disabled | Use configured capitalization for proper names.                                     |
 | [Markdown/RawHtml](docs/cops/markdown/raw_html.md)                                          | Disabled | Disallow raw HTML except allowed elements, with optional attribute allowlists.      |
 | [Markdown/ReferenceDefinitions](docs/cops/markdown/reference_definitions.md)                | Enabled  | Report unused and duplicate reference definitions.                                  |
 | [Markdown/ReversedLink](docs/cops/markdown/reversed_link.md)                                | Enabled  | Report reversed Markdown link delimiters.                                           |
@@ -124,6 +122,8 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/UnorderedListMarker](docs/cops/markdown/unordered_list_marker.md)                 | Enabled  | Use a configured or consistent unordered list marker.                               |
 | [Prose/MaxLength](docs/cops/prose/max_length.md)                                            | Enabled  | Wrap or unwrap prose paragraphs in Markdown and plain text.                         |
 | [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md)                         | Enabled  | Limit blank lines in prose and quotes, but not code.                                |
+| [Prose/HardTabs](docs/cops/prose/hard_tabs.md)                                              | Enabled  | Report tabs in Markdown and plain text without correcting them.                     |
+| [Prose/ProperNames](docs/cops/prose/proper_names.md)                                        | Disabled | Use configured capitalization for literal proper names in Markdown and text.        |
 | [Prose/SentenceCapitalization](docs/cops/prose/sentence_capitalization.md)                  | Disabled | Check paragraph openings without changing quoted or code literals.                  |
 | [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)                                | Enabled  | Require exactly one final newline.                                                  |
 
@@ -140,6 +140,8 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | ---                                                                        | ---      | -------                                                     |
 | [Prose/MaxLength](docs/cops/prose/max_length.md)                           | Enabled  | Wrap or unwrap prose paragraphs in Markdown and plain text. |
 | [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md)        | Enabled  | Limit consecutive literal blank lines.                      |
+| [Prose/HardTabs](docs/cops/prose/hard_tabs.md)                             | Enabled  | Report tabs on every plain-text line without correction.    |
+| [Prose/ProperNames](docs/cops/prose/proper_names.md)                       | Disabled | Check configured canonical spellings in literal text.       |
 | [Prose/SentenceCapitalization](docs/cops/prose/sentence_capitalization.md) | Disabled | Check plain-text and Markdown paragraph openings.           |
 | [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)               | Enabled  | Require exactly one final newline.                          |
 | [Text/TrailingWhitespace](docs/cops/text/trailing_whitespace.md)           | Enabled  | Remove all trailing spaces and tabs from plain-text lines.  |

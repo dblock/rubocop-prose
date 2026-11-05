@@ -1,0 +1,5 @@
+Prose/HardTabs:
+  Description: 'Report hard tabs in prose without correcting them.'
+  Enabled: true
+  CodeBlocks: false
+  AllowedCodeLanguages: []

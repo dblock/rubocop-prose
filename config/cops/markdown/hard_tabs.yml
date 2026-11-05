@@ -1,5 +1,0 @@
-Markdown/HardTabs:
-  Description: 'Disallow hard tabs with code-language exceptions.'
-  Enabled: true
-  CodeBlocks: false
-  AllowedCodeLanguages: []

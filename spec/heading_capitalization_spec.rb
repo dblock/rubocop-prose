@@ -58,7 +58,7 @@ RSpec.describe RuboCop::Cop::Markdown::HeadingCapitalization do
   end
 
   it 'does not exempt canonical ProperNames spellings' do
-    settings = { 'Markdown/ProperNames' => { 'Names' => ['npm'], 'Enabled' => true } }
+    settings = { 'Prose/ProperNames' => { 'Names' => ['npm'], 'Enabled' => true } }
     source = "# npm usage\n\nnpm usage\n---------\n"
     expect(offenses(described_class, source, settings: settings).map(&:line)).to eq([1, 3])
   end

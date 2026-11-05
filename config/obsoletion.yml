@@ -1,3 +1,7 @@
+renamed:
+  Markdown/HardTabs: Prose/HardTabs
+  Markdown/ProperNames: Prose/ProperNames
+
 changed_parameters:
   - cops: Markdown/ListMarkerSpacing
     parameters:
