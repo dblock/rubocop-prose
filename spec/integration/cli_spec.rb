@@ -28,7 +28,7 @@ RSpec.describe 'Fresh-process CLI smoke tests' do
       end
     end
   end
-  it 'applies default-enabled Prose/HardTabs to plain text through both plugin loading mechanisms' do
+  it 'applies default-enabled Text/HardTabs to plain text through both plugin loading mechanisms' do
     Dir.mktmpdir('cli-text-hard-tabs-') do |directory|
       configuration = File.join(directory, '.rubocop.yml')
       File.write(File.join(directory, 'example.txt'), "A\tparagraph.\n")
@@ -37,7 +37,7 @@ RSpec.describe 'Fresh-process CLI smoke tests' do
         config['plugins'] = ['rubocop-prose'] if loading == 'config'
         File.write(configuration, config.to_yaml)
         command = fixture_command(configuration, [], loading, nil)
-        assert_fixture_report(command + ['example.txt'], directory, { 'Prose/HardTabs' => 1 })
+        assert_fixture_report(command + ['example.txt'], directory, { 'Text/HardTabs' => 1 })
       end
     end
   end

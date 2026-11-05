@@ -2,19 +2,16 @@
 
 module RuboCop
   module Cop
-    module Prose
+    module Markdown
       class HardTabs < Base
         private
 
         def investigate_document
-          markdown = processed_source.prose_format == :markdown
-          exempt = allowed_code_lines if markdown
+          exempt = allowed_code_lines
           document.lines.each_with_index do |text, index|
             number = index + 1
-            if markdown
-              next if document.front_matter_line?(number) || exempt.include?(number)
-              next if document.code_line?(number) && !cop_config['CodeBlocks']
-            end
+            next if document.front_matter_line?(number) || exempt.include?(number)
+            next if document.code_line?(number) && !cop_config['CodeBlocks']
 
             text.to_enum(:scan, /\t/).each do
               position = Regexp.last_match.begin(0)

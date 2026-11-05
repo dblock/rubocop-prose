@@ -1,0 +1,4 @@
+Text/ProperNames:
+  Description: 'Use configured capitalization for proper names in literal text.'
+  Enabled: false
+  Names: []

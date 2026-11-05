@@ -1,12 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Prose::HardTabs do
-  it 'directs the old Markdown name to Prose/HardTabs' do
-    config = RuboCop::Config.new({ 'Markdown/HardTabs' => { 'Enabled' => true } }, '.rubocop.yml')
-    expect { RuboCop::ConfigObsoletion.new(config).reject_obsolete! }
-      .to raise_error(RuboCop::ValidationError, %r{Markdown/HardTabs.*Prose/HardTabs}m)
-  end
-
+RSpec.describe RuboCop::Cop::Markdown::HardTabs do
   it 'reports exact Unicode-aware tab locations without guessing a correction' do
     source = "Hello \u{1f600}\tworld.\n"
     result = offenses(described_class, source)
@@ -25,11 +19,7 @@ RSpec.describe RuboCop::Cop::Prose::HardTabs do
     expect(offenses(described_class, "---\ntitle:\tvalue\n---\n\nText.\n")).to be_empty
   end
 
-  it 'reports tabs literally throughout plain text and never corrects them' do
-    source = "```make\tlabel\n\tcommand\n---\nmetadata:\tvalue\n"
-    settings = { 'CodeBlocks' => false, 'AllowedCodeLanguages' => ['make'] }
-    found = offenses(described_class, source, settings, path: 'example.txt')
-    expect(found.map { |offense| [offense.line, offense.column] }).to eq([[1, 7], [2, 0], [4, 9]])
-    expect(corrected(described_class, source, settings, path: 'example.txt')).to eq(source)
+  it 'does not inspect plain text even when selected explicitly' do
+    expect(offenses(described_class, "A\tparagraph.\n", path: 'example.txt')).to be_empty
   end
 end

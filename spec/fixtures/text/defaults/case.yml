@@ -1,6 +1,6 @@
 offenses:
   Prose/MaxLength: 1
-  Prose/HardTabs: 1
+  Text/HardTabs: 1
   Text/TrailingWhitespace: 1
   Prose/MultipleBlankLines: 1
 remaining_offenses: {}

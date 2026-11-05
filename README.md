@@ -61,14 +61,12 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 
 ### Prose
 
-| Cop                                                                        | Default  | Purpose                                                                      |
-| ---                                                                        | ---      | -------                                                                      |
-| [Prose/HardTabs](docs/cops/prose/hard_tabs.md)                             | Enabled  | Report tabs in Markdown and plain text without correcting them.              |
-| [Prose/MaxLength](docs/cops/prose/max_length.md)                           | Enabled  | Wrap or unwrap prose paragraphs in Markdown and plain text.                  |
-| [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md)        | Enabled  | Limit blank lines in prose and quotes, but not code.                         |
-| [Prose/ProperNames](docs/cops/prose/proper_names.md)                       | Disabled | Use configured capitalization for literal proper names in Markdown and text. |
-| [Prose/SentenceCapitalization](docs/cops/prose/sentence_capitalization.md) | Disabled | Check paragraph openings without changing quoted or code literals.           |
-| [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)               | Enabled  | Require exactly one final newline.                                           |
+| Cop                                                                        | Default  | Purpose                                                            |
+| ---                                                                        | ---      | -------                                                            |
+| [Prose/MaxLength](docs/cops/prose/max_length.md)                           | Enabled  | Wrap or unwrap prose paragraphs in Markdown and plain text.        |
+| [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md)        | Enabled  | Limit blank lines in prose and quotes, but not code.               |
+| [Prose/SentenceCapitalization](docs/cops/prose/sentence_capitalization.md) | Disabled | Check paragraph openings without changing quoted or code literals. |
+| [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)               | Enabled  | Require exactly one final newline.                                 |
 
 ### Markdown
 
@@ -97,6 +95,7 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 | [Markdown/FrontMatterKeys](docs/cops/markdown/front_matter_keys.md)                         | Disabled | Restrict allowed and require mandatory top-level front matter keys.                 |
 | [Markdown/FrontMatterSyntax](docs/cops/markdown/front_matter_syntax.md)                     | Enabled  | Report YAML syntax errors in closed leading front matter.                           |
 | [Markdown/HardBreakStyle](docs/cops/markdown/hard_break_style.md)                           | Enabled  | Use backslashes or trailing spaces for paragraph hard breaks.                       |
+| [Markdown/HardTabs](docs/cops/markdown/hard_tabs.md)                                        | Enabled  | Report hard tabs with code-block and language exceptions.                           |
 | [Markdown/HeadingBlankLines](docs/cops/markdown/heading_blank_lines.md)                     | Enabled  | Surround headings with blank lines.                                                 |
 | [Markdown/HeadingCapitalization](docs/cops/markdown/heading_capitalization.md)              | Disabled | Enforce initial capitalization or title case in headings.                           |
 | [Markdown/HeadingIncrement](docs/cops/markdown/heading_increment.md)                        | Enabled  | Increase heading levels without skipping levels.                                    |
@@ -117,6 +116,7 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 | [Markdown/ListMarkerSpacing](docs/cops/markdown/list_marker_spacing.md)                     | Enabled  | Configure spaces after ordered and unordered list markers.                          |
 | [Markdown/OrderedListNumbering](docs/cops/markdown/ordered_list_numbering.md)               | Disabled | Use sequential numbers or repeated ones in ordered lists.                           |
 | [Markdown/OutsideSpacing](docs/cops/markdown/outside_spacing.md)                            | Enabled  | Report inline formatting directly adjacent to prose words.                          |
+| [Markdown/ProperNames](docs/cops/markdown/proper_names.md)                                  | Disabled | Use configured capitalization for proper names outside protected Markdown syntax.   |
 | [Markdown/RawHtml](docs/cops/markdown/raw_html.md)                                          | Disabled | Disallow raw HTML except allowed elements, with optional attribute allowlists.      |
 | [Markdown/ReferenceDefinitions](docs/cops/markdown/reference_definitions.md)                | Enabled  | Report duplicate and optionally unused reference definitions.                       |
 | [Markdown/ReversedLink](docs/cops/markdown/reversed_link.md)                                | Enabled  | Report reversed Markdown link delimiters.                                           |
@@ -146,9 +146,11 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 
 ### Text
 
-| Cop                                                              | Default | Purpose                                                    |
-| ---                                                              | ---     | -------                                                    |
-| [Text/TrailingWhitespace](docs/cops/text/trailing_whitespace.md) | Enabled | Remove all trailing spaces and tabs from plain-text lines. |
+| Cop                                                              | Default  | Purpose                                                         |
+| ---                                                              | ---      | -------                                                         |
+| [Text/HardTabs](docs/cops/text/hard_tabs.md)                     | Enabled  | Report tabs on every plain-text line without correction.        |
+| [Text/ProperNames](docs/cops/text/proper_names.md)               | Disabled | Use configured capitalization for proper names in literal text. |
+| [Text/TrailingWhitespace](docs/cops/text/trailing_whitespace.md) | Enabled  | Remove all trailing spaces and tabs from plain-text lines.      |
 
 #### Settings
 
