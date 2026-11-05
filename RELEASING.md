@@ -1,10 +1,10 @@
-# Releasing rubocop-prose
+# Releasing `rubocop-prose`
 
 Release only with explicit maintainer authorization. Release preparation happens on `main`; never force-push `main`.
 
 ## Prepare
 
-Update `main` with a fast-forward pull. Run `bundle exec rake` and confirm GitHub Actions checks pass, including the separate interoperability workflow. Verify the minimum supported RuboCop with `RUBOCOP_VERSION=1.72.1 bundle install` and `RUBOCOP_VERSION=1.72.1 bundle exec rake spec`; restore the normal dependency resolution afterward. Interoperability currently uses rubocop-md PR #57; update its workflow ref when the original-source mapping API is released.
+Update `main` with a fast-forward pull. Run `bundle exec rake` and confirm GitHub Actions checks pass, including the separate interoperability workflow. Verify the minimum supported RuboCop with `RUBOCOP_VERSION=1.72.1 bundle install` and `RUBOCOP_VERSION=1.72.1 bundle exec rake spec`; restore the normal dependency resolution afterward. Interoperability currently uses `rubocop-md` PR #57; update its workflow ref when the original-source mapping API is released.
 
 Set the version in `lib/rubocop/prose/version.rb`, date its CHANGELOG heading as `YYYY/MM/DD`, remove the contribution placeholder from that release, and check README installation instructions. Commit and push preparation changes, wait for green CI, then build and inspect the package:
 

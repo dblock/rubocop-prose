@@ -32,6 +32,64 @@ Markdown/ListItemCapitalization:
 Markdown/FrontMatterKeys:
   Enabled: true
 
+Markdown/BareUrl:
+  Enabled: true
+
+Markdown/CodeBlockStyle:
+  Enabled: true
+  EnforcedStyle: fenced
+
+Markdown/EmphasisHeading:
+  Enabled: true
+
+Markdown/FirstHeading:
+  Enabled: true
+  Exclude:
+    - 'README.md'
+
+Markdown/HeadingPunctuation:
+  Enabled: true
+
+Markdown/HeadingStyle:
+  Enabled: true
+  EnforcedStyle: atx
+
+Markdown/LinkFragment:
+  Enabled: true
+
+Markdown/LinkStyle:
+  Enabled: true
+
+Markdown/ListItemPunctuation:
+  Enabled: true
+
+Markdown/OrderedListNumbering:
+  Enabled: true
+
+Markdown/ProperNames:
+  Enabled: true
+  Names:
+    - GitHub
+    - Markdown
+    - RuboCop
+    - Ruby
+    - YAML
+
+Markdown/RawHtml:
+  Enabled: true
+  AllowedElements:
+    - img:
+        - src
+        - alt
+        - width
+
+Markdown/SingleTopLevelHeading:
+  Enabled: true
+
+Markdown/StructuralLineLength:
+  Enabled: true
+  Max: 120
+
 Naming/FileName:
   Exclude:
     - 'lib/rubocop-prose.rb'
