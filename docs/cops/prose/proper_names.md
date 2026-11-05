@@ -4,8 +4,6 @@ Corrects configured names to their canonical capitalization in Markdown and plai
 
 Plain text is checked literally: Markdown-like code, links, URLs, and fences receive no special treatment. In Markdown, code spans, fenced code, links, escaped syntax, HTML, and front matter are excluded by default. `CodeBlocks` includes Markdown code spans and fenced-code contents when enabled; fence language labels are never checked.
 
-The former `Markdown/ProperNames` name is obsolete; RuboCop reports the migration to `Prose/ProperNames` when an old configuration is loaded.
-
 ## Configuration
 
 ```yaml
@@ -53,3 +51,7 @@ In plain text, markup-looking syntax is also checked literally:
 ```text
 `GitHub` https://GitHub.com
 ```
+
+## Migrating From 0.1.0
+
+Rename `Markdown/ProperNames` to `Prose/ProperNames`.

@@ -4,6 +4,10 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md) for setup, tests, and pull-request conve
 
 Keep user guidance in the README and cop guides, contributor workflow in CONTRIBUTING, architecture and rationale in DESIGN, and this file focused on high-value agent guidance. Link to the authoritative documentation instead of duplicating it.
 
+Migration documentation must identify the source released version, for example `Migrating From 0.1.0`, rather than using generic “Migration” or “earlier versions” wording. Put migration sections last in cop guides, after configuration and all good/bad examples. Keep them focused on required configuration changes and examples, without explaining validation machinery or restating unchanged settings. Do not describe unreleased schema iterations as migrations.
+
+Verify each configuration migration once with a focused unit test of its RuboCop migration rule. Do not add integration tests for obsolete configurations; keep integration coverage focused on supported configuration and cop behavior.
+
 Update DESIGN only for new architectural decisions or non-obvious invariants not already covered there. Do not add per-cop implementation summaries or repeat configuration behavior from cop guides; ordinary feature changes usually need no DESIGN update.
 
 Preserve original source buffers and character-based locations, Markdown container prefixes and hard breaks, and atomic inline syntax. Plain text must remain literal; format-specific cops must not inspect the other format. Withhold corrections when a safe rewrite cannot be established.

@@ -102,7 +102,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/OrderedListNumbering](docs/cops/markdown/ordered_list_numbering.md)               | Disabled | Use sequential numbers or repeated ones in ordered lists.                           |
 | [Markdown/OutsideSpacing](docs/cops/markdown/outside_spacing.md)                            | Enabled  | Report inline formatting directly adjacent to prose words.                          |
 | [Markdown/RawHtml](docs/cops/markdown/raw_html.md)                                          | Disabled | Disallow raw HTML except allowed elements, with optional attribute allowlists.      |
-| [Markdown/ReferenceDefinitions](docs/cops/markdown/reference_definitions.md)                | Enabled  | Report unused and duplicate reference definitions.                                  |
+| [Markdown/ReferenceDefinitions](docs/cops/markdown/reference_definitions.md)                | Enabled  | Report duplicate and optionally unused reference definitions.                       |
 | [Markdown/ReversedLink](docs/cops/markdown/reversed_link.md)                                | Enabled  | Report reversed Markdown link delimiters.                                           |
 | [Markdown/ShellPrompts](docs/cops/markdown/shell_prompts.md)                                | Enabled  | Omit configured shell prompts in examples without output.                           |
 | [Markdown/SingleTopLevelHeading](docs/cops/markdown/single_top_level_heading.md)            | Disabled | Allow at most one top-level heading.                                                |

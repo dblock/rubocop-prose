@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file. The format 
 - [#149](https://github.com/dblock/rubocop-prose/pull/149): Move `Markdown/ProperNames` and `Markdown/HardTabs` to shared `Prose/*` cops for Markdown and literal plain text, with migration diagnostics - [@dblock](https://github.com/dblock).
 - [#150](https://github.com/dblock/rubocop-prose/pull/150): Support per-level document, sibling, or disabled duplicate-heading scopes with range and comparison selectors - [@dblock](https://github.com/dblock).
 - [#151](https://github.com/dblock/rubocop-prose/pull/151): Simplify `Markdown/StructuralLineLength` to per-element widths or `false`, remove shared and paired settings, and add migration diagnostics - [@dblock](https://github.com/dblock).
+- [#152](https://github.com/dblock/rubocop-prose/pull/152): Simplify `Markdown/ReferenceDefinitions` configuration; breaking change: replace `CheckDuplicates` and `AllowIdenticalDuplicates` with `Duplicates: forbid | allow_identical | allow`, and rename `CheckUnused` to `Unused`, with migration diagnostics - [@dblock](https://github.com/dblock).
 - Your contribution here.
 
 ## 0.1.0 (2026/11/03)

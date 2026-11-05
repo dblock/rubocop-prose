@@ -5,6 +5,12 @@ require 'spec_helper'
 RSpec.describe RuboCop::Cop::Prose::ProperNames do
   let(:options) { { 'Names' => ['GitHub', 'Ruby', 'C++'] } }
 
+  it 'directs the old Markdown name to Prose/ProperNames' do
+    config = RuboCop::Config.new({ 'Markdown/ProperNames' => { 'Enabled' => true } }, '.rubocop.yml')
+    expect { RuboCop::ConfigObsoletion.new(config).reject_obsolete! }
+      .to raise_error(RuboCop::ValidationError, %r{Markdown/ProperNames.*Prose/ProperNames}m)
+  end
+
   it 'corrects configured whole names including punctuation' do
     source = "# github and RUBY\n\nUse c++ with github, not githubber or rubylike.\n"
     expected = "# GitHub and Ruby\n\nUse C++ with GitHub, not githubber or rubylike.\n"

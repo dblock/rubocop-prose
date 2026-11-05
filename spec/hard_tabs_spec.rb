@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 RSpec.describe RuboCop::Cop::Prose::HardTabs do
+  it 'directs the old Markdown name to Prose/HardTabs' do
+    config = RuboCop::Config.new({ 'Markdown/HardTabs' => { 'Enabled' => true } }, '.rubocop.yml')
+    expect { RuboCop::ConfigObsoletion.new(config).reject_obsolete! }
+      .to raise_error(RuboCop::ValidationError, %r{Markdown/HardTabs.*Prose/HardTabs}m)
+  end
+
   it 'reports exact Unicode-aware tab locations without guessing a correction' do
     source = "Hello \u{1f600}\tworld.\n"
     result = offenses(described_class, source)

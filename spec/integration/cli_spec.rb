@@ -1,28 +1,6 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Fresh-process CLI smoke tests' do
-  it 'reports renamed cops through both plugin loading mechanisms' do
-    Dir.mktmpdir('cli-renamed-cops-') do |directory|
-      configuration = File.join(directory, '.rubocop.yml')
-      File.write(File.join(directory, 'example.md'), "Text.\n")
-      %w[config options].each do |loading|
-        config = {
-          'Markdown/HardTabs' => { 'Enabled' => true },
-          'Markdown/ProperNames' => { 'Enabled' => true, 'Names' => ['GitHub'] }
-        }
-        config['plugins'] = ['rubocop-prose'] if loading == 'config'
-        File.write(configuration, config.to_yaml)
-        command = fixture_command(configuration, [], loading, nil)
-        command.insert(1, '-W1')
-        stdout, stderr, status = Open3.capture3(*command, 'example.md', chdir: directory)
-        expect(status.exitstatus).to eq(2)
-        expect(stdout + stderr).to include(
-          'Markdown/HardTabs', 'Prose/HardTabs', 'Markdown/ProperNames', 'Prose/ProperNames'
-        )
-      end
-    end
-  end
-
   it 'applies default-enabled Prose/HardTabs to plain text through both plugin loading mechanisms' do
     Dir.mktmpdir('cli-text-hard-tabs-') do |directory|
       configuration = File.join(directory, '.rubocop.yml')
@@ -33,23 +11,6 @@ RSpec.describe 'Fresh-process CLI smoke tests' do
         File.write(configuration, config.to_yaml)
         command = fixture_command(configuration, [], loading, nil)
         assert_fixture_report(command + ['example.txt'], directory, { 'Prose/HardTabs' => 1 })
-      end
-    end
-  end
-
-  it 'rejects obsolete list spacing settings through both plugin loading mechanisms' do
-    Dir.mktmpdir('cli-obsolete-') do |directory|
-      configuration = File.join(directory, '.rubocop.yml')
-      File.write(File.join(directory, 'example.md'), "1. one\n")
-      %w[config options].each do |loading|
-        config = { 'Markdown/ListMarkerSpacing' => { 'OrderedSingle' => 2 } }
-        config['plugins'] = ['rubocop-prose'] if loading == 'config'
-        File.write(configuration, config.to_yaml)
-        command = fixture_command(configuration, [], loading, nil)
-        command.insert(1, '-W1')
-        stdout, stderr, status = Open3.capture3(*command, 'example.md', chdir: directory)
-        expect(status.exitstatus).to eq(2)
-        expect(stdout + stderr).to include('OrderedSingle', 'EnforcedStyle', 'MinSpaces')
       end
     end
   end
