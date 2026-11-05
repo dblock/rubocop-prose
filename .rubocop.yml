@@ -26,6 +26,12 @@ Markdown/HeadingCapitalization:
     - rubocop
     - prose
 
+Prose/SentenceCapitalization:
+  Enabled: true
+  IgnoredWords:
+    - rubocop
+    - prose
+
 Markdown/ListItemCapitalization:
   Enabled: true
 

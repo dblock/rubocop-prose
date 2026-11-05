@@ -37,13 +37,29 @@ RSpec.describe RuboCop::Cop::Markdown::ListItemCapitalization do
     source = "- **Build** it\n- [*run* tests](UPPERCASE)\n- _ship_ it\n- [`code`](url) first\n"
     found = offenses(described_class, source)
     expect(found.map { |offense| [offense.line, offense.column, offense.location.source] }).to eq(
-      [[2, 4, 'r'], [3, 3, 's']]
+      [[2, 4, 'r'], [3, 3, 's'], [4, 4, 'c']]
     )
   end
 
   it 'ignores initial code even inside formatting and does not use it to establish a style' do
     source = "- `Build` prose\n- **`Run`** prose\n- start here\n- finish here\n"
     expect(offenses(described_class, source)).to be_empty
+  end
+
+  it 'compares literal code and quoted openings but never changes their contents' do
+    source = "- Build it\n- `run` tests\n- \"ship\" it\n- `run_code` is an identifier.\n"
+    options = { 'EnforcedStyle' => 'initial_capital' }
+    found = offenses(described_class, source, options)
+    expect(found.map { |offense| [offense.line, offense.location.source] }).to eq(
+      [[2, 'r'], [3, 's'], [4, 'r']]
+    )
+    expect(corrected(described_class, source, options)).to eq(source)
+  end
+
+  it 'checks a lowercase literal in initial-capital mode without using it as a consistency baseline' do
+    source = "- `lowercase` is a literal term.\n"
+    expect(offenses(described_class, source).map(&:line)).to be_empty
+    expect(offenses(described_class, source, 'EnforcedStyle' => 'initial_capital').map(&:line)).to eq([1])
   end
 
   it 'exempts configured initial words with exact spelling without establishing a style' do
@@ -72,7 +88,7 @@ RSpec.describe RuboCop::Cop::Markdown::ListItemCapitalization do
       - "quoted prose"
       - 中文
     MARKDOWN
-    expect(offenses(described_class, source)).to be_empty
+    expect(offenses(described_class, source).map { |offense| [offense.line, offense.location.source] }).to eq([[15, 'q']])
   end
 
   it 'handles task markers and Unicode character-based locations' do
@@ -163,6 +179,11 @@ RSpec.describe RuboCop::Cop::Markdown::ListItemCapitalization do
     options = { 'EnforcedStyle' => 'title_case' }
     expect(offenses(described_class, source, options).map(&:line)).to eq([1, 2])
     expect(corrected(described_class, source, options)).to eq(source)
+  end
+
+  it 'does not rewrite identifiers or URLs in title-case items' do
+    source = "- Using foo_bar\n- https://example.com\n"
+    expect(corrected(described_class, source, 'EnforcedStyle' => 'title_case')).to eq(source)
   end
 
   it 'rejects invalid styles and word settings' do

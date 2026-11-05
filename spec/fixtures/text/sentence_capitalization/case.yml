@@ -1,0 +1,5 @@
+offenses:
+  Prose/SentenceCapitalization: 2
+remaining_offenses:
+  Prose/SentenceCapitalization: 1
+unsafe_autocorrect: true

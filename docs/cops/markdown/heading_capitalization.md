@@ -2,7 +2,7 @@
 
 Checks ATX and Setext headings, ignoring emphasis delimiters, link syntax, and leading punctuation or numbers. `EnforcedStyle: title_case` (the default) checks each word, keeping internal minor words lowercase. `initial_capital` checks only the first prose letter; remaining words retain their capitalization. Neither style enforces strict sentence case.
 
-Headings beginning with inline code are left alone, including subsequent prose: ``## `excalc` usage`` is valid. Opaque leading content such as HTML or images is conservatively skipped. `PreserveMixedCase: true` (the default) preserves mixed-case words such as `eBay`, `iOS`, and `macOS` where an initial capital is required, in either style. Set it to `false` to require uppercase initials even for those words. `IgnoredWords` still takes precedence.
+Lowercase openings inside inline code or quoted terms are reported, including ``## `excalc` usage`` and `## "excalc" usage`; neither their literal contents nor later words are changed. Opaque leading content such as HTML or images is conservatively skipped. `PreserveMixedCase: true` (the default) preserves mixed-case words such as `eBay`, `iOS`, and `macOS` where an initial capital is required, in either style. Set it to `false` to require uppercase initials even for those words. `IgnoredWords` still takes precedence.
 
 Use native RuboCop suppression directives for intentional lowercase headings. [Markdown/ProperNames](proper_names.md) independently enforces configured canonical spellings; its configuration does not exempt headings from this cop.
 
@@ -68,7 +68,7 @@ Markdown/HeadingCapitalization:
 *Getting* started
 -----------------
 
-## `excalc` usage
+## `Excalc` usage
 
 ## eBay integration
 ```
@@ -105,7 +105,7 @@ Markdown/HeadingCapitalization:
 
 The minor words are `a`, `an`, `and`, `as`, `at`, `but`, `by`, `for`, `from`, `in`, `nor`, `of`, `on`, `or`, `per`, `the`, `to`, `via`, `vs`, and `with`. They must be lowercase except as the first or last word. Other words must start uppercase, with mixed-case words also accepted when `PreserveMixedCase` is enabled. Acronyms with uppercase initials and uncased scripts are accepted regardless of that option. Apostrophes stay within words; hyphens separate words, as in `Don't Re-enter the API`.
 
-This is a word-based policy, not grammatical analysis or a publishing style manual. Title case skips the entire heading when it contains inline code, HTML, images, or other opaque content rather than guessing word boundaries.
+This is a word-based policy, not grammatical analysis or a publishing style manual. Title case skips the entire heading when it contains inline code, HTML, images, or other opaque content rather than guessing word boundaries, except that a lowercase literal opening is reported without correction.
 
 ### Customize Minor Words
 

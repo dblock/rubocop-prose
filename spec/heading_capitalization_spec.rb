@@ -16,10 +16,11 @@ RSpec.describe RuboCop::Cop::Markdown::HeadingCapitalization do
     expect(offenses(described_class, source).map(&:line)).to eq([1, 3, 5, 7])
   end
 
-  it 'leaves code-leading headings alone rather than checking the following word' do
-    source = "# `excalc` usage\n\n## **`excalc`** usage\n\n`excalc` usage\n--------------\n\n# using `excalc`\n"
-    expect(offenses(described_class, source, 'EnforcedStyle' => 'initial_capital').map(&:line)).to eq([8])
+  it 'reports lowercase code and quoted openings without changing their literal contents' do
+    source = "# `excalc` usage\n\n## **`excalc`** usage\n\n`excalc` usage\n--------------\n\n# \"excalc\" usage\n\n# `Excalc` usage\n\n# using `excalc`\n"
+    expect(offenses(described_class, source, 'EnforcedStyle' => 'initial_capital').map(&:line)).to eq([1, 3, 5, 8, 12])
     expect(corrected(described_class, source, 'EnforcedStyle' => 'initial_capital')).to eq(source)
+    expect(offenses(described_class, "# `excalc` usage\n", 'EnforcedStyle' => 'title_case').map(&:line)).to eq([1])
   end
 
   it 'preserves mixed-case leading brands and does not check the remaining words' do
@@ -180,6 +181,11 @@ RSpec.describe RuboCop::Cop::Markdown::HeadingCapitalization do
     source = "# getting **started**\n\n# [getting started](getting-started.html)\n\n# &#103;etting started\n"
     expect(offenses(described_class, source).size).to eq(3)
     expect(corrected(described_class, source)).to eq(source)
+  end
+
+  it 'does not rewrite identifiers or URLs in title-case headings' do
+    source = "# Using foo_bar\n\n# https://example.com\n"
+    expect(corrected(described_class, source, 'EnforcedStyle' => 'title_case')).to eq(source)
   end
 
   it 'is registered and disabled by default' do

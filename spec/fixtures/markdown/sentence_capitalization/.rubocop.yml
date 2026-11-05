@@ -1,0 +1,9 @@
+plugins:
+  - rubocop-prose
+
+Prose/SentenceCapitalization:
+  Enabled: true
+
+Markdown/ListItemCapitalization:
+  Enabled: true
+  EnforcedStyle: consistent

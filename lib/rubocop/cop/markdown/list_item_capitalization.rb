@@ -11,8 +11,6 @@ module RuboCop
         include RuboCop::Prose::ListRules
         include RuboCop::Prose::CapitalizationRules
 
-        INITIAL_WORD = /\A[ \t]*(?:\[[ xX]\][ \t]+)?(?<word>\p{L}[\p{L}\p{M}]*)(?=\s|[.,!?:;](?:\s|\z)|\z)/
-
         private
 
         def investigate_document
@@ -28,10 +26,14 @@ module RuboCop
               next unless initial
 
               range, style = initial
+              next if initial.last && expected.nil? && cop_config['EnforcedStyle'] == 'consistent'
+
               expected ||= cop_config['EnforcedStyle'] == 'initial_capital' ? 'uppercase' : style
               next if style == expected
 
               prose_offense(range, message: "Use #{expected} initial capitalization in list items.") do |corrector|
+                next if initial.last
+
                 replacement = expected == 'uppercase' ? range.source.upcase : range.source.downcase
                 corrector.replace(processed_range(range), replacement)
               end
@@ -44,10 +46,13 @@ module RuboCop
           return unless paragraph&.type == :p && paragraph.options[:prose_source]
           return unless paragraph.options[:location] == mark[:line]
 
+          source = paragraph.options[:prose_source]
+          checkbox = source[/\A[ \t]*\[[ xX]\][ \t]+/].to_s
           text = prose_text(paragraph).sub(/\A\[[ xX]\][ \t]+/, '')
-          return unless invalid_title?(text)
+          opening = opening_word(source[checkbox.length..])
+          return unless invalid_title?(text) || (opening&.literal && lowercase_opening?(opening))
 
-          range = correction_range(text, mark[:line])
+          range = opening&.literal || identifier_source?(source) ? nil : correction_range(text, mark[:line])
           prose_offense(document.line_range(mark[:line]), message: 'Use title case in list items.') do |corrector|
             corrector.replace(processed_range(range), capitalized_text(text, true)) if range
           end
@@ -58,39 +63,26 @@ module RuboCop
           return unless paragraph&.type == :p && paragraph.options[:prose_source]
           return unless paragraph.options[:location] == mark[:line]
 
-          text = initial_text(paragraph)
-          return unless text
-
-          match = INITIAL_WORD.match(text)
-          return unless match
-
-          word = match[:word]
-          return unless INITIAL_WORD.match(document.plain_text(paragraph))&.[](:word) == word
-          return if ignored_word?(word)
-          return unless word.match?(/[\p{Ll}\p{Lu}\p{Lt}]/)
-          return if cop_config['PreserveMixedCase'] && word[1..].match?(/[\p{Lu}\p{Lt}]/)
-
           source = paragraph.options[:prose_source]
-          offset = source.index(text)
-          return unless offset
+          checkbox = source[/\A[ \t]*\[[ xX]\][ \t]+/].to_s
+          text = source[checkbox.length..]
+          opening = opening_word(text)
+          word = opening&.word
+          return unless word&.match?(/\A[\p{L}\p{M}]+\z/) ||
+                        (opening&.code && word&.match?(/\A[\p{L}\p{M}][\p{L}\p{M}\p{N}_]*\z/))
 
-          offset += match.begin(:word)
+          return if ignored_word?(opening.word)
+          return if cop_config['PreserveMixedCase'] && opening.word[1..].match?(/[\p{Lu}\p{Lt}]/)
+
+          after = text[opening.end_pos..].sub(/\A(?:\*+|_+|`+|["'“”‘’»›\]]+)+/, '')
+          return if after.match?(%r{\A(?:[\p{L}\p{M}_]|[._/:-])})
+
+          offset = checkbox.length + opening.begin_pos
           return if source[0...offset].include?("\n")
 
           column = document.content_start(paragraph, mark[:line]) + offset
           range = document.range(mark[:line], column, mark[:line], column + 1)
-          [range, word[0].match?(/\p{Ll}/) ? 'lowercase' : 'uppercase']
-        end
-
-        def initial_text(node)
-          child = node.children.first
-          if node.type == :p && child&.type == :text && child.value.match?(/\A\[[ xX]\][ \t]+\z/)
-            child = node.children[1]
-          end
-          return unless child
-          return child.value if child.type == :text
-
-          initial_text(child) if %i[em strong a].include?(child.type)
+          [range, opening.word[0].match?(/\p{Ll}/) ? 'lowercase' : 'uppercase', opening.literal]
         end
       end
     end

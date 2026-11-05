@@ -2,7 +2,7 @@
 
 Enforces one spacing policy for all ordered and unordered list items, whether single-line or multiline. Empty items are ignored when checking spacing.
 
-`fixed` requires exactly `MinSpaces` after every marker. `aligned` uses `MinSpaces` after the widest actual sibling marker and adds padding after shorter markers so item text aligns when sibling markers have the same indentation. For bullets, whose markers are all one character wide, both styles require `MinSpaces`.
+The `fixed` style requires exactly `MinSpaces` after every marker. The `aligned` style uses `MinSpaces` after the widest actual sibling marker and adds padding after shorter markers so item text aligns when sibling markers have the same indentation. For bullets, whose markers are all one character wide, both styles require `MinSpaces`.
 
 Nested lists, separate lists, and lists in different containers are evaluated independently. Empty sibling markers contribute to the width even though their spacing is not checked. Alignment uses source markers, not inferred sequence numbers, and works across wider transitions such as `99.` to `100.`.
 
