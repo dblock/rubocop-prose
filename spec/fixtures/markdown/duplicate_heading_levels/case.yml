@@ -1,0 +1,4 @@
+offenses:
+  Markdown/DuplicateHeadings: 2
+remaining_offenses:
+  Markdown/DuplicateHeadings: 2

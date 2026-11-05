@@ -1,0 +1,6 @@
+Markdown/DuplicateHeadings:
+  Enabled: true
+  Scope:
+    Default: document
+    4: siblings
+    ">4": false
