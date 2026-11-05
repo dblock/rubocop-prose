@@ -1,9 +1,6 @@
 Markdown/StructuralLineLength:
   Description: Report overlong heading, code-block, and table source lines without reflowing them.
   Enabled: false
-  Max: 80
-  Headings: true
-  HeadingMax:
+  Headings: 80
   CodeBlocks: false
-  CodeBlockMax:
   Tables: false

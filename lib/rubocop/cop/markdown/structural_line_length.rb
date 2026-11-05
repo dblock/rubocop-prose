@@ -7,12 +7,13 @@ module RuboCop
         MSG = 'Markdown source line is too long. [%<length>d/%<max>d]'
 
         def validate_config
-          %w[Max HeadingMax CodeBlockMax].each do |name|
+          %w[Headings CodeBlocks Tables].each do |name|
             value = cop_config[name]
-            next if name != 'Max' && value.nil?
+            next if value == false
             next if value.is_a?(Integer) && value.positive?
 
-            raise ValidationError, "Markdown/StructuralLineLength: #{name} must be a positive integer."
+            raise ValidationError,
+                  "Markdown/StructuralLineLength: #{name} must be a positive integer or false."
           end
         end
 
@@ -38,11 +39,11 @@ module RuboCop
 
         def structural_limit(number, headings, tables)
           if headings.include?(number) && cop_config['Headings']
-            cop_config['HeadingMax'] || cop_config['Max']
+            cop_config['Headings']
           elsif document.code_line?(number) && cop_config['CodeBlocks']
-            cop_config['CodeBlockMax'] || cop_config['Max']
+            cop_config['CodeBlocks']
           elsif tables.include?(number) && cop_config['Tables']
-            cop_config['Max']
+            cop_config['Tables']
           end
         end
       end

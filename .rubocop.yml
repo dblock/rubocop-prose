@@ -97,7 +97,7 @@ Markdown/SingleTopLevelHeading:
 
 Markdown/StructuralLineLength:
   Enabled: true
-  Max: 120
+  Headings: 120
 
 Naming/FileName:
   Exclude:
