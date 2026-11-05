@@ -11,6 +11,19 @@ changed_parameters:
     reason: >-
       Replace the shared limit and enable/value pairs with a positive integer width (or false) for each element:
       Headings, CodeBlocks, and Tables. For example, use Headings: 120, CodeBlocks: false, and Tables: false.
+  - cops: Markdown/ReferenceDefinitions
+    parameters:
+      - CheckDuplicates
+      - AllowIdenticalDuplicates
+    reason: >-
+      Replace CheckDuplicates and AllowIdenticalDuplicates with Duplicates.
+      CheckDuplicates: false maps to Duplicates: allow, regardless of AllowIdenticalDuplicates.
+      CheckDuplicates: true (or omitted) with AllowIdenticalDuplicates: true maps to Duplicates: allow_identical.
+      Otherwise, the default maps to Duplicates: forbid.
+      Remove both legacy keys; combinations are not translated automatically.
+  - cops: Markdown/ReferenceDefinitions
+    parameters: CheckUnused
+    reason: 'Replace CheckUnused with Unused, preserving its boolean value (default: false).'
   - cops: Markdown/ListMarkerSpacing
     parameters:
       - OrderedSingle

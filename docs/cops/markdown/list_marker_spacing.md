@@ -79,4 +79,4 @@ Markdown/ListMarkerSpacing:
   MinSpaces: 2
 ```
 
-Different legacy values cannot all be preserved by a single policy; choose the desired shared spacing. The unreleased `aligned` shorthand and per-category mappings from earlier revisions of this feature are also replaced by the top-level `EnforcedStyle` and `MinSpaces` options.
+Different legacy values cannot all be preserved by a single policy; choose the desired shared spacing.

@@ -7,4 +7,4 @@ Markdown/Syntax:
   Enabled: true
 Markdown/ReferenceDefinitions:
   Enabled: true
-  CheckUnused: true
+  Unused: true

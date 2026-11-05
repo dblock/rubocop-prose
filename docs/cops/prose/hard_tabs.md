@@ -4,8 +4,6 @@ Reports hard tabs in Markdown and plain text. Plain-text files are literal, so e
 
 Report-only: tabs may be intentional for alignment, Makefiles, or embedded code. The default-enabled rule reports tabs in plain text as well as Markdown.
 
-The former `Markdown/HardTabs` name is obsolete; RuboCop reports the migration to `Prose/HardTabs` when an old configuration is loaded.
-
 ## Configuration
 
 ```yaml
@@ -36,3 +34,7 @@ Plain-text files are checked literally, so a tab in a fence-like line or its bod
 ```ruby
 "```make\tlabel\n\tcommand\n```\n"
 ```
+
+## Migrating From 0.1.0
+
+Rename `Markdown/HardTabs` to `Prose/HardTabs`.
