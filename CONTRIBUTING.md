@@ -26,6 +26,8 @@ Run `bundle exec rake benchmark`; set `ITERATIONS` and `SECTIONS` to override sa
 
 The benchmark compares document analysis, cop investigation, and in-memory autocorrection on Markdown and text corpora, using both distributed defaults and this repository's configuration (`default` and `project` profiles). The corpora include Unicode, front matter, references, tables, code, multi-digit lists, capitalization, proper names, and hard tabs. Each operation constructs a fresh document; compare results only across revisions using the same Ruby, RuboCop, corpus, and profile settings. Output fingerprints verify stable diagnostics and corrections across iterations. Timings are machine-dependent, not CI thresholds.
 
+The `document/markdown` operation measures the basic AST and paragraph source mapping; `analysis/markdown` also exercises link/reference scanning, table cells, and positioned emphasis independently of cop execution.
+
 ## Tests
 
 Keep focused cop tests in `spec/<name>_spec.rb`. Cover offenses, exclusions, Unicode source locations, safe corrections, and ambiguous rewrites that must remain report-only. Document adapters and file selection have dedicated specs; format-specific cops must not investigate the other format, even when explicitly selected.

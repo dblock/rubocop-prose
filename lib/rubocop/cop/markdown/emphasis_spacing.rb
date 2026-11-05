@@ -9,7 +9,7 @@ module RuboCop
         extend AutoCorrector
 
         def investigate_document
-          RuboCop::Prose::InlineRules.lines(document).each do |text, number, column|
+          document.inline_lines.each do |text, number, column|
             masked = RuboCop::Prose::InlineRules.mask(text, document: document, number: number)
             masked.to_enum(:scan, /(?<![\w*_])(\*{1,3}|_{1,3})(?![*_])(.+?)\1(?![\w*_])/).each do
               match = Regexp.last_match

@@ -13,7 +13,7 @@ module RuboCop
         private
 
         def name_lines
-          lines = RuboCop::Prose::InlineRules.lines(document).map do |text, number, column|
+          lines = document.inline_lines.map do |text, number, column|
             [masked_markdown_line(text, number), number, column]
           end
           return lines unless cop_config['CodeBlocks']

@@ -41,7 +41,7 @@ module RuboCop
       def self.tables(document)
         # A malformed body can make GFM reject the entire table. Its header and delimiter
         # still identify the intended table, but only inside parser-recognized prose.
-        eligible = InlineRules.lines(document).to_set { |_, number, _| number }
+        eligible = document.inline_lines.to_set { |_, number, _| number }
         result = []
         number = 1
         while number < document.lines.length

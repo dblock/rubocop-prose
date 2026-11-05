@@ -22,6 +22,9 @@ module RuboCop
         @links = []
         @definitions = []
         @html_anchors = []
+        @inline_destinations = {}
+        @definition_destinations = {}
+        @display_text = {}
         exclude_blocks
         exclude_spans
         scan_definitions
@@ -93,8 +96,10 @@ module RuboCop
       def display_text(link)
         return link.destination if link.style == 'autolink'
 
-        root = Parser.parse(link.label).first
-        self.class.plain_text(root).gsub(/[[:space:]]+/, ' ').strip
+        @display_text.fetch(link.label) do
+          root = Parser.parse(link.label).first
+          @display_text[link.label] = self.class.plain_text(root).gsub(/[[:space:]]+/, ' ').strip
+        end
       end
 
       def self.plain_text(node)
@@ -281,7 +286,7 @@ module RuboCop
       end
 
       def codespan_end(index)
-        run = @text[index..][/\A`+/]
+        run = /\G`+/.match(@text, index)[0]
         cursor = index + run.length
         while (match = /`+/.match(@text, cursor))
           return match.end(0) if match[0].length == run.length
@@ -373,8 +378,9 @@ module RuboCop
 
         depth = 1
         cursor = index + 1
-        while cursor < text.length
-          return if text[cursor] == "\n" && text[cursor..].match?(/\A\n[ \t\r]*\n/)
+        candidates = opening == '[' ? /[\[\]\n]/ : /[()\n]/
+        while (cursor = text.index(candidates, cursor))
+          return if text[cursor] == "\n" && /\G\n[ \t\r]*\n/.match?(text, cursor)
 
           unless escaped?(cursor)
             depth += 1 if text[cursor] == opening
@@ -391,8 +397,9 @@ module RuboCop
 
         depth = 1
         cursor = ending - 1
-        while cursor >= 0
-          return if @text[cursor] == "\n" && @text[cursor..ending].match?(/\A\n[ \t\r]*\n/)
+        while cursor >= 0 && (cursor = @text.rindex(/[\[\]\n]/, cursor))
+          return if @text[cursor] == "\n" && (blank = /\G\n[ \t\r]*\n/.match(@text, cursor)) &&
+                    blank.end(0) <= ending + 1
 
           unless escaped?(cursor)
             depth += 1 if @text[cursor] == ']'
@@ -405,7 +412,13 @@ module RuboCop
       end
 
       def unescaped_brackets?(first, last)
-        (first...last).any? { |index| ['[', ']'].include?(@source[index]) && !escaped?(index) }
+        cursor = first
+        while (cursor = @source.index(/[\[\]]/, cursor)) && cursor < last
+          return true unless escaped?(cursor)
+
+          cursor += 1
+        end
+        false
       end
 
       def whitespace(index, text = @text)
@@ -413,7 +426,7 @@ module RuboCop
         while text[cursor]&.match?(/[ \t\r\n]/)
           newline = text[cursor] == "\n"
           cursor += 1
-          cursor += text[cursor..][/\A[ \t]*(?:>[ \t]*)+/].to_s.length if newline
+          cursor += /\G[ \t]*(?:>[ \t]*)+/.match(text, cursor).to_s.length if newline
         end
         return if text[index...cursor].count("\n") > 1
 
@@ -469,6 +482,10 @@ module RuboCop
       end
 
       def inline_destination(index)
+        @inline_destinations.fetch(index) { @inline_destinations[index] = read_inline_destination(index) }
+      end
+
+      def read_inline_destination(index)
         first = whitespace(index + 1, @source)
         return unless first
 
@@ -490,6 +507,10 @@ module RuboCop
       end
 
       def definition_destination(index)
+        @definition_destinations.fetch(index) { @definition_destinations[index] = read_definition_destination(index) }
+      end
+
+      def read_definition_destination(index)
         start = whitespace(index, @source)
         result = read_destination(start) if start
         return unless result
@@ -497,8 +518,8 @@ module RuboCop
         value, finish, destination_first, destination_last = result
         gap = whitespace(finish, @source)
         title = title_end(gap) if gap && gap > finish
-        finish = title if title && @source[title..].match?(/\A[ \t]*(?:\r?\n|\z)/)
-        return unless @source[finish..].match?(/\A[ \t]*(?:\r?\n|\z)/)
+        finish = title if title && /\G[ \t]*(?:\r?\n|\z)/.match?(@source, title)
+        return unless /\G[ \t]*(?:\r?\n|\z)/.match?(@source, finish)
         return if value.empty? && @source[start] != '<'
 
         [value, finish, title && @source[(gap + 1)...(title - 1)], destination_first, destination_last]
@@ -549,7 +570,7 @@ module RuboCop
           links << link
           # Images may supply the accessible text of an outer link.
           nested = cursor + 1
-          while !link.image && nested < link.label_end_pos
+          while !link.image && (nested = @text.index('[', nested)) && nested < link.label_end_pos
             if @text[nested] == '[' && @text[nested - 1] == '!' && !escaped?(nested - 1)
               image = parse_link(nested)
               links << image if image&.image && image.end_pos <= link.label_end_pos
@@ -607,7 +628,7 @@ module RuboCop
         end
 
         cursor = outer.label_begin_pos
-        while cursor < outer.label_end_pos
+        while (cursor = @text.index('[', cursor)) && cursor < outer.label_end_pos
           if @text[cursor] == '[' && !escaped?(cursor)
             inner = parse_link(cursor)
             return true if inner && !inner.image && resolved?(inner) && inner.end_pos <= outer.label_end_pos

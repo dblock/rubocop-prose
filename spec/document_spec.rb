@@ -53,6 +53,46 @@ RSpec.describe RuboCop::Prose::MarkdownDocument do
     expect(doc).to have_received(:atomic_ranges).twice
   end
 
+  it 'shares inline scans across cops without retaining them after correction' do
+    source = "😀 ` code ` and * word *.\n"
+    cops = [
+      RuboCop::Cop::Markdown::CodeSpanSpacing, RuboCop::Cop::Markdown::EmphasisSpacing,
+      RuboCop::Cop::Markdown::OutsideSpacing
+    ]
+    allow(RuboCop::Prose::InlineRules).to receive(:lines).and_call_original
+    allow(RuboCop::Prose::InlineRules).to receive(:spans).and_call_original
+
+    found, rewritten = investigate(cops, source)
+    expect(found.map(&:cop_name)).to contain_exactly('Markdown/CodeSpanSpacing', 'Markdown/EmphasisSpacing')
+    expect(rewritten).not_to eq(source)
+    expect(RuboCop::Prose::InlineRules).to have_received(:lines).once
+    expect(RuboCop::Prose::InlineRules).to have_received(:spans).with(source.chomp).once
+
+    final = corrected(cops, rewritten)
+    expect(final).to eq("😀 `code` and *word*.\n")
+    expect(RuboCop::Prose::InlineRules).to have_received(:lines).twice
+    expect(offenses(cops, final)).to be_empty
+  end
+
+  it 'only reparses table rows that could contain emphasis' do
+    doc = document("| *café* | Value |\n| --- | --- |\n| plain | 😀 |\n| code | `*hidden*` |\n")
+    allow(RuboCop::Prose::InlineRules::PositionedParser).to receive(:parse).and_call_original
+
+    ranges = doc.emphasis_ranges(:em)
+    expect(ranges.map { |opening, closing, _| [opening.line, opening.column, closing.column] }).to eq([[1, 2, 7]])
+    expect(RuboCop::Prose::InlineRules::PositionedParser).to have_received(:parse).exactly(3).times
+  end
+
+  it 'does not allocate an inline source buffer for paragraphs without atoms' do
+    doc = document("Café 😀 plain text.\n")
+    paragraph = doc.paragraphs.first
+    allow(Parser::Source::Buffer).to receive(:new).and_call_original
+
+    expect(doc.atomic_ranges(paragraph)).to be_empty
+    expect(doc.soft_breaks(paragraph)).to be_empty
+    expect(Parser::Source::Buffer).not_to have_received(:new)
+  end
+
   it 'shares table scanning across cops and rebuilds tables after correction' do
     source = "| café | Value |\n| --- | --- |\n| `a|b` | text |\n"
     cops = [
@@ -92,6 +132,17 @@ RSpec.describe RuboCop::Prose::MarkdownDocument do
     )
     expect(result).to eq(source)
     expect(RuboCop::Prose::LinkRules).to have_received(:new).once
+  end
+
+  it 'reuses rendered link labels without changing their text or source locations' do
+    doc = document("😀 [**Here**](first) and [**Here**](second) and [&#104;ere](third).\n")
+    rules = doc.link_rules
+    allow(RuboCop::Prose::Parser).to receive(:parse).and_call_original
+
+    expect(rules.links.map { |link| rules.display_text(link) }).to eq(%w[Here Here here])
+    expect(rules.links.map { |link| rules.label_range(link).source }).to eq(['**Here**', '**Here**', '&#104;ere'])
+    expect(RuboCop::Prose::Parser).to have_received(:parse).with('**Here**').once
+    expect(RuboCop::Prose::Parser).to have_received(:parse).with('&#104;ere').once
   end
 
   it 'preserves both emphasis types and Unicode corrections across style and spacing cops' do

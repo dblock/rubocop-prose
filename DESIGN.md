@@ -22,6 +22,8 @@ Each Markdown document shares positioned emphasis and strong ranges across style
 
 Source-oriented table scanning is also shared per document across table cops and structural blank-line protection. Corrected sources rebuild the table analysis rather than reusing stale cell positions.
 
+Eligible inline lines and their protected spans are shared per document, not across configurations or corrections. Link destination parsing is cached by original-source position, and rendered link labels by their exact source spelling; cached destinations always describe the untouched source, not the masked scanner buffer.
+
 ## Preprocessor Interoperability
 
 An optional Markdown preprocessor can expose `processed_source.markdown_document` with an untouched `buffer` and `original_range` / `processed_range` mapping methods. The plugin analyzes that original buffer and translates offense and correction ranges at the RuboCop boundary, preserving the preprocessor's Ruby buffer so both kinds of corrections can coexist. This API is optional; standalone Markdown and text linting do not require a preprocessor.
