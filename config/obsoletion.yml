@@ -3,6 +3,14 @@ renamed:
   Markdown/ProperNames: Prose/ProperNames
 
 changed_parameters:
+  - cops: Markdown/StructuralLineLength
+    parameters:
+      - Max
+      - HeadingMax
+      - CodeBlockMax
+    reason: >-
+      Replace the shared limit and enable/value pairs with a positive integer width (or false) for each element:
+      Headings, CodeBlocks, and Tables. For example, use Headings: 120, CodeBlocks: false, and Tables: false.
   - cops: Markdown/ListMarkerSpacing
     parameters:
       - OrderedSingle
