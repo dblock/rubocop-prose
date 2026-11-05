@@ -3,4 +3,4 @@ plugins:
 
 Markdown/ListItemCapitalization:
   Enabled: true
-  EnforcedStyle: title_case
+  Style: title_case

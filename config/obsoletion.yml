@@ -24,6 +24,14 @@ changed_parameters:
   - cops: Markdown/ReferenceDefinitions
     parameters: CheckUnused
     reason: 'Replace CheckUnused with Unused, preserving its boolean value (default: false).'
+  - cops:
+      - Markdown/CodeBlockStyle
+      - Markdown/FenceStyle
+      - Markdown/HeadingStyle
+      - Markdown/OrderedListNumbering
+      - Markdown/UnorderedListMarker
+    parameters: EnforcedStyle
+    alternative: Style
   - cops: Markdown/ListMarkerSpacing
     parameters:
       - OrderedSingle
@@ -31,7 +39,7 @@ changed_parameters:
       - UnorderedSingle
       - UnorderedMulti
     reason: >-
-      Use EnforcedStyle (fixed or aligned) and MinSpaces instead.
+      Use Style (fixed or aligned) and MinSpaces instead.
       These settings now apply to all list items, regardless of marker type or multiline content.
       Different legacy spacing values cannot be preserved by a single policy; choose the desired shared spacing.
   - cops: Markdown/FirstHeading

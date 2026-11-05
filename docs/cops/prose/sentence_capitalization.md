@@ -16,7 +16,7 @@ Supports unsafe autocorrection with `rubocop -A` for a mapped ordinary prose ope
 Prose/SentenceCapitalization:
   Enabled: false
   SafeAutoCorrect: false
-  EnforcedStyle: initial_capital
+  Style: initial_capital
   PreserveMixedCase: true
   IgnoredWords: []
   SupportedStyles:

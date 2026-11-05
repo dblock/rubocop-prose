@@ -2,3 +2,6 @@ Markdown/HardBreakStyle:
   Description: 'Use a configured Markdown hard-break syntax.'
   Enabled: true
   Style: backslash
+  SupportedStyles:
+    - backslash
+    - spaces

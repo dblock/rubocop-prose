@@ -8,6 +8,13 @@ module RuboCop
       class TablePipes < Base
         extend AutoCorrector
 
+        def validate_config
+          styles = cop_config['SupportedStyles']
+          return if styles.include?(cop_config['Style'])
+
+          raise ValidationError, "#{cop_name}: Style must be one of #{styles.join(', ')}."
+        end
+
         def investigate_document
           RuboCop::Prose::TableRules.tables(document).each do |table|
             style = cop_config.fetch('Style', 'consistent')

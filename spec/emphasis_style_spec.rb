@@ -3,6 +3,21 @@
 require 'spec_helper'
 
 RSpec.describe RuboCop::Cop::Markdown::EmphasisStyle do
+  it 'rejects unsupported styles explicitly, even without emphasis' do
+    ['invalid', nil, ['asterisk']].each do |style|
+      expect do
+        offenses(described_class, '', 'Style' => style)
+      end.to raise_error(RuboCop::ValidationError, /Style must be one of consistent, asterisk, underscore/)
+    end
+  end
+
+  it 'honors an explicit asterisk policy' do
+    source = "_first_ and *second*\n"
+    expected = "*first* and *second*\n"
+    expect(corrected(described_class, source, 'Style' => 'asterisk')).to eq(expected)
+    expect(offenses(described_class, expected, 'Style' => 'asterisk')).to be_empty
+  end
+
   it 'uses the first parsed emphasis style in consistent mode' do
     source = "_first_ and *second*.\n"
     expect(offenses(described_class, source).size).to eq(1)

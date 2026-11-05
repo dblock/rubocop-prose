@@ -36,7 +36,7 @@ Markdown/ListItemCapitalization:
   Enabled: true
 
 Markdown/ListMarkerSpacing:
-  EnforcedStyle: aligned
+  Style: aligned
 
 Markdown/FrontMatterKeys:
   Enabled: true
@@ -46,7 +46,7 @@ Markdown/BareUrl:
 
 Markdown/CodeBlockStyle:
   Enabled: true
-  EnforcedStyle: fenced
+  Style: fenced
 
 Markdown/EmphasisHeading:
   Enabled: true
@@ -61,7 +61,7 @@ Markdown/HeadingPunctuation:
 
 Markdown/HeadingStyle:
   Enabled: true
-  EnforcedStyle: atx
+  Style: atx
 
 Markdown/LinkFragment:
   Enabled: true

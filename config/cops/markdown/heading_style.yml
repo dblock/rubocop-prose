@@ -1,7 +1,7 @@
 Markdown/HeadingStyle:
   Description: 'Use a consistent heading syntax.'
   Enabled: false
-  EnforcedStyle: consistent
+  Style: consistent
   SupportedStyles:
     - consistent
     - atx

@@ -12,7 +12,7 @@ module RuboCop
         private
 
         def investigate_document
-          expected = { 'backtick' => '`', 'tilde' => '~' }[cop_config.fetch('EnforcedStyle', 'consistent')]
+          expected = { 'backtick' => '`', 'tilde' => '~' }[cop_config.fetch('Style', 'consistent')]
           code_blocks.each do |node|
             details = fence_details(node)
             next unless details

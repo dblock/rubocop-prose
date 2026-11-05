@@ -1,7 +1,7 @@
 Markdown/CodeBlockStyle:
   Description: Use fenced, indented, or consistently styled code blocks.
   Enabled: false
-  EnforcedStyle: consistent
+  Style: consistent
   SupportedStyles:
     - consistent
     - fenced

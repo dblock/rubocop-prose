@@ -12,7 +12,7 @@ module RuboCop
         private
 
         def investigate_document
-          expected = cop_config.fetch('EnforcedStyle', 'consistent')
+          expected = cop_config.fetch('Style', 'consistent')
           code_blocks.each do |node|
             actual = node.options[:fenced] ? 'fenced' : 'indented'
             expected = actual if expected == 'consistent'

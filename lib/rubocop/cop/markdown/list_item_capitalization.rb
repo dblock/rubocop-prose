@@ -17,7 +17,7 @@ module RuboCop
           list_groups do |_list, marks, _parent|
             expected = nil
             marks.each do |mark|
-              if cop_config['EnforcedStyle'] == 'title_case'
+              if cop_config['Style'] == 'title_case'
                 investigate_title(mark)
                 next
               end
@@ -26,9 +26,9 @@ module RuboCop
               next unless initial
 
               range, style = initial
-              next if initial.last && expected.nil? && cop_config['EnforcedStyle'] == 'consistent'
+              next if initial.last && expected.nil? && cop_config['Style'] == 'consistent'
 
-              expected ||= cop_config['EnforcedStyle'] == 'initial_capital' ? 'uppercase' : style
+              expected ||= cop_config['Style'] == 'initial_capital' ? 'uppercase' : style
               next if style == expected
 
               prose_offense(range, message: "Use #{expected} initial capitalization in list items.") do |corrector|

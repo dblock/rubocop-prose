@@ -13,11 +13,11 @@ Autocorrection supports simple one-line items and computed gaps from one to four
 ```yaml
 Markdown/ListMarkerSpacing:
   Enabled: true
-  EnforcedStyle: fixed
+  Style: fixed
   MinSpaces: 1
 ```
 
-`EnforcedStyle` accepts `fixed` or `aligned`. `MinSpaces` must be a positive integer. The defaults retain one space after every marker.
+`Style` accepts `fixed` or `aligned`. `MinSpaces` must be a positive integer. The defaults retain one space after every marker.
 
 ## Fixed Spacing
 
@@ -41,7 +41,7 @@ For this configuration:
 
 ```yaml
 Markdown/ListMarkerSpacing:
-  EnforcedStyle: aligned
+  Style: aligned
   MinSpaces: 2
 ```
 
@@ -71,11 +71,11 @@ Each gap is the widest sibling marker width minus the current marker width plus 
 
 **Breaking configuration change:** `OrderedSingle`, `OrderedMulti`, `UnorderedSingle`, and `UnorderedMulti` have been removed. RuboCop rejects these keys with migration guidance instead of silently ignoring them.
 
-Replace equal legacy values with `EnforcedStyle: fixed` and that value for `MinSpaces`. For example, four legacy settings all set to `2` become:
+Replace equal legacy values with `Style: fixed` and that value for `MinSpaces`. For example, four legacy settings all set to `2` become:
 
 ```yaml
 Markdown/ListMarkerSpacing:
-  EnforcedStyle: fixed
+  Style: fixed
   MinSpaces: 2
 ```
 

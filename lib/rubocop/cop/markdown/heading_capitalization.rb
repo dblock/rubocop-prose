@@ -15,7 +15,7 @@ module RuboCop
         def investigate_document
           document.nodes(:header).each do |node|
             text = prose_text(node)
-            title_case = cop_config['EnforcedStyle'] == 'title_case'
+            title_case = cop_config['Style'] == 'title_case'
             number = node.options.fetch(:location)
             opening = heading_opening(number)
             literal_lowercase = opening&.literal && lowercase_opening?(opening)

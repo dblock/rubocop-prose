@@ -9,7 +9,7 @@ Autocorrection changes only the marker and is withheld if it could create a them
 ```yaml
 Markdown/UnorderedListMarker:
   Enabled: true
-  EnforcedStyle: consistent # consistent, asterisk, plus or dash.
+  Style: consistent # consistent, asterisk, plus or dash.
 ```
 
 ## Example
@@ -18,7 +18,7 @@ For this configuration:
 
 ```yaml
 Markdown/UnorderedListMarker:
-  EnforcedStyle: dash
+  Style: dash
 ```
 
 ### Bad
@@ -33,4 +33,13 @@ Markdown/UnorderedListMarker:
 ```markdown
 - one
 - two
+```
+
+## Migrating From 0.1.0
+
+Replace `EnforcedStyle` with `Style`:
+
+```yaml
+Markdown/UnorderedListMarker:
+  Style: dash
 ```

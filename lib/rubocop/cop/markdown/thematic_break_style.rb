@@ -6,6 +6,10 @@ module RuboCop
       class ThematicBreakStyle < Base
         extend AutoCorrector
 
+        def validate_config
+          configured_styles(cop_config['Style'])
+        end
+
         def investigate_document
           style = cop_config.fetch('Style', 'consistent')
           styles = configured_styles(style)

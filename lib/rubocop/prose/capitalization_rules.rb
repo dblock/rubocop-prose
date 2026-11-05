@@ -91,8 +91,8 @@ module RuboCop
 
       def validate_config
         styles = cop_config['SupportedStyles']
-        unless styles.include?(cop_config['EnforcedStyle'])
-          raise RuboCop::ValidationError, "#{cop_name}: EnforcedStyle must be one of #{styles.join(', ')}."
+        unless styles.include?(cop_config['Style'])
+          raise RuboCop::ValidationError, "#{cop_name}: Style must be one of #{styles.join(', ')}."
         end
 
         options = %w[IgnoredWords]

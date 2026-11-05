@@ -3,6 +3,14 @@
 require 'spec_helper'
 
 RSpec.describe RuboCop::Cop::Markdown::TableSpacing do
+  it 'rejects unsupported styles explicitly, even without tables' do
+    ['invalid', nil, ['compact']].each do |style|
+      expect do
+        offenses(described_class, '', 'Style' => style)
+      end.to raise_error(RuboCop::ValidationError, /Style must be one of aligned, compact, tight/)
+    end
+  end
+
   it 'pads aligned cells to the widest source content in each column' do
     source = "| a|long |\n|---|---|\n|xx| y|\n"
     expected = "| a   | long |\n| --- | ---  |\n| xx  | y    |\n"

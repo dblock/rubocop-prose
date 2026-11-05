@@ -2,3 +2,7 @@ Markdown/TableSpacing:
   Description: 'Use configured spacing around table cell content.'
   Enabled: true
   Style: aligned
+  SupportedStyles:
+    - aligned
+    - compact
+    - tight

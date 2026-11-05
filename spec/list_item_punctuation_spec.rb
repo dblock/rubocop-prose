@@ -4,7 +4,7 @@ require 'spec_helper'
 
 RSpec.describe RuboCop::Cop::Markdown::ListItemPunctuation do
   it 'requires only allowed punctuation, checking the complete terminal sequence' do
-    config = { 'EnforcedStyle' => 'always', 'AllowedPunctuation' => ['.'] }
+    config = { 'Style' => 'always', 'AllowedPunctuation' => ['.'] }
     source = "- Ready!\n- Ready?\n- Ready…\n- Ready.?\n- Ready?.\n- Ready\n- **Ready.**\n- “Ready.”\n"
 
     expect(offenses(described_class, source, config).map { |o| o.location.line }).to eq([1, 2, 3, 4, 5, 6])
@@ -19,13 +19,13 @@ RSpec.describe RuboCop::Cop::Markdown::ListItemPunctuation do
   end
 
   it 'still forbids all recognized punctuation in never mode regardless of the allowlist' do
-    config = { 'EnforcedStyle' => 'never', 'AllowedPunctuation' => ['.'] }
+    config = { 'Style' => 'never', 'AllowedPunctuation' => ['.'] }
 
     expect(offenses(described_class, "- Ready?\n- Finished.\n", config).size).to eq(2)
   end
 
   it 'requires punctuation on every item in always mode, including a single-item list' do
-    config = { 'EnforcedStyle' => 'always' }
+    config = { 'Style' => 'always' }
     source = "- Build the package\n- Run the tests\n- Is it ready?\n"
 
     expect(offenses(described_class, source, config).map { |o| o.location.line }).to eq([1, 2])
@@ -35,7 +35,7 @@ RSpec.describe RuboCop::Cop::Markdown::ListItemPunctuation do
   end
 
   it 'forbids punctuation on every item in never mode' do
-    config = { 'EnforcedStyle' => 'never' }
+    config = { 'Style' => 'never' }
     source = "- **Build the package.**\n- “Run the tests!”\n- Check results\n"
 
     expect(offenses(described_class, source, config).map { |o| o.location.line }).to eq([1, 2])
@@ -45,7 +45,7 @@ RSpec.describe RuboCop::Cop::Markdown::ListItemPunctuation do
   end
 
   it 'applies explicit styles independently to nested lists while retaining ambiguous-list exclusions' do
-    config = { 'EnforcedStyle' => 'always' }
+    config = { 'Style' => 'always' }
     source = "- Parent\n  - Build the package\n  - Run the tests.\n- Parent\n"
     ambiguous = "- Build the package.\n\n  More details.\n- Run the tests\n"
 
