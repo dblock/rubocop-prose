@@ -64,7 +64,7 @@ module RuboCop
       end
 
       def table_boundaries
-        TableRules.tables(document).each do |table|
+        document.tables.each do |table|
           protect(table.rows.first.number - 1, -1, 1, front_matter: false)
           protect(table.rows.last.number + 1, 1, 1)
         end

@@ -20,6 +20,8 @@ Standalone Markdown and all plain text initialize Ruby parsing with empty input 
 
 Each Markdown document shares positioned emphasis and strong ranges across style and spacing cops, including table-row source mapping. Both types are collected in one parse; style policies remain cop-local, and corrected sources receive fresh documents.
 
+Source-oriented table scanning is also shared per document across table cops and structural blank-line protection. Corrected sources rebuild the table analysis rather than reusing stale cell positions.
+
 ## Preprocessor Interoperability
 
 An optional Markdown preprocessor can expose `processed_source.markdown_document` with an untouched `buffer` and `original_range` / `processed_range` mapping methods. The plugin analyzes that original buffer and translates offense and correction ranges at the RuboCop boundary, preserving the preprocessor's Ruby buffer so both kinds of corrections can coexist. This API is optional; standalone Markdown and text linting do not require a preprocessor.

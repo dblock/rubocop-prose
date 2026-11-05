@@ -7,7 +7,7 @@ module RuboCop
     module Markdown
       class TableColumns < Base
         def investigate_document
-          RuboCop::Prose::TableRules.tables(document).each do |table|
+          document.tables.each do |table|
             count = table.rows.first.cells.length
             table.rows.drop(1).each do |row|
               next if row.cells.length == count

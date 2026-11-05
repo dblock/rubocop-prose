@@ -12,24 +12,32 @@ class ProseBenchmark
       raise ArgumentError, 'ITERATIONS and SECTIONS must be positive integers.'
     end
 
-    @configuration = RuboCop::ConfigLoader.merge_with_default(
-      RuboCop::Config.new(RuboCop::Prose.default_configuration), File.expand_path('../.rubocop.yml', __dir__)
-    )
-    @cops = RuboCop::Cop::Registry.global.select do |cop|
-      %i[Prose Markdown Text].include?(cop.department) && @configuration[cop.cop_name]['Enabled']
-    end
+    path = File.expand_path('../.rubocop.yml', __dir__)
+    @configurations = {
+      default: RuboCop::ConfigLoader.merge_with_default(
+        RuboCop::Config.new(RuboCop::Prose.default_configuration), path
+      ),
+      project: RuboCop::ConfigLoader.merge_with_default(RuboCop::ConfigLoader.load_file(path), path)
+    }
   end
 
   def run
     puts RUBY_DESCRIPTION
     puts "RuboCop #{RuboCop::Version::STRING}; #{@iterations} iterations; median time and allocations per operation"
-    puts 'Operation              Sections      Bytes      Seconds      Objects      Fingerprint'
+    puts 'Operation                  Sections      Bytes      Seconds      Objects      Fingerprint'
     @sizes.each do |size|
       { markdown: markdown(size), text: text(size) }.each do |format, source|
         measure("document/#{format}", size, source) { document(source, format) }
-        [false, true].each do |autocorrect|
-          name = autocorrect ? 'correct' : 'lint'
-          measure("#{name}/#{format}", size, source) { investigate(source, format, autocorrect: autocorrect) }
+        @configurations.each do |profile, configuration|
+          cops = RuboCop::Cop::Registry.global.select do |cop|
+            %i[Prose Markdown Text].include?(cop.department) && configuration[cop.cop_name]['Enabled']
+          end
+          [false, true].each do |autocorrect|
+            name = autocorrect ? 'correct' : 'lint'
+            measure("#{name}/#{profile}/#{format}", size, source) do
+              investigate(source, format, configuration, cops, autocorrect: autocorrect)
+            end
+          end
         end
       end
     end
@@ -50,7 +58,7 @@ class ProseBenchmark
       allocations << (GC.stat(:total_allocated_objects) - before)
       raise "Unstable benchmark output: #{name}, #{size} sections." unless fingerprint(result) == expected
     end
-    puts format('%<name>-22s %<size>8d %<bytes>10d %<seconds>12.6f %<objects>12.0f %<fingerprint>16s',
+    puts format('%<name>-26s %<size>8d %<bytes>10d %<seconds>12.6f %<objects>12.0f %<fingerprint>16s',
                 name: name, size: size, bytes: source.bytesize, seconds: median(times),
                 objects: median(allocations), fingerprint: expected[0, 16])
   end
@@ -76,12 +84,12 @@ class ProseBenchmark
     [document.headings, paragraphs, document.warnings]
   end
 
-  def investigate(source, format, autocorrect:)
-    processed = RuboCop::ProcessedSource.new(source, 3.2, path(format), prose_configuration: @configuration)
-    processed.config = @configuration if processed.respond_to?(:config=)
-    processed.registry = RuboCop::Cop::Registry.new(@cops) if processed.respond_to?(:registry=)
+  def investigate(source, format, configuration, cops, autocorrect:)
+    processed = RuboCop::ProcessedSource.new(source, 3.2, path(format), prose_configuration: configuration)
+    processed.config = configuration if processed.respond_to?(:config=)
+    processed.registry = RuboCop::Cop::Registry.new(cops) if processed.respond_to?(:registry=)
     options = { raise_error: true, autocorrect: autocorrect, stdin: source }
-    team = RuboCop::Cop::Team.mobilize(@cops, @configuration, options)
+    team = RuboCop::Cop::Team.mobilize(cops, configuration, options)
     report = team.investigate(processed)
     offenses = report.offenses.map do |offense|
       [offense.cop_name, offense.location.begin_pos, offense.location.end_pos, offense.message, offense.severity.name]
@@ -107,6 +115,13 @@ class ProseBenchmark
         - A list item with _emphasis_
           continues with **strong text**.
 
+        9. a short item
+        10. Another item with github, markdown, and ruby.
+
+        ### Repeated heading
+
+        `fixed` spacing preserves YAML and RuboCop names.
+
         | Feature | Value |
         | --- | --- |
         | Name | `code` |
@@ -119,13 +134,14 @@ class ProseBenchmark
 
       MARKDOWN
     end.join
-    "# Benchmark\n\n#{sections}"
+    "---\ntitle: Benchmark\n---\n\n# Benchmark\n\n#{sections}"
   end
 
   def text(size)
     Array.new(size) do |index|
       "Section #{index}: Unicode \u{1F600} prose with literal [brackets], `code`, and <tags>.\n" \
-        "A second source line continues the paragraph.\n\n"
+        "A second source line continues the paragraph.\n\n" \
+        "lowercase prose mentions github, markdown, and ruby.\t\n\n"
     end.join
   end
 end

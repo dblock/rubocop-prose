@@ -16,7 +16,7 @@ module RuboCop
         end
 
         def investigate_document
-          RuboCop::Prose::TableRules.tables(document).each do |table|
+          document.tables.each do |table|
             style = cop_config.fetch('Style', 'aligned')
             widths = table.rows.each_with_object({}) do |row, sizes|
               row.cells.each_with_index do |cell, index|
