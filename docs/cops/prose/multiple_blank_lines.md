@@ -4,6 +4,8 @@ Removes excess consecutive blank lines while preserving paragraph separation. In
 
 [Markdown/BlockquoteBlankLines](../markdown/blockquote_blank_lines.md) handles the separate case of adding markers between adjacent blockquotes.
 
+Empty quote lines with the single trailing space permitted by [Markdown/TrailingWhitespace](../markdown/trailing_whitespace.md)'s `AllowEmptyBlockquoteSpace` option still count toward `Max`; retained lines keep their original spelling.
+
 At Markdown structural boundaries, the effective limit is at least the minimum required by the enabled [heading](../markdown/heading_blank_lines.md), [fence](../markdown/fence_blank_lines.md), [list](../markdown/list_blank_lines.md), or [table](../markdown/table_blank_lines.md) spacing cop in that file's configuration. Shared boundaries use the largest minimum, not their sum. `Max` still applies elsewhere, including document edges where no structural padding is required.
 
 ## Configuration
