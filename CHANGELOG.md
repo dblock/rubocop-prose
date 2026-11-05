@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. The format 
 - [#142](https://github.com/dblock/rubocop-prose/pull/142): Add opt-in `Markdown/ListItemCapitalization` with consistent, initial-capital, and title-case styles and unsafe autocorrection - [@dblock](https://github.com/dblock).
 - [#143](https://github.com/dblock/rubocop-prose/pull/143): Add default-enabled YAML syntax diagnostics for closed leading Markdown front matter - [@dblock](https://github.com/dblock).
 - [#145](https://github.com/dblock/rubocop-prose/pull/145): Add opt-in `Markdown/FrontMatterKeys` for allowed and required top-level YAML metadata keys - [@dblock](https://github.com/dblock).
+- [#146](https://github.com/dblock/rubocop-prose/pull/146): Add aligned list marker spacing with configurable minimum padding; breaking configuration change: replace the four `Single`/`Multi` spacing options with shared `EnforcedStyle` and `MinSpaces` settings - [@dblock](https://github.com/dblock).
 - Your contribution here.
 
 ## 0.1.0 (2026/11/03)

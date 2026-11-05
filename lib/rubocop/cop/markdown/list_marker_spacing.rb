@@ -9,14 +9,23 @@ module RuboCop
         extend AutoCorrector
         include RuboCop::Prose::ListRules
 
+        def validate_config
+          unless %w[fixed aligned].include?(cop_config['EnforcedStyle'])
+            raise ValidationError, "#{cop_name}: EnforcedStyle must be fixed or aligned."
+          end
+          return if cop_config['MinSpaces'].is_a?(Integer) && cop_config['MinSpaces'].positive?
+
+          raise ValidationError, "#{cop_name}: MinSpaces must be a positive integer."
+        end
+
         private
 
         def investigate_document
-          list_groups do |list, marks, _parent|
-            multiline = marks.any? { |mark| node_last_line(mark[:item]) > mark[:line] }
-            key = "#{list.type == :ul ? 'Unordered' : 'Ordered'}#{multiline ? 'Multi' : 'Single'}"
-            spaces = cop_config.fetch(key, 1)
+          list_groups do |_list, marks, _parent|
+            widest = marks.map { |mark| mark[:marker].length }.max
             marks.each do |mark|
+              spaces = cop_config['MinSpaces']
+              spaces += widest - mark[:marker].length if cop_config['EnforcedStyle'] == 'aligned'
               next if mark[:gap].empty? || mark[:gap] == ' ' * spaces
 
               first = mark[:column] + mark[:marker].length

@@ -1,0 +1,4 @@
+offenses:
+  Markdown/ListMarkerSpacing: 6
+remaining_offenses:
+  Markdown/ListMarkerSpacing: 1

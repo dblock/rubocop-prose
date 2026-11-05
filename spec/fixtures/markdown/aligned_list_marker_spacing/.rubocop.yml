@@ -1,0 +1,4 @@
+Markdown/ListMarkerSpacing:
+  Enabled: true
+  EnforcedStyle: aligned
+  MinSpaces: 2

@@ -29,6 +29,9 @@ Markdown/HeadingCapitalization:
 Markdown/ListItemCapitalization:
   Enabled: true
 
+Markdown/ListMarkerSpacing:
+  EnforcedStyle: aligned
+
 Markdown/FrontMatterKeys:
   Enabled: true
 
