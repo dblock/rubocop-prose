@@ -8,6 +8,13 @@ Markdown and plain-text prose checks for RuboCop.
 
 Use [rubocop-md](https://github.com/rubocop/rubocop-md) to lint Ruby code inside Markdown.
 
+- Lint Markdown and plain text with native RuboCop configuration and file discovery.
+- Wrap or unwrap paragraphs while preserving Markdown syntax and hard breaks.
+- Check headings, lists, links, tables, code blocks, and whitespace.
+- Validate YAML front matter, require keys, and restrict allowed keys.
+- Check reference definitions, local heading fragments, and image alternative text.
+- Configure capitalization and proper names, with automatic corrections where supported.
+
 This project was inspired by [To Wrap or Not to Wrap in Markdown](https://code.dblock.org/2021/06/07/to-wrap-or-not-to-wrap-in-markdown.html) and borrows many Markdown checks from [markdownlint](https://github.com/DavidAnson/markdownlint).
 
 ## Installation
@@ -52,9 +59,18 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 
 ## Cops
 
-### Markdown
+### Prose
 
-Markdown checks ignore [front matter](docs/settings/front_matter.md) by default and do not treat code blocks as prose. Dedicated code-block cops check their structure; [Prose/HardTabs](docs/cops/prose/hard_tabs.md) and [Markdown/StructuralLineLength](docs/cops/markdown/structural_line_length.md) can also inspect code content. Prose/HardTabs checks every line of plain text, where tabs are reported without correction. Prose/ProperNames checks literal text in plain-text files; in Markdown, inline code, links, escaped syntax, HTML, and front matter remain excluded by default.
+| Cop                                                                        | Default  | Purpose                                                                      |
+| ---                                                                        | ---      | -------                                                                      |
+| [Prose/HardTabs](docs/cops/prose/hard_tabs.md)                             | Enabled  | Report tabs in Markdown and plain text without correcting them.              |
+| [Prose/MaxLength](docs/cops/prose/max_length.md)                           | Enabled  | Wrap or unwrap prose paragraphs in Markdown and plain text.                  |
+| [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md)        | Enabled  | Limit blank lines in prose and quotes, but not code.                         |
+| [Prose/ProperNames](docs/cops/prose/proper_names.md)                       | Disabled | Use configured capitalization for literal proper names in Markdown and text. |
+| [Prose/SentenceCapitalization](docs/cops/prose/sentence_capitalization.md) | Disabled | Check paragraph openings without changing quoted or code literals.           |
+| [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)               | Enabled  | Require exactly one final newline.                                           |
+
+### Markdown
 
 | Cop                                                                                         | Default  | Purpose                                                                             |
 | ---                                                                                         | ---      | -------                                                                             |
@@ -120,12 +136,6 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/UndefinedReference](docs/cops/markdown/undefined_reference.md)                    | Enabled  | Require definitions for link and image references.                                  |
 | [Markdown/UnorderedListIndentation](docs/cops/markdown/unordered_list_indentation.md)       | Enabled  | Use a configured indentation width for unordered lists.                             |
 | [Markdown/UnorderedListMarker](docs/cops/markdown/unordered_list_marker.md)                 | Enabled  | Use a configured or consistent unordered list marker.                               |
-| [Prose/MaxLength](docs/cops/prose/max_length.md)                                            | Enabled  | Wrap or unwrap prose paragraphs in Markdown and plain text.                         |
-| [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md)                         | Enabled  | Limit blank lines in prose and quotes, but not code.                                |
-| [Prose/HardTabs](docs/cops/prose/hard_tabs.md)                                              | Enabled  | Report tabs in Markdown and plain text without correcting them.                     |
-| [Prose/ProperNames](docs/cops/prose/proper_names.md)                                        | Disabled | Use configured capitalization for literal proper names in Markdown and text.        |
-| [Prose/SentenceCapitalization](docs/cops/prose/sentence_capitalization.md)                  | Disabled | Check paragraph openings without changing quoted or code literals.                  |
-| [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)                                | Enabled  | Require exactly one final newline.                                                  |
 
 #### Settings
 
@@ -136,15 +146,9 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 
 ### Text
 
-| Cop                                                                        | Default  | Purpose                                                     |
-| ---                                                                        | ---      | -------                                                     |
-| [Prose/MaxLength](docs/cops/prose/max_length.md)                           | Enabled  | Wrap or unwrap prose paragraphs in Markdown and plain text. |
-| [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md)        | Enabled  | Limit consecutive literal blank lines.                      |
-| [Prose/HardTabs](docs/cops/prose/hard_tabs.md)                             | Enabled  | Report tabs on every plain-text line without correction.    |
-| [Prose/ProperNames](docs/cops/prose/proper_names.md)                       | Disabled | Check configured canonical spellings in literal text.       |
-| [Prose/SentenceCapitalization](docs/cops/prose/sentence_capitalization.md) | Disabled | Check plain-text and Markdown paragraph openings.           |
-| [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)               | Enabled  | Require exactly one final newline.                          |
-| [Text/TrailingWhitespace](docs/cops/text/trailing_whitespace.md)           | Enabled  | Remove all trailing spaces and tabs from plain-text lines.  |
+| Cop                                                              | Default | Purpose                                                    |
+| ---                                                              | ---     | -------                                                    |
+| [Text/TrailingWhitespace](docs/cops/text/trailing_whitespace.md) | Enabled | Remove all trailing spaces and tabs from plain-text lines. |
 
 #### Settings
 
