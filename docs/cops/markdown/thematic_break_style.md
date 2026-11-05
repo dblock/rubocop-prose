@@ -10,6 +10,8 @@ Markdown/ThematicBreakStyle:
   Style: consistent
 ```
 
+`Style` accepts `consistent`, a literal Markdown thematic break such as `- - -`, or a nonempty array of literal breaks. Each literal must contain at least three matching `*`, `-`, or `_` markers, optionally separated by spaces or tabs, without leading or trailing whitespace. There is no finite `SupportedStyles` list.
+
 ## Example
 
 For this configuration:

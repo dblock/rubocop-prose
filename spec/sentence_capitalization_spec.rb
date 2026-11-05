@@ -99,7 +99,7 @@ RSpec.describe RuboCop::Cop::Prose::SentenceCapitalization do
   it 'checks subsequent list-item paragraphs but leaves item openings to ListItemCapitalization' do
     settings = {
       'Markdown/ListItemCapitalization' => {
-        'Enabled' => true, 'EnforcedStyle' => 'consistent'
+        'Enabled' => true, 'Style' => 'consistent'
       }
     }
     source = "- lowercase item\n- `fixed` item\n\n  lowercase continuation\n"
@@ -121,7 +121,7 @@ RSpec.describe RuboCop::Cop::Prose::SentenceCapitalization do
   it 'is disabled by default with one supported style and unsafe correction' do
     configuration = RuboCop::Prose.default_configuration.fetch('Prose/SentenceCapitalization')
     expect(configuration).to include(
-      'Enabled' => false, 'SafeAutoCorrect' => false, 'EnforcedStyle' => 'initial_capital',
+      'Enabled' => false, 'SafeAutoCorrect' => false, 'Style' => 'initial_capital',
       'PreserveMixedCase' => true, 'IgnoredWords' => [], 'SupportedStyles' => ['initial_capital']
     )
   end

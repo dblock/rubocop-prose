@@ -3,6 +3,23 @@
 require 'spec_helper'
 
 RSpec.describe RuboCop::Cop::Markdown::TablePipes do
+  it 'rejects unsupported styles explicitly, even without tables' do
+    ['invalid', nil, ['leading_only']].each do |style|
+      expect do
+        offenses(described_class, '', 'Style' => style)
+      end.to raise_error(RuboCop::ValidationError, /Style must be one of consistent, leading_and_trailing/)
+    end
+  end
+
+  { 'leading_only' => ['|', ''], 'trailing_only' => ['', '|'] }.each do |style, (leading, trailing)|
+    it "supports #{style} without changing cell content" do
+      source = "a | b\n--- | ---\nx | y\n"
+      expected = source.lines.map { |line| "#{leading}#{line.chomp}#{trailing}\n" }.join
+      expect(corrected(described_class, source, 'Style' => style)).to eq(expected)
+      expect(offenses(described_class, expected, 'Style' => style)).to be_empty
+    end
+  end
+
   it 'matches the first row leading and trailing pipe style per table' do
     source = "| a | b |\n--- | ---\nx | y |\n"
     expected = "| a | b |\n|--- | ---|\n|x | y |\n"

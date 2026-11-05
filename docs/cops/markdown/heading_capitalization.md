@@ -1,6 +1,6 @@
 # Markdown/HeadingCapitalization
 
-Checks ATX and Setext headings, ignoring emphasis delimiters, link syntax, and leading punctuation or numbers. `EnforcedStyle: title_case` (the default) checks each word, keeping internal minor words lowercase. `initial_capital` checks only the first prose letter; remaining words retain their capitalization. Neither style enforces strict sentence case.
+Checks ATX and Setext headings, ignoring emphasis delimiters, link syntax, and leading punctuation or numbers. `Style: title_case` (the default) checks each word, keeping internal minor words lowercase. `initial_capital` checks only the first prose letter; remaining words retain their capitalization. Neither style enforces strict sentence case.
 
 Lowercase openings inside inline code or quoted terms are reported, including ``## `excalc` usage`` and `## "excalc" usage`; neither their literal contents nor later words are changed. Opaque leading content such as HTML or images is conservatively skipped. `PreserveMixedCase: true` (the default) preserves mixed-case words such as `eBay`, `iOS`, and `macOS` where an initial capital is required, in either style. Set it to `false` to require uppercase initials even for those words. `IgnoredWords` still takes precedence.
 
@@ -15,7 +15,7 @@ Supports unsafe autocorrection (`rubocop -A`): capitalization may express proper
 ```yaml
 Markdown/HeadingCapitalization:
   Enabled: false
-  EnforcedStyle: title_case
+  Style: title_case
   PreserveMixedCase: true
   IgnoredWords: []
   MinorWords:
@@ -48,7 +48,7 @@ For this configuration:
 ```yaml
 Markdown/HeadingCapitalization:
   Enabled: true
-  EnforcedStyle: initial_capital
+  Style: initial_capital
 ```
 
 ### Bad
@@ -80,7 +80,7 @@ For this configuration:
 ```yaml
 Markdown/HeadingCapitalization:
   Enabled: true
-  EnforcedStyle: title_case
+  Style: title_case
 ```
 
 ### Bad
@@ -116,7 +116,7 @@ For this configuration:
 ```yaml
 Markdown/HeadingCapitalization:
   Enabled: true
-  EnforcedStyle: title_case
+  Style: title_case
   MinorWords:
     - and
     - the
@@ -143,7 +143,7 @@ For this configuration:
 ```yaml
 Markdown/HeadingCapitalization:
   Enabled: true
-  EnforcedStyle: title_case
+  Style: title_case
   IgnoredWords:
     - macOS
     - npm

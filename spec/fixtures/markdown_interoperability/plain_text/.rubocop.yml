@@ -10,4 +10,4 @@ Markdown/FenceLanguage:
   Enabled: true
 Markdown/HeadingStyle:
   Enabled: true
-  EnforcedStyle: setext
+  Style: setext

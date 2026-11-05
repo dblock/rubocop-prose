@@ -4,12 +4,17 @@ Requires Markdown paragraph hard breaks to use the configured backslash or trail
 
 On files whose line endings cannot be preserved by RuboCop's source buffer, this cop reports style violations without autocorrecting them.
 
+Trailing whitespace cleanup honors this style.
+
 ## Configuration
 
 ```yaml
 Markdown/HardBreakStyle:
   Enabled: true
-  Style: backslash # backslash or spaces.
+  Style: backslash
+  SupportedStyles:
+    - backslash
+    - spaces
 ```
 
 ## Example

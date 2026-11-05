@@ -10,7 +10,7 @@ module RuboCop
 
         def investigate_document
           headings = heading_entries
-          style = cop_config.fetch('EnforcedStyle', 'consistent')
+          style = cop_config.fetch('Style', 'consistent')
           style = headings.first&.fetch(:style) if style == 'consistent'
           headings.each do |heading|
             next if heading[:style] == style

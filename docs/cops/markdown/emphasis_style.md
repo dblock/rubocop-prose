@@ -9,7 +9,11 @@ Autocorrection preserves content. Intraword asterisks are not changed to undersc
 ```yaml
 Markdown/EmphasisStyle:
   Enabled: true
-  Style: consistent # consistent, asterisk or underscore.
+  Style: consistent
+  SupportedStyles:
+    - consistent
+    - asterisk
+    - underscore
 ```
 
 ## Example

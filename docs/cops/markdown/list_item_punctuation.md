@@ -2,14 +2,14 @@
 
 Requires, forbids, or consistently uses terminal punctuation in parsed Markdown list items. Terminal punctuation is a period, exclamation mark, question mark, or ellipsis. Punctuation characters may differ; for example, a question and a statement are consistent. A closing quotation mark after punctuation is allowed. Inline Markdown formatting does not affect the check.
 
-With `EnforcedStyle: consistent`, the first item sets the expected style. `always` requires terminal punctuation on every checked item, including single-item lists; `never` forbids it. Nested lists are checked independently. The cop reports only and checks a list only when every item consists of one parsed paragraph; items with code blocks, multiple blocks, or other ambiguous structure are skipped.
+With `Style: consistent`, the first item sets the expected style. `always` requires terminal punctuation on every checked item, including single-item lists; `never` forbids it. Nested lists are checked independently. The cop reports only and checks a list only when every item consists of one parsed paragraph; items with code blocks, multiple blocks, or other ambiguous structure are skipped.
 
 ## Configuration
 
 ```yaml
 Markdown/ListItemPunctuation:
   Enabled: false
-  EnforcedStyle: consistent # consistent, always, or never
+  Style: consistent # consistent, always, or never
   AllowedPunctuation:
     - "."
     - "!"
@@ -26,7 +26,7 @@ For this configuration:
 ```yaml
 Markdown/ListItemPunctuation:
   Enabled: true
-  EnforcedStyle: always
+  Style: always
 ```
 
 ### Bad
@@ -50,7 +50,7 @@ For this configuration:
 ```yaml
 Markdown/ListItemPunctuation:
   Enabled: true
-  EnforcedStyle: always
+  Style: always
   AllowedPunctuation:
     - "."
 ```

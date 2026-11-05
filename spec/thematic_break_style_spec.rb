@@ -38,9 +38,9 @@ RSpec.describe RuboCop::Cop::Markdown::ThematicBreakStyle do
   end
 
   it 'rejects invalid configured thematic-break spellings' do
-    ['not a break', [], ['---', 'not a break'], ['---  '], [nil], 3].each do |style|
+    ['not a break', [], ['---', 'not a break'], ['---  '], [nil], nil, 3].each do |style|
       expect do
-        offenses(described_class, "***\n", { 'Style' => style })
+        offenses(described_class, '', { 'Style' => style })
       end.to raise_error(RuboCop::ValidationError, /Style must be/)
     end
   end

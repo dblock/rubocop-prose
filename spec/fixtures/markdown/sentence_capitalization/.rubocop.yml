@@ -6,4 +6,4 @@ Prose/SentenceCapitalization:
 
 Markdown/ListItemCapitalization:
   Enabled: true
-  EnforcedStyle: consistent
+  Style: consistent

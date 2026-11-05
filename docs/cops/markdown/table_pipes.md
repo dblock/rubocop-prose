@@ -9,7 +9,13 @@ Autocorrection preserves cell contents. Removing pipes from single-column tables
 ```yaml
 Markdown/TablePipes:
   Enabled: true
-  Style: consistent # consistent, leading_and_trailing, leading_only, trailing_only or no_leading_or_trailing.
+  Style: consistent
+  SupportedStyles:
+    - consistent
+    - leading_and_trailing
+    - leading_only
+    - trailing_only
+    - no_leading_or_trailing
 ```
 
 ## Example

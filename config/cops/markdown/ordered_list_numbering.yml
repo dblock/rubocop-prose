@@ -1,7 +1,7 @@
 Markdown/OrderedListNumbering:
   Description: Use sequential numbers or repeated ones in ordered lists.
   Enabled: false
-  EnforcedStyle: sequential
+  Style: sequential
   SupportedStyles:
     - sequential
     - ones

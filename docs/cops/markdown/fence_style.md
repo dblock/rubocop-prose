@@ -9,7 +9,7 @@ Autocorrection preserves contents, language metadata, and nesting. Conversion to
 ```yaml
 Markdown/FenceStyle:
   Enabled: true
-  EnforcedStyle: consistent # consistent, backtick or tilde.
+  Style: consistent # consistent, backtick or tilde.
 ```
 
 ## Example
@@ -18,7 +18,7 @@ For this configuration:
 
 ```yaml
 Markdown/FenceStyle:
-  EnforcedStyle: backtick
+  Style: backtick
 ```
 
 ### Bad
@@ -36,3 +36,12 @@ puts 1
 puts 1
 ```
 ````
+
+## Migrating From 0.1.0
+
+Replace `EnforcedStyle` with `Style`:
+
+```yaml
+Markdown/FenceStyle:
+  Style: backtick
+```

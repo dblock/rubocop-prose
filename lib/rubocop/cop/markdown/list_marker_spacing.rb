@@ -10,8 +10,8 @@ module RuboCop
         include RuboCop::Prose::ListRules
 
         def validate_config
-          unless %w[fixed aligned].include?(cop_config['EnforcedStyle'])
-            raise ValidationError, "#{cop_name}: EnforcedStyle must be fixed or aligned."
+          unless %w[fixed aligned].include?(cop_config['Style'])
+            raise ValidationError, "#{cop_name}: Style must be fixed or aligned."
           end
           return if cop_config['MinSpaces'].is_a?(Integer) && cop_config['MinSpaces'].positive?
 
@@ -25,7 +25,7 @@ module RuboCop
             widest = marks.map { |mark| mark[:marker].length }.max
             marks.each do |mark|
               spaces = cop_config['MinSpaces']
-              spaces += widest - mark[:marker].length if cop_config['EnforcedStyle'] == 'aligned'
+              spaces += widest - mark[:marker].length if cop_config['Style'] == 'aligned'
               next if mark[:gap].empty? || mark[:gap] == ' ' * spaces
 
               first = mark[:column] + mark[:marker].length

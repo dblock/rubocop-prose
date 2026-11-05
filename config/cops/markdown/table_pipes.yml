@@ -2,3 +2,9 @@ Markdown/TablePipes:
   Description: 'Use consistent leading and trailing table pipes.'
   Enabled: true
   Style: consistent
+  SupportedStyles:
+    - consistent
+    - leading_and_trailing
+    - leading_only
+    - trailing_only
+    - no_leading_or_trailing

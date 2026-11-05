@@ -12,7 +12,7 @@ module RuboCop
         private
 
         def investigate_document
-          style = cop_config.fetch('EnforcedStyle', 'consistent')
+          style = cop_config.fetch('Style', 'consistent')
           expected = { 'asterisk' => '*', 'plus' => '+', 'dash' => '-' }[style]
           changes = []
           list_groups do |list, marks, _parent|

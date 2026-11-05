@@ -20,7 +20,7 @@ module RuboCop
             items = marks.map { |mark| [mark, terminal_punctuation(mark[:item])] }
             next if items.any? { |_mark, punctuation| punctuation.nil? }
 
-            style = cop_config.fetch('EnforcedStyle', 'consistent')
+            style = cop_config.fetch('Style', 'consistent')
             expected = style == 'consistent' ? items.first.last != false : style == 'always'
             items.each do |mark, punctuation|
               message = item_message(style, punctuation, expected)

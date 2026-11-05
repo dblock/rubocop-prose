@@ -1,7 +1,7 @@
 Markdown/ListItemPunctuation:
   Description: Require, forbid, or consistently use terminal punctuation in list items.
   Enabled: false
-  EnforcedStyle: consistent
+  Style: consistent
   AllowedPunctuation:
     - "."
     - "!"

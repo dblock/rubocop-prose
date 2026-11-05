@@ -9,7 +9,7 @@ Autocorrection preserves punctuation. Changes in number width are report-only be
 ```yaml
 Markdown/OrderedListNumbering:
   Enabled: false
-  EnforcedStyle: sequential # Or ones, requiring every marker to be 1.
+  Style: sequential # Or ones, requiring every marker to be 1.
 ```
 
 ## Example
@@ -26,4 +26,13 @@ Markdown/OrderedListNumbering:
 ```markdown
 1. one
 2. two
+```
+
+## Migrating From 0.1.0
+
+Replace `EnforcedStyle` with `Style`:
+
+```yaml
+Markdown/OrderedListNumbering:
+  Style: sequential
 ```

@@ -5,7 +5,7 @@ require 'spec_helper'
 RSpec.describe RuboCop::Cop::Markdown::HeadingCapitalization do
   it 'corrects lowercase initials in ATX and Setext headings' do
     source = "## installing the package ##\n\ngetting Started\n---------------\n\nUsing the API\n=============\n"
-    found, result = investigate(described_class, source, 'EnforcedStyle' => 'initial_capital')
+    found, result = investigate(described_class, source, 'Style' => 'initial_capital')
     expect(found.map(&:line)).to eq([1, 3])
     expect(found.map(&:message)).to all(include('first prose letter'))
     expect(result).to eq("## Installing the package ##\n\nGetting Started\n---------------\n\nUsing the API\n=============\n")
@@ -18,22 +18,22 @@ RSpec.describe RuboCop::Cop::Markdown::HeadingCapitalization do
 
   it 'reports lowercase code and quoted openings without changing their literal contents' do
     source = "# `excalc` usage\n\n## **`excalc`** usage\n\n`excalc` usage\n--------------\n\n# \"excalc\" usage\n\n# `Excalc` usage\n\n# using `excalc`\n"
-    expect(offenses(described_class, source, 'EnforcedStyle' => 'initial_capital').map(&:line)).to eq([1, 3, 5, 8, 12])
-    expect(corrected(described_class, source, 'EnforcedStyle' => 'initial_capital')).to eq(source)
-    expect(offenses(described_class, "# `excalc` usage\n", 'EnforcedStyle' => 'title_case').map(&:line)).to eq([1])
+    expect(offenses(described_class, source, 'Style' => 'initial_capital').map(&:line)).to eq([1, 3, 5, 8, 12])
+    expect(corrected(described_class, source, 'Style' => 'initial_capital')).to eq(source)
+    expect(offenses(described_class, "# `excalc` usage\n", 'Style' => 'title_case').map(&:line)).to eq([1])
   end
 
   it 'preserves mixed-case leading brands and does not check the remaining words' do
     source = "# eBay usage\n\n## iOS support\n\n## macOS installation\n\n## Installing the PACKAGE with github\n"
-    expect(offenses(described_class, source, 'EnforcedStyle' => 'initial_capital')).to be_empty
+    expect(offenses(described_class, source, 'Style' => 'initial_capital')).to be_empty
   end
 
   it 'can require uppercase initials for mixed-case words in either style' do
     source = "# macOS Support\n\n# Using macOS\n\n# Using API\n"
-    options = { 'PreserveMixedCase' => false, 'EnforcedStyle' => 'initial_capital' }
+    options = { 'PreserveMixedCase' => false, 'Style' => 'initial_capital' }
     expect(offenses(described_class, source, options).map(&:line)).to eq([1])
-    expect(offenses(described_class, source, options.merge('EnforcedStyle' => 'title_case')).map(&:line)).to eq([1, 3])
-    options.merge!('EnforcedStyle' => 'title_case', 'IgnoredWords' => ['macOS'])
+    expect(offenses(described_class, source, options.merge('Style' => 'title_case')).map(&:line)).to eq([1, 3])
+    options.merge!('Style' => 'title_case', 'IgnoredWords' => ['macOS'])
     expect(offenses(described_class, source, options)).to be_empty
   end
 
@@ -101,37 +101,37 @@ RSpec.describe RuboCop::Cop::Markdown::HeadingCapitalization do
 
   it 'capitalizes first and last minor words and checks Setext markup' do
     source = "# the API and\n\n# The API And\n\n*Getting* [started](guide.html) with the API\n------------------------------------------\n"
-    expect(offenses(described_class, source, 'EnforcedStyle' => 'title_case').map(&:line)).to eq([1, 5])
+    expect(offenses(described_class, source, 'Style' => 'title_case').map(&:line)).to eq([1, 5])
   end
 
   it 'preserves brands, acronyms, Unicode and uncased words in title case' do
     source = "# Getting Started with macOS and the API\n\n# Élan with 中文\n\n# Don't Re-enter the API\n"
-    expect(offenses(described_class, source, 'EnforcedStyle' => 'title_case')).to be_empty
+    expect(offenses(described_class, source, 'Style' => 'title_case')).to be_empty
   end
 
   it 'skips title-case headings containing opaque inline content' do
     source = "# Using `excalc` with ruby\n\n# Using ![logo](logo.png) with ruby\n"
-    expect(offenses(described_class, source, 'EnforcedStyle' => 'title_case')).to be_empty
+    expect(offenses(described_class, source, 'Style' => 'title_case')).to be_empty
   end
 
   it 'rejects unsupported capitalization styles' do
     expect do
-      offenses(described_class, "# Heading\n", 'EnforcedStyle' => 'sentence_case')
-    end.to raise_error(RuboCop::ValidationError, /EnforcedStyle/)
+      offenses(described_class, "# Heading\n", 'Style' => 'sentence_case')
+    end.to raise_error(RuboCop::ValidationError, /Style/)
   end
 
   it 'replaces default minor words and matches them case-insensitively' do
-    options = { 'EnforcedStyle' => 'title_case', 'MinorWords' => ['THE'] }
+    options = { 'Style' => 'title_case', 'MinorWords' => ['THE'] }
     source = "# Getting Started with the API\n\n# Getting Started With the API\n"
     expect(offenses(described_class, source, options).map(&:line)).to eq([1])
   end
 
   it 'supports no minor words and gives ignored words precedence' do
     source = "# Getting Started with the API\n"
-    options = { 'EnforcedStyle' => 'title_case', 'MinorWords' => [] }
+    options = { 'Style' => 'title_case', 'MinorWords' => [] }
     expect(offenses(described_class, source, options).size).to eq(1)
     expect(offenses(described_class, "# Using The API\n",
-                    'EnforcedStyle' => 'title_case', 'MinorWords' => ['the'], 'IgnoredWords' => ['The'])).to be_empty
+                    'Style' => 'title_case', 'MinorWords' => ['the'], 'IgnoredWords' => ['The'])).to be_empty
   end
 
   it 'rejects invalid minor-word configuration' do
@@ -141,16 +141,16 @@ RSpec.describe RuboCop::Cop::Markdown::HeadingCapitalization do
   end
 
   it 'ignores exact words in both styles without exempting other words' do
-    options = { 'IgnoredWords' => %w[macOS npm], 'EnforcedStyle' => 'initial_capital' }
+    options = { 'IgnoredWords' => %w[macOS npm], 'Style' => 'initial_capital' }
     source = "# **npm** usage\n\n# npmlike usage\n"
     expect(offenses(described_class, source, options).map(&:line)).to eq([3])
 
     source = "# Using npm on macOS\n\n# Using npmlike on macOS\n\n# Getting started with npm\n"
-    expect(offenses(described_class, source, options.merge('EnforcedStyle' => 'title_case')).map(&:line)).to eq([3, 5])
+    expect(offenses(described_class, source, options.merge('Style' => 'title_case')).map(&:line)).to eq([3, 5])
   end
 
   it 'matches ignored words case-sensitively including minor words' do
-    options = { 'EnforcedStyle' => 'title_case', 'IgnoredWords' => ['The'] }
+    options = { 'Style' => 'title_case', 'IgnoredWords' => ['The'] }
     source = "# Using The API\n\n# Using THE API\n"
     expect(offenses(described_class, source, options).map(&:line)).to eq([3])
   end
@@ -185,13 +185,13 @@ RSpec.describe RuboCop::Cop::Markdown::HeadingCapitalization do
 
   it 'does not rewrite identifiers or URLs in title-case headings' do
     source = "# Using foo_bar\n\n# https://example.com\n"
-    expect(corrected(described_class, source, 'EnforcedStyle' => 'title_case')).to eq(source)
+    expect(corrected(described_class, source, 'Style' => 'title_case')).to eq(source)
   end
 
   it 'is registered and disabled by default' do
     expect(RuboCop::Cop::Registry.global.find_by_cop_name('Markdown/HeadingCapitalization')).to eq(described_class)
     expect(RuboCop::Prose.default_configuration.fetch('Markdown/HeadingCapitalization')).to include(
-      'Enabled' => false, 'EnforcedStyle' => 'title_case'
+      'Enabled' => false, 'Style' => 'title_case'
     )
   end
 end

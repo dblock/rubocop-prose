@@ -1,6 +1,33 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Fresh-process CLI smoke tests' do
+  %w[backslash spaces].each do |style|
+    %w[config options].each do |loading|
+      it "coordinates #{style} hard breaks and trailing whitespace with #{loading} plugin loading" do
+        Dir.mktmpdir('cli-hard-break-styles-') do |directory|
+          configuration = File.join(directory, '.rubocop.yml')
+          config = {
+            'Markdown/HardBreakStyle' => { 'Enabled' => true, 'Style' => style },
+            'Markdown/TrailingWhitespace' => { 'Enabled' => true }
+          }
+          config['plugins'] = ['rubocop-prose'] if loading == 'config'
+          File.write(configuration, config.to_yaml)
+          source_marker, expected_marker = style == 'backslash' ? ['    ', '\\'] : ['\\', '  ']
+          source = "> Café.#{source_marker}\n> Next.\n\nLast. \n"
+          expected = "> Café.#{expected_marker}\n> Next.\n\nLast.\n"
+          file = File.join(directory, 'example.md')
+          File.write(file, source)
+          command = fixture_command(configuration, config.keys.grep(%r{/}), loading, nil)
+          assert_fixture_report(command + ['example.md'], directory,
+                                { 'Markdown/HardBreakStyle' => 1, 'Markdown/TrailingWhitespace' => 1 })
+          2.times do
+            assert_fixture_report(command + ['-a', 'example.md'], directory, {}, corrected: true)
+            expect(File.binread(file)).to eq(expected.b)
+          end
+        end
+      end
+    end
+  end
   it 'applies default-enabled Prose/HardTabs to plain text through both plugin loading mechanisms' do
     Dir.mktmpdir('cli-text-hard-tabs-') do |directory|
       configuration = File.join(directory, '.rubocop.yml')

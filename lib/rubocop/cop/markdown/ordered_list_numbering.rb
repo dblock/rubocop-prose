@@ -17,7 +17,7 @@ module RuboCop
 
             first = marks.first[:marker].to_i
             marks.each_with_index do |mark, index|
-              expected = cop_config.fetch('EnforcedStyle', 'sequential') == 'ones' ? 1 : first + index
+              expected = cop_config.fetch('Style', 'sequential') == 'ones' ? 1 : first + index
               digits = mark[:marker][/\A\d+/]
               next if digits == expected.to_s
 

@@ -9,7 +9,7 @@ Report-only: changing syntax can alter heading levels or surrounding structure.
 ```yaml
 Markdown/HeadingStyle:
   Enabled: false
-  EnforcedStyle: consistent # consistent, atx, atx_closed or setext.
+  Style: consistent # consistent, atx, atx_closed or setext.
 ```
 
 ## Example
@@ -19,7 +19,7 @@ For this configuration:
 ```yaml
 Markdown/HeadingStyle:
   Enabled: true
-  EnforcedStyle: atx
+  Style: atx
 ```
 
 ### Bad
@@ -33,4 +33,13 @@ Title
 
 ```markdown
 # Title
+```
+
+## Migrating From 0.1.0
+
+Replace `EnforcedStyle` with `Style`:
+
+```yaml
+Markdown/HeadingStyle:
+  Style: atx
 ```

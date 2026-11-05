@@ -9,7 +9,7 @@ Autocorrection is limited to standalone root-level blocks with blank boundaries.
 ```yaml
 Markdown/CodeBlockStyle:
   Enabled: false
-  EnforcedStyle: consistent # consistent, fenced or indented.
+  Style: consistent # consistent, fenced or indented.
 ```
 
 ## Example
@@ -19,7 +19,7 @@ For this configuration:
 ```yaml
 Markdown/CodeBlockStyle:
   Enabled: true
-  EnforcedStyle: fenced
+  Style: fenced
 ```
 
 ### Bad
@@ -35,3 +35,12 @@ Markdown/CodeBlockStyle:
 puts 'hello'
 ```
 ````
+
+## Migrating From 0.1.0
+
+Replace `EnforcedStyle` with `Style`:
+
+```yaml
+Markdown/CodeBlockStyle:
+  Style: fenced
+```

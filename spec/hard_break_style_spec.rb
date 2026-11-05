@@ -1,6 +1,18 @@
 # frozen_string_literal: true
 
 RSpec.describe RuboCop::Cop::Markdown::HardBreakStyle do
+  it 'lets backslash conversion own the whole whitespace hard break' do
+    cops = [described_class, RuboCop::Cop::Markdown::TrailingWhitespace]
+    source = "> Café.    \n> Next.\n"
+    result, rewritten = investigate(cops, source, settings: {
+                                      'Markdown/HardBreakStyle' => { 'Style' => 'backslash' }
+                                    })
+    expect(result.map(&:cop_name)).to eq(['Markdown/HardBreakStyle'])
+    expect(rewritten).to eq("> Café.\\\n> Next.\n")
+    expect(corrected(cops, rewritten)).to eq(rewritten)
+    expect(offenses(cops, rewritten)).to be_empty
+  end
+
   it 'uses the default backslash style and corrects whitespace hard breaks' do
     source = "First line.  \nSecond line.\n"
     expect(offenses(described_class, source).map(&:line)).to eq([1])

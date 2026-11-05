@@ -1,6 +1,6 @@
 # Markdown/ListItemCapitalization
 
-Checks capitalization in ordered and unordered list items. `EnforcedStyle` supports `consistent` (default), `initial_capital`, and `title_case`. The word settings follow [Markdown/HeadingCapitalization](heading_capitalization.md).
+Checks capitalization in ordered and unordered list items. `Style` supports `consistent` (default), `initial_capital`, and `title_case`. The word settings follow [Markdown/HeadingCapitalization](heading_capitalization.md).
 
 In `consistent` mode, the first eligible item establishes uppercase or lowercase initials; nested and separate lists establish their own style. `initial_capital` requires uppercase initials regardless of sibling style. Both inspect only the initial word, including emphasis, link labels, quotes, inline code, and optional task checkboxes. Code and quoted openings are treated as literal text and are never autocorrected. Images, HTML, entities, numbers, punctuation, uncased letters, paths, URLs, and ambiguous identifiers are skipped. The cop does not search later in an item for prose.
 
@@ -15,7 +15,7 @@ Supports unsafe autocorrection with `rubocop -A`, since casing can change proper
 ```yaml
 Markdown/ListItemCapitalization:
   Enabled: false
-  EnforcedStyle: consistent
+  Style: consistent
   PreserveMixedCase: true
   IgnoredWords: []
   MinorWords:
@@ -66,7 +66,7 @@ For this configuration:
 ```yaml
 Markdown/ListItemCapitalization:
   Enabled: true
-  EnforcedStyle: initial_capital
+  Style: initial_capital
 ```
 
 ### Bad
@@ -90,7 +90,7 @@ For this configuration:
 ```yaml
 Markdown/ListItemCapitalization:
   Enabled: true
-  EnforcedStyle: title_case
+  Style: title_case
   PreserveMixedCase: false
   IgnoredWords:
     - macOS

@@ -9,7 +9,11 @@ Alignment counts source characters, not display width. Empty cells stay empty.
 ```yaml
 Markdown/TableSpacing:
   Enabled: true
-  Style: aligned # aligned, compact or tight.
+  Style: aligned
+  SupportedStyles:
+    - aligned
+    - compact
+    - tight
 ```
 
 ## Example
