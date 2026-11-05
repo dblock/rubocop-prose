@@ -16,7 +16,7 @@ module RuboCop
         end
 
         def investigate_document
-          RuboCop::Prose::TableRules.tables(document).each do |table|
+          document.tables.each do |table|
             style = cop_config.fetch('Style', 'consistent')
             expected = case style
                        when 'leading_and_trailing' then [true, true]

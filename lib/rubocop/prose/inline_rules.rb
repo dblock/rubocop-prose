@@ -58,7 +58,7 @@ module RuboCop
       def self.spans(text, links: true, html: true)
         result = []
         index = 0
-        while index < text.length
+        while (index = text.index(/[\\`<!\[]/, index))
           if text[index] == '\\' && text[index + 1]&.match?(/[[:punct:]]/)
             result << Span.new(begin_pos: index, end_pos: [index + 2, text.length].min, kind: :escape)
             index += 2
@@ -176,6 +176,7 @@ module RuboCop
           end
         end
         ranges = { em: [], strong: [] }
+        source_lines = {}.compare_by_identity
         records.each do |node, line_offset, column_offset|
           next unless ranges.key?(node.type) && node.options[:prose_delimiters]
 
@@ -187,8 +188,9 @@ module RuboCop
           through = text.byteslice(0, last)
           local_line = before.count("\n")
           last_number = number + through.count("\n") - local_line
-          first_text = text.lines(chomp: true)[local_line]
-          last_text = text.lines(chomp: true)[through.count("\n")]
+          lines = source_lines[text] ||= text.lines(chomp: true)
+          first_text = lines[local_line]
+          last_text = lines[through.count("\n")]
           first_prefix = column_offset || document.line(number).rindex(first_text)
           last_prefix = column_offset || document.line(last_number).rindex(last_text)
           next unless first_prefix && last_prefix

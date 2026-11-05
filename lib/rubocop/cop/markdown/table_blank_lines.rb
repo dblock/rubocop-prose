@@ -9,7 +9,7 @@ module RuboCop
         extend AutoCorrector
 
         def investigate_document
-          RuboCop::Prose::TableRules.tables(document).each do |table|
+          document.tables.each do |table|
             first = table.rows.first.number
             last = table.rows.last.number
             unless first == 1 || blank?(document.line(first - 1))

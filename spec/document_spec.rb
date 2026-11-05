@@ -53,6 +53,30 @@ RSpec.describe RuboCop::Prose::MarkdownDocument do
     expect(doc).to have_received(:atomic_ranges).twice
   end
 
+  it 'shares table scanning across cops and rebuilds tables after correction' do
+    source = "| café | Value |\n| --- | --- |\n| `a|b` | text |\n"
+    cops = [
+      RuboCop::Cop::Markdown::TablePipes, RuboCop::Cop::Markdown::TableColumns,
+      RuboCop::Cop::Markdown::TableSpacing, RuboCop::Cop::Markdown::TableBlankLines
+    ]
+    allow(RuboCop::Prose::TableRules).to receive(:tables).and_call_original
+
+    _, rewritten = investigate(cops, source)
+    expect(rewritten).not_to eq(source)
+    expect(RuboCop::Prose::TableRules).to have_received(:tables).once
+    expect(offenses(cops, rewritten)).to be_empty
+    expect(RuboCop::Prose::TableRules).to have_received(:tables).twice
+  end
+
+  it 'retains character positions when scanning sparse inline syntax' do
+    text = 'café 😀 plain text \*escaped* and `code` then [label](url) and <b>HTML</b>.'
+    spans = RuboCop::Prose::InlineRules.spans(text)
+    expect(spans.map { |span| [span.kind, text[span.begin_pos...span.end_pos]] }).to eq(
+      [[:escape, '\\*'], [:code, '`code`'], [:link, '[label](url)'], [:html, '<b>HTML</b>']]
+    )
+    expect(RuboCop::Prose::InlineRules.spans('Plain text without inline syntax.')).to be_empty
+  end
+
   it 'shares link scanning between cops and retains the first normalized definition' do
     source = "Unicode \u{1F600} [ here ][Doc].\n\n[DOC]: /first\n[doc]: <>\n"
     cops = [

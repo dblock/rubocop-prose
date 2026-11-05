@@ -24,7 +24,7 @@ The repository also enables applicable opt-in prose cops for self-linting withou
 
 Run `bundle exec rake benchmark`; set `ITERATIONS` and `SECTIONS` to override sample counts and corpus sizes, for example `ITERATIONS=5 SECTIONS=10,50,100 bundle exec rake benchmark`.
 
-The benchmark compares document analysis, cop investigation, and in-memory autocorrection on Markdown and text corpora. Each operation constructs a fresh document; compare results only across revisions using the same Ruby, RuboCop, and corpus settings. Timings are machine-dependent, not CI thresholds.
+The benchmark compares document analysis, cop investigation, and in-memory autocorrection on Markdown and text corpora, using both distributed defaults and this repository's configuration (`default` and `project` profiles). The corpora include Unicode, front matter, references, tables, code, multi-digit lists, capitalization, proper names, and hard tabs. Each operation constructs a fresh document; compare results only across revisions using the same Ruby, RuboCop, corpus, and profile settings. Output fingerprints verify stable diagnostics and corrections across iterations. Timings are machine-dependent, not CI thresholds.
 
 ## Tests
 

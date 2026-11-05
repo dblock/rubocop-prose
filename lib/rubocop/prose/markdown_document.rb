@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'table_rules'
+
 module RuboCop
   module Prose
     class MarkdownDocument < Document
@@ -20,6 +22,7 @@ module RuboCop
 
         super(buffer)
         @front_matter = source[FRONT_MATTER]
+        @front_matter_lines = @front_matter&.lines&.length
         @ignore_front_matter = ignore_front_matter
       end
 
@@ -48,6 +51,10 @@ module RuboCop
         @link_rules ||= LinkRules.new(self)
       end
 
+      def tables
+        @tables ||= TableRules.tables(self)
+      end
+
       def emphasis_ranges(type)
         @emphasis_ranges ||= InlineRules.emphasis(self)
         @emphasis_ranges.fetch(type, [])
@@ -70,7 +77,7 @@ module RuboCop
       end
 
       def front_matter_line?(number)
-        @ignore_front_matter && front_matter && number <= front_matter.lines.length
+        @ignore_front_matter && @front_matter_lines && number <= @front_matter_lines
       end
 
       def code_line?(number)
