@@ -1,0 +1,9 @@
+plugins:
+  - rubocop-prose
+
+Markdown/FrontMatterKeys:
+  Enabled: true
+  AllowedKeys:
+    - title
+  RequiredKeys:
+    - title
