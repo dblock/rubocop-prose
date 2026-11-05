@@ -57,6 +57,18 @@ RSpec.describe 'Fresh-process CLI smoke tests' do
           expect(File.binread(file)).to eq(source) if scenario == 'custom_extension'
         end
       end
+
+      %w[markdown text].each do |format|
+        IntegrationFixtures.cases(format).each do |fixture, data|
+          next unless File.basename(fixture) == 'sentence_capitalization'
+
+          %w[options config].each do |loading|
+            it "checks #{format} sentence capitalization in a fresh process with #{loading} loading" do
+              run_fixture(fixture, data, loading, nil)
+            end
+          end
+        end
+      end
     end
   end
 end

@@ -124,6 +124,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/UnorderedListMarker](docs/cops/markdown/unordered_list_marker.md)                 | Enabled  | Use a configured or consistent unordered list marker.                               |
 | [Prose/MaxLength](docs/cops/prose/max_length.md)                                            | Enabled  | Wrap or unwrap prose paragraphs in Markdown and plain text.                         |
 | [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md)                         | Enabled  | Limit blank lines in prose and quotes, but not code.                                |
+| [Prose/SentenceCapitalization](docs/cops/prose/sentence_capitalization.md)                  | Disabled | Check paragraph openings without changing quoted or code literals.                  |
 | [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)                                | Enabled  | Require exactly one final newline.                                                  |
 
 #### Settings
@@ -135,12 +136,13 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 
 ### Text
 
-| Cop                                                                 | Default | Purpose                                                     |
-| ---                                                                 | ---     | -------                                                     |
-| [Prose/MaxLength](docs/cops/prose/max_length.md)                    | Enabled | Wrap or unwrap prose paragraphs in Markdown and plain text. |
-| [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md) | Enabled | Limit consecutive literal blank lines.                      |
-| [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)        | Enabled | Require exactly one final newline.                          |
-| [Text/TrailingWhitespace](docs/cops/text/trailing_whitespace.md)    | Enabled | Remove all trailing spaces and tabs from plain-text lines.  |
+| Cop                                                                        | Default  | Purpose                                                     |
+| ---                                                                        | ---      | -------                                                     |
+| [Prose/MaxLength](docs/cops/prose/max_length.md)                           | Enabled  | Wrap or unwrap prose paragraphs in Markdown and plain text. |
+| [Prose/MultipleBlankLines](docs/cops/prose/multiple_blank_lines.md)        | Enabled  | Limit consecutive literal blank lines.                      |
+| [Prose/SentenceCapitalization](docs/cops/prose/sentence_capitalization.md) | Disabled | Check plain-text and Markdown paragraph openings.           |
+| [Prose/TrailingNewline](docs/cops/prose/trailing_newline.md)               | Enabled  | Require exactly one final newline.                          |
+| [Text/TrailingWhitespace](docs/cops/text/trailing_whitespace.md)           | Enabled  | Remove all trailing spaces and tabs from plain-text lines.  |
 
 #### Settings
 

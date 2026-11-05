@@ -1,0 +1,9 @@
+Prose/SentenceCapitalization:
+  Description: Check capitalization of paragraph openings without rewriting literal terms.
+  Enabled: false
+  SafeAutoCorrect: false
+  EnforcedStyle: initial_capital
+  PreserveMixedCase: true
+  IgnoredWords: []
+  SupportedStyles:
+    - initial_capital
