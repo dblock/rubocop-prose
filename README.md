@@ -78,6 +78,7 @@ Markdown checks ignore [front matter](docs/settings/front_matter.md) by default 
 | [Markdown/FenceLanguage](docs/cops/markdown/fence_language.md)                              | Enabled  | Require a language and optionally restrict fence languages.                         |
 | [Markdown/FenceStyle](docs/cops/markdown/fence_style.md)                                    | Enabled  | Use backtick, tilde, or consistently styled fences.                                 |
 | [Markdown/FirstHeading](docs/cops/markdown/first_heading.md)                                | Disabled | Begin documents with a heading or front-matter title.                               |
+| [Markdown/FrontMatterKeys](docs/cops/markdown/front_matter_keys.md)                         | Disabled | Restrict allowed and require mandatory top-level front matter keys.                 |
 | [Markdown/FrontMatterSyntax](docs/cops/markdown/front_matter_syntax.md)                     | Enabled  | Report YAML syntax errors in closed leading front matter.                           |
 | [Markdown/HardBreakStyle](docs/cops/markdown/hard_break_style.md)                           | Enabled  | Use backslashes or trailing spaces for paragraph hard breaks.                       |
 | [Markdown/HardTabs](docs/cops/markdown/hard_tabs.md)                                        | Enabled  | Disallow hard tabs with code-language exceptions.                                   |

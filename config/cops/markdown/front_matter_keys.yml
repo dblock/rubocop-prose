@@ -1,0 +1,5 @@
+Markdown/FrontMatterKeys:
+  Description: Restrict allowed and require mandatory top-level YAML front matter keys.
+  Enabled: false
+  AllowedKeys:
+  RequiredKeys: []
