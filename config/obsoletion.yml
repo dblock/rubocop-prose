@@ -34,3 +34,8 @@ changed_parameters:
       Use EnforcedStyle (fixed or aligned) and MinSpaces instead.
       These settings now apply to all list items, regardless of marker type or multiline content.
       Different legacy spacing values cannot be preserved by a single policy; choose the desired shared spacing.
+  - cops: Markdown/FirstHeading
+    parameters:
+      - TitleKey
+    reason: >-
+      Set FrontMatterTitle to the desired metadata key, or false to disable the front-matter title exemption.

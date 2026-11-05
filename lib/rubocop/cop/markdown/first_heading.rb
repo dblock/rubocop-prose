@@ -24,16 +24,27 @@ module RuboCop
                         message: 'Start the document with a heading at the configured level.')
         end
 
+        def validate_config
+          title_key = cop_config['FrontMatterTitle']
+          return if title_key == false || (title_key.is_a?(String) && !title_key.strip.empty?)
+
+          raise ValidationError,
+                "#{cop_name}: FrontMatterTitle must be a nonempty metadata key or false; " \
+                'replace `FrontMatterTitle: true` and `TitleKey` with the metadata key, or use false to disable.'
+        end
+
         private
 
         def front_matter_title?
-          return false unless cop_config.fetch('FrontMatterTitle', true) && document.front_matter
+          title_key = cop_config['FrontMatterTitle']
+          return false if title_key == false
+          return false unless document.front_matter
 
           lines = document.front_matter.lines
           metadata = YAML.safe_load(lines[1...-1].join)
           return false unless metadata.is_a?(Hash)
 
-          title = metadata[cop_config.fetch('TitleKey', 'title')]
+          title = metadata[title_key]
           title.is_a?(String) && !title.strip.empty?
         rescue Psych::Exception
           false
