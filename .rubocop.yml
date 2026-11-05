@@ -75,7 +75,16 @@ Markdown/ListItemPunctuation:
 Markdown/OrderedListNumbering:
   Enabled: true
 
-Prose/ProperNames:
+Markdown/ProperNames:
+  Enabled: true
+  Names:
+    - GitHub
+    - Markdown
+    - RuboCop
+    - Ruby
+    - YAML
+
+Text/ProperNames:
   Enabled: true
   Names:
     - GitHub

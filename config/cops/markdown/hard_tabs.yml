@@ -1,0 +1,5 @@
+Markdown/HardTabs:
+  Description: 'Report hard tabs in Markdown without correcting them.'
+  Enabled: true
+  CodeBlocks: false
+  AllowedCodeLanguages: []

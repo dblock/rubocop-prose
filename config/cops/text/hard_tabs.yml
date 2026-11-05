@@ -1,0 +1,3 @@
+Text/HardTabs:
+  Description: 'Report hard tabs on every plain-text line without correcting them.'
+  Enabled: true

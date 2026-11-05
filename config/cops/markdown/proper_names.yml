@@ -1,4 +1,4 @@
-Prose/ProperNames:
+Markdown/ProperNames:
   Description: 'Use configured capitalization for proper names.'
   Enabled: false
   Names: []

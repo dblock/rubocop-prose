@@ -1,0 +1,10 @@
+plugins:
+  - rubocop-prose
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+Text/ProperNames:
+  Enabled: true
+  Names:
+    - GitHub
+    - Ruby

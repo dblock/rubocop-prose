@@ -2,14 +2,8 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Prose::ProperNames do
+RSpec.describe RuboCop::Cop::Markdown::ProperNames do
   let(:options) { { 'Names' => ['GitHub', 'Ruby', 'C++'] } }
-
-  it 'directs the old Markdown name to Prose/ProperNames' do
-    config = RuboCop::Config.new({ 'Markdown/ProperNames' => { 'Enabled' => true } }, '.rubocop.yml')
-    expect { RuboCop::ConfigObsoletion.new(config).reject_obsolete! }
-      .to raise_error(RuboCop::ValidationError, %r{Markdown/ProperNames.*Prose/ProperNames}m)
-  end
 
   it 'corrects configured whole names including punctuation' do
     source = "# github and RUBY\n\nUse c++ with github, not githubber or rubylike.\n"
@@ -40,16 +34,7 @@ RSpec.describe RuboCop::Cop::Prose::ProperNames do
     expect(offenses(described_class, source, options)).to be_empty
   end
 
-  it 'checks Markdown-like syntax literally in plain text without parsing it' do
-    source = "`github` [github](https://github.com/github)\nhttps://github.com/github\n```ruby\ngithub\n```\n"
-    expected = "`GitHub` [GitHub](https://GitHub.com/GitHub)\nhttps://GitHub.com/GitHub\n```Ruby\nGitHub\n```\n"
-    expect(corrected(described_class, source, options, path: 'example.txt')).to eq(expected)
-  end
-
-  it 'uses character-based locations and corrections in plain text' do
-    source = "😀 github\n"
-    found = offenses(described_class, source, options, path: 'example.txt')
-    expect(found.map(&:column)).to eq([2])
-    expect(corrected(described_class, source, options, path: 'example.txt')).to eq("😀 GitHub\n")
+  it 'does not inspect plain text even when selected explicitly' do
+    expect(offenses(described_class, "github\n", options, path: 'example.txt')).to be_empty
   end
 end
