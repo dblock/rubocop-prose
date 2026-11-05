@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. The format 
 - [#146](https://github.com/dblock/rubocop-prose/pull/146): Add aligned list marker spacing with configurable minimum padding; breaking configuration change: replace the four `Single`/`Multi` spacing options with shared `EnforcedStyle` and `MinSpaces` settings - [@dblock](https://github.com/dblock).
 - [#148](https://github.com/dblock/rubocop-prose/pull/148): Add opt-in `Prose/SentenceCapitalization` for Markdown and plain-text paragraph openings, reporting literal lowercase terms without autocorrecting them - [@dblock](https://github.com/dblock).
 - [#149](https://github.com/dblock/rubocop-prose/pull/149): Move `Markdown/ProperNames` and `Markdown/HardTabs` to shared `Prose/*` cops for Markdown and literal plain text, with migration diagnostics - [@dblock](https://github.com/dblock).
+- [#150](https://github.com/dblock/rubocop-prose/pull/150): Support per-level document, sibling, or disabled duplicate-heading scopes with range and comparison selectors - [@dblock](https://github.com/dblock).
 - Your contribution here.
 
 ## 0.1.0 (2026/11/03)
