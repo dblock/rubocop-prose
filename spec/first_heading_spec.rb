@@ -14,15 +14,33 @@ RSpec.describe RuboCop::Cop::Markdown::FirstHeading do
     expect(offenses(described_class, "## Title\n", { 'Level' => 2 })).to be_empty
   end
 
-  it 'accepts a configured front-matter title' do
-    source = "---\nname: |\n  A document\n---\nPreamble\n"
-    expect(offenses(described_class, source, { 'TitleKey' => 'name' })).to be_empty
+  it 'accepts the default title key and a configured front-matter key' do
     expect(offenses(described_class, "---\ntitle: Title\n---\nText\n")).to be_empty
+
+    source = "---\nname: |\n  A document\n---\nPreamble\n"
+    expect(offenses(described_class, source, { 'FrontMatterTitle' => 'name' })).to be_empty
   end
 
   it 'can disable the front-matter title exemption' do
     source = "---\ntitle: Title\n---\nText\n"
     expect(offenses(described_class, source, { 'FrontMatterTitle' => false }).map(&:line)).to eq([4])
+  end
+
+  it 'rejects obsolete TitleKey with migration guidance' do
+    config = RuboCop::Config.new(
+      { 'Markdown/FirstHeading' => { 'FrontMatterTitle' => true, 'TitleKey' => 'name' } },
+      '.rubocop.yml'
+    )
+    expect { RuboCop::ConfigObsoletion.new(config).reject_obsolete! }
+      .to raise_error(RuboCop::ValidationError, /TitleKey.*FrontMatterTitle.*metadata key/m)
+  end
+
+  it 'rejects invalid front-matter title settings with migration guidance' do
+    [true, nil, '', " \t", 1, [], {}].each do |setting|
+      expect do
+        offenses(described_class, "---\ntitle: Title\n---\nText\n", { 'FrontMatterTitle' => setting })
+      end.to raise_error(RuboCop::ValidationError, /FrontMatterTitle.*nonempty metadata key or false/)
+    end
   end
 
   it 'rejects missing, non-string, blank and invalid titles without raising' do
