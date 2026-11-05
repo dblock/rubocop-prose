@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe RuboCop::Cop::Markdown::HardTabs do
+RSpec.describe RuboCop::Cop::Prose::HardTabs do
   it 'reports exact Unicode-aware tab locations without guessing a correction' do
     source = "Hello \u{1f600}\tworld.\n"
     result = offenses(described_class, source)
@@ -17,5 +17,13 @@ RSpec.describe RuboCop::Cop::Markdown::HardTabs do
 
   it 'does not report front matter or tab-free prose' do
     expect(offenses(described_class, "---\ntitle:\tvalue\n---\n\nText.\n")).to be_empty
+  end
+
+  it 'reports tabs literally throughout plain text and never corrects them' do
+    source = "```make\tlabel\n\tcommand\n---\nmetadata:\tvalue\n"
+    settings = { 'CodeBlocks' => false, 'AllowedCodeLanguages' => ['make'] }
+    found = offenses(described_class, source, settings, path: 'example.txt')
+    expect(found.map { |offense| [offense.line, offense.column] }).to eq([[1, 7], [2, 0], [4, 9]])
+    expect(corrected(described_class, source, settings, path: 'example.txt')).to eq(source)
   end
 end

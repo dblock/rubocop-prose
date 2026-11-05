@@ -2,7 +2,7 @@
 
 require 'spec_helper'
 
-RSpec.describe RuboCop::Cop::Markdown::ProperNames do
+RSpec.describe RuboCop::Cop::Prose::ProperNames do
   let(:options) { { 'Names' => ['GitHub', 'Ruby', 'C++'] } }
 
   it 'corrects configured whole names including punctuation' do
@@ -32,5 +32,18 @@ RSpec.describe RuboCop::Cop::Markdown::ProperNames do
   it 'ignores multiline code by default and recognizes Unicode word boundaries' do
     source = "Text ``code\nruby github\ncode`` and éruby and githubé.\n"
     expect(offenses(described_class, source, options)).to be_empty
+  end
+
+  it 'checks Markdown-like syntax literally in plain text without parsing it' do
+    source = "`github` [github](https://github.com/github)\nhttps://github.com/github\n```ruby\ngithub\n```\n"
+    expected = "`GitHub` [GitHub](https://GitHub.com/GitHub)\nhttps://GitHub.com/GitHub\n```Ruby\nGitHub\n```\n"
+    expect(corrected(described_class, source, options, path: 'example.txt')).to eq(expected)
+  end
+
+  it 'uses character-based locations and corrections in plain text' do
+    source = "😀 github\n"
+    found = offenses(described_class, source, options, path: 'example.txt')
+    expect(found.map(&:column)).to eq([2])
+    expect(corrected(described_class, source, options, path: 'example.txt')).to eq("😀 GitHub\n")
   end
 end

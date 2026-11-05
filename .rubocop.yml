@@ -75,7 +75,7 @@ Markdown/ListItemPunctuation:
 Markdown/OrderedListNumbering:
   Enabled: true
 
-Markdown/ProperNames:
+Prose/ProperNames:
   Enabled: true
   Names:
     - GitHub
