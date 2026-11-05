@@ -2,6 +2,9 @@
 
 require 'rubocop'
 require 'yaml'
+
+RuboCop::ConfigObsoletion.files << File.expand_path('../config/obsoletion.yml', __dir__)
+
 require_relative 'rubocop/prose/version'
 require_relative 'rubocop/prose/parser'
 require_relative 'rubocop/prose/file_types'

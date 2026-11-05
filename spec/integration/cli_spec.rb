@@ -1,6 +1,23 @@
 # frozen_string_literal: true
 
 RSpec.describe 'Fresh-process CLI smoke tests' do
+  it 'rejects obsolete list spacing settings through both plugin loading mechanisms' do
+    Dir.mktmpdir('cli-obsolete-') do |directory|
+      configuration = File.join(directory, '.rubocop.yml')
+      File.write(File.join(directory, 'example.md'), "1. one\n")
+      %w[config options].each do |loading|
+        config = { 'Markdown/ListMarkerSpacing' => { 'OrderedSingle' => 2 } }
+        config['plugins'] = ['rubocop-prose'] if loading == 'config'
+        File.write(configuration, config.to_yaml)
+        command = fixture_command(configuration, [], loading, nil)
+        command.insert(1, '-W1')
+        stdout, stderr, status = Open3.capture3(*command, 'example.md', chdir: directory)
+        expect(status.exitstatus).to eq(2)
+        expect(stdout + stderr).to include('OrderedSingle', 'EnforcedStyle', 'MinSpaces')
+      end
+    end
+  end
+
   %w[markdown text].each do |format|
     IntegrationFixtures.cases(format).each do |fixture, data|
       next unless %w[defaults custom_extension].include?(File.basename(fixture))
