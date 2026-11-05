@@ -16,7 +16,9 @@ CI covers Ruby 3.2 and 4.0, gem packaging, and optional Markdown-preprocessor in
 
 Run `COVERAGE=true bundle exec rake spec` to generate an HTML report in `coverage/` and `coverage/.resultset.json` for Coveralls. CI combines the Ruby 4.0 unit and standalone integration reports on [Coveralls](https://coveralls.io/github/dblock/rubocop-prose); subprocess smoke tests and optional interoperability are not instrumented.
 
-The lint configuration loads this checkout's plugin alongside rubocop-rspec and rubocop-rake; intentionally invalid fixtures are excluded.
+The lint configuration loads this checkout's plugin alongside `rubocop-rspec` and `rubocop-rake`; intentionally invalid fixtures are excluded.
+
+The repository also enables applicable opt-in prose cops for self-linting without changing their distributed defaults. `Markdown/HeadingStructure` stays disabled because documents do not share an exact outline. `Markdown/StructuralLineLength` limits headings to 120 columns, not code samples or tables. Raw HTML is limited to images with `src`, `alt`, and `width` attributes for the README artwork; the README is exempt from `Markdown/FirstHeading` to preserve its leading logo.
 
 ### Benchmarks
 
@@ -42,7 +44,7 @@ Fresh-process smoke tests in `spec/integration/cli_spec.rb` check YAML and CLI-o
 
 Mixed default-cop scenarios in `spec/fixtures/markdown_stability/` check content and document structure after every correction, convergence without cycles, and byte-identical output after stabilization.
 
-For optional interoperability, set `RUBOCOP_MD_PATH` to a checkout supporting the [original-buffer mapping API](DESIGN.md#preprocessor-interoperability) and run `bundle exec rake spec:interoperability`. Without that variable, the suite is skipped. Its separate CI workflow runs only on Ruby 4.0; update the rubocop-md ref when the required API is released.
+For optional interoperability, set `RUBOCOP_MD_PATH` to a checkout supporting the [original-buffer mapping API](DESIGN.md#preprocessor-interoperability) and run `bundle exec rake spec:interoperability`. Without that variable, the suite is skipped. Its separate CI workflow runs only on Ruby 4.0; update the `rubocop-md` ref when the required API is released.
 
 ## Adding a Cop
 

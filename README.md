@@ -1,6 +1,6 @@
 <img src="assets/logo.gif" alt="The RuboCop helmet logo alongside a parchment scroll rolling up and unfurling." width="160">
 
-# rubocop-prose
+# `rubocop-prose`
 
 [![Gem Version](https://badge.fury.io/rb/rubocop-prose.svg)](https://rubygems.org/gems/rubocop-prose) [![Lint](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/lint.yml) [![Tests](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/dblock/rubocop-prose/actions/workflows/test.yml) [![Coverage Status](https://coveralls.io/repos/github/dblock/rubocop-prose/badge.svg?branch=main)](https://coveralls.io/github/dblock/rubocop-prose?branch=main)
 
