@@ -6,7 +6,7 @@ Release only with explicit maintainer authorization. Release preparation happens
 
 Update `main` with a fast-forward pull. Run `bundle exec rake` and confirm GitHub Actions checks pass, including the separate interoperability workflow against the released `rubocop-md` tag `v3.0.0`. Verify the minimum supported RuboCop with `RUBOCOP_VERSION=1.72.1 bundle install` and `RUBOCOP_VERSION=1.72.1 bundle exec rake spec`; restore the normal dependency resolution afterward.
 
-Set the version in `lib/rubocop/prose/version.rb`, date its CHANGELOG heading as `YYYY/MM/DD`, remove the contribution placeholder from that release, and check README installation instructions. Commit and push preparation changes, wait for green CI, then build and inspect the package:
+Set the version in `lib/rubocop/prose/version.rb`, date its CHANGELOG heading as `YYYY/MM/DD`, remove the contribution placeholder from that release, update the target version in [UPGRADING](UPGRADING.md) and remove its `(Next)` marker, and check README installation instructions. Commit and push preparation changes, wait for green CI, then build and inspect the package:
 
 ```sh
 bundle exec rake build

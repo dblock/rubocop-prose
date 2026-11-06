@@ -62,6 +62,8 @@ See [RELEASING.md](RELEASING.md) for the maintainer release procedure.
 
 Keep each pull request focused, with one coherent commit, and use squash merges. Include behavior and configuration documentation. Preserve unrelated worktree changes.
 
+For breaking changes, add a one-line migration summary to [UPGRADING](UPGRADING.md) under the target release, linking to the detailed cop guide. Describe only net changes since the source released version, not unreleased configuration iterations.
+
 Add a linked unreleased changelog entry only for a notable user-facing change, using the actual pull-request number. Do not add entries for documentation, tooling, refactoring, or unreleased functionality; update an existing feature entry when appropriate.
 
 ```markdown
