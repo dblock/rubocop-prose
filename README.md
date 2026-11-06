@@ -22,7 +22,7 @@ This project was inspired by [To Wrap or Not to Wrap in Markdown](https://code.d
 Add to your Gemfile, then run `bundle install`:
 
 ```ruby
-gem 'rubocop-prose', '~> 0.1', require: false
+gem 'rubocop-prose', '~> 0.2', require: false
 ```
 
 Add it to `.rubocop.yml` using RuboCop's plugin interface:

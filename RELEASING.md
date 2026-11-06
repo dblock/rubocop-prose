@@ -10,7 +10,7 @@ Set the version in `lib/rubocop/prose/version.rb`, date its CHANGELOG heading as
 
 ```sh
 bundle exec rake build
-gem specification pkg/rubocop-prose-0.1.0.gem files
+gem specification pkg/rubocop-prose-0.2.0.gem files
 ```
 
 Confirm runtime code, configuration, cop guides, README, CHANGELOG, licenses, and artwork are present; exclude tests, temporary workspaces, and dependency caches. Preserve the vendored helmet license and provenance. Install the exact built gem into a temporary gem environment outside the checkout and exercise plugin loading, discovery, stdin, configuration, and repeated autocorrection for Markdown and text.
@@ -22,10 +22,10 @@ Publish the exact inspected package. Enter a fresh RubyGems MFA code when prompt
 For an assistant-driven release, ask the maintainer for a fresh MFA code only when ready to publish and pass it through `GEM_HOST_OTP_CODE`, not the `--otp` command-line argument. Prefer a hidden local prompt. If the maintainer explicitly chooses chat, explain that the code will be visible in conversation history. Never save the code in repository files or documentation. Alternatively, the maintainer can run `gem push` interactively.
 
 ```sh
-gem push pkg/rubocop-prose-0.1.0.gem
+gem push pkg/rubocop-prose-0.2.0.gem
 ```
 
-Verify that exact version on RubyGems before creating and pushing an annotated `v0.1.0` tag at the release commit. Create a GitHub release with matching changelog notes. Do not move an existing release tag.
+Verify that exact version on RubyGems before creating and pushing an annotated `v0.2.0` tag at the release commit. Create a GitHub release with matching changelog notes. Do not move an existing release tag.
 
 ## Next Development Iteration
 

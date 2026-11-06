@@ -2,7 +2,7 @@
 
 Breaking changes are grouped by target release; follow the linked cop guides for configuration examples.
 
-## From 0.1.0 to 0.2.0 (Next)
+## From 0.1.0 To 0.2.0
 
 - Rename this plugin's `Markdown/Syntax` configuration to [`Markdown/KramdownSyntax`](docs/cops/markdown/kramdown_syntax.md#migrating-from-010); `rubocop-md` now owns `Markdown/Syntax`.
 - Replace `EnforcedStyle` with `Style` in [`Markdown/CodeBlockStyle`](docs/cops/markdown/code_block_style.md#migrating-from-010).
