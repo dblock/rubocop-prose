@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
     'default_lint_roller_plugin' => 'RuboCop::Prose::Plugin'
   }
   spec.files = Dir['lib/**/*.rb', 'config/**/*.yml', 'docs/**/*.md', 'assets/**/*'] +
-               %w[README.md CHANGELOG.md CONTRIBUTING.md RELEASING.md DESIGN.md AGENTS.md LICENSE.txt]
+               %w[README.md CHANGELOG.md UPGRADING.md CONTRIBUTING.md RELEASING.md DESIGN.md AGENTS.md LICENSE.txt]
   spec.require_paths = ['lib']
   spec.add_dependency 'kramdown', '~> 2.5'
   spec.add_dependency 'kramdown-parser-gfm', '~> 1.1'

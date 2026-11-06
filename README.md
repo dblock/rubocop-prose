@@ -34,6 +34,8 @@ plugins:
 
 Ruby 3.2 or newer and RuboCop 1.72.1 or newer within 1.x are supported.
 
+See [UPGRADING](UPGRADING.md) for breaking changes when updating an existing installation.
+
 ## Usage
 
 Given `example.md`:
