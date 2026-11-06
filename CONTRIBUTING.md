@@ -46,7 +46,7 @@ Fresh-process smoke tests in `spec/integration/cli_spec.rb` check YAML and CLI-o
 
 Mixed default-cop scenarios in `spec/fixtures/markdown_stability/` check content and document structure after every correction, convergence without cycles, and byte-identical output after stabilization.
 
-For optional interoperability, set `RUBOCOP_MD_PATH` to a checkout supporting the [original-buffer mapping API](DESIGN.md#preprocessor-interoperability) and run `bundle exec rake spec:interoperability`. Without that variable, the suite is skipped. Its separate CI workflow runs only on Ruby 4.0; update the `rubocop-md` ref when the required API is released.
+For optional interoperability, set `RUBOCOP_MD_PATH` to a `rubocop-md` checkout at `v3.0.0` and run `bundle exec rake spec:interoperability`. This release provides the [original-buffer mapping API](DESIGN.md#preprocessor-interoperability). Without that variable, the suite is skipped. Its separate CI workflow runs only on Ruby 4.0 and pins the same released tag.
 
 ## Adding a Cop
 

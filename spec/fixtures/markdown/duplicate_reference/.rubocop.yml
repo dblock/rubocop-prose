@@ -3,7 +3,7 @@ plugins:
 AllCops:
   NewCops: enable
   SuggestExtensions: false
-Markdown/Syntax:
+Markdown/KramdownSyntax:
   Enabled: true
 Markdown/ReferenceDefinitions:
   Enabled: true
