@@ -1,4 +1,4 @@
-# Markdown/Syntax
+# Markdown/KramdownSyntax
 
 Reports Kramdown GFM parsing warnings through RuboCop. Report-only.
 
@@ -7,7 +7,7 @@ Reference warnings are handled by [Markdown/UndefinedReference](undefined_refere
 ## Configuration
 
 ```yaml
-Markdown/Syntax:
+Markdown/KramdownSyntax:
   Enabled: true
 ```
 
@@ -26,3 +26,7 @@ Markdown/Syntax:
 
 [docs]: /guide
 ```
+
+## Migrating From 0.1.0
+
+Rename this plugin's `Markdown/Syntax` configuration to `Markdown/KramdownSyntax`. When using RuboCop-md 3.0.0 or newer, `Markdown/Syntax` configures its separate cop; leave that disabled to avoid duplicate parser warnings.

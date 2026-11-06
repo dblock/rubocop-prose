@@ -20,6 +20,7 @@ All notable changes to this project will be documented in this file. The format 
 - [#152](https://github.com/dblock/rubocop-prose/pull/152): Simplify `Markdown/ReferenceDefinitions` configuration; breaking change: replace `CheckDuplicates` and `AllowIdenticalDuplicates` with `Duplicates: forbid | allow_identical | allow`, and rename `CheckUnused` to `Unused`, with migration diagnostics - [@dblock](https://github.com/dblock).
 - [#153](https://github.com/dblock/rubocop-prose/pull/153): Simplify `Markdown/FirstHeading` front-matter configuration; replace `FrontMatterTitle: true` and `TitleKey` with the metadata key in `FrontMatterTitle` - [@dblock](https://github.com/dblock).
 - [#154](https://github.com/dblock/rubocop-prose/pull/154): Standardize Markdown cop style settings on `Style`, migrating released `EnforcedStyle` keys - [@dblock](https://github.com/dblock).
+- [#159](https://github.com/dblock/rubocop-prose/pull/159): Support RuboCop-md 3.0.0; rename `Markdown/Syntax` to `Markdown/KramdownSyntax` to avoid its upstream cop-name collision - [@dblock](https://github.com/dblock).
 - Your contribution here.
 
 ## 0.1.0 (2026/11/03)

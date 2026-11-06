@@ -21,8 +21,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           repository: rubocop/rubocop-md
-          # Replace with a release tag once rubocop-md ships the original-source mapping API.
-          ref: refs/pull/57/head
+          ref: v3.0.0
           path: tmp/rubocop-md
           persist-credentials: false
       - uses: ruby/setup-ruby@v1

@@ -3,7 +3,7 @@
 module RuboCop
   module Cop
     module Markdown
-      class Syntax < Base
+      class KramdownSyntax < Base
         private
 
         def investigate_document

@@ -30,6 +30,8 @@ An optional Markdown preprocessor can expose `processed_source.markdown_document
 
 Plain text never consults the preprocessor API. A preprocessor without the original-buffer mapping methods is unsupported. Custom Markdown extensions remain lintable standalone when the preprocessor does not recognize them; Ruby extraction is then unavailable. The shared `Markdown:` section preserves keys owned by the preprocessor, while `IgnoreFrontMatter` belongs to this plugin.
 
+Parser warnings belong to `Markdown/KramdownSyntax` in this plugin. The former `Markdown/Syntax` name is not registered as obsolete because RuboCop-md 3.0.0 owns that name; rejecting or redirecting it would break valid preprocessor configuration.
+
 ## Correction Safety
 
 Corrections are limited to rewrites whose source mapping and resulting document semantics are known. Markdown reflow preserves container prefixes, hard breaks, inline atomic syntax, and HTML break behavior; text preserves literal contents and paragraph boundaries. Unbreakable tokens and ambiguous structural rewrites can be reported without correction. Markdown structural checks do not reflow headings, tables, or code.

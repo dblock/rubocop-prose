@@ -105,6 +105,7 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 | [Markdown/HeadingStyle](docs/cops/markdown/heading_style.md)                                | Disabled | Use a consistent heading syntax.                                                    |
 | [Markdown/ImageAltText](docs/cops/markdown/image_alt_text.md)                               | Enabled  | Require nonblank Markdown image alternative text.                                   |
 | [Markdown/ImagePathSeparators](docs/cops/markdown/image_path_separators.md)                 | Enabled  | Use forward slashes in local image destinations.                                    |
+| [Markdown/KramdownSyntax](docs/cops/markdown/kramdown_syntax.md)                            | Enabled  | Report Kramdown GFM parser diagnostics.                                             |
 | [Markdown/LinkFragment](docs/cops/markdown/link_fragment.md)                                | Disabled | Validate local fragments using configurable heading anchors.                        |
 | [Markdown/LinkStyle](docs/cops/markdown/link_style.md)                                      | Disabled | Configure permitted link and image styles independently.                            |
 | [Markdown/LinkTextSpacing](docs/cops/markdown/link_text_spacing.md)                         | Enabled  | Remove leading and trailing whitespace from link text.                              |
@@ -124,7 +125,6 @@ Fix it automatically with `bundle exec rubocop -a example.md`.
 | [Markdown/SingleTopLevelHeading](docs/cops/markdown/single_top_level_heading.md)            | Disabled | Allow at most one top-level heading.                                                |
 | [Markdown/StrongStyle](docs/cops/markdown/strong_style.md)                                  | Enabled  | Use a configured or consistent strong delimiter.                                    |
 | [Markdown/StructuralLineLength](docs/cops/markdown/structural_line_length.md)               | Disabled | Report overlong heading, code-block, and table source lines without reflowing them. |
-| [Markdown/Syntax](docs/cops/markdown/syntax.md)                                             | Enabled  | Report native Markdown parser diagnostics.                                          |
 | [Markdown/TableBlankLines](docs/cops/markdown/table_blank_lines.md)                         | Enabled  | Surround Markdown tables with blank lines.                                          |
 | [Markdown/TableColumns](docs/cops/markdown/table_columns.md)                                | Enabled  | Match table body column counts to the header.                                       |
 | [Markdown/TablePipes](docs/cops/markdown/table_pipes.md)                                    | Enabled  | Use consistent leading and trailing table pipes.                                    |
